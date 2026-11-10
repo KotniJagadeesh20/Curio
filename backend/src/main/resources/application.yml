@@ -1,0 +1,56 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/codemastery}
+    username: ${DB_USER:codemastery}
+    password: ${DB_PASSWORD:codemastery}
+  servlet:
+    multipart:
+      # servlet-layer limits: an oversized body is refused before the controller sees it (MediaService also counts the real bytes)
+      max-file-size: ${media.max-bytes}
+      max-request-size: ${media.max-request-bytes}
+      file-size-threshold: 1MB
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    placeholder-replacement: false   # seed lessons contain literal ${...} in code samples
+
+app:
+  jwt:
+    # must be at least 32 characters; override in every real environment
+    secret: ${JWT_SECRET:dev-only-secret-change-me-dev-only-secret}
+    expiration-minutes: 1440
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:8080,http://localhost:5173}
+  admin:
+    email: ${ADMIN_EMAIL:admin@codemastery.local}
+    password: ${ADMIN_PASSWORD:ChangeMe123!}
+
+media:
+  storage: ${MEDIA_STORAGE:local}          # "local" or "s3". Production (profile prod/production) refuses "local" and must use "s3"; no fallback
+  local:
+    root: ${MEDIA_LOCAL_ROOT:./data/media}  # dev/test only, single instance
+  s3:                                       # read only when storage=s3; the bucket must exist and be private
+    bucket: ${MEDIA_S3_BUCKET:}
+    region: ${MEDIA_S3_REGION:us-east-1}
+    endpoint: ${MEDIA_S3_ENDPOINT:}         # empty = AWS; set for MinIO / R2
+    path-style: ${MEDIA_S3_PATH_STYLE:false}   # MinIO needs true
+    access-key: ${MEDIA_S3_ACCESS_KEY:}     # leave both empty to use the default AWS credential chain
+    secret-key: ${MEDIA_S3_SECRET_KEY:}
+    key-prefix: ${MEDIA_S3_KEY_PREFIX:}
+    max-object-size: 32MB                   # put() verifies the stream in memory first: bounds heap per call; must be >= max-bytes
+  max-bytes: 5MB
+  max-request-bytes: 6MB                   # must be >= max-bytes (multipart overhead)
+  max-pixels: 25000000
+  max-side: 20000
+  quota-bytes: 200MB                       # per user: stored original + thumbnail bytes of every asset still held
+  quota-assets: 500
+  max-concurrent-uploads: 4                # uploads holding their bytes in memory at once (input buffers: 2x file + 1 MB each)
+  decode-budget-mb: 256                    # estimated peak heap of decodes in flight; budget + input buffers must stay within 25% of the heap
+  upload-timeout: 30m
+  sweep-interval: 10m

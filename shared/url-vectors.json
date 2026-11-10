@@ -1,0 +1,160 @@
+{
+ "_doc": "Shared by backend UrlRulesTest and frontend urlRules.test.ts. 'accept': URL rule says OK. 'reject': must be refused. 'blank': allowed (a draft block with no link yet). 'embed': embedUrl() output (null = not a YouTube/Vimeo page: treated as a direct https file).",
+ "accept": [
+  "https://example.com",
+  "https://example.com/a/b.png?x=1#f",
+  "https://sub.example.co.uk/x",
+  "https://xn--bcher-kva.example/x",
+  "https://example.com:8443/x",
+  "/img/a.png",
+  "/",
+  "/a?b=c#d",
+  "https://evilyoutube.com/clip.mp4",
+  "https://youtu.be/dQw4w9WgXcQ"
+ ],
+ "reject": [
+  "http://example.com/a.png",
+  "//evil.com/x",
+  "/\\evil.com",
+  "/\\\\evil.com",
+  "\\\\evil.com",
+  "javascript:alert(1)",
+  "JaVaScRiPt:alert(1)",
+  "  javascript:alert(1)",
+  "data:text/html,<script>alert(1)</script>",
+  "data:image/png;base64,AAAA",
+  "https://user:pw@example.com/",
+  "https://user@example.com/",
+  "https://localhost/x",
+  "https://127.0.0.1/x",
+  "https://[::1]/x",
+  "https://2130706433/x",
+  "https://0x7f.1/x",
+  "https://example.com./x",
+  "https://intranet/x",
+  " https://example.com",
+  "https://example.com ",
+  "https://exa mple.com",
+  "https://example.com/a\tb",
+  "https://example.com/\nfoo",
+  "/path\\with-backslash",
+  "/%2fevil.com",
+  "/%2Fevil.com",
+  "/%5cevil.com",
+  "/%5Cevil.com",
+  "https://example.com\\@evil.com",
+  "https://b\u00fccher.example/x",
+  "https://example.com/\u00e9",
+  "ftp://example.com/x",
+  "mailto:a@b.c",
+  "relative/path.png",
+  "./x.png",
+  "../x",
+  "https://",
+  "https:example.com",
+  "https:/example.com",
+  "https:///x",
+  "https://example.com:99999/x",
+  "https://example.com/\u0000",
+  "https://example.com/\u007f",
+  "https://example.com/\u2028"
+ ],
+ "blank": [
+  "",
+  "   "
+ ],
+ "embed": [
+  {
+   "input": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+   "expected": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+   "input": "https://youtube.com/watch?v=dQw4w9WgXcQ&t=5",
+   "expected": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+   "input": "https://youtu.be/dQw4w9WgXcQ",
+   "expected": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+   "input": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+   "expected": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  },
+  {
+   "input": "https://vimeo.com/123456789",
+   "expected": "https://player.vimeo.com/video/123456789"
+  },
+  {
+   "input": "https://player.vimeo.com/video/123456789",
+   "expected": "https://player.vimeo.com/video/123456789"
+  },
+  {
+   "input": "https://www.youtube.com/watch?v=<script>",
+   "expected": null
+  },
+  {
+   "input": "https://www.youtube.com/watch?v=a",
+   "expected": null
+  },
+  {
+   "input": "https://youtu.be/../evil",
+   "expected": null
+  },
+  {
+   "input": "https://youtu.be/dQw4w9WgXcQ/../../x",
+   "expected": null
+  },
+  {
+   "input": "https://evilyoutube.com/watch?v=dQw4w9WgXcQ",
+   "expected": null
+  },
+  {
+   "input": "https://youtube.com.evil.com/watch?v=dQw4w9WgXcQ",
+   "expected": null
+  },
+  {
+   "input": "https://www.youtube.com.evil.com/watch?v=dQw4w9WgXcQ",
+   "expected": null
+  },
+  {
+   "input": "https://youtu.be.evil.com/dQw4w9WgXcQ",
+   "expected": null
+  },
+  {
+   "input": "https://m.youtube.com/watch?v=dQw4w9WgXcQ",
+   "expected": null
+  },
+  {
+   "input": "https://vimeo.com/abc",
+   "expected": null
+  },
+  {
+   "input": "https://evilvimeo.com/123456",
+   "expected": null
+  },
+  {
+   "input": "https://vimeo.com/123456/../../x",
+   "expected": null
+  },
+  {
+   "input": "https://user:pw@www.youtube.com/watch?v=dQw4w9WgXcQ",
+   "expected": null
+  },
+  {
+   "input": "http://www.youtube.com/watch?v=dQw4w9WgXcQ",
+   "expected": null
+  },
+  {
+   "input": "https://example.com/video.mp4",
+   "expected": null
+  },
+  {
+   "input": "/videos/a.mp4",
+   "expected": null
+  },
+  {
+   "input": "javascript:alert(1)",
+   "expected": null
+  }
+ ]
+}
