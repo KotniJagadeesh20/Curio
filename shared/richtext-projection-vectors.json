@@ -1,0 +1,36 @@
+{
+  "_comment": "Pins the plain-text projection of a text block's `doc` (backend InlineDoc.project; the editor must produce the same string). `projection`: every doc is valid and `text` is exactly what the projection must return. `invalid`: docs the write boundary refuses.",
+  "projection": [
+    { "name": "empty doc", "doc": [], "text": "" },
+    { "name": "one plain paragraph", "doc": [{ "type": "paragraph", "children": [{ "text": "Hello world" }] }], "text": "Hello world" },
+    { "name": "bold and italic leave no marker", "doc": [{ "type": "paragraph", "children": [{ "text": "a " }, { "text": "b", "bold": true }, { "text": " c ", "italic": true }, { "text": "d", "bold": true, "italic": true }] }], "text": "a b c d" },
+    { "name": "a link is label (href)", "doc": [{ "type": "paragraph", "children": [{ "text": "See the " }, { "text": "docs", "href": "https://docs.oracle.com/" }, { "text": "." }] }], "text": "See the docs (https://docs.oracle.com/)." },
+    { "name": "a relative link", "doc": [{ "type": "paragraph", "children": [{ "text": "home", "href": "/discover" }] }], "text": "home (/discover)" },
+    { "name": "paragraphs are separated by a blank line", "doc": [{ "type": "paragraph", "children": [{ "text": "One" }] }, { "type": "paragraph", "children": [{ "text": "Two" }] }], "text": "One\n\nTwo" },
+    { "name": "a bullet list", "doc": [{ "type": "list", "ordered": false, "items": [[{ "text": "apples" }], [{ "text": "pears", "bold": true }]] }], "text": "- apples\n- pears" },
+    { "name": "a numbered list counts from 1", "doc": [{ "type": "list", "ordered": true, "items": [[{ "text": "Mix" }], [{ "text": "Bake" }], [{ "text": "Cool" }]] }], "text": "1. Mix\n2. Bake\n3. Cool" },
+    { "name": "paragraph, list, paragraph", "doc": [{ "type": "paragraph", "children": [{ "text": "Steps:" }] }, { "type": "list", "ordered": true, "items": [[{ "text": "One" }], [{ "text": "Two" }]] }, { "type": "paragraph", "children": [{ "text": "Done." }] }], "text": "Steps:\n\n1. One\n2. Two\n\nDone." },
+    { "name": "two lists each restart at 1", "doc": [{ "type": "list", "ordered": true, "items": [[{ "text": "a" }]] }, { "type": "list", "ordered": true, "items": [[{ "text": "b" }]] }], "text": "1. a\n\n1. b" },
+    { "name": "unicode and a link inside a list item", "doc": [{ "type": "list", "ordered": false, "items": [[{ "text": "Café ✓ " }, { "text": "menu", "href": "https://example.com/m" }]] }], "text": "- Café ✓ menu (https://example.com/m)" }
+  ],
+  "invalid": [
+    { "name": "not a list", "doc": { "type": "paragraph" } },
+    { "name": "a node that is not an object", "doc": ["text"] },
+    { "name": "unknown node type", "doc": [{ "type": "heading", "children": [{ "text": "x" }] }] },
+    { "name": "an extra field on a node", "doc": [{ "type": "paragraph", "children": [{ "text": "x" }], "style": "red" }] },
+    { "name": "an extra field on a run", "doc": [{ "type": "paragraph", "children": [{ "text": "x", "color": "red" }] }] },
+    { "name": "a paragraph with no runs", "doc": [{ "type": "paragraph", "children": [] }] },
+    { "name": "a run with empty text", "doc": [{ "type": "paragraph", "children": [{ "text": "" }] }] },
+    { "name": "a run with a line break", "doc": [{ "type": "paragraph", "children": [{ "text": "a\nb" }] }] },
+    { "name": "a run with a control character", "doc": [{ "type": "paragraph", "children": [{ "text": "a\u0007b" }] }] },
+    { "name": "bold is not a boolean", "doc": [{ "type": "paragraph", "children": [{ "text": "x", "bold": "yes" }] }] },
+    { "name": "a javascript link", "doc": [{ "type": "paragraph", "children": [{ "text": "x", "href": "javascript:alert(1)" }] }] },
+    { "name": "an http link", "doc": [{ "type": "paragraph", "children": [{ "text": "x", "href": "http://example.com/" }] }] },
+    { "name": "a protocol-relative link", "doc": [{ "type": "paragraph", "children": [{ "text": "x", "href": "//evil.example/" }] }] },
+    { "name": "a blank link", "doc": [{ "type": "paragraph", "children": [{ "text": "x", "href": "  " }] }] },
+    { "name": "a list without ordered", "doc": [{ "type": "list", "items": [[{ "text": "x" }]] }] },
+    { "name": "a list with no items", "doc": [{ "type": "list", "ordered": false, "items": [] }] },
+    { "name": "a list item with no runs", "doc": [{ "type": "list", "ordered": false, "items": [[]] }] },
+    { "name": "a nested list", "doc": [{ "type": "list", "ordered": false, "items": [[{ "type": "list", "ordered": false, "items": [[{ "text": "x" }]] }]] }] }
+  ]
+}

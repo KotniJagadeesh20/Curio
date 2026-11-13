@@ -36,6 +36,13 @@ public final class BlockSanitizer {
 
             Map<String, Object> checked = b;
             String svg = null;
+            Object doc = null;
+            boolean hasDoc = false;
+            if (type.equals("text")) {                     // a bad doc is dropped (the plain text still reads), never the whole block
+                checked = new LinkedHashMap<>(b);
+                hasDoc = checked.containsKey("doc");
+                doc = checked.remove("doc");
+            }
             if (type.equals("svg")) {                      // svg is cleaned, not rejected: judge everything else without it
                 checked = new LinkedHashMap<>(b);
                 Object s = checked.remove("svg");
@@ -49,9 +56,10 @@ public final class BlockSanitizer {
             clean.put("type", type);
             Set<String> allowed = BlockRules.FIELDS.get(type);
             for (Map.Entry<String, Object> e : b.entrySet()) {
-                if (!allowed.contains(e.getKey()) || e.getKey().equals("svg")) continue;
-                clean.put(e.getKey(), e.getValue());
+                if (!allowed.contains(e.getKey()) || e.getKey().equals("svg") || e.getKey().equals("doc")) continue;
+                clean.put(e.getKey(), e.getKey().equals("rows") ? copyRows(e.getValue()) : e.getValue());
             }
+            if (hasDoc && doc instanceof List<?> d && InlineDoc.problems(d, false).isEmpty()) clean.put("doc", InlineDoc.rebuild(d));
             if (type.equals("svg") && svg != null) {
                 SvgSanitizer.Result r = SvgSanitizer.process(svg, false);
                 if (r.fatal() || r.svg() == null) continue;   // cannot be made safe: omit the block rather than serve the original
@@ -59,6 +67,17 @@ public final class BlockSanitizer {
             }
             if (type.equals("html")) clean.put("isolatedOnly", true);
             out.add(clean);
+        }
+        return out;
+    }
+
+    /** Fresh lists of strings (the table passed {@link BlockRules#check}, so every row is a list of strings). */
+    private static List<List<String>> copyRows(Object rows) {
+        List<List<String>> out = new ArrayList<>();
+        for (Object r : (List<?>) rows) {
+            List<String> row = new ArrayList<>();
+            for (Object c : (List<?>) r) row.add((String) c);
+            out.add(row);
         }
         return out;
     }

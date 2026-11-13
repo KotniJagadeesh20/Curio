@@ -75,7 +75,7 @@ class BlockSecurityApiTest extends ApiTestSupport {
             blk("id", "a8", "type", "video", "url", "//evil.example/v.mp4", "caption", ""),
             blk("id", "a9", "type", "video", "url", "http://example.com/v.mp4", "caption", ""),
             blk("id", "b1", "type", "image", "url", "/\\evil.example/a.png", "caption", ""),
-            blk("id", "b2", "type", "table", "rows", List.of()),
+            blk("id", "b2", "type", "widget", "rows", List.of()),
             blk("id", "b3", "type", "text", "text", "x".repeat(20_001)),
             blk("id", "b4", "type", "html", "html", "x".repeat(100_001), "height", 360),
             blk("id", "b5", "type", "text", "text", "x", "onclick", "boom"));
@@ -158,7 +158,7 @@ class BlockSecurityApiTest extends ApiTestSupport {
     void unknownLegacyBlocksSurviveAnUnrelatedEdit_whateverTheirIds() throws Exception {
         Built b = build();
         List<Map<String, Object>> stored = List.of(
-            blk("type", "table", "rows", List.of(List.of("a", "b"))),
+            blk("type", "widget", "rows", List.of(List.of("a", "b"))),
             blk("id", "dup", "type", "embed", "deep", Map.of("n", List.of(1, 2.5, true, "s"))),
             blk("id", "dup", "type", "file", "name", "a.pdf"),
             blk("id", "x".repeat(300), "type", "future"),
@@ -171,10 +171,10 @@ class BlockSecurityApiTest extends ApiTestSupport {
         for (int i = 0; i < 4; i++) assertThat(now.get(i)).as("unknown block " + i).isEqualTo(json.valueToTree(stored.get(i)));
         assertThat(now.get(4).get("text").asText()).isEqualTo("edited");
         // a modified or newly added unknown block is refused
-        sent.set(0, blk("type", "table", "rows", List.of(List.of("CHANGED"))));
+        sent.set(0, blk("type", "widget", "rows", List.of(List.of("CHANGED"))));
         assertThat(save(b, req(sent)).getResponse().getStatus()).isEqualTo(400);
         sent.set(0, stored.get(0));
-        sent.add(blk("id", "n", "type", "table", "rows", List.of()));
+        sent.add(blk("id", "n", "type", "widget", "rows", List.of()));
         assertThat(save(b, req(sent)).getResponse().getStatus()).isEqualTo(400);
     }
 
@@ -182,7 +182,7 @@ class BlockSecurityApiTest extends ApiTestSupport {
     void discardingUnreadableContentGrandfathersNothing() throws Exception {
         Built b = build();
         jdbc.update("update lessons set blocks = ? where id = ?", "{not json", b.pageId);
-        Map<String, Object> r = req(List.of(blk("id", "u", "type", "table")));
+        Map<String, Object> r = req(List.of(blk("id", "u", "type", "widget")));
         r.put("discardUnreadableContent", true);
         assertThat(save(b, r).getResponse().getStatus()).isEqualTo(400);
         assertThat(blocksColumn(b.pageId)).isEqualTo("{not json");
@@ -197,7 +197,7 @@ class BlockSecurityApiTest extends ApiTestSupport {
         blk("id", "dead-svg", "type", "svg", "svg", "<!DOCTYPE svg [<!ENTITY x \"y\">]><svg xmlns=\"http://www.w3.org/2000/svg\"/>", "caption", ""),
         blk("id", "bad-img", "type", "image", "url", "javascript:alert(1)", "caption", ""),
         blk("id", "bad-vid", "type", "video", "url", "//evil.example/v.mp4", "caption", ""),
-        blk("id", "unk", "type", "table", "rows", List.of()),
+        blk("id", "unk", "type", "widget", "rows", List.of()),
         blk("id", "extra", "type", "text", "text", "plain", "evil", "<script>x</script>"),
         blk("id", "html", "type", "html", "html", "<style>p{color:red}</style><p onclick=\"x()\">hi</p>", "height", 300),
         blk("id", "good-img", "type", "image", "url", "https://example.com/a.png", "caption", "ok"),

@@ -592,6 +592,25 @@ public class CollectionService {
     /** The block fields that carry content (an uploaded image carries it in {@code assetId}, found by the 12d integration); a block with none of them filled (or a divider) is not meaningful. */
     private static final List<String> CONTENT_FIELDS = List.of("text", "code", "url", "assetId", "html", "svg");
 
+    /**
+     * A table is content when a data cell has text: every row, or every row but the first when {@code hasHeader} is true (a header-only
+     * skeleton is not content). A table whose cells can't be read as text is never called empty.
+     */
+    private static boolean tableHasData(com.fasterxml.jackson.databind.JsonNode table) {
+        com.fasterxml.jackson.databind.JsonNode rows = table.get("rows");
+        if (rows == null || !rows.isArray()) return true;
+        boolean header = table.path("hasHeader").asBoolean(false);
+        int first = header ? 1 : 0;
+        for (int i = first; i < rows.size(); i++) {
+            com.fasterxml.jackson.databind.JsonNode row = rows.get(i);
+            if (!row.isArray()) return true;
+            for (com.fasterxml.jackson.databind.JsonNode cell : row) {
+                if (!cell.isTextual() || !cell.asText().isBlank()) return true;
+            }
+        }
+        return false;
+    }
+
     /** See {@link PageSummary}. Cheap: the blocks column is already loaded with the page. */
     private boolean hasContent(Lesson l) {
         String raw = l.getBlocks();
@@ -609,9 +628,13 @@ public class CollectionService {
                     com.fasterxml.jackson.databind.JsonNode v = b.get(f);
                     if (v != null && v.isTextual() && !v.asText().isBlank()) return true;
                 }
-                // a block of a type this version doesn't know may carry its content in other fields: don't call it empty
                 String type = b.path("type").asText("");
-                if (!List.of("heading", "text", "code", "image", "video", "html", "svg", "callout", "divider").contains(type)) return true;
+                if (type.equals("table")) {       // Step 13: a table's content is in its cells; the header row is not data
+                    if (tableHasData(b)) return true;
+                    continue;
+                }
+                // a block of a type this version doesn't know may carry its content in other fields: don't call it empty
+                if (!com.codemastery.blocks.BlockRules.isKnown(type)) return true;
             }
             return false;
         } catch (JsonProcessingException e) {

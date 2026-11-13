@@ -102,7 +102,7 @@ class PageBlocksApiTest extends ApiTestSupport {
     void unknownBlockTypesAndExtraFieldsAreStoredVerbatim() throws Exception {
         Built b = build();
         // Step 11: a NEW unknown block is refused at the write boundary...
-        List<Object> blocks = List.of(blk("id", "x1", "type", "table", "rows", List.of(List.of("a", "b"), List.of("c", "d")), "future", Map.of("k", 1)),
+        List<Object> blocks = List.of(blk("id", "x1", "type", "widget", "rows", List.of(List.of("a", "b"), List.of("c", "d")), "future", Map.of("k", 1)),
                 blk("id", "t2", "type", "text", "text", "has an extra", "extra", true));
         mvc.perform(as(b.token, put("/api/pages/" + b.pageId)).content(body(Map.of("title", "P", "blocks", blocks)))).andExpect(status().isBadRequest());
         // ...but one that is already stored (an older version / a later step wrote it) is preserved verbatim by a save of the same array
@@ -279,7 +279,7 @@ class PageBlocksApiTest extends ApiTestSupport {
         assertThat(hasContent(b, List.of(blk("type", "image", "url", "https://e.com/a.png", "caption", "")))).isTrue();
         assertThat(hasContent(b, List.of(blk("type", "svg", "svg", "<svg xmlns=\"http://www.w3.org/2000/svg\"/>")))).isTrue();
         assertThat(hasContent(b, List.of(blk("type", "html", "html", "<p>x</p>", "height", 100)))).isTrue();
-        jdbc.update("update lessons set blocks = ? where id = ?", "[{\"id\":\"u\",\"type\":\"table\",\"rows\":[]}]", b.pageId);
+        jdbc.update("update lessons set blocks = ? where id = ?", "[{\"id\":\"u\",\"type\":\"widget\",\"rows\":[]}]", b.pageId);
         assertThat(outlinePage(b).get("hasContent").asBoolean()).as("unknown type: never claim empty").isTrue();
     }
 

@@ -67,6 +67,7 @@ public final class BlockValidator {
             }
             List<String[]> fieldProblems = BlockRules.check(type, b, !unchanged);
             for (String[] fp : fieldProblems) add(problems, label, fp[0], fp[1]);
+            if (type.equals("text")) textDocRules(problems, label, b, before, unchanged, fieldProblems);
             if (type.equals("image") && b.get("assetId") instanceof String a && BlockRules.assetId(a) != null
                     && fieldProblems.stream().noneMatch(fp -> fp[0].equals("assetId"))) {
                 AssetFacts f = assets.get(BlockRules.assetId(a));
@@ -77,6 +78,25 @@ public final class BlockValidator {
             }
         }
         if (!problems.isEmpty()) throw new InvalidBlocksException(problems);
+    }
+
+    /**
+     * Step 13: a text block's {@code doc} (the rich text) and {@code text} (its plain-text projection) are written together. Two rules keep an
+     * older client, which knows nothing of {@code doc}, from silently destroying or contradicting formatted content:
+     *  - a block that is stored WITH a doc must come back with one (an old client that drops it would erase the formatting);
+     *  - when a doc is sent, {@code text} must be exactly its projection (an old client that edits only {@code text} and resends the
+     *    old doc would otherwise leave a doc that overrides the edit). An unchanged stored block is exempt.
+     */
+    private static void textDocRules(List<BlockProblem> problems, String label, Map<String, Object> b, Map<String, Object> before,
+                                     boolean unchanged, List<String[]> fieldProblems) {
+        if (before != null && "text".equals(before.get("type")) && before.containsKey("doc") && !b.containsKey("doc")) {
+            add(problems, label, "doc", "This text has formatting that this version of the editor can't keep. Reload the page, then edit it again.");
+            return;
+        }
+        if (unchanged || !(b.get("doc") instanceof List<?> doc) || fieldProblems.stream().anyMatch(fp -> fp[0].equals("doc") || fp[0].equals("text"))) return;
+        if (!InlineDoc.project(doc).equals(b.get("text"))) {
+            add(problems, label, "text", "This text doesn't match its formatting. Reload the page and try again.");
+        }
     }
 
     private static void add(List<BlockProblem> into, String id, String field, String message) {

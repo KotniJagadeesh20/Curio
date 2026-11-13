@@ -100,14 +100,14 @@ class BlockValidatorTest {
     // ---- legacy / unknown compatibility ----
     @Test
     void anUnknownBlockIsRefusedWhenNew() {
-        assertThat(problems(list(block("id", "t", "type", "table", "rows", List.of())), null)).extracting(BlockProblem::field).containsExactly("type");
-        assertThat(problems(list(block("id", "t", "type", "table", "rows", List.of())), list(block("id", "o", "type", "text", "text", "x")))).hasSize(1);
+        assertThat(problems(list(block("id", "t", "type", "widget", "rows", List.of())), null)).extracting(BlockProblem::field).containsExactly("type");
+        assertThat(problems(list(block("id", "t", "type", "widget", "rows", List.of())), list(block("id", "o", "type", "text", "text", "x")))).hasSize(1);
     }
 
     @Test
     void anUnknownBlockSurvivesWhenIdenticalToTheStoredOne_whateverItsIdsOrShape() {
         List<Map<String, Object>> stored = list(
-            block("type", "table"),                                                        // no id
+            block("type", "widget"),                                                        // no id
             block("id", "dup", "type", "embed", "weird", Map.of("a", List.of(1, 2.5, "s", true, Map.of("n", 1)))),
             block("id", "dup", "type", "embed2"),                                          // duplicate id
             block("id", "x".repeat(500), "type", "file", "name", "a.pdf"),                 // overlong id
@@ -121,16 +121,16 @@ class BlockValidatorTest {
 
     @Test
     void aModifiedOrCopiedUnknownBlockIsRefused() {
-        var stored = list(block("id", "u", "type", "table", "rows", 3));
-        assertThat(problems(list(block("id", "u", "type", "table", "rows", 4)), stored)).hasSize(1);
-        assertThat(problems(list(block("id", "u", "type", "table", "rows", 3, "extra", true)), stored)).hasSize(1);
-        assertThat(problems(list(block("id", "u2", "type", "table", "rows", 3)), stored)).hasSize(1);   // same content, new id: a new block
-        assertThat(problems(list(block("id", "u", "type", "table", "rows", 3), block("id", "u9", "type", "table", "rows", 9)), stored)).hasSize(1);
+        var stored = list(block("id", "u", "type", "widget", "rows", 3));
+        assertThat(problems(list(block("id", "u", "type", "widget", "rows", 4)), stored)).hasSize(1);
+        assertThat(problems(list(block("id", "u", "type", "widget", "rows", 3, "extra", true)), stored)).hasSize(1);
+        assertThat(problems(list(block("id", "u2", "type", "widget", "rows", 3)), stored)).hasSize(1);   // same content, new id: a new block
+        assertThat(problems(list(block("id", "u", "type", "widget", "rows", 3), block("id", "u9", "type", "widget", "rows", 9)), stored)).hasSize(1);
     }
 
     @Test
     void nothingIsGrandfatheredWhenThereIsNoStoredContent() {
-        assertThat(problems(list(block("id", "u", "type", "table")), null)).hasSize(1);
+        assertThat(problems(list(block("id", "u", "type", "widget")), null)).hasSize(1);
     }
 
     @Test

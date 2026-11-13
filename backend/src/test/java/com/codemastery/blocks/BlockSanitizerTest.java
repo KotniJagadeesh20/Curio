@@ -24,7 +24,7 @@ class BlockSanitizerTest {
 
     @Test
     void itDropsWhatIsNotAKnownWellFormedBlockAndKeepsTheOrderOfTheRest() {
-        List<Map<String, Object>> out = BlockSanitizer.project(list("a string", 5, blk("id", "x"), blk("id", "y", "type", 7), blk("id", "t", "type", "table"),
+        List<Map<String, Object>> out = BlockSanitizer.project(list("a string", 5, blk("id", "x"), blk("id", "y", "type", 7), blk("id", "t", "type", "widget"),
                 blk("id", "1", "type", "divider"), blk("id", "h", "type", "heading", "level", 5, "text", "x"), blk("id", "2", "type", "divider")));
         assertThat(out).extracting(m -> m.get("id")).containsExactly("1", "2");
     }
