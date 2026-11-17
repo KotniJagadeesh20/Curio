@@ -1,0 +1,119 @@
+{
+  "id": "recipe",
+  "position": 3,
+  "name": "Recipe",
+  "description": "Write up a dish with its ingredients, method and tips.",
+  "category": "food",
+  "modules": [
+    {
+      "title": "Recipe",
+      "pages": [
+        {
+          "title": "Overview",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Describe the dish, where it comes from and what makes it special."
+            },
+            {
+              "type": "table",
+              "hasHeader": true,
+              "caption": "",
+              "rows": [
+                [
+                  "Serves",
+                  "Prep time",
+                  "Cook time"
+                ],
+                [
+                  "4",
+                  "15 min",
+                  "30 min"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Ingredients",
+          "blocks": [
+            {
+              "type": "table",
+              "hasHeader": true,
+              "caption": "Ingredients",
+              "rows": [
+                [
+                  "Ingredient",
+                  "Amount"
+                ],
+                [
+                  "Ingredient one",
+                  ""
+                ],
+                [
+                  "Ingredient two",
+                  ""
+                ],
+                [
+                  "Ingredient three",
+                  ""
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Method",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "1. Prepare the ingredients\n2. Cook the base\n3. Combine and season\n4. Serve",
+              "doc": [
+                {
+                  "type": "list",
+                  "ordered": true,
+                  "items": [
+                    [
+                      {
+                        "text": "Prepare the ingredients"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Cook the base"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Combine and season"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Serve"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tips and Variations",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Share tips for getting it right, and ideas for variations or substitutions."
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "text": "Mention how to store leftovers."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

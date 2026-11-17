@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { api, setUnauthorizedHandler, tokenStore } from "@/lib/api";
+import { isPublicQueryKey } from "@/lib/queryKeys";
 import type { AuthResponse, User } from "@/lib/types";
 
 interface AuthState {
@@ -23,7 +24,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = useCallback(() => {
     tokenStore.clear();
     setUser(null);
-    queryClient.clear();
+    // Drop everything that belongs to the signed-in user. Public reads (the same for everyone, fetched without a token)
+    // are kept: clearing them while they are in flight left Discover stuck on "Loading" when a stale stored token was
+    // rejected at startup (Step 14a, requirement D).
+    queryClient.removeQueries({ predicate: (q) => !isPublicQueryKey(q.queryKey) });
   }, [queryClient]);
 
   useEffect(() => {

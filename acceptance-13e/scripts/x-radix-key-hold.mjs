@@ -1,0 +1,15 @@
+import { setup, login, BASE } from './common.mjs';
+const { browser, page } = await setup();
+await login(page);
+await page.goto(BASE + '/create');
+await page.getByRole('button', { name: 'New collection' }).click();
+await page.getByRole('dialog').waitFor();
+await page.evaluate(() => { window.__ev=[]; document.addEventListener('keydown', e => window.__ev.push('bubble-doc-keydown:'+e.key)); document.addEventListener('focusin', e => window.__ev.push('focusin:'+e.target.value)); });
+const st = () => page.evaluate(() => [...document.querySelectorAll('[role=radio]')].map(r => r.value + (r.getAttribute('aria-checked')==='true'?'*':'') + (r===document.activeElement?'@':'')).join(' '));
+console.log('init', await st());
+await page.locator('#template-blank').focus();
+await page.keyboard.down('ArrowRight'); await page.waitForTimeout(60); await page.keyboard.up('ArrowRight'); await page.waitForTimeout(100);
+console.log('R', await st(), await page.evaluate(()=>window.__ev.splice(0)));
+await page.keyboard.down('ArrowRight'); await page.waitForTimeout(60); await page.keyboard.up('ArrowRight'); await page.waitForTimeout(100);
+console.log('R', await st(), await page.evaluate(()=>window.__ev.splice(0)));
+await browser.close();

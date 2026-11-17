@@ -5,11 +5,12 @@ import CollectionEditor from "@/pages/creator/CollectionEditor";
 import PageEditor from "@/pages/creator/PageEditor";
 import Workspace from "@/pages/creator/Workspace";
 import NotFound from "@/pages/NotFound";
+import CollectionView from "@/pages/public/CollectionView";
 
-// Route adapters and placeholders. Public screens arrive in Steps 14-15.
+// Route adapters and placeholders. Public screens arrive in Steps 14-15 (real so far: Discover since 14a, the collection
+// viewer since 14b; both live in src/pages/public/). The public adapters move there together in 14d.
 
 // ---- public (Step 14, Step 15) ----
-export const DiscoverPage = () => <PlaceholderPage title="Discover" step="Step 14" />;
 
 /** `/@username`: NotFound unless the segment really is an @handle (React Router can't match "@:username"). */
 export function CreatorProfilePage() {
@@ -26,12 +27,7 @@ export function PublicCollectionPage() {
   const { handle, collectionSlug } = useParams();
   const username = parseHandle(handle);
   if (!username || !collectionSlug) return <NotFound />;
-  return (
-    <PlaceholderPage title="Collection" step="Step 14">
-      <Param name="username" value={username} />
-      <Param name="collectionSlug" value={collectionSlug} />
-    </PlaceholderPage>
-  );
+  return <CollectionView username={username} slug={collectionSlug} />;
 }
 
 /** Module-qualified on purpose: page slugs are only unique within a module (see lib/paths.ts). */

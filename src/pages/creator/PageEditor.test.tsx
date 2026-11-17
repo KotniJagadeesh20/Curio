@@ -499,13 +499,13 @@ describe("legacy pages keep their content until explicitly converted", () => {
 
 describe("stored data the editor can't fully understand is never overwritten", () => {
   it("a block of an unknown type is shown read-only, kept in place, and saved exactly as it was", async () => {
-    const table = { type: "table", rows: [["a", "b"]], widths: [1, 2] };
+    const table = { type: "quiz", rows: [["a", "b"]], widths: [1, 2] };
     const page = makeServer({ blocks: [STORED[0], table, STORED[1]] });
     const api = installFakeApi(routes(page));
     mount();
     await loaded();
     expect(blockTypes()).toEqual(["heading", "unsupported", "text"]);
-    expect(screen.getByTestId("unsupported-block")).toHaveTextContent(/"table"/);
+    expect(screen.getByTestId("unsupported-block")).toHaveTextContent(/"quiz"/);
     fireEvent.change(screen.getByLabelText("Text"), { target: { value: "edited next to it" } });
     fireEvent.click(btn("Save"));
     await waitFor(() => expect(state()).toBe("Saved"));

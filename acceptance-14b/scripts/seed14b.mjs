@@ -1,0 +1,21 @@
+// Adds a 14b test collection with an uploaded cover (2 modules, 3 published pages + 1 draft page) and soft-deletes "oslo".
+import fs from 'fs';
+const B = 'http://localhost:8081/api';
+const { token } = await (await fetch(B + '/auth/login', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email: 'admin@codemastery.local', password: 'ChangeMe123!' }) })).json();
+const H = { Authorization: 'Bearer ' + token };
+const call = async (m, p, b) => { const r = await fetch(B + p, { method: m, headers: { ...H, 'content-type': 'application/json' }, body: b ? JSON.stringify(b) : undefined }); const t = await r.text(); if (!r.ok) throw new Error(`${m} ${p} ${r.status} ${t}`); return t ? JSON.parse(t) : null; };
+const fd = new FormData(); fd.append('file', new Blob([fs.readFileSync(new URL('./blue.png', import.meta.url))], { type: 'image/png' }), 'cover.png');
+const asset = await (await fetch(B + '/media', { method: 'POST', headers: H, body: fd })).json();
+const c = await call('POST', '/collections', { title: 'Porto by tram', slug: 'porto', description: 'Two days in Porto.\nTrams, tiles and port wine.', categoryId: 2, coverAssetId: asset.id });
+const m1 = await call('POST', `/collections/${c.id}/modules`, { title: 'Day one', slug: 'day-one' });
+const m2 = await call('POST', `/collections/${c.id}/modules`, { title: 'Day two', slug: 'day-two' });
+const pg = async (m, title, slug, summary, publish = true) => { const p = await call('POST', `/modules/${m.id}/pages`, { title, slug, summary, blocks: [{ id: 'a', type: 'text', text: title }] }); if (publish) await call('POST', `/pages/${p.id}/publish`); };
+await pg(m1, 'Arrival', 'arrival', 'Airport to Ribeira');
+await pg(m1, 'Tram 1', 'tram-1', '');
+await pg(m1, 'Secret draft page', 'secret-draft', '', false);
+await pg(m2, 'Port cellars', 'cellars', 'Vila Nova de Gaia');
+await call('POST', `/collections/${c.id}/publish`, { status: 'PUBLISHED' });
+const mine = await call('GET', '/collections/mine');
+const oslo = mine.find((x) => x.slug === 'oslo');
+if (oslo) await call('DELETE', `/collections/${oslo.id}`);
+console.log(JSON.stringify({ porto: c.id, coverAsset: asset.id, deletedOslo: !!oslo }));

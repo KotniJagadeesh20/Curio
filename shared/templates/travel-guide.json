@@ -1,0 +1,160 @@
+{
+  "id": "travel-guide",
+  "position": 2,
+  "name": "Travel Guide",
+  "description": "Share a destination: how to get there, what to see, where to stay and what to eat.",
+  "category": "travel",
+  "modules": [
+    {
+      "title": "Before You Go",
+      "pages": [
+        {
+          "title": "Overview",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Introduce the destination: where it is, why it is worth visiting and the best time to go."
+            }
+          ]
+        },
+        {
+          "title": "How to Reach",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Describe the main ways to get there and how to get around once you arrive."
+            },
+            {
+              "type": "table",
+              "hasHeader": true,
+              "caption": "",
+              "rows": [
+                [
+                  "Option",
+                  "Typical time",
+                  "Notes"
+                ],
+                [
+                  "By air",
+                  "",
+                  ""
+                ],
+                [
+                  "By train",
+                  "",
+                  ""
+                ],
+                [
+                  "By road",
+                  "",
+                  ""
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "While You're There",
+      "pages": [
+        {
+          "title": "Places to Visit",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "List the places you recommend, with a sentence on why each one is worth it."
+            },
+            {
+              "type": "text",
+              "text": "- First place\n- Second place\n- Third place",
+              "doc": [
+                {
+                  "type": "list",
+                  "ordered": false,
+                  "items": [
+                    [
+                      {
+                        "text": "First place"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Second place"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Third place"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Accommodation",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Suggest areas to stay in and the kinds of places that suit different budgets."
+            }
+          ]
+        },
+        {
+          "title": "Food",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Recommend local dishes and where to try them."
+            }
+          ]
+        },
+        {
+          "title": "Travel Tips",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "- Money and payments\n- Local customs\n- Safety\n- What to pack",
+              "doc": [
+                {
+                  "type": "list",
+                  "ordered": false,
+                  "items": [
+                    [
+                      {
+                        "text": "Money and payments"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Local customs"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Safety"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "What to pack"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "callout",
+              "variant": "warning",
+              "text": "Check entry requirements and travel advisories before you go."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

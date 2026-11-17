@@ -39,8 +39,15 @@ export const notifyUnauthorized = () => onUnauthorized?.();
 /** Absolute URL of an API path (same base as every other call). */
 export const apiUrl = (path: string) => `${BASE}/api${path}`;
 
+/**
+ * Public reads (`/api/public/**`) answer the same for everyone, so they never carry the stored token. That also means a
+ * stale or expired token can't turn a public page into a 401 and log the visitor out (the logout below only follows a
+ * 401 on a call that actually sent a token).
+ */
+export const isPublicPath = (path: string) => path === "/public" || path.startsWith("/public/") || path.startsWith("/public?");
+
 async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
-  const token = tokenStore.get();
+  const token = isPublicPath(path) ? null : tokenStore.get();
   const res = await fetch(`${BASE}/api${path}`, {
     method,
     headers: {

@@ -1,0 +1,73 @@
+{
+  "id": "personal-experience",
+  "position": 4,
+  "name": "Personal Experience",
+  "description": "Tell the story of something you went through and what you learned from it.",
+  "category": "personal-experience",
+  "modules": [
+    {
+      "title": "My Story",
+      "pages": [
+        {
+          "title": "Background",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Set the scene: what was happening and why it mattered to you."
+            }
+          ]
+        },
+        {
+          "title": "The Experience",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Describe what happened, in the order it happened."
+            }
+          ]
+        },
+        {
+          "title": "What I Learned",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Reflect on what changed for you and what you would do differently."
+            }
+          ]
+        },
+        {
+          "title": "Advice for Others",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "- First piece of advice\n- Second piece of advice\n- Third piece of advice",
+              "doc": [
+                {
+                  "type": "list",
+                  "ordered": false,
+                  "items": [
+                    [
+                      {
+                        "text": "First piece of advice"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Second piece of advice"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Third piece of advice"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

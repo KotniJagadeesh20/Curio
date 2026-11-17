@@ -1,0 +1,8 @@
+{
+  "id": "blank",
+  "position": 0,
+  "name": "Blank",
+  "description": "Start from an empty collection and build it your way.",
+  "category": null,
+  "modules": []
+}

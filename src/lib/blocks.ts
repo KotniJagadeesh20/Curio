@@ -2,18 +2,22 @@
 // PageBlock is a TypeScript concept only: there is no block table (PLAN decision 2).
 import type { PublicLegacyContent, StoredBlock } from "@/lib/types";
 import { urlProblem as sharedUrlProblem } from "@/lib/urlRules";
+import { docProblems, isValidDoc, type InlineDoc } from "@/lib/richText";
 
 export type CalloutVariant = "info" | "tip" | "warning";
 
 export type BlockData =
   | { type: "heading"; level: 2 | 3; text: string }
-  | { type: "text"; text: string }
+  /** Step 13: `doc` (when present) is the authoritative rich text and `text` its plain-text projection (src/lib/richText.ts). */
+  | { type: "text"; text: string; doc?: InlineDoc }
   | { type: "code"; language: string; code: string; caption: string }
   | { type: "image"; url: string; caption: string; /** An uploaded image (Step 12). Exactly one of this and a non-empty `url`. */ assetId?: string }
   | { type: "video"; url: string; caption: string }
   | { type: "html"; html: string; height: number }
   | { type: "svg"; svg: string; caption: string }
   | { type: "callout"; variant: CalloutVariant; text: string }
+  /** Step 13: plain-text cells; every row has the same number of cells. With `hasHeader`, row 0 is the column headings. */
+  | { type: "table"; hasHeader: boolean; caption: string; rows: string[][] }
   | { type: "divider" };
 
 export type Block = BlockData & { id: string };
@@ -28,6 +32,7 @@ export const BLOCK_LABELS: Record<BlockType, string> = {
   html: "HTML",
   svg: "SVG diagram",
   callout: "Callout",
+  table: "Table",
   divider: "Divider",
 };
 
@@ -44,6 +49,7 @@ export function newBlock(type: BlockType): Block {
     case "html": return { id, type, html: "", height: 360 };
     case "svg": return { id, type, svg: "", caption: "" };
     case "callout": return { id, type, variant: "info", text: "" };
+    case "table": return { id, type, hasHeader: true, caption: "", rows: [["", ""], ["", ""]] };
     case "divider": return { id, type };
   }
 }
@@ -53,7 +59,8 @@ export function normalizeBlocks(raw: unknown): Block[] {
   if (!Array.isArray(raw)) return [];
   return raw.flatMap((b) => {
     if (!b || typeof b !== "object" || !(b.type in BLOCK_LABELS)) return [];
-    return [{ ...newBlock(b.type), ...b, id: b.id || uid() } as Block];
+    if (b.type === "table" && !isWellFormedTable(b)) return [];   // nothing safe to show
+    return [{ ...newBlock(b.type), ...tableDefaults(b), ...b, id: b.id || uid() } as Block];
   });
 }
 
@@ -82,7 +89,7 @@ export { embedUrl, isSafeUrl } from "@/lib/urlRules";
 // ---------------------------------------------------------------------------
 // Editing model (Step 9). Principle: never lose what is stored.
 //  - Known block types are edited as typed blocks and keep their ids.
-//  - A block of a type this version doesn't know (a later step's `table`, say) is wrapped, shown read-only and written
+//  - A block of a type this version doesn't know (a later step's `quiz`, say) is wrapped, shown read-only and written
 //    back EXACTLY as it was read.
 //  - Anything that is not a block at all is counted as `unreadable`; the editor then refuses to save the body rather
 //    than overwrite data it could not understand.
@@ -130,9 +137,9 @@ export function readBlocksForEditing(raw: unknown): ReadResult {
   let unreadable = 0;
   for (const item of raw) {
     if (!isObject(item) || typeof item.type !== "string") { unreadable++; continue; }
-    if (item.type in BLOCK_LABELS) {
-      blocks.push({ ...newBlock(item.type as BlockType), ...item, id: unique(item.id) } as Block);
-    } else {
+    if (item.type in BLOCK_LABELS && (item.type !== "table" || isWellFormedTable(item)) && (item.type !== "text" || !("doc" in item) || isValidDoc(item.doc))) {
+      blocks.push({ ...newBlock(item.type as BlockType), ...tableDefaults(item), ...item, id: unique(item.id) } as Block);
+    } else {   // also a stored table or rich text this editor could not edit safely: kept exactly as it was
       blocks.push({ id: unique(item.id), type: UNSUPPORTED, original: item });
     }
   }
@@ -142,6 +149,92 @@ export function readBlocksForEditing(raw: unknown): ReadResult {
 /** Editable blocks -> the array to send. Unsupported blocks go back exactly as read. */
 export function serializeBlocks(blocks: EditorBlock[]): StoredBlock[] {
   return blocks.map((b) => (isUnsupported(b) ? (b.original as StoredBlock) : (b as unknown as StoredBlock)));
+}
+
+// ---- tables (Step 13). Limits mirror BlockRules.MAX_TABLE_* / MAX_CELL / MAX_CAPTION; the server is authoritative. ----
+export const MAX_TABLE_ROWS = 50;
+export const MAX_TABLE_COLS = 10;
+export const MAX_TABLE_CELL = 500;
+export const MAX_TABLE_CHARS = 20_000;
+export const MAX_TABLE_CAPTION = 500;
+
+export type TableBlock = Extract<Block, { type: "table" }>;
+
+/**
+ * The shape the server always requires (BlockRules.table, independent of size caps): `rows` is a non-empty list of equally
+ * long, non-empty lists of strings; `hasHeader`, when present, is a boolean; `caption`, when present, is a string. A
+ * stored table that is not this shape is never opened in the table editor (the editor keeps it read-only, as stored).
+ */
+export function isWellFormedTable(b: Record<string, unknown>): boolean {
+  if ("hasHeader" in b && typeof b.hasHeader !== "boolean") return false;
+  if ("caption" in b && typeof b.caption !== "string") return false;
+  const rows = b.rows;
+  if (!Array.isArray(rows) || rows.length === 0) return false;
+  const cols = Array.isArray(rows[0]) ? rows[0].length : 0;
+  return cols > 0 && rows.every((r) => Array.isArray(r) && r.length === cols && r.every((c) => typeof c === "string"));
+}
+
+/** A stored table without `hasHeader` has none (server: absent = false), so reading must not default it to true. */
+const tableDefaults = (b: Record<string, unknown>) => (b.type === "table" ? { hasHeader: false } : {});
+
+const columnCount = (t: TableBlock) => t.rows[0]?.length ?? 0;
+
+/** The problem the server would report for this table's size, or null. Shape is guaranteed by the editing operations. */
+export function tableProblem(b: EditorBlock): string | null {
+  if (isUnsupported(b) || b.type !== "table") return null;
+  if (!isWellFormedTable(b as unknown as Record<string, unknown>)) {
+    if (!Array.isArray(b.rows) || b.rows.length === 0) return "A table needs at least one row.";
+    if (b.rows.some((r) => !Array.isArray(r) || r.length === 0)) return "Every row needs at least one cell.";
+    if (typeof b.hasHeader !== "boolean") return "The header setting must be true or false.";
+    if (typeof b.caption !== "string") return "The caption must be text.";
+    if (b.rows.some((r) => r.some((c) => typeof c !== "string"))) return "Every cell must be text.";
+    return "Every row needs the same number of cells.";
+  }
+  if (b.caption.length > MAX_TABLE_CAPTION) return `The caption is too long (limit ${MAX_TABLE_CAPTION} characters).`;
+  if (b.rows.length > MAX_TABLE_ROWS) return `A table can have at most ${MAX_TABLE_ROWS} rows.`;
+  if (columnCount(b) > MAX_TABLE_COLS) return `A table can have at most ${MAX_TABLE_COLS} columns.`;
+  if (b.rows.some((r) => r.some((c) => c.length > MAX_TABLE_CELL))) return `A cell is too long (limit ${MAX_TABLE_CELL} characters).`;
+  if (b.rows.reduce((n, r) => n + r.reduce((m, c) => m + c.length, 0), 0) > MAX_TABLE_CHARS) {
+    return `This table has too much text (limit ${MAX_TABLE_CHARS} characters in all).`;
+  }
+  return null;
+}
+
+/** Same rule as the server's tableHasData: a data cell (not the header row) has non-whitespace text. */
+export function tableHasData(t: { hasHeader?: unknown; rows?: unknown }): boolean {
+  if (!Array.isArray(t.rows)) return true;   // can't inspect it: never call it empty
+  const data = t.hasHeader === true ? t.rows.slice(1) : t.rows;
+  return data.some((r) => !Array.isArray(r) || r.some((c) => typeof c !== "string" || c.trim() !== ""));
+}
+
+/** A rich-text problem the server would report (a bad link, too long, too many parts), or null. */
+export function richTextProblem(b: EditorBlock): string | null {
+  if (isUnsupported(b) || b.type !== "text" || b.doc === undefined) return null;
+  return docProblems(b.doc, true)[0] ?? null;
+}
+
+// Pure, immutable table edits. Every one keeps the table rectangular and at least 1x1; an impossible edit returns the same block.
+export function setTableCell(t: TableBlock, row: number, col: number, value: string): TableBlock {
+  if (!t.rows[row] || col < 0 || col >= t.rows[row].length) return t;
+  return { ...t, rows: t.rows.map((r, i) => (i === row ? r.map((c, j) => (j === col ? value : c)) : r)) };
+}
+export function addTableRow(t: TableBlock, at = t.rows.length): TableBlock {
+  if (t.rows.length >= MAX_TABLE_ROWS) return t;
+  const i = Math.max(0, Math.min(at, t.rows.length));
+  return { ...t, rows: [...t.rows.slice(0, i), Array<string>(columnCount(t)).fill(""), ...t.rows.slice(i)] };
+}
+export function removeTableRow(t: TableBlock, row: number): TableBlock {
+  if (t.rows.length <= 1 || row < 0 || row >= t.rows.length) return t;
+  return { ...t, rows: t.rows.filter((_, i) => i !== row) };
+}
+export function addTableColumn(t: TableBlock, at = columnCount(t)): TableBlock {
+  if (columnCount(t) >= MAX_TABLE_COLS) return t;
+  const j = Math.max(0, Math.min(at, columnCount(t)));
+  return { ...t, rows: t.rows.map((r) => [...r.slice(0, j), "", ...r.slice(j)]) };
+}
+export function removeTableColumn(t: TableBlock, col: number): TableBlock {
+  if (columnCount(t) <= 1 || col < 0 || col >= columnCount(t)) return t;
+  return { ...t, rows: t.rows.map((r) => r.filter((_, j) => j !== col)) };
 }
 
 // ---- pure, immutable operations (ids, not positions, identify blocks) ----
@@ -240,7 +333,7 @@ export interface BodyProblems {
 export function bodyProblems(blocks: EditorBlock[]): BodyProblems {
   const fields: Record<string, string> = {};
   for (const b of blocks) {
-    const p = urlProblem(b);
+    const p = urlProblem(b) ?? tableProblem(b) ?? richTextProblem(b);
     if (p) fields[b.id] = p;
   }
   let body: string | null = null;
@@ -260,6 +353,7 @@ export const CONTENT_FIELDS = ["text", "code", "url", "assetId", "html", "svg"] 
 export function hasMeaningfulContent(blocks: EditorBlock[]): boolean {
   return blocks.some((b) => {
     if (isUnsupported(b)) return true;
+    if (b.type === "table") return tableHasData(b);
     const v = b as unknown as Record<string, unknown>;
     return CONTENT_FIELDS.some((f) => typeof v[f] === "string" && (v[f] as string).trim() !== "");
   });

@@ -127,3 +127,77 @@ describe("links and media are checked again at render time (the API is not trust
     expect(container.querySelector("img")!.getAttribute("src")!.startsWith("data:image/svg+xml")).toBe(true);
   });
 });
+
+describe("table block", () => {
+  const tbl = (rows: string[][], hasHeader: boolean, caption = ""): Block => ({ id: "t", type: "table", hasHeader, caption, rows });
+
+  it("renders semantic markup: header cells are th scope=col, data cells td, the caption is the table's caption", () => {
+    const { container } = show(tbl([["Dish", "Minutes"], ["Roast chicken", "90"], ["Bread", "35"]], true, "Oven times"));
+    const ths = [...container.querySelectorAll("thead th")];
+    expect(ths.map((t) => t.textContent)).toEqual(["Dish", "Minutes"]);
+    expect(ths.every((t) => t.getAttribute("scope") === "col")).toBe(true);
+    expect([...container.querySelectorAll("tbody tr")].map((r) => [...r.querySelectorAll("td")].map((c) => c.textContent))).toEqual([["Roast chicken", "90"], ["Bread", "35"]]);
+    expect(container.querySelector("table > caption")!.textContent).toBe("Oven times");
+  });
+
+  it("without a header every row is data and there is no thead", () => {
+    const { container } = show(tbl([["a", "b"], ["c", "d"]], false));
+    expect(container.querySelector("thead")).toBeNull();
+    expect(container.querySelector("th")).toBeNull();
+    expect(container.querySelectorAll("tbody tr")).toHaveLength(2);
+    expect(container.querySelector("caption")).toBeNull();
+  });
+
+  it("cell text is shown as text, never as markup", () => {
+    const { container } = show(tbl([["<b id='x'>bold</b>"]], false));
+    expect(container.querySelector("#x")).toBeNull();
+    expect(container.querySelector("td")!.textContent).toBe("<b id='x'>bold</b>");
+  });
+
+  it("a wide table scrolls inside its own box on narrow screens", () => {
+    const { getByTestId } = show(tbl([Array.from({ length: 10 }, (_, i) => `column ${i}`)], true));
+    expect(getByTestId("table-scroll")).toHaveClass("overflow-x-auto");
+    expect(getByTestId("table-scroll").querySelector("table")).toBeInTheDocument();
+  });
+
+  it("a malformed table renders nothing rather than crashing", () => {
+    const { container } = show({ id: "t", type: "table", hasHeader: true, caption: "", rows: "oops" } as unknown as Block);
+    expect(container.querySelector("table")).toBeNull();
+  });
+});
+
+describe("rich text (text block with a doc)", () => {
+  const rt = (doc: unknown, text = "fallback text"): Block => ({ id: "r", type: "text", text, doc } as Block);
+
+  it("renders paragraphs, lists, bold, italic and links from the doc", () => {
+    const { container } = show(rt([
+      { type: "paragraph", children: [{ text: "a " }, { text: "b", bold: true }, { text: "c", italic: true }, { text: "site", href: "/discover" }, { text: "ext", href: "https://e.com/x" }] },
+      { type: "list", ordered: false, items: [[{ text: "one" }], [{ text: "two" }]] },
+      { type: "list", ordered: true, items: [[{ text: "first" }]] },
+    ]));
+    expect(container.querySelector("strong")!.textContent).toBe("b");
+    expect(container.querySelector("em")!.textContent).toBe("c");
+    const [site, ext] = [...container.querySelectorAll("a")];
+    expect(site.getAttribute("href")).toBe("/discover");
+    expect(site.getAttribute("target")).toBeNull();
+    expect(ext.getAttribute("target")).toBe("_blank");
+    expect(ext.getAttribute("rel")).toContain("noopener");
+    expect([...container.querySelectorAll("ul li")].map((l) => l.textContent)).toEqual(["one", "two"]);
+    expect(container.querySelector("ol li")!.textContent).toBe("first");
+    expect(container.textContent).not.toContain("fallback text");
+  });
+
+  it("text is never markup, and an unsafe link is shown as plain text", () => {
+    const { container } = show(rt([{ type: "paragraph", children: [{ text: "<b id='x'>y</b>" }] }]));
+    expect(container.querySelector("#x")).toBeNull();
+    const unsafe = show(rt([{ type: "paragraph", children: [{ text: "click", href: "javascript:alert(1)" }] }]));
+    expect(unsafe.container.querySelector("a")).toBeNull();
+  });
+
+  it("falls back to the plain text when there is no doc or the doc is invalid", () => {
+    expect(show(rt(undefined, "plain body")).container.textContent).toContain("plain body");
+    const bad = show(rt([{ type: "heading", children: [{ text: "h" }] }], "projected body"));
+    expect(bad.container.textContent).toContain("projected body");
+    expect(bad.container.querySelector("[data-testid=rich-text]")).toBeNull();
+  });
+});

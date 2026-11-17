@@ -20,6 +20,10 @@ vi.mock("@/pages/Signup", () => stub("signup-page"));
 vi.mock("@/pages/ForgotPassword", () => stub("forgot-page"));
 vi.mock("@/pages/Profile", () => stub("old-profile-page"));
 vi.mock("@/pages/Blog", () => stub("blog-page"));
+vi.mock("@/pages/public/Discover", () => stub("discover-page"));
+vi.mock("@/pages/public/CollectionView", () => ({
+  default: ({ username, slug }: { username: string; slug: string }) => <div data-testid="collection-view">{`collection-view ${username}/${slug}`}</div>,
+}));
 vi.mock("@/pages/admin/AdminDashboard", () => stub("admin-dashboard"));
 vi.mock("@/pages/admin/AdminProblems", () => stub("admin-problems"));
 vi.mock("@/pages/admin/AdminUsers", () => stub("admin-users"));
@@ -51,9 +55,9 @@ const param = (n: string) => screen.getByTestId(`param-${n}`).textContent;
 beforeEach(anon);
 
 describe("public creator routes (anonymous)", () => {
-  it("renders /discover", () => {
+  it("renders /discover (the real Discover page since Step 14a)", () => {
     visit("/discover");
-    expect(screen.getByRole("heading", { name: "Discover" })).toBeInTheDocument();
+    expect(screen.getByText("discover-page")).toBeInTheDocument();
   });
 
   it("renders @username, lower-cased", () => {
@@ -62,10 +66,9 @@ describe("public creator routes (anonymous)", () => {
     expect(param("username")).toBe("alice");
   });
 
-  it("renders /@username/collection", () => {
-    visit("/@alice/java-notes");
-    expect(param("username")).toBe("alice");
-    expect(param("collectionSlug")).toBe("java-notes");
+  it("renders /@username/collection with the real collection viewer (since Step 14b), handle lower-cased", () => {
+    visit("/@Alice/java-notes");
+    expect(screen.getByTestId("collection-view")).toHaveTextContent("collection-view alice/java-notes");
   });
 
   it("renders the module-qualified page route with all four parameters", () => {
@@ -155,7 +158,7 @@ describe("workspace guards", () => {
   it("the public routes stay public for a logged-in user too", () => {
     asUser();
     visit("/discover");
-    expect(screen.getByRole("heading", { name: "Discover" })).toBeInTheDocument();
+    expect(screen.getByText("discover-page")).toBeInTheDocument();
   });
 });
 
@@ -215,7 +218,7 @@ describe("under the app's data router (router.tsx)", () => {
 
   it("serves the same public routes, static routes before :handle, and NotFound handling", () => {
     visitData("/discover");
-    expect(screen.getByRole("heading", { name: "Discover" })).toBeInTheDocument();
+    expect(screen.getByText("discover-page")).toBeInTheDocument();
   });
 
   it.each(["/create", "/create/collections/5", "/create/pages/5", "/settings/profile"])("anonymous %s -> login, remembering where they were headed", (path) => {

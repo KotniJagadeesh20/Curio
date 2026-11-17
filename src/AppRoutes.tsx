@@ -19,10 +19,10 @@ import Blog from "./pages/Blog";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminProblems from "./pages/admin/AdminProblems";
 import AdminUsers from "./pages/admin/AdminUsers";
+import Discover from "./pages/public/Discover";
 import {
   CollectionEditorPage,
   CreatorProfilePage,
-  DiscoverPage,
   PageEditorPage,
   ProfileSettingsPage,
   PublicCollectionPage,
@@ -70,7 +70,7 @@ export const AppRoutes = () => (
               <Route path="/signup" element={<Signup />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/blog" element={<Blog />} />
-              <Route path="/discover" element={<DiscoverPage />} />
+              <Route path="/discover" element={<Discover />} />
 
               {/* Any logged-in user (the backend checks ownership per object on every call) */}
               <Route element={<ProtectedRoute />}>

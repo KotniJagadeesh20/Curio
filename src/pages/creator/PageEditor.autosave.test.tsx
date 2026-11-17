@@ -452,8 +452,39 @@ describe("data integrity", () => {
     expect(screen.getByTestId("recovery-note")).toBeInTheDocument();
   });
 
+  it("autosave sends rich text as doc + its text projection; an untouched plain block gets no doc (Step 13c)", async () => {
+    const rich = { id: "r1", type: "text", text: "a b", doc: [{ type: "paragraph", children: [{ text: "a " }, { text: "b", bold: true }] }] } as StoredBlock;
+    const plain = { id: "p1", type: "text", text: "old plain" } as StoredBlock;
+    const page = makePage({ blocks: [rich, plain] });
+    const { api } = await open(installFakeApi(routes(page)));
+    fireEvent.change(screen.getAllByLabelText("Text")[0], { target: { value: "a **b** and *c*" } });
+    await tick(1500); await tick(0);
+    const sent = puts(api)[0].blocks!;
+    expect(sent.map((b) => b.id)).toEqual(["r1", "p1"]);
+    expect(sent[0]).toEqual({ id: "r1", type: "text", text: "a b and c",
+      doc: [{ type: "paragraph", children: [{ text: "a " }, { text: "b", bold: true }, { text: " and " }, { text: "c", italic: true }] }] });
+    expect(sent[1]).toEqual(plain);
+    expect(saveState()).toBe("Saved");
+  });
+
+  it("autosave sends a table edit with its id and the other blocks unchanged (Step 13b)", async () => {
+    const tableBlock = { id: "tb", type: "table", hasHeader: true, caption: "Oven times", rows: [["Dish", "Minutes"], ["Bread", ""]] } as StoredBlock;
+    const page = makePage({ blocks: [{ id: "h1", type: "heading", level: 2, text: "Intro" }, tableBlock, { id: "t1", type: "text", text: "tail" }] });
+    const { api } = await open(installFakeApi(routes(page)));
+    fireEvent.change(screen.getByLabelText("Row 2, column 2"), { target: { value: "35" } });
+    fireEvent.click(btn("Add row"));
+    expect(saveState()).toBe("Unsaved changes");
+    await tick(1500); await tick(0);
+    expect(puts(api)).toHaveLength(1);
+    const sent = puts(api)[0].blocks!;
+    expect(sent.map((b) => b.id)).toEqual(["h1", "tb", "t1"]);
+    expect(sent[1]).toEqual({ ...tableBlock, rows: [["Dish", "Minutes"], ["Bread", "35"], ["", ""]] });
+    expect(sent[0]).toEqual({ id: "h1", type: "heading", level: 2, text: "Intro" });
+    expect(saveState()).toBe("Saved");
+  });
+
   it("autosave keeps block ids, order and an unsupported block byte-for-byte", async () => {
-    const table: StoredBlock = { type: "table", rows: [["a", "b"]], widths: [1, 2] } as StoredBlock;
+    const table: StoredBlock = { type: "quiz", rows: [["a", "b"]], widths: [1, 2] } as StoredBlock;
     const page = makePage({ blocks: [{ id: "h1", type: "heading", level: 2, text: "Intro" }, table, { id: "t1", type: "text", text: "tail" }] });
     const { api } = await open(installFakeApi(routes(page)));
     fireEvent.click(btn("Move block 3 (Text) up"));

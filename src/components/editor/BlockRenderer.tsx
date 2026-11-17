@@ -1,9 +1,11 @@
 import { AlertTriangle, Info, Lightbulb } from "lucide-react";
 import { CodeEditor } from "@/components/CodeEditor";
 import { LessonText } from "@/components/LessonText";
+import { RichText } from "@/components/RichText";
+import { isValidDoc } from "@/lib/richText";
 import { OwnerImage } from "@/components/media/OwnerImage";
 import { useTheme } from "@/components/ThemeProvider";
-import { embedUrl, isSafeUrl, type Block } from "@/lib/blocks";
+import { embedUrl, isSafeUrl, isWellFormedTable, type Block } from "@/lib/blocks";
 import { HTML_FRAME_SANDBOX, htmlFrameDocument, htmlFrameHeight } from "@/lib/htmlFrame";
 
 const CALLOUT = {
@@ -23,7 +25,8 @@ function BlockView({ block }: { block: Block }) {
         ? <h3 className="text-xl font-semibold mt-2">{block.text}</h3>
         : <h2 className="text-2xl font-bold mt-4">{block.text}</h2>;
     case "text":
-      return <LessonText text={block.text} />;
+      // the doc is authoritative when it is valid; otherwise (no doc, or one we can't trust) the plain-text projection
+      return block.doc !== undefined && isValidDoc(block.doc) ? <RichText doc={block.doc} /> : <LessonText text={block.text} />;
     case "code": {
       const lines = block.code.split("\n").length;
       return (
@@ -91,6 +94,32 @@ function BlockView({ block }: { block: Block }) {
           <Icon className={`h-5 w-5 mt-1 shrink-0 ${c.iconCls}`} />
           <div className="flex-1 min-w-0"><LessonText text={block.text} /></div>
         </aside>
+      );
+    }
+    case "table": {
+      if (!isWellFormedTable(block as unknown as Record<string, unknown>)) return null;   // never render a malformed table
+      const [head, ...body] = block.hasHeader ? block.rows : [null, ...block.rows];
+      return (
+        <figure>
+          {/* wide tables scroll sideways inside their own box instead of widening the page */}
+          <div className="overflow-x-auto rounded-xl border border-border" data-testid="table-scroll">
+            <table className="w-full border-collapse text-sm">
+              {block.caption && <caption className="caption-bottom border-t border-border px-3 py-2 text-sm text-muted-foreground">{block.caption}</caption>}
+              {head && (
+                <thead className="bg-muted/50">
+                  <tr>{head.map((c, j) => <th key={j} scope="col" className="border-b border-border px-3 py-2 text-left font-semibold whitespace-pre-wrap">{c}</th>)}</tr>
+                </thead>
+              )}
+              <tbody>
+                {body.map((r, i) => (
+                  <tr key={i} className="border-b border-border last:border-b-0">
+                    {r!.map((c, j) => <td key={j} className="px-3 py-2 align-top whitespace-pre-wrap">{c}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </figure>
       );
     }
     case "divider":

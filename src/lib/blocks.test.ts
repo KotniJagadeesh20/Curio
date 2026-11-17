@@ -29,8 +29,8 @@ describe("reading stored blocks for editing", () => {
     expect(ids(blocks)).toEqual(["b1", "b2", "b3", "b4", "b5", "b6", "b7", "b8", "b9"]);
   });
 
-  it("the editor knows exactly the nine types the plan lists", () => {
-    expect(Object.keys(BLOCK_LABELS).sort()).toEqual(["callout", "code", "divider", "heading", "html", "image", "svg", "text", "video"]);
+  it("the editor knows exactly the ten types the plan lists (Step 13 adds table)", () => {
+    expect(Object.keys(BLOCK_LABELS).sort()).toEqual(["callout", "code", "divider", "heading", "html", "image", "svg", "table", "text", "video"]);
   });
 
   it("keeps unknown fields on known blocks", () => {
@@ -39,7 +39,7 @@ describe("reading stored blocks for editing", () => {
   });
 
   it("wraps a block of an unknown type and writes it back byte-for-byte (no id injected, nothing dropped)", () => {
-    const table = { type: "table", rows: [["a", "b"]], widths: [1, 2] };
+    const table = { type: "quiz", rows: [["a", "b"]], widths: [1, 2] };
     const withId = { id: "t1", type: "embed", src: "https://e.com", options: { a: 1 } };
     const { blocks, unreadable } = readBlocksForEditing([all[0], table, withId, all[1]]);
     expect(unreadable).toBe(0);
@@ -98,7 +98,7 @@ describe("block operations are pure and id-based", () => {
 
   it("new blocks get distinct ids and the documented defaults", () => {
     const made = (Object.keys(BLOCK_LABELS) as Array<keyof typeof BLOCK_LABELS>).map((t) => newBlock(t));
-    expect(new Set(ids(made)).size).toBe(9);
+    expect(new Set(ids(made)).size).toBe(10);
     expect(newBlock("heading")).toMatchObject({ level: 2, text: "" });
     expect(newBlock("html")).toMatchObject({ height: 360 });
   });
@@ -171,7 +171,7 @@ describe("hasMeaningfulContent (same rule as the server's hasContent)", () => {
     ["an image link", [{ type: "image", url: "https://e.com/a.png", caption: "" }], true],
     ["svg", [{ type: "svg", svg: "<svg/>" }], true],
     ["html", [{ type: "html", html: "<p>x</p>", height: 100 }], true],
-    ["an unknown type is never called empty", [{ type: "table", rows: [] }], true],
+    ["an unknown type is never called empty", [{ type: "quiz", rows: [] }], true],
   ])("%s -> %s", (_n, raw, expected) => expect(hasMeaningfulContent(mk(raw as unknown[]))).toBe(expected));
 
   it("uses the same content fields and known types as CollectionService.hasContent (reads the Java source)", () => {
@@ -179,9 +179,13 @@ describe("hasMeaningfulContent (same rule as the server's hasContent)", () => {
     const fields = /CONTENT_FIELDS\s*=\s*List\.of\(([^)]+)\)/.exec(java)?.[1];
     expect(fields).toBeDefined();
     expect([...fields!.matchAll(/"([^"]+)"/g)].map((m) => m[1])).toEqual([...CONTENT_FIELDS]);
-    const known = /!List\.of\(([^)]+)\)\.contains\(type\)/.exec(java)?.[1];
-    expect(known).toBeDefined();
-    expect([...known!.matchAll(/"([^"]+)"/g)].map((m) => m[1]).sort()).toEqual(Object.keys(BLOCK_LABELS).sort());
+    // Step 13a: hasContent asks BlockRules.isKnown, so the known types are the keys of BlockRules.FIELDS
+    expect(java).toContain("BlockRules.isKnown(type)");
+    const rules = readFileSync(resolve(process.cwd(), "backend/src/main/java/com/codemastery/blocks/BlockRules.java"), "utf8");
+    const fieldsMap = /FIELDS\s*=\s*Map\.of\(([\s\S]*?)\);/.exec(rules)?.[1];
+    expect(fieldsMap).toBeDefined();
+    const known = [...fieldsMap!.matchAll(/^\s*"([a-z]+)",\s*Set\.of/gm)].map((m) => m[1]);
+    expect(known.sort()).toEqual(Object.keys(BLOCK_LABELS).sort());
   });
 });
 
@@ -265,7 +269,7 @@ describe("moveBlockTo / replaceBlock (Step 10)", () => {
   });
 
   it("moves an unsupported block without touching its stored data", () => {
-    const original = { type: "table", rows: [[1]] };
+    const original = { type: "quiz", rows: [[1]] };
     const u = { id: "u", unsupported: true, original } as unknown as EditorBlock;
     const out = moveBlockTo([mk("a"), u, mk("c")], "u", 0);
     expect(out[0]).toBe(u);

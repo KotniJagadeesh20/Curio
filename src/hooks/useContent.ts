@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { api, ApiError } from "@/lib/api";
 import { apiPaths } from "@/lib/paths";
 import type {
@@ -44,11 +44,13 @@ const retryUnlessClientError = (failures: number, error: unknown) =>
   !(error instanceof ApiError && error.status >= 400 && error.status < 500) && failures < 2;
 
 // ---- public (no token needed; the server answers the same for everyone) ----
-export const usePublicCollections = (params: { category?: string; q?: string; page?: number; size?: number } = {}) =>
+/** `keepPrevious`: keep showing the last page while the next search/filter/page loads (Discover), instead of a spinner. */
+export const usePublicCollections = (params: { category?: string; q?: string; page?: number; size?: number } = {}, opts: { keepPrevious?: boolean } = {}) =>
   useQuery({
     queryKey: ["public", "collections", params],
     queryFn: () => api.get<Paged<PublicCollectionSummary>>(apiPaths.publicCollections(params)),
     retry: retryUnlessClientError,
+    placeholderData: opts.keepPrevious ? keepPreviousData : undefined,
   });
 
 export const usePublicCollection = (username?: string, slug?: string) =>

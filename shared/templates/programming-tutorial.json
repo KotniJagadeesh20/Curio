@@ -1,0 +1,172 @@
+{
+  "id": "programming-tutorial",
+  "position": 1,
+  "name": "Programming Tutorial",
+  "description": "Teach a programming topic step by step, from the basics to a working example.",
+  "category": "programming",
+  "modules": [
+    {
+      "title": "Getting Started",
+      "pages": [
+        {
+          "title": "Introduction",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Describe what this tutorial covers and what the reader will be able to build or do by the end."
+            },
+            {
+              "type": "callout",
+              "variant": "tip",
+              "text": "Keep the introduction short: one paragraph about the goal is enough."
+            }
+          ]
+        },
+        {
+          "title": "Prerequisites",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "List what the reader should know or have installed before starting."
+            },
+            {
+              "type": "text",
+              "text": "- A recent version of the language or runtime\n- A code editor\n- Basic familiarity with the command line",
+              "doc": [
+                {
+                  "type": "list",
+                  "ordered": false,
+                  "items": [
+                    [
+                      {
+                        "text": "A recent version of the language or runtime"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "A code editor"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Basic familiarity with the command line"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Concepts",
+          "blocks": [
+            {
+              "type": "heading",
+              "level": 2,
+              "text": "Key ideas"
+            },
+            {
+              "type": "text",
+              "text": "Explain the core concepts in plain words before showing any code."
+            },
+            {
+              "type": "table",
+              "hasHeader": true,
+              "caption": "Terms used in this tutorial",
+              "rows": [
+                [
+                  "Term",
+                  "Meaning"
+                ],
+                [
+                  "Concept one",
+                  "A short definition"
+                ],
+                [
+                  "Concept two",
+                  "A short definition"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Hands-on",
+      "pages": [
+        {
+          "title": "Examples",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Show a small, complete example and explain what each part does."
+            },
+            {
+              "type": "code",
+              "language": "python",
+              "code": "def greet(name):\n    return f\"Hello, {name}!\"\n\nprint(greet(\"world\"))",
+              "caption": "Replace this example with your own."
+            }
+          ]
+        },
+        {
+          "title": "Practical Implementation",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Walk through building something real with what the reader has learned."
+            },
+            {
+              "type": "text",
+              "text": "1. Set up the project\n2. Write the first working version\n3. Test it\n4. Improve it",
+              "doc": [
+                {
+                  "type": "list",
+                  "ordered": true,
+                  "items": [
+                    [
+                      {
+                        "text": "Set up the project"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Write the first working version"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Test it"
+                      }
+                    ],
+                    [
+                      {
+                        "text": "Improve it"
+                      }
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Summary",
+          "blocks": [
+            {
+              "type": "text",
+              "text": "Recap what was covered and suggest where the reader could go next."
+            },
+            {
+              "type": "callout",
+              "variant": "info",
+              "text": "Link to further reading or a follow-up tutorial here."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

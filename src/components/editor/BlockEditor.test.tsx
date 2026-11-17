@@ -8,7 +8,7 @@ vi.mock("@/components/CodeEditor", () => ({ CodeEditor: ({ value }: { value: str
 
 const text = (id: string, t = ""): EditorBlock => ({ id, type: "text", text: t });
 const heading = (id: string, t: string): EditorBlock => ({ id, type: "heading", level: 2, text: t });
-const unknown = (id: string): EditorBlock => ({ id, unsupported: true, original: { type: "table", rows: [[1, 2]], widths: [3] } } as unknown as EditorBlock);
+const unknown = (id: string): EditorBlock => ({ id, unsupported: true, original: { type: "quiz", rows: [[1, 2]], widths: [3] } } as unknown as EditorBlock);
 
 /** Controlled host that records every change like PageEditor would. */
 function Host({ initial, disabled, onState }: { initial: EditorBlock[]; disabled?: boolean; onState: (b: EditorBlock[]) => void }) {
@@ -116,7 +116,7 @@ describe("up/down buttons remain as the accessible fallback", () => {
     expect(ids()).toEqual(["u", "a", "c"]);
     fireEvent.click(screen.getByRole("button", { name: /move block 1 \(.*\) down/i }));
     expect(ids()).toEqual(["a", "u", "c"]);
-    expect((m.latest()[1] as unknown as { original: unknown }).original).toEqual({ type: "table", rows: [[1, 2]], widths: [3] });
+    expect((m.latest()[1] as unknown as { original: unknown }).original).toEqual({ type: "quiz", rows: [[1, 2]], widths: [3] });
   });
 });
 
@@ -160,7 +160,7 @@ describe("drag and drop", () => {
     const m = mount([heading("a", "A"), unknown("u"), heading("c", "C")]);
     await drag(2, ["ArrowDown"]);
     await waitFor(() => expect(ids()).toEqual(["a", "c", "u"]));
-    expect((m.latest()[2] as unknown as { original: unknown }).original).toEqual({ type: "table", rows: [[1, 2]], widths: [3] });
+    expect((m.latest()[2] as unknown as { original: unknown }).original).toEqual({ type: "quiz", rows: [[1, 2]], widths: [3] });
     await drag(3, ["ArrowUp", "ArrowUp"]);
     await waitFor(() => expect(ids()).toEqual(["u", "a", "c"]));
   });

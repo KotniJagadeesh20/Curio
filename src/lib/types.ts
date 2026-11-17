@@ -247,6 +247,8 @@ export interface PublicCollectionSummary {
   title: string;
   description: string;
   coverUrl: string | null;
+  /** The small variant of an uploaded cover (`/api/public/media/{id}/thumb`); null for a legacy cover link or no cover. */
+  coverThumbUrl: string | null;
   category: PublicCategoryRef | null;
   creator: PublicCreatorRef;
   moduleCount: number;

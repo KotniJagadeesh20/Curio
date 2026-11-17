@@ -5,6 +5,8 @@ import { CSS } from "@dnd-kit/utilities";
 import { ArrowDown, ArrowUp, GripVertical, Plus, Trash2 } from "lucide-react";
 import { SlashMenu } from "@/components/editor/SlashMenu";
 import { MediaUploader } from "@/components/media/MediaUploader";
+import { TableEditor } from "@/components/editor/TableEditor";
+import { RichTextEditor } from "@/components/editor/RichTextEditor";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,12 +14,12 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import {
-  BLOCK_LABELS, MAX_BLOCKS, blockLabel, insertBlock, isUnsupported, moveBlock, moveBlockTo, newBlock, removeBlock, replaceBlock, updateBlock, urlProblem, withImageAsset, withImageUrl, withoutImageAsset,
+  BLOCK_LABELS, MAX_BLOCKS, blockLabel, insertBlock, isUnsupported, moveBlock, moveBlockTo, newBlock, removeBlock, replaceBlock, richTextProblem, tableProblem, updateBlock, urlProblem, withImageAsset, withImageUrl, withoutImageAsset,
   type Block, type BlockType, type EditorBlock, type UnsupportedBlock,
 } from "@/lib/blocks";
 
 const HINTS: Partial<Record<BlockType, string>> = {
-  text: 'Blank line = new paragraph. Start lines with "- " for bullets or "1. " for numbered lists.',
+  text: 'Blank line = new paragraph. Start lines with "- " for bullets or "1. " for numbered lists. **bold**, _italic_ (or *italic*), [link text](https://...); put \\ before * _ [ ] to type them as they are.',
   html: "Styled HTML and CSS. It is shown in an isolated frame: scripts, forms, links to other sites and external images/fonts do not run or load (use an image block for pictures).",
   svg: "Paste the <svg>...</svg> markup. Scripts inside SVGs are ignored.",
   image: "Upload an image (JPEG, PNG or WebP, up to 5 MB), or paste a link to one (https://...). Entering a link replaces an uploaded image.",
@@ -44,8 +46,7 @@ function Fields({ block, onChange, problem, onSlash }: { block: Block; onChange:
       );
     case "text":
       // typing "/" in an empty text block opens the insert menu instead of writing the slash
-      return <Textarea aria-label="Text" rows={6} value={block.text} placeholder='Write your text... (type "/" for more blocks)'
-        onChange={(e) => (block.text === "" && e.target.value === "/" ? onSlash() : set({ text: e.target.value }))} />;
+      return <RichTextEditor block={block} onChange={onChange} onSlash={onSlash} />;
     case "code":
       return (
         <div className="space-y-2">
@@ -104,6 +105,8 @@ function Fields({ block, onChange, problem, onSlash }: { block: Block; onChange:
           <Textarea aria-label="Callout text" rows={3} value={block.text} onChange={(e) => set({ text: e.target.value })} placeholder="Callout text" />
         </div>
       );
+    case "table":
+      return <TableEditor block={block} onChange={onChange} />;
     case "divider":
       return <p className="text-xs text-muted-foreground">A horizontal line.</p>;
   }
@@ -165,7 +168,7 @@ export function BlockEditor({ blocks, onChange, problems = {}, disabled }: Props
     <div className="space-y-3" data-testid="block-editor">
       {blocks.length === 0 && (
         <p className="text-sm text-muted-foreground rounded-lg border border-dashed border-border p-6 text-center">
-          No blocks yet. Add text, code, images, video, SVG or HTML below.
+          No blocks yet. Add text, code, images, video, tables, SVG or HTML below.
         </p>
       )}
       <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEnd}>
@@ -192,8 +195,8 @@ export function BlockEditor({ blocks, onChange, problems = {}, disabled }: Props
                         <fieldset disabled={disabled} className="contents">
                           <Fields block={b} problem={problems[b.id] ?? urlProblem(b)} onChange={(nb) => onChange(updateBlock(blocks, b.id, nb))} onSlash={() => setSlashFor(b.id)} />
                         </fieldset>
-                        {problems[b.id] && b.type !== "image" && b.type !== "video" && (
-                          <p role="alert" className="text-xs text-destructive" data-testid="block-problem">{problems[b.id]}</p>
+                        {(problems[b.id] ?? tableProblem(b) ?? richTextProblem(b)) && b.type !== "image" && b.type !== "video" && (
+                          <p role="alert" className="text-xs text-destructive" data-testid="block-problem">{problems[b.id] ?? tableProblem(b) ?? richTextProblem(b)}</p>
                         )}
                         {HINTS[b.type] && <p className="text-xs text-muted-foreground">{HINTS[b.type]}</p>}
                       </>

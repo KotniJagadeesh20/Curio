@@ -203,3 +203,210 @@ describe("create collection", () => {
     await waitFor(() => expect(api.sent("POST", "/collections")[0]?.body).toMatchObject({ categoryId: 3 }));
   });
 });
+
+describe("create collection from a template (Step 13d)", () => {
+  const cats = [{ id: 3, slug: "travel", name: "Travel", icon: "x", position: 2 }, { id: 5, slug: "food", name: "Food & Recipes", icon: "x", position: 3 }];
+  let nextId = 100;
+  const okRoutes = (): Parameters<typeof installFakeApi>[0] => ({
+    "GET /collections/mine": () => ok([]),
+    "GET /public/categories": () => ok(cats),
+    "POST /collections": (req) => ({ status: 201, body: col({ id: 42, title: (req.body as { title: string }).title }) }),
+    "POST /collections/42/modules": () => ({ status: 201, body: { id: 500 } }),
+    "POST /modules/500/pages": () => ({ status: 201, body: { id: nextId++ } }),
+  });
+  const open = async (routes: Parameters<typeof installFakeApi>[0]) => {
+    nextId = 100;
+    const api = installFakeApi(routes);
+    mount();
+    fireEvent.click(await screen.findByRole("button", { name: /new collection/i }));
+    await screen.findByRole("dialog");
+    return api;
+  };
+  const pick = (name: RegExp) => fireEvent.click(within(screen.getByRole("radiogroup", { name: "Template" })).getByRole("radio", { name }));
+  const titled = async (title: string) => {
+    await waitFor(() => expect(screen.getByRole("combobox", { name: "Category" })).not.toBeDisabled());
+    fireEvent.change(screen.getByLabelText("Title"), { target: { value: title } });
+  };
+  const create = () => fireEvent.click(screen.getByRole("button", { name: "Create from template" }));
+  const summary = (c: { method: string; path: string; body: unknown }) => `${c.path} ${(c.body as { title: string }).title}`;
+
+  it("offers the five templates, Blank selected by default; Blank sends exactly the old single request", async () => {
+    const api = await open(okRoutes());
+    const radios = within(screen.getByRole("radiogroup", { name: "Template" })).getAllByRole("radio");
+    ["Blank", "Programming Tutorial", "Travel Guide", "Recipe", "Personal Experience"]
+      .forEach((name, i) => expect(radios[i]).toHaveAccessibleName(expect.stringContaining(name)));
+    expect(radios[0]).toHaveAttribute("aria-checked", "true");
+    fireEvent.change(screen.getByLabelText("Title"), { target: { value: "Java" } });
+    fireEvent.click(screen.getByRole("button", { name: "Create collection" }));
+    await screen.findByTestId("editor-route");
+    expect(api.calls.filter((c) => c.method === "POST").map((c) => c.path)).toEqual(["/collections"]);
+    expect(api.sent("POST", "/collections")[0].body).toEqual({ title: "Java", description: "", coverUrl: "" });
+  });
+
+  it("Recipe: presets its category from the categories API, creates collection, module and pages in order, then opens the editor", async () => {
+    const api = await open(okRoutes());
+    pick(/Recipe/);
+    await titled("Grandma's soup");
+    create();
+    await screen.findByTestId("editor-route");
+    const posts = api.calls.filter((c) => c.method === "POST");
+    expect(posts.map(summary)).toEqual([
+      "/collections Grandma's soup", "/collections/42/modules Recipe", "/modules/500/pages Overview", "/modules/500/pages Ingredients",
+      "/modules/500/pages Method", "/modules/500/pages Tips and Variations",
+    ]);
+    expect(posts[0].body).toMatchObject({ categoryId: 5 });
+    const method = posts[4].body as { blocks: { type: string; text: string; doc: unknown }[] };
+    expect(method.blocks[0]).toMatchObject({ type: "text", text: expect.stringMatching(/^1\. /), doc: expect.any(Array) });
+    expect(toast.success).toHaveBeenCalledWith("Collection created from the Recipe template");
+  });
+
+  it("a template whose category the server doesn't list is created without one, with a note", async () => {
+    const api = await open(okRoutes());
+    pick(/Personal Experience/);
+    expect(await screen.findByText(/category isn't available/)).toBeInTheDocument();
+    await titled("My year abroad");
+    create();
+    await screen.findByTestId("editor-route");
+    expect(api.sent("POST", "/collections")[0].body).not.toHaveProperty("categoryId");
+  });
+
+  it("shows progress while the pages are created", async () => {
+    let release!: () => void;
+    const gate = new Promise<void>((r) => { release = r; });
+    await open({ ...okRoutes(), "POST /modules/500/pages": async () => { await gate; return { status: 201, body: { id: nextId++ } }; } });
+    pick(/Recipe/);
+    await titled("Soup");
+    create();
+    const progress = await screen.findByTestId("template-progress");
+    await waitFor(() => expect(progress).toHaveTextContent('2 of 6 created. Now: Page "Overview"'));
+    expect(screen.getByRole("progressbar", { name: "Template creation progress" })).toBeInTheDocument();
+    expect(screen.queryByRole("radiogroup")).toBeNull();          // the template can't be switched mid-run
+    release();
+    await screen.findByTestId("editor-route");
+  });
+
+  it("a page failure stops the run, keeps the drafts, and Retry creates only the remaining pages", async () => {
+    let failTitle: string | null = "Method";
+    const api = await open({
+      ...okRoutes(),
+      "POST /modules/500/pages": (req) => ((req.body as { title: string }).title === failTitle ? err(500, "Server error") : { status: 201, body: { id: nextId++ } }),
+    });
+    pick(/Recipe/);
+    await titled("Soup");
+    create();
+    const alert = await screen.findByRole("alert");
+    expect(alert).toHaveTextContent('Couldn\'t create Page "Method": Server error');
+    expect(screen.getByTestId("template-progress")).toHaveTextContent("4 of 6 created");
+    expect(api.calls.some((c) => c.method === "DELETE")).toBe(false);
+    expect(screen.queryByTestId("editor-route")).toBeNull();
+
+    failTitle = null;
+    const before = api.calls.length;
+    fireEvent.click(screen.getByRole("button", { name: "Retry remaining" }));
+    await screen.findByTestId("editor-route");
+    expect(api.calls.slice(before).filter((c) => c.method === "POST").map(summary)).toEqual(["/modules/500/pages Method", "/modules/500/pages Tips and Variations"]);
+    expect(api.sent("POST", "/collections")).toHaveLength(1);
+    expect(api.sent("POST", "/collections/42/modules")).toHaveLength(1);
+  });
+
+  it("after a failure the partly created collection can be opened instead", async () => {
+    await open({ ...okRoutes(), "POST /collections/42/modules": () => err(403, "Forbidden") });
+    pick(/Travel Guide/);
+    await titled("Lisbon");
+    create();
+    await screen.findByRole("alert");
+    fireEvent.click(screen.getByRole("button", { name: "Open collection" }));
+    expect(await screen.findByTestId("editor-route")).toBeInTheDocument();
+  });
+
+  it("a refused collection is explained in the form; nothing else is sent and the form can be resubmitted", async () => {
+    const api = await open({ ...okRoutes(), "POST /collections": () => err(409, "Slug already in use") });
+    pick(/Travel Guide/);
+    await titled("Lisbon");
+    create();
+    expect(await screen.findByTestId("form-error")).toHaveTextContent("Slug already in use");
+    expect(api.calls.filter((c) => c.method === "POST").map((c) => c.path)).toEqual(["/collections"]);
+    expect(screen.getByRole("radiogroup", { name: "Template" })).toBeInTheDocument();
+  });
+
+  it("single flight: a second click while the run is in progress sends nothing more", async () => {
+    let release!: () => void;
+    const gate = new Promise<void>((r) => { release = r; });
+    const api = await open({ ...okRoutes(), "POST /collections": async () => { await gate; return { status: 201, body: col({ id: 42 }) }; } });
+    pick(/Recipe/);
+    await titled("Soup");
+    create();
+    create();
+    fireEvent.submit(screen.getByRole("button", { name: "Create from template" }).closest("form")!);
+    release();
+    await screen.findByTestId("editor-route");
+    expect(api.sent("POST", "/collections")).toHaveLength(1);
+    expect(api.sent("POST", "/collections/42/modules")).toHaveLength(1);
+    expect(api.sent("POST", "/modules/500/pages")).toHaveLength(4);
+  });
+});
+
+describe("template picker keyboard accessibility", () => {
+  const open = async () => {
+    installFakeApi({ "GET /collections/mine": () => ok([]), "GET /public/categories": () => ok([]) });
+    mount();
+    fireEvent.click(await screen.findByRole("button", { name: /new collection/i }));
+    await screen.findByRole("dialog");
+  };
+  const radios = () => within(screen.getByRole("radiogroup", { name: "Template" })).getAllByRole("radio");
+  const checked = () => radios().findIndex((r) => r.getAttribute("aria-checked") === "true");
+  const key = (k: string) => fireEvent.keyDown(document.activeElement!, { key: k });
+
+  it("ArrowRight and ArrowDown select the next template", async () => {
+    await open();
+    radios()[0].focus();
+    key("ArrowRight");
+    await waitFor(() => expect(checked()).toBe(1));
+    expect(document.activeElement).toBe(radios()[1]);
+    key("ArrowDown");
+    await waitFor(() => expect(checked()).toBe(2));
+    expect(screen.getByRole("button", { name: "Create from template" })).toBeInTheDocument();
+  });
+
+  it("ArrowLeft and ArrowUp select the previous template", async () => {
+    await open();
+    radios()[0].focus();
+    key("ArrowDown");
+    await waitFor(() => expect(checked()).toBe(1));
+    key("ArrowDown");
+    await waitFor(() => expect(checked()).toBe(2));
+    key("ArrowLeft");
+    await waitFor(() => expect(checked()).toBe(1));
+    key("ArrowUp");
+    await waitFor(() => expect(checked()).toBe(0));
+    expect(screen.getByRole("button", { name: "Create collection" })).toBeInTheDocument();
+  });
+
+  it("Space selects the focused template", async () => {
+    await open();
+    const recipe = radios()[3];
+    recipe.focus();
+    expect(checked()).toBe(0);
+    fireEvent.keyDown(recipe, { key: " " });
+    fireEvent.keyUp(recipe, { key: " " });
+    fireEvent.click(recipe);         // a native <button> turns Space into a click; jsdom doesn't, so the click is sent explicitly
+    await waitFor(() => expect(checked()).toBe(3));
+    expect(recipe).toHaveAccessibleName(expect.stringContaining("Recipe"));
+  });
+
+  it("single tab stop: once the group has focus, only the selected radio is tabbable, and it follows the selection", async () => {
+    await open();
+    const tabStops = () => radios().filter((r) => r.tabIndex === 0);
+    radios()[0].focus();                                               // the selected one (Blank); real Tab is checked in the browser (13e)
+    await waitFor(() => expect(tabStops()).toEqual([radios()[0]]));
+    expect(radios().slice(1).every((r) => r.tabIndex === -1)).toBe(true);
+    key("ArrowRight");
+    await waitFor(() => expect(checked()).toBe(1));
+    await waitFor(() => expect(tabStops()).toEqual([radios()[1]]));
+    expect(radios().filter((r, i) => i !== 1 && r.tabIndex === -1)).toHaveLength(4);
+    key("ArrowDown");
+    await waitFor(() => expect(checked()).toBe(2));
+    await waitFor(() => expect(tabStops()).toEqual([radios()[2]]));
+    expect(radios().filter((r, i) => i !== 2 && r.tabIndex === -1)).toHaveLength(4);
+  });
+});
