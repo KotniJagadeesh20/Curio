@@ -1,0 +1,10 @@
+INFO  P1 public A3: {"api":true,"blockFound":true,"total":1,"eds":[{"inBlock":true,"textMatch":true,"readOnly":true,"occ":"singleFile"}],"matching":[{"inBlock":true,"textMatch":true,"readOnly":true,"occ":"singleFile"}]}
+PASS  [P1] public API available on public A3 (monaco.editor.getEditors + EditorOption.occurrencesHighlight)
+PASS  [P1] exactly one editor inside the A3 code block with model text === seeded code  — total editors 1, matching 1
+INFO  P2 creator editor (edit mode): {"monacoEditors":0,"codeTextareas":1}
+FAIL  [P2] creator page editor (edit mode) contains a Monaco editor to assert O2 on  — monaco editors 0; code is edited in 1 <textarea aria-label="Code">
+INFO  P2 creator Preview: {"api":true,"blockFound":true,"total":1,"eds":[{"inBlock":true,"textMatch":true,"readOnly":true,"occ":"singleFile"}],"matching":[{"inBlock":true,"textMatch":true,"readOnly":true,"occ":"singleFile"}]}
+INFO  P3 /problem/two-sum (58 problems): {"api":true,"blockFound":true,"total":1,"eds":[{"inBlock":true,"textMatch":true,"readOnly":false,"occ":"singleFile"}],"matching":[{"inBlock":true,"textMatch":true,"readOnly":false,"occ":"singleFile"}]}
+PASS  [P3] exactly one non-read-only editor on /problem/:slug with model text === the problem's starter code  — total 1, matching 1
+
+3/4 checks passed

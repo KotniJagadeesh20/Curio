@@ -53,18 +53,26 @@ public class PublicCollectionService {
     }
 
     // ---------- listing ----------
-    public PagedResult<PublicCollectionSummary> list(String categorySlug, String q, Integer page, Integer size) {
+    /**
+     * Step 15a: {@code creator} narrows the same LISTED query to one owner (case-insensitive: the username is normalized
+     * like every other public lookup). Blank = unfiltered. An unknown, invalid or suspended creator is an empty page,
+     * like an unknown category. Profile visibility is deliberately not consulted (PLAN.md §3a).
+     */
+    public PagedResult<PublicCollectionSummary> list(String categorySlug, String q, String creator, Integer page, Integer size) {
         int p = page == null ? 0 : Math.max(0, page);
         int sz = size == null ? DEFAULT_SIZE : Math.min(MAX_SIZE, Math.max(1, size));
         PageRequest req = PageRequest.of(p, sz);
         String pattern = likePattern(q);
+        String owner = creator == null || creator.isBlank() ? null : com.codemastery.user.UsernamePolicy.normalize(creator);
+        if (owner != null && !com.codemastery.user.UsernamePolicy.isValidFormat(owner)) return new PagedResult<>(List.of(), p, sz, 0, 0);
         Page<Track> result;
         if (categorySlug == null || categorySlug.isBlank()) {
-            result = tracks.listPublic(pattern, req);
+            result = owner == null ? tracks.listPublic(pattern, req) : tracks.listPublicByOwner(owner, pattern, req);
         } else {
             Optional<Category> c = categories.findBySlug(categorySlug.trim().toLowerCase(Locale.ROOT));
             if (c.isEmpty()) return new PagedResult<>(List.of(), p, sz, 0, 0);
-            result = tracks.listPublicInCategory(c.get().getId(), pattern, req);
+            result = owner == null ? tracks.listPublicInCategory(c.get().getId(), pattern, req)
+                    : tracks.listPublicByOwnerInCategory(owner, c.get().getId(), pattern, req);
         }
         List<Track> rows = result.getContent();
         Map<Long, PublishedCountRow> counts = rows.isEmpty() ? Map.of()

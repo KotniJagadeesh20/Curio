@@ -1,0 +1,161 @@
+--- a/src/hooks/useConfirmedPublicData.ts (correction round 2)
++++ b/src/hooks/useConfirmedPublicData.ts
+@@ -19,8 +19,9 @@
+  * outline, shared by every page of a collection). Confirmation is tracked per visit, never by comparing timestamps:
+  * - every visit starts its OWN request (`cancelRefetch: true`), superseding any request still in flight from an earlier
+  *   visit (or from before the visit), so a response requested before this visit can never confirm it;
+- * - each request carries the visit's token; only the current visit's request, once it has settled, marks the visit
+- *   confirmed; a superseded or late request from an older visit is ignored;
++ * - every visit has a unique generation number (not just the URL-derived `visitKey`, so revisiting a URL is a new
++ *   visit); only the current visit's own request, once it has settled, marks that generation confirmed; a superseded or
++ *   late request from an older visit (including an earlier visit to the same URL) is ignored;
+  * - until then nothing is returned, whatever the cache holds and whatever its `dataUpdatedAt`;
+  * - after that, data is returned while the query is not in error (a retry after a failed request shows the retried,
+  *   newer data; a later failed refetch hides it again).
+@@ -35,17 +36,20 @@
+   const { revalidateOnVisit = false, isFetchingInCache } = opts;
+   // Recorded when the visit starts (during render, before this visit's own mount fetch can begin): a request that is
+   // already running and can't be superseded (no data yet, so React Query would join it) was requested before the visit.
+-  const start = () => ({ visit: visitKey, at: Date.now(), joinsOlderRequest: revalidateOnVisit && q.data === undefined && !!isFetchingInCache?.() });
+-  const openedAt = useRef(start());
+-  if (openedAt.current.visit !== visitKey) openedAt.current = start();
++  // Every visit gets its own generation number: A → B → A is three distinct visits, so a confirmation recorded for the
++  // first A can never be mistaken for the second.
++  const start = (id: number) => ({ id, visit: visitKey, at: Date.now(), joinsOlderRequest: revalidateOnVisit && q.data === undefined && !!isFetchingInCache?.() });
++  const openedAt = useRef(start(1));
++  if (openedAt.current.visit !== visitKey) openedAt.current = start(openedAt.current.id + 1);
+ 
+   // visit-scoped confirmation (revalidateOnVisit only)
+-  const [settledVisit, setSettledVisit] = useState<string | null>(null);
++  const [settledVisit, setSettledVisit] = useState<number | null>(null);   // the generation whose own request settled
+   const { refetch } = q;
+   useEffect(() => {
+     if (!revalidateOnVisit || !refetch) return;
++    const visitId = openedAt.current.id;       // the visit this effect (and its requests) belongs to
+     let cancelled = false;                     // set when the visit ends: its requests can no longer confirm anything
+-    const settle = () => { if (!cancelled) setSettledVisit(visitKey); };
++    const settle = () => { if (!cancelled) setSettledVisit(visitId); };
+     // with data, cancelRefetch supersedes any running request; without data React Query joins it, so a request that
+     // was already running when the visit began is awaited first and followed by this visit's own request
+     const own = () => refetch({ cancelRefetch: true }).then(settle, settle);
+@@ -56,7 +60,7 @@
+   }, [visitKey, revalidateOnVisit, refetch]);
+ 
+   const confirmed = revalidateOnVisit
+-    ? settledVisit === visitKey
++    ? settledVisit === openedAt.current.id
+     : q.dataUpdatedAt > openedAt.current.at || !q.isFetching;
+   return q.data && confirmed && !q.isError ? q.data : undefined;
+ }
+--- a/src/hooks/useConfirmedPublicData.test.tsx (correction round 2)
++++ b/src/hooks/useConfirmedPublicData.test.tsx
+@@ -175,3 +175,62 @@
+     await act(async () => { r.resolve(); });                      // no error, no state update after unmount
+   });
+ });
++
++describe("useConfirmedPublicData revalidateOnVisit: revisiting a URL is a new visit (review round 3)", () => {
++  const opts = { revalidateOnVisit: true } as const;
++  const setup = () => {
++    const reqs: ReturnType<typeof deferred>[] = [];
++    const refetch = vi.fn(() => { const d = deferred(); reqs.push(d); return d.promise; });
++    const hook = renderHook(({ k, p }: { k: string; p: Q }) => useConfirmedPublicData({ ...p, refetch }, k, opts),
++      { initialProps: { k: "A", p: q({}) } });
++    return { reqs, ...hook };
++  };
++
++  it("A settles → B (pending) → back to A: A stays hidden until the THIRD visit's own request settles", async () => {
++    const { reqs, result, rerender } = setup();
++    await act(async () => { reqs[0].resolve(); });               // visit 1 (A) confirmed
++    rerender({ k: "A", p: q({ data: "A1" }) });
++    expect(result.current).toBe("A1");
++    rerender({ k: "B", p: q({ data: "A1" }) });                   // visit 2 (B), its request left pending
++    expect(result.current).toBeUndefined();
++    rerender({ k: "A", p: q({ data: "A1" }) });                   // visit 3 (A again)
++    expect(reqs).toHaveLength(3);
++    expect(result.current).toBeUndefined();                       // visit 1's confirmation is not reused
++    await act(async () => { reqs[1].resolve(); });               // B's request settles late: not this visit's
++    rerender({ k: "A", p: q({ data: "from B's request" }) });
++    expect(result.current).toBeUndefined();
++    await act(async () => { reqs[2].resolve(); });               // visit 3's own request
++    rerender({ k: "A", p: q({ data: "A3" }) });
++    expect(result.current).toBe("A3");
++  });
++
++  it("an OLDER request for the same URL A (still pending from visit 1) can't confirm the third visit", async () => {
++    const { reqs, result, rerender } = setup();                   // visit 1 (A): request 0 left pending
++    rerender({ k: "B", p: q({}) });                               // visit 2 (B): request 1
++    rerender({ k: "A", p: q({}) });                               // visit 3 (A): request 2
++    expect(reqs).toHaveLength(3);
++    await act(async () => { reqs[0].resolve(); });               // visit 1's A request completes now
++    rerender({ k: "A", p: q({ data: "old A" }) });
++    expect(result.current).toBeUndefined();
++    await act(async () => { reqs[1].resolve(); });
++    rerender({ k: "A", p: q({ data: "old A" }) });
++    expect(result.current).toBeUndefined();
++    await act(async () => { reqs[2].resolve(); });
++    rerender({ k: "A", p: q({ data: "latest A" }) });
++    expect(result.current).toBe("latest A");
++  });
++
++  it("A → B → A where every earlier request already settled: still a fresh confirmation for the third visit", async () => {
++    const { reqs, result, rerender } = setup();
++    await act(async () => { reqs[0].resolve(); });
++    rerender({ k: "B", p: q({ data: "x" }) });
++    await act(async () => { reqs[1].resolve(); });
++    rerender({ k: "B", p: q({ data: "B" }) });
++    expect(result.current).toBe("B");
++    rerender({ k: "A", p: q({ data: "B" }) });
++    expect(result.current).toBeUndefined();
++    await act(async () => { reqs[2].resolve(); });
++    rerender({ k: "A", p: q({ data: "A3" }) });
++    expect(result.current).toBe("A3");
++  });
++});
+--- a/src/pages/public/PageView.test.tsx (correction round 2)
++++ b/src/pages/public/PageView.test.tsx
+@@ -818,3 +818,44 @@
+     expect(screen.queryByRole("link", { name: /Tram 28/ })).toBeNull();
+   });
+ });
++
++describe("PageView: A → B → A gets a fresh outline confirmation (review round 3)", () => {
++  type Answer = (r: { status: number; body?: unknown }) => void;
++  const WITHOUT_TRAM = () => outline({ modules: [
++    { slug: "day-2", title: "Day two", position: 1, pages: [{ slug: "museums", title: "Museums", summary: "", position: 0 }] },
++    { slug: "day-1", title: "Day one", position: 0, pages: [{ slug: "arrival", title: "Arrival", summary: "Airport to Alfama", position: 0 }] },
++  ] });
++
++  it("returning to A while B's outline is pending: loading until the third visit's own request settles; older responses don't confirm it; the latest decides", async () => {
++    const pending: Answer[] = [];
++    const routes: Record<string, () => unknown> = { ...ROUTES() };
++    routes[COLL_API()] = () => new Promise((r) => { pending.push(r); });
++    installFakeApi(routes as never);
++    mount("/@alice/lisbon/day-1/arrival", client(), ["/@alice/lisbon/day-1/arrival"]);
++    await waitFor(() => expect(pending.length).toBeGreaterThan(0));
++    act(() => pending[pending.length - 1]({ status: 200, body: outline() }));   // visit 1 (A) confirmed, with Tram 28
++    await h1("Arrival");
++    expect(sidebar().getByRole("link", { name: "Tram 28" })).toBeInTheDocument();
++
++    const n = pending.length;
++    fireEvent.click(sidebar().getByRole("link", { name: "Museums" }));          // visit 2 (B)
++    await waitFor(() => expect(pending.length).toBe(n + 1));
++    fireEvent.click(screen.getByRole("button", { name: "go /@alice/lisbon/day-1/arrival" }));   // visit 3 (A again)
++    await waitFor(() => expect(pending.length).toBe(n + 2));
++
++    const stale: string[] = [];
++    const obs = new MutationObserver(() => { if (document.querySelector("h1")) stale.push(document.querySelector("h1")!.textContent ?? ""); });
++    obs.observe(document.body, { subtree: true, childList: true, characterData: true });
++    await act(() => new Promise((r) => setTimeout(r, 20)));
++    expect(screen.getByRole("status")).toHaveTextContent("Loading page...");   // visit 1's confirmation is not reused
++    act(() => pending[n]({ status: 200, body: outline() }));                   // B's (older) request completes: ignored
++    await act(() => new Promise((r) => setTimeout(r, 20)));
++    expect(screen.getByRole("status")).toBeInTheDocument();
++    expect(stale).toEqual([]);                                                 // nothing rendered from an older visit
++    act(() => pending[n + 1]({ status: 200, body: WITHOUT_TRAM() }));          // the third visit's own response
++    await h1("Arrival");
++    obs.disconnect();
++    expect(sidebar().queryByRole("link", { name: "Tram 28" })).toBeNull();     // the latest response decides
++    expect(screen.getByRole("link", { name: "Next: Museums" })).toBeInTheDocument();
++  });
++});

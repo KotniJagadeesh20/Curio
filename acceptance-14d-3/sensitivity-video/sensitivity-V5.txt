@@ -1,0 +1,21 @@
+# Sensitivity V5: networkState clause removed from videoReady
+File: src/hooks/usePublicArrival.ts
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/1 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 16ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 89ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 168ms
+ ❯ src/hooks/usePublicArrival.test.tsx (66 tests | 2 failed) 464ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > a video before the anchor that is NETWORK_NO_SOURCE (every child <source> failed; video.error stays null) does not hold settling 22ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > a video before the anchor that is NETWORK_EMPTY (no source) does not hold settling 4ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 552ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 515ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 424ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 69ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 89ms
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 495ms
+      Tests  2 failed | 114 passed (116)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/hooks/usePublicArrival.test.tsx:704:29
+

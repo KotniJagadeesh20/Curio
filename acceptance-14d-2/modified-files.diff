@@ -1,0 +1,52 @@
+--- a/src/pages/public/PageView.tsx
++++ b/src/pages/public/PageView.tsx
+@@ -8,6 +8,7 @@
+ import { NotAvailable } from "@/components/public/NotAvailable";
+ import { PageNav } from "@/components/public/PageNav";
+ import { PublicBlocks } from "@/components/public/PublicBlocks";
++import { ShareButton } from "@/components/public/ShareButton";
+ import { ErrorState, LoadingState } from "@/components/QueryState";
+ import { useConfirmedPublicData } from "@/hooks/useConfirmedPublicData";
+ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+@@ -91,7 +92,10 @@
+           <ContentsDrawer visit={visit}>{outlineNav("drawer-module")}</ContentsDrawer>
+ 
+           <header className="space-y-3">
+-            <h1 className="text-3xl font-bold break-words">{p.title}</h1>
++            <div className="flex flex-wrap items-start justify-between gap-3">
++              <h1 className="min-w-0 text-3xl font-bold break-words">{p.title}</h1>
++              <ShareButton what="page" title={`${p.title} · ${collection.title}`} path={paths.page(username, collection.slug, module.slug, p.slug)} />
++            </div>
+             {p.summary && <p className="text-lg text-muted-foreground whitespace-pre-line break-words">{p.summary}</p>}
+           </header>
+ 
+--- a/src/pages/public/CollectionView.tsx
++++ b/src/pages/public/CollectionView.tsx
+@@ -5,6 +5,7 @@
+ import { Button } from "@/components/ui/button";
+ import { CollectionOutline } from "@/components/public/CollectionOutline";
+ import { NoContent, NotAvailable } from "@/components/public/NotAvailable";
++import { ShareButton } from "@/components/public/ShareButton";
+ import { ErrorState, LoadingState } from "@/components/QueryState";
+ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+ import { useConfirmedPublicData } from "@/hooks/useConfirmedPublicData";
+@@ -62,11 +63,14 @@
+             <p>By <span className="font-medium text-foreground">{by}</span></p>
+             <p>{plural(c.moduleCount, "module")} · {plural(c.pageCount, "page")}</p>
+           </div>
+-          {start && (
+-            <Button asChild className="gap-2">
+-              <Link to={paths.page(username, c.slug, start.moduleSlug, start.pageSlug)}><BookOpen className="h-4 w-4" />Start reading</Link>
+-            </Button>
+-          )}
++          <div className="flex flex-wrap items-center gap-3">
++            {start && (
++              <Button asChild className="gap-2">
++                <Link to={paths.page(username, c.slug, start.moduleSlug, start.pageSlug)}><BookOpen className="h-4 w-4" />Start reading</Link>
++              </Button>
++            )}
++            <ShareButton what="collection" title={c.title} path={paths.collection(username, c.slug)} />
++          </div>
+         </header>
+ 
+         {start ? <CollectionOutline username={username} collectionSlug={c.slug} modules={detail.modules} /> : <NoContent />}

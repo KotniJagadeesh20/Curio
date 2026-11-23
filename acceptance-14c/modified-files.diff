@@ -1,0 +1,189 @@
+--- a/src/components/editor/BlockRenderer.tsx
++++ b/src/components/editor/BlockRenderer.tsx
+@@ -7,7 +7,11 @@
+ import { useTheme } from "@/components/ThemeProvider";
+ import { embedUrl, isSafeUrl, isWellFormedTable, type Block } from "@/lib/blocks";
+ import { HTML_FRAME_SANDBOX, htmlFrameDocument, htmlFrameHeight } from "@/lib/htmlFrame";
++import { publicImageSrc } from "@/lib/publicBlocks";
+ 
++/** "owner" (default): the editor preview and TopicPage, exactly as before. "public": the public reader (Step 14c). */
++export type RenderMode = "owner" | "public";
++
+ const CALLOUT = {
+   info: { icon: Info, cls: "border-accent bg-accent/5", iconCls: "text-accent" },
+   tip: { icon: Lightbulb, cls: "border-emerald-500 bg-emerald-500/5", iconCls: "text-emerald-500" },
+@@ -17,7 +21,7 @@
+ const Caption = ({ text }: { text: string }) =>
+   text ? <figcaption className="mt-2 text-center text-sm text-muted-foreground">{text}</figcaption> : null;
+ 
+-function BlockView({ block }: { block: Block }) {
++function BlockView({ block, mode }: { block: Block; mode: RenderMode }) {
+   const { theme } = useTheme();
+   switch (block.type) {
+     case "heading":
+@@ -41,6 +45,7 @@
+       );
+     }
+     case "image":
++      if (mode === "public") return <PublicImage block={block} />;
+       // an uploaded image in the editor's preview: the block still names the asset (public pages get a URL instead)
+       if (block.assetId && !block.url) {
+         return (
+@@ -127,10 +132,31 @@
+   }
+ }
+ 
+-export function BlockRenderer({ blocks }: { blocks: Block[] }) {
++/**
++ * A public image: only a public-media or external image URL is ever requested (`publicImageSrc`), never the owner-only
++ * media endpoint, and there is no OwnerImage fallback: an assetId-only or owner-media block renders nothing.
++ * `width`/`height` come from the public API (not the shared Block type) and are used only when both are positive finite
++ * numbers, to reserve the image's space.
++ */
++function PublicImage({ block }: { block: Extract<Block, { type: "image" }> }) {
++  const src = publicImageSrc(block.url);
++  if (!src) return null;
++  const { width, height } = block as { width?: unknown; height?: unknown };
++  const sized = typeof width === "number" && typeof height === "number" && Number.isFinite(width) && Number.isFinite(height) && width > 0 && height > 0;
++  const caption = typeof block.caption === "string" ? block.caption : "";
+   return (
++    <figure>
++      <img src={src} alt={caption} loading="lazy" decoding="async" {...(sized ? { width, height } : {})}
++        className="mx-auto h-auto max-w-full rounded-xl border border-border" />
++      <Caption text={caption} />
++    </figure>
++  );
++}
++
++export function BlockRenderer({ blocks, mode = "owner" }: { blocks: Block[]; mode?: RenderMode }) {
++  return (
+     <div className="space-y-8">
+-      {blocks.map((b) => <BlockView key={b.id} block={b} />)}
++      {blocks.map((b) => <BlockView key={b.id} block={b} mode={mode} />)}
+     </div>
+   );
+ }
+--- a/src/components/public/CollectionOutline.tsx
++++ b/src/components/public/CollectionOutline.tsx
+@@ -9,18 +9,20 @@
+   modules: readonly PublicModule[];
+   /** The page being read (14c sidebar): its link gets `aria-current="page"`. */
+   current?: { moduleSlug: string; pageSlug: string };
++  /** Prefix for the module heading ids. The 14c page shows the outline twice (sidebar and drawer), so ids must differ. */
++  idPrefix?: string;
+ }
+ 
+ /**
+  * A collection's published outline: each module with its pages in reading order, every page a module-qualified link.
+  * Fully expanded (no collapsing). Slug-based only; no ids reach the DOM.
+  */
+-export function CollectionOutline({ username, collectionSlug, modules, current }: Props) {
++export function CollectionOutline({ username, collectionSlug, modules, current, idPrefix = "module" }: Props) {
+   return (
+     <nav aria-label="Collection contents" className="space-y-6" data-testid="collection-outline">
+       {orderedModules(modules).map((m) => (
+-        <section key={m.slug} aria-labelledby={`module-${m.slug}`}>
+-          <h2 id={`module-${m.slug}`} className="mb-2 text-lg font-semibold break-words">{m.title}</h2>
++        <section key={m.slug} aria-labelledby={`${idPrefix}-${m.slug}`}>
++          <h2 id={`${idPrefix}-${m.slug}`} className="mb-2 text-lg font-semibold break-words">{m.title}</h2>
+           <ol className="space-y-1 border-l border-border pl-4">
+             {m.pages.map((p) => {
+               const isCurrent = current?.moduleSlug === m.slug && current.pageSlug === p.slug;
+--- a/src/pages/public/CollectionView.tsx
++++ b/src/pages/public/CollectionView.tsx
+@@ -1,4 +1,4 @@
+-import { useRef, type ReactNode } from "react";
++import type { ReactNode } from "react";
+ import { Link } from "react-router-dom";
+ import { ArrowLeft, BookOpen } from "lucide-react";
+ import { badgeVariants } from "@/components/ui/badge";
+@@ -7,6 +7,7 @@
+ import { NoContent, NotAvailable } from "@/components/public/NotAvailable";
+ import { ErrorState, LoadingState } from "@/components/QueryState";
+ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
++import { useConfirmedPublicData } from "@/hooks/useConfirmedPublicData";
+ import { useNoIndex } from "@/hooks/useNoIndex";
+ import { usePublicCollection } from "@/hooks/useContent";
+ import { ApiError } from "@/lib/api";
+@@ -24,16 +25,9 @@
+   const q = usePublicCollection(username, slug);
+   const notFound = q.error instanceof ApiError && q.error.status === 404;
+ 
+-  // Cached data from an earlier visit may be out of date (the collection may since have been unpublished or deleted), and
+-  // React Query hands it over at once while it revalidates in the background. It is shown only once the server has
+-  // confirmed it during this visit: data fetched since this collection was opened here, or cached data that is not being
+-  // revalidated. The reference time restarts when the URL switches to another collection (the component is reused).
+-  const visit = `${username}/${slug}`;
+-  const openedAt = useRef({ visit, at: Date.now() });
+-  if (openedAt.current.visit !== visit) openedAt.current = { visit, at: Date.now() };
+-  const confirmed = q.dataUpdatedAt > openedAt.current.at || !q.isFetching;
+-  // A failed revalidation (404 or another error) also keeps React Query's old data around: never show it then either.
+-  const detail = q.data && confirmed && !q.isError ? q.data : undefined;
++  // Cached data from an earlier visit is shown only once the server has confirmed it during this visit, and never after a
++  // failed revalidation (see useConfirmedPublicData). The visit restarts when the URL switches to another collection.
++  const detail = useConfirmedPublicData(q, `${username}/${slug}`);
+ 
+   // Loading and other errors: just the site name. A 404 never shows the (possibly private) title.
+   useDocumentTitle(notFound ? "Not available" : detail ? detail.collection.title : null);
+--- a/src/pages/creator/Placeholders.tsx
++++ b/src/pages/creator/Placeholders.tsx
+@@ -6,9 +6,10 @@
+ import Workspace from "@/pages/creator/Workspace";
+ import NotFound from "@/pages/NotFound";
+ import CollectionView from "@/pages/public/CollectionView";
++import PageView from "@/pages/public/PageView";
+ 
+ // Route adapters and placeholders. Public screens arrive in Steps 14-15 (real so far: Discover since 14a, the collection
+-// viewer since 14b; both live in src/pages/public/). The public adapters move there together in 14d.
++// viewer since 14b, the page viewer since 14c; all live in src/pages/public/). The public adapters move there together in 14d.
+ 
+ // ---- public (Step 14, Step 15) ----
+ 
+@@ -35,14 +36,7 @@
+   const { handle, collectionSlug, moduleSlug, pageSlug } = useParams();
+   const username = parseHandle(handle);
+   if (!username || !collectionSlug || !moduleSlug || !pageSlug) return <NotFound />;
+-  return (
+-    <PlaceholderPage title="Page" step="Step 14">
+-      <Param name="username" value={username} />
+-      <Param name="collectionSlug" value={collectionSlug} />
+-      <Param name="moduleSlug" value={moduleSlug} />
+-      <Param name="pageSlug" value={pageSlug} />
+-    </PlaceholderPage>
+-  );
++  return <PageView username={username} collectionSlug={collectionSlug} moduleSlug={moduleSlug} pageSlug={pageSlug} />;
+ }
+ 
+ // ---- creator workspace (mounted behind ProtectedRoute) ----
+--- a/src/AppRoutes.test.tsx
++++ b/src/AppRoutes.test.tsx
+@@ -24,6 +24,10 @@
+ vi.mock("@/pages/public/CollectionView", () => ({
+   default: ({ username, slug }: { username: string; slug: string }) => <div data-testid="collection-view">{`collection-view ${username}/${slug}`}</div>,
+ }));
++vi.mock("@/pages/public/PageView", () => ({
++  default: ({ username, collectionSlug, moduleSlug, pageSlug }: { username: string; collectionSlug: string; moduleSlug: string; pageSlug: string }) =>
++    <div data-testid="page-view">{`page-view ${username}/${collectionSlug}/${moduleSlug}/${pageSlug}`}</div>,
++}));
+ vi.mock("@/pages/admin/AdminDashboard", () => stub("admin-dashboard"));
+ vi.mock("@/pages/admin/AdminProblems", () => stub("admin-problems"));
+ vi.mock("@/pages/admin/AdminUsers", () => stub("admin-users"));
+@@ -71,11 +75,16 @@
+     expect(screen.getByTestId("collection-view")).toHaveTextContent("collection-view alice/java-notes");
+   });
+ 
+-  it("renders the module-qualified page route with all four parameters", () => {
++  it("renders the module-qualified page route with the real page viewer (since Step 14c) and all four parameters", () => {
+     visit("/@alice/java/core/intro");
+-    expect([param("username"), param("collectionSlug"), param("moduleSlug"), param("pageSlug")]).toEqual(["alice", "java", "core", "intro"]);
++    expect(screen.getByTestId("page-view")).toHaveTextContent("page-view alice/java/core/intro");
+   });
+ 
++  it("the page route lower-cases the handle and passes the slugs as-is", () => {
++    visit("/@Alice/java/core/intro");
++    expect(screen.getByTestId("page-view")).toHaveTextContent("page-view alice/java/core/intro");
++  });
++
+   it.each(["/alice", "/alice/java", "/alice/java/core/intro", "/@", "/@ab", "/@1abc", "/@al-ice", "/someword"])(
+     "%s is a 404 (the first segment is not a valid @handle)", (path) => {
+       visit(path);

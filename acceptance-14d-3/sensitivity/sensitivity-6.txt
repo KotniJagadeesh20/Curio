@@ -1,0 +1,73 @@
+Mutation 6: The unmount cleanup doesn't flush
+File: src/hooks/usePublicArrival.ts
+Edits:
+  - '      flush(true);                                          // the outgoing DOM is still attached here\n'
+  + ''
+
+Restored and byte-identical to the fixed file: True
+
+== Failing unit/integration tests (3):
+  × S1/T1: sampling and flushing > unmount (a different public view) flushes under the outgoing entry: scroll and click in the same task, then Back
+  × S1/T1: sampling and flushing > unmount refreshes the anchor offset while the outgoing DOM is attached (key and y unchanged)
+  × S1/T1: sampling and flushing > …but not when the anchor element is already detached
+
+== Failing browser checks (0):
+
+
+== Raw vitest output
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 21ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 88ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 123ms
+ ❯ src/hooks/usePublicArrival.test.tsx (41 tests | 3 failed) 332ms
+   × S1/T1: sampling and flushing > unmount (a different public view) flushes under the outgoing entry: scroll and click in the same task, then Back 6ms
+     → Cannot read properties of undefined (reading 'y')
+   × S1/T1: sampling and flushing > unmount refreshes the anchor offset while the outgoing DOM is attached (key and y unchanged) 8ms
+     → expected { y: 900, …(2) } to match object { y: 900, anchor: { id: 'b1', …(1) } }
+(1 matching property omitted from actual)
+   × S1/T1: sampling and flushing > …but not when the anchor element is already detached 3ms
+     → Cannot read properties of undefined (reading 'anchor')
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 162ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 298ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 492ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 463ms
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  3 failed | 76 passed (79)
+   Start at  17:46:13
+   Duration  2.22s (transform 536ms, setup 2.18s, collect 1.34s, tests 1.52s, environment 4.49s, prepare 539ms)
+
+
+== Raw browser output
+PASS  B1 card → collection (PUSH): top, collection heading focused  — {"tag":"H1","text":"Long read","label":null}
+PASS  B1 "Start reading"/outline → page (PUSH): top, page heading focused  — {"tag":"H1","text":"One","label":null}
+PASS  B1 Next (PUSH): scrollY 0, "Two" heading focused  — y=0 {"tag":"H1","text":"Two","label":null}
+PASS  B1 sidebar link (PUSH): scrollY 0, "Three" heading focused  — y=0 {"tag":"H1","text":"Three","label":null}
+PASS  B1 Previous (PUSH): scrollY 0, "Two" heading focused  — y=0 {"tag":"H1","text":"Two","label":null}
+PASS  B2 Back: previous page restored (marker ±5 px), focus not moved to the heading  — marker 199.5 vs 199.5; active {"tag":"BODY","text":"AlgoQuestHomeDiscoverTracksPracticeSyste","label":null}
+PASS  B2 Forward: next page restored (marker ±5 px)  — marker 150 vs 150
+PASS  B3 Refresh restores the position (marker ±5 px)  — marker 300 vs 300
+PASS  B4 A → B → A (new entry → top) → Back → Back: each entry restores its own position  — top=0 B 250/250 A 100/100
+PASS  B5 entering Discover focuses its heading; search, category and Back/Forward between query states never scroll or focus it  — first={"tag":"H1","text":"Discover","label":null} search={"tag":"INPUT","text":"","label":"Search collections"} scrolls=0 end={"tag":"BUTTON","text":"Programming","label":null}
+PASS  B6 Discover scrolled, a card clicked immediately (real pointer) → Back restores Discover (±5 px)  — scrollY=420
+PASS  B7 delayed uploaded image (width/height reserved) above the anchor: marker back at its offset ±5 px after the load  — marker 199.5 vs 199.5
+PASS  B7 the stored entry still holds the departure position after settling (restoration scrolls not sampled as a new position)  — departed={"y":1507,"anchor":{"id":"block-b5","offset":7.5},"seq":3} now={"y":1507,"anchor":{"id":"block-b5","offset":7.5},"seq":3}
+PASS  B8 delayed external image WITHOUT dimensions above the anchor: marker back at its offset ±5 px after the late load  — marker 200 vs 200
+PASS  B8 the late image grew the content and a correction followed the numeric placement  — imgHeight=402 programmaticScrolls=[1458,1058,1458]
+PASS  B11 wheel right after Back: no correction after the input, the late image doesn't pull the reader back  — corrections=0 marker 300 vs 200
+PASS  B11 PageDown right after Back: no correction after the input, the late image doesn't pull the reader back  — corrections=0 marker -260 vs 200
+PASS  B9 PUSH → 404: top, not-available heading focused  — {"tag":"H1","text":"This collection isn't available","label":null}
+PASS  B9 PUSH → 5xx: top, the labelled error region focused  — {"tag":"DIV","text":"Service unavailableTry again","label":"Couldn't load this collection"}
+PASS  B10 Retry succeeds → the content heading focused, no scroll after Retry  — {"tag":"H1","text":"Long read","label":null}
+PASS  B10 Retry fails again → error region refocused; Retry succeeds → heading focused  — {"tag":"DIV","text":"Service unavailableTry again","label":"Couldn't load this collection"} → {"tag":"H1","text":"Long read","label":null}
+PASS  B12 history.scrollRestoration: manual on public views, restored when returning to the workspace  — auto → manual → auto
+PASS  B13 deep link (POP, no saved entry): stays at the top, no programmatic scroll, focus not moved; the first user scroll is stored  — scrolls=0 active={"tag":"BODY","text":"AlgoQuestHomeDiscoverTracksPracticeSyste","label":null} entry={"y":350,"anchor":{"id":"block-b0","offset":-114},"seq":2}
+PASS  B14 POP with a numeric position but no matching anchor: one numeric restore, then tracking active quickly (well before 5 s)  — missing=true scrolls=[{"t":1987,"top":1500}] saved.y=1500 entry={"y":1600,"anchor":{"id":"block-b8","offset":-20},"seq":6}
+PASS  B15 drawer link → the new page heading focused; "Contents" never focused in between  — {"tag":"H1","text":"Two","label":null} contentsFocused=0
+PASS  B15 drawer closed with Escape → focus on "Contents"  — {"tag":"BUTTON","text":"Contents","label":null}
+PASS  B16 mobile 360 px: Next → top + heading focus; Back → marker restored ±5 px  — y=0 active=Three marker 119.796875 vs 119.796875
+PASS  B17 no console errors, no unexpected failed requests (404/503 only where injected), zero /api/media/* requests
+
+28/28 checks passed

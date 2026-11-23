@@ -1,0 +1,13 @@
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+  [2m- waiting for getByTestId('block-editor') to be visible[22m
+
+    at /private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/53dfce32-afe8-471d-8425-31edbb822ef5/scratchpad/run14e/13e/t3-media.mjs:6:40 {
+  name: 'TimeoutError'
+}
+
+Node.js v23.10.0

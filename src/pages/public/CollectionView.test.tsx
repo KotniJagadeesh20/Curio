@@ -47,14 +47,14 @@ beforeEach(() => { loc = ""; document.title = "Before"; });
 afterEach(() => { vi.unstubAllGlobals(); tokenStore.clear(); });
 
 describe("CollectionView", () => {
-  it("renders the header: full cover, category link, title, description, plain-text byline and counts", async () => {
+  it("renders the header: full cover, category link, title, description, byline link and counts", async () => {
     installFakeApi({ [API]: () => ok(detail()) });
     mount();
     expect(await screen.findByRole("heading", { level: 1, name: "Lisbon in 3 days" })).toBeInTheDocument();
     expect(screen.getByTestId("collection-cover")).toHaveAttribute("src", "/api/public/media/abc");   // the full cover, not the thumb
     expect(screen.getByRole("link", { name: "Travel" })).toHaveAttribute("href", "/discover?category=travel");
     expect(screen.getByText(/Trams, tiles/)).toBeInTheDocument();
-    expect(screen.getByText("Alice").closest("a")).toBeNull();   // byline is plain text (Step 15 makes profiles real)
+    expect(screen.getByRole("link", { name: "Alice" })).toHaveAttribute("href", "/@alice");   // Step 15b (disclosed change): the byline links to the creator profile
     expect(screen.getByText("2 modules · 3 pages")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Discover" })).toHaveAttribute("href", "/discover");
   });

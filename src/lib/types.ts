@@ -237,6 +237,19 @@ export interface PublicCreatorRef {
   displayName: string;
 }
 
+/** `GET /api/public/creators/{username}` (Step 1 `PublicCreatorDto`; Step 15b). Never contains email, id or visibility. */
+export interface PublicCreator {
+  username: string;
+  displayName: string;
+  bio: string;
+  avatarUrl: string | null;
+  bannerUrl: string | null;
+  /** label → https URL */
+  socialLinks: Record<string, string>;
+  /** ISO-8601 instant */
+  joinedAt: string;
+}
+
 export interface PublicCategoryRef {
   slug: string;
   name: string;

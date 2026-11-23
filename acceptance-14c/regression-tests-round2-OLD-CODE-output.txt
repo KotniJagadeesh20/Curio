@@ -1,0 +1,1945 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ❯ src/hooks/useConfirmedPublicData.test.tsx (16 tests | 5 failed | 10 skipped) 22ms
+   × useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2) > cached data whose dataUpdatedAt EQUALS the visit start time is not treated as confirmed 10ms
+     → expected 'cached' to be undefined
+   × useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2) > a request still in flight from the previous visit can't confirm the new one; only the new visit's request does 4ms
+     → expected last "spy" call to have been called with [ { cancelRefetch: true } ]
+   × useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2) > an older visit's request completing AFTER the newer visit was confirmed changes nothing 3ms
+     → expected undefined to be 'b' // Object.is equality
+   × useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2) > only the current visit's request confirms: a failed one shows nothing until a later success (retry) 2ms
+     → expected undefined to be 'retried' // Object.is equality
+   × useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2) > a request that was already running when the visit began (no data, so it can't be superseded) is followed by the visit's own request 1ms
+     → expected 'requested before the visit' to be undefined
+stderr | src/pages/public/PageView.test.tsx > PageView: outline confirmation is visit-scoped, not timestamp-based (review round 2) > cached outline with dataUpdatedAt EQUAL to the visit start time stays hidden until the visit's own request returns
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ❯ src/pages/public/PageView.test.tsx (45 tests | 4 failed | 41 skipped) 3224ms
+   × PageView: outline confirmation is visit-scoped, not timestamp-based (review round 2) > cached outline with dataUpdatedAt EQUAL to the visit start time stays hidden until the visit's own request returns 131ms
+     → Unable to find an accessible element with the role "status"
+
+Here are the accessible roles:
+
+  complementary:
+
+  Name "":
+  [36m<aside[39m
+    [33mclass[39m=[32m"hidden lg:block"[39m
+    [33mdata-testid[39m=[32m"page-sidebar"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Collection contents":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Collection contents"[39m
+    [33mclass[39m=[32m"space-y-6"[39m
+    [33mdata-testid[39m=[32m"collection-outline"[39m
+  [36m/>[39m
+
+  Name "Breadcrumb":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Breadcrumb"[39m
+  [36m/>[39m
+
+  Name "Page navigation":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Page navigation"[39m
+    [33mclass[39m=[32m"flex flex-col gap-3 border-t border-border pt-8 sm:flex-row"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Day one":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"sidebar-module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"sidebar-module-day-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Day one":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"sidebar-module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"sidebar-module-day-2"[39m
+  [36m/>[39m
+
+  Name "Museums":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-3xl font-bold break-words"[39m
+  [36m/>[39m
+
+  Name "Museums body":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-2xl font-bold mt-4"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"flex flex-wrap items-center gap-1 text-sm text-muted-foreground"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"min-w-0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"min-w-0 break-words"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "Arrival Airport to Alfama":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+  [36m/>[39m
+
+  Name "Tram 28":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+  [36m/>[39m
+
+  Name "Museums":
+  [36m<a[39m
+    [33maria-current[39m=[32m"page"[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted bg-muted font-medium text-primary"[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+  [36m/>[39m
+
+  Name "Discover":
+  [36m<a[39m
+    [33mclass[39m=[32m"hover:text-foreground"[39m
+    [33mhref[39m=[32m"/discover"[39m
+  [36m/>[39m
+
+  Name "Lisbon in 3 days":
+  [36m<a[39m
+    [33mclass[39m=[32m"break-words hover:text-foreground"[39m
+    [33mhref[39m=[32m"/@alice/lisbon"[39m
+  [36m/>[39m
+
+  Name "Previous: Tram 28":
+  [36m<a[39m
+    [33maria-label[39m=[32m"Previous: Tram 28"[39m
+    [33mclass[39m=[32m"flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border p-4 hover:bg-muted"[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"min-w-0 space-y-8"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Contents":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"radix-:r0:"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-haspopup[39m=[32m"dialog"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"[39m
+    [33mdata-state[39m=[32m"closed"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"space-y-3"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-10"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33mclass[39m=[32m"hidden lg:block"[39m
+          [33mdata-testid[39m=[32m"page-sidebar"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2"[39m
+          [36m>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Collection contents"[39m
+              [33mclass[39m=[32m"space-y-6"[39m
+              [33mdata-testid[39m=[32m"collection-outline"[39m
+            [36m>[39m
+              [36m<section[39m
+                [33maria-labelledby[39m=[32m"sidebar-module-day-1"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                  [33mid[39m=[32m"sidebar-module-day-1"[39m
+                [36m>[39m
+                  [0mDay one[0m
+                [36m</h2>[39m
+                [36m<ol[39m
+                  [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                [36m>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mArrival[0m
+                      [36m</span>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"mt-0.5 block text-sm text-muted-foreground break-words"[39m
+                      [36m>[39m
+                        [0mAirport to Alfama[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mTram 28[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                [36m</ol>[39m
+              [36m</section>[39m
+              [36m<section[39m
+                [33maria-labelledby[39m=[32m"sidebar-module-day-2"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                  [33mid[39m=[32m"sidebar-module-day-2"[39m
+                [36m>[39m
+                  [0mDay two[0m
+                [36m</h2>[39m
+                [36m<ol[39m
+                  [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                [36m>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33maria-current[39m=[32m"page"[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted bg-muted font-medium text-primary"[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mMuseums[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                [36m</ol>[39m
+              [36m</section>[39m
+            [36m</nav>[39m
+          [36m</div>[39m
+        [36m</aside>[39m
+        [36m<article[39m
+          [33mclass[39m=[32m"min-w-0 space-y-8"[39m
+        [36m>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Breadcrumb"[39m
+          [36m>[39m
+            [36m<ol[39m
+              [33mclass[39m=[32m"flex flex-wrap items-center gap-1 text-sm text-muted-foreground"[39m
+            [36m>[39m
+              [36m<li>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"hover:text-foreground"[39m
+                  [33mhref[39m=[32m"/discover"[39m
+                [36m>[39m
+                  [0mDiscover[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33maria-hidden[39m=[32m"true"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"min-w-0"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"break-words hover:text-foreground"[39m
+                  [33mhref[39m=[32m"/@alice/lisbon"[39m
+                [36m>[39m
+                  [0mLisbon in 3 days[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33maria-hidden[39m=[32m"true"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"min-w-0 break-words"[39m
+              [36m>[39m
+                [0mDay two[0m
+              [36m</li>[39m
+            [36m</ol>[39m
+          [36m</nav>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lg:hidden"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-controls[39m=[32m"radix-:r0:"[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33maria-haspopup[39m=[32m"dialog"[39m
+              [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"[39m
+              [33mdata-state[39m=[32m"closed"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33mclass[39m=[32m"lucide lucide-list-tree h-4 w-4"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 12h-8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 6H8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 18h-8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 6v4c0 1.1.9 2 2 2h3"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10v6c0 1.1.9 2 2 2h3"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [0mContents[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"space-y-3"[39m
+          [36m>[39m
+            [36m<h1[39m
+              [33mclass[39m=[32m"text-3xl font-bold break-words"[39m
+            [36m>[39m
+              [0mMuseums[0m
+            [36m</h1>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"max-w-[72ch]"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"space-y-8"[39m
+              [33mdata-testid[39m=[32m"public-blocks"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"space-y-8"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-2xl font-bold mt-4"[39m
+                [36m>[39m
+                  [0mMuseums body[0m
+                [36m</h2>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Page navigation"[39m
+            [33mclass[39m=[32m"flex flex-col gap-3 border-t border-border pt-8 sm:flex-row"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33maria-label[39m=[32m"Previous: Tram 28"[39m
+              [33mclass[39m=[32m"flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border p-4 hover:bg-muted"[39m
+              [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"lucide lucide-chevron-left h-4 w-4 shrink-0"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"m15 18-6-6 6-6"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"min-w-0"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"block text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [0mPrevious[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"block break-words font-medium"[39m
+                [36m>[39m
+                  [0mTram 28[0m
+                [36m</span>[39m
+              [36m</span>[39m
+            [36m</a>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hidden flex-1 sm:block"[39m
+            [36m/>[39m
+          [36m</nav>[39m
+        [36m</article>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+   × PageView: outline confirmation is visit-scoped, not timestamp-based (review round 2) > an outline request from the previous visit still in flight when the URL changes can't confirm the new visit, even if it completes later 1027ms
+     → expected 2 to be 3 // Object.is equality
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head>[39m
+    [36m<title>[39m
+      [0mAlgoQuest[0m
+    [36m</title>[39m
+  [36m</head>[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center justify-center gap-2 py-24 text-muted-foreground"[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-loader-circle h-5 w-5 animate-spin"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M21 12a9 9 0 1 1-6.219-8.56"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mLoading page...[0m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+   × PageView: outline confirmation is visit-scoped, not timestamp-based (review round 2) > the previous visit's request completing AFTER the new visit was confirmed doesn't bring the old outline back 1023ms
+     → expected 2 to be 3 // Object.is equality
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head>[39m
+    [36m<title>[39m
+      [0mAlgoQuest[0m
+    [36m</title>[39m
+  [36m</head>[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center justify-center gap-2 py-24 text-muted-foreground"[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-loader-circle h-5 w-5 animate-spin"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M21 12a9 9 0 1 1-6.219-8.56"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mLoading page...[0m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+   × PageView: outline confirmation is visit-scoped, not timestamp-based (review round 2) > an outline request started BEFORE the visit (no cached data, so it can't be superseded) is followed by the visit's own request 1041ms
+     → expected [] to have a length of 1 but got +0
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head>[39m
+    [36m<title>[39m
+      [0mMuseums · AlgoQuest[0m
+    [36m</title>[39m
+  [36m</head>[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-10"[39m
+        [36m>[39m
+          [36m<aside[39m
+            [33mclass[39m=[32m"hidden lg:block"[39m
+            [33mdata-testid[39m=[32m"page-sidebar"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2"[39m
+            [36m>[39m
+              [36m<nav[39m
+                [33maria-label[39m=[32m"Collection contents"[39m
+                [33mclass[39m=[32m"space-y-6"[39m
+                [33mdata-testid[39m=[32m"collection-outline"[39m
+              [36m>[39m
+                [36m<section[39m
+                  [33maria-labelledby[39m=[32m"sidebar-module-day-1"[39m
+                [36m>[39m
+                  [36m<h2[39m
+                    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                    [33mid[39m=[32m"sidebar-module-day-1"[39m
+                  [36m>[39m
+                    [0mDay one[0m
+                  [36m</h2>[39m
+                  [36m<ol[39m
+                    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                  [36m>[39m
+                    [36m<li>[39m
+                      [36m<a[39m
+                        [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                        [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"block break-words"[39m
+                        [36m>[39m
+                          [0mArrival[0m
+                        [36m</span>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"mt-0.5 block text-sm text-muted-foreground break-words"[39m
+                        [36m>[39m
+                          [0mAirport to Alfama[0m
+                        [36m</span>[39m
+                      [36m</a>[39m
+                    [36m</li>[39m
+                    [36m<li>[39m
+                      [36m<a[39m
+                        [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                        [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"block break-words"[39m
+                        [36m>[39m
+                          [0mTram 28[0m
+                        [36m</span>[39m
+                      [36m</a>[39m
+                    [36m</li>[39m
+                  [36m</ol>[39m
+                [36m</section>[39m
+                [36m<section[39m
+                  [33maria-labelledby[39m=[32m"sidebar-module-day-2"[39m
+                [36m>[39m
+                  [36m<h2[39m
+                    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                    [33mid[39m=[32m"sidebar-module-day-2"[39m
+                  [36m>[39m
+                    [0mDay two[0m
+                  [36m</h2>[39m
+                  [36m<ol[39m
+                    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                  [36m>[39m
+                    [36m<li>[39m
+                      [36m<a[39m
+                        [33maria-current[39m=[32m"page"[39m
+                        [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted bg-muted font-medium text-primary"[39m
+                        [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"block break-words"[39m
+                        [36m>[39m
+                          [0mMuseums[0m
+                        [36m</span>[39m
+                      [36m</a>[39m
+                    [36m</li>[39m
+                  [36m</ol>[39m
+                [36m</section>[39m
+              [36m</nav>[39m
+            [36m</div>[39m
+          [36m</aside>[39m
+          [36m<article[39m
+            [33mclass[39m=[32m"min-w-0 space-y-8"[39m
+          [36m>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"flex flex-wrap items-center gap-1 text-sm text-muted-foreground"[39m
+              [36m>[39m
+                [36m<li>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground"[39m
+                    [33mhref[39m=[32m"/discover"[39m
+                  [36m>[39m
+                    [0mDiscover[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"min-w-0"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"break-words hover:text-foreground"[39m
+                    [33mhref[39m=[32m"/@alice/lisbon"[39m
+                  [36m>[39m
+                    [0mLisbon in 3 days[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"min-w-0 break-words"[39m
+                [36m>[39m
+                  [0mDay two[0m
+                [36m</li>[39m
+              [36m</ol>[39m
+            [36m</nav>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"lg:hidden"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33maria-controls[39m=[32m"radix-:r9:"[39m
+                [33maria-expanded[39m=[32m"false"[39m
+                [33maria-haspopup[39m=[32m"dialog"[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"[39m
+                [33mdata-state[39m=[32m"closed"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-list-tree h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M21 12h-8"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M21 6H8"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M21 18h-8"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M3 6v4c0 1.1.9 2 2 2h3"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M3 10v6c0 1.1.9 2 2 2h3"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mContents[0m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<header[39m
+              [33mclass[39m=[32m"space-y-3"[39m
+            [36m>[39m
+              [36m<h1[39m
+                [33mclass[39m=[32m"text-3xl font-bold break-words"[39m
+              [36m>[39m
+                [0mMuseums[0m
+              [36m</h1>[39m
+            [36m</header>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"max-w-[72ch]"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"space-y-8"[39m
+                [33mdata-testid[39m=[32m"public-blocks"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"space-y-8"[39m
+                [36m>[39m
+                  [36m<h2[39m
+                    [33mclass[39m=[32m"text-2xl font-bold mt-4"[39m
+                  [36m>[39m
+                    [0mMuseums body[0m
+                  [36m</h2>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Page navigation"[39m
+              [33mclass[39m=[32m"flex flex-col gap-3 border-t border-border pt-8 sm:flex-row"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33maria-label[39m=[32m"Previous: Tram 28"[39m
+                [33mclass[39m=[32m"flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border p-4 hover:bg-muted"[39m
+                [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"lucide lucide-chevron-left h-4 w-4 shrink-0"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m15 18-6-6 6-6"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"min-w-0"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"block text-xs text-muted-foreground"[39m
+                  [36m>[39m
+                    [0mPrevious[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"block break-words font-medium"[39m
+                  [36m>[39m
+                    [0mTram 28[0m
+                  [36m</span>[39m
+                [36m</span>[39m
+              [36m</a>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hidden flex-1 sm:block"[39m
+              [36m/>[39m
+            [36m</nav>[39m
+          [36m</article>[39m
+        [36m</div>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/hooks/useConfirmedPublicData.test.tsx > useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2) > cached data whose dataUpdatedAt EQUALS the visit start time is not treated as confirmed
+AssertionError: expected 'cached' to be undefined
+
+- Expected: 
+undefined
+
++ Received: 
+"cached"
+
+ ❯ src/hooks/useConfirmedPublicData.test.tsx:103:28
+    101|     const { result, rerender } = renderHook((p: Q) => useConfirmedPubl…
+    102|       { initialProps: q({ data: "cached", dataUpdatedAt: T, isFetching…
+    103|     expect(result.current).toBeUndefined();
+       |                            ^
+    104|     rerender(q({ data: "cached", dataUpdatedAt: T, isFetching: true })…
+    105|     expect(result.current).toBeUndefined();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  src/hooks/useConfirmedPublicData.test.tsx > useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2) > a request still in flight from the previous visit can't confirm the new one; only the new visit's request does
+AssertionError: expected last "spy" call to have been called with [ { cancelRefetch: true } ]
+
+- Expected
++ Received
+
+  Array [
+    Object {
+-     "cancelRefetch": true,
++     "cancelRefetch": false,
+    },
+  ]
+
+ ❯ src/hooks/useConfirmedPublicData.test.tsx:120:21
+    118|     rerender({ k: "b", p: q({}) });                               // t…
+    119|     expect(reqs).toHaveLength(2);
+    120|     expect(refetch).toHaveBeenLastCalledWith({ cancelRefetch: true });
+       |                     ^
+    121|     await act(async () => { reqs[0].resolve(); });               // vi…
+    122|     rerender({ k: "b", p: q({ data: "from a's request", dataUpdatedAt:…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  src/hooks/useConfirmedPublicData.test.tsx > useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2) > an older visit's request completing AFTER the newer visit was confirmed changes nothing
+AssertionError: expected undefined to be 'b' // Object.is equality
+
+- Expected: 
+"b"
+
++ Received: 
+undefined
+
+ ❯ src/hooks/useConfirmedPublicData.test.tsx:137:28
+    135|     await act(async () => { reqs[1].resolve(); });
+    136|     rerender({ k: "b", p: q({ data: "b" }) });
+    137|     expect(result.current).toBe("b");
+       |                            ^
+    138|     await act(async () => { reqs[0].resolve(); });
+    139|     rerender({ k: "b", p: q({ data: "b" }) });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  src/hooks/useConfirmedPublicData.test.tsx > useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2) > only the current visit's request confirms: a failed one shows nothing until a later success (retry)
+AssertionError: expected undefined to be 'retried' // Object.is equality
+
+- Expected: 
+"retried"
+
++ Received: 
+undefined
+
+ ❯ src/hooks/useConfirmedPublicData.test.tsx:153:28
+    151|     expect(result.current).toBeUndefined();
+    152|     rerender(q({ data: "retried", isError: false }));             // t…
+    153|     expect(result.current).toBe("retried");
+       |                            ^
+    154|   });
+    155| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  src/hooks/useConfirmedPublicData.test.tsx > useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2) > a request that was already running when the visit began (no data, so it can't be superseded) is followed by the visit's own request
+AssertionError: expected 'requested before the visit' to be undefined
+
+- Expected: 
+undefined
+
++ Received: 
+"requested before the visit"
+
+ ❯ src/hooks/useConfirmedPublicData.test.tsx:164:28
+    162|     await act(async () => { reqs[0].resolve(); });
+    163|     rerender(q({ data: "requested before the visit", dataUpdatedAt: Da…
+    164|     expect(result.current).toBeUndefined();
+       |                            ^
+    165|     expect(reqs).toHaveLength(2);                                 // t…
+    166|     await act(async () => { reqs[1].resolve(); });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  src/pages/public/PageView.test.tsx > PageView: outline confirmation is visit-scoped, not timestamp-based (review round 2) > cached outline with dataUpdatedAt EQUAL to the visit start time stays hidden until the visit's own request returns
+TestingLibraryElementError: Unable to find an accessible element with the role "status"
+
+Here are the accessible roles:
+
+  complementary:
+
+  Name "":
+  [36m<aside[39m
+    [33mclass[39m=[32m"hidden lg:block"[39m
+    [33mdata-testid[39m=[32m"page-sidebar"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Collection contents":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Collection contents"[39m
+    [33mclass[39m=[32m"space-y-6"[39m
+    [33mdata-testid[39m=[32m"collection-outline"[39m
+  [36m/>[39m
+
+  Name "Breadcrumb":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Breadcrumb"[39m
+  [36m/>[39m
+
+  Name "Page navigation":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Page navigation"[39m
+    [33mclass[39m=[32m"flex flex-col gap-3 border-t border-border pt-8 sm:flex-row"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Day one":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"sidebar-module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"sidebar-module-day-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Day one":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"sidebar-module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"sidebar-module-day-2"[39m
+  [36m/>[39m
+
+  Name "Museums":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-3xl font-bold break-words"[39m
+  [36m/>[39m
+
+  Name "Museums body":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-2xl font-bold mt-4"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"flex flex-wrap items-center gap-1 text-sm text-muted-foreground"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"min-w-0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"min-w-0 break-words"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "Arrival Airport to Alfama":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+  [36m/>[39m
+
+  Name "Tram 28":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+  [36m/>[39m
+
+  Name "Museums":
+  [36m<a[39m
+    [33maria-current[39m=[32m"page"[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted bg-muted font-medium text-primary"[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+  [36m/>[39m
+
+  Name "Discover":
+  [36m<a[39m
+    [33mclass[39m=[32m"hover:text-foreground"[39m
+    [33mhref[39m=[32m"/discover"[39m
+  [36m/>[39m
+
+  Name "Lisbon in 3 days":
+  [36m<a[39m
+    [33mclass[39m=[32m"break-words hover:text-foreground"[39m
+    [33mhref[39m=[32m"/@alice/lisbon"[39m
+  [36m/>[39m
+
+  Name "Previous: Tram 28":
+  [36m<a[39m
+    [33maria-label[39m=[32m"Previous: Tram 28"[39m
+    [33mclass[39m=[32m"flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border p-4 hover:bg-muted"[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"min-w-0 space-y-8"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Contents":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"radix-:r0:"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-haspopup[39m=[32m"dialog"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"[39m
+    [33mdata-state[39m=[32m"closed"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"space-y-3"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-10"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33mclass[39m=[32m"hidden lg:block"[39m
+          [33mdata-testid[39m=[32m"page-sidebar"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2"[39m
+          [36m>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Collection contents"[39m
+              [33mclass[39m=[32m"space-y-6"[39m
+              [33mdata-testid[39m=[32m"collection-outline"[39m
+            [36m>[39m
+              [36m<section[39m
+                [33maria-labelledby[39m=[32m"sidebar-module-day-1"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                  [33mid[39m=[32m"sidebar-module-day-1"[39m
+                [36m>[39m
+                  [0mDay one[0m
+                [36m</h2>[39m
+                [36m<ol[39m
+                  [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                [36m>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mArrival[0m
+                      [36m</span>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"mt-0.5 block text-sm text-muted-foreground break-words"[39m
+                      [36m>[39m
+                        [0mAirport to Alfama[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mTram 28[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                [36m</ol>[39m
+              [36m</section>[39m
+              [36m<section[39m
+                [33maria-labelledby[39m=[32m"sidebar-module-day-2"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                  [33mid[39m=[32m"sidebar-module-day-2"[39m
+                [36m>[39m
+                  [0mDay two[0m
+                [36m</h2>[39m
+                [36m<ol[39m
+                  [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                [36m>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33maria-current[39m=[32m"page"[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted bg-muted font-medium text-primary"[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mMuseums[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                [36m</ol>[39m
+              [36m</section>[39m
+            [36m</nav>[39m
+          [36m</div>[39m
+        [36m</aside>[39m
+        [36m<article[39m
+          [33mclass[39m=[32m"min-w-0 space-y-8"[39m
+        [36m>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Breadcrumb"[39m
+          [36m>[39m
+            [36m<ol[39m
+              [33mclass[39m=[32m"flex flex-wrap items-center gap-1 text-sm text-muted-foreground"[39m
+            [36m>[39m
+              [36m<li>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"hover:text-foreground"[39m
+                  [33mhref[39m=[32m"/discover"[39m
+                [36m>[39m
+                  [0mDiscover[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33maria-hidden[39m=[32m"true"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"min-w-0"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"break-words hover:text-foreground"[39m
+                  [33mhref[39m=[32m"/@alice/lisbon"[39m
+                [36m>[39m
+                  [0mLisbon in 3 days[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33maria-hidden[39m=[32m"true"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"min-w-0 break-words"[39m
+              [36m>[39m
+                [0mDay two[0m
+              [36m</li>[39m
+            [36m</ol>[39m
+          [36m</nav>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lg:hidden"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-controls[39m=[32m"radix-:r0:"[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33maria-haspopup[39m=[32m"dialog"[39m
+              [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"[39m
+              [33mdata-state[39m=[32m"closed"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33mclass[39m=[32m"lucide lucide-list-tree h-4 w-4"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 12h-8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 6H8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 18h-8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 6v4c0 1.1.9 2 2 2h3"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10v6c0 1.1.9 2 2 2h3"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [0mContents[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"space-y-3"[39m
+          [36m>[39m
+            [36m<h1[39m
+              [33mclass[39m=[32m"text-3xl font-bold break-words"[39m
+            [36m>[39m
+              [0mMuseums[0m
+            [36m</h1>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"max-w-[72ch]"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"space-y-8"[39m
+              [33mdata-testid[39m=[32m"public-blocks"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"space-y-8"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-2xl font-bold mt-4"[39m
+                [36m>[39m
+                  [0mMuseums body[0m
+                [36m</h2>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Page navigation"[39m
+            [33mclass[39m=[32m"flex flex-col gap-3 border-t border-border pt-8 sm:flex-row"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33maria-label[39m=[32m"Previous: Tram 28"[39m
+              [33mclass[39m=[32m"flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border p-4 hover:bg-muted"[39m
+              [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"lucide lucide-chevron-left h-4 w-4 shrink-0"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"m15 18-6-6 6-6"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"min-w-0"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"block text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [0mPrevious[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"block break-words font-medium"[39m
+                [36m>[39m
+                  [0mTram 28[0m
+                [36m</span>[39m
+              [36m</span>[39m
+            [36m</a>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hidden flex-1 sm:block"[39m
+            [36m/>[39m
+          [36m</nav>[39m
+        [36m</article>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ getByRole node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/pages/public/PageView.test.tsx:740:21
+    738|       await waitFor(() => expect(o.pending.length).toBeGreaterThan(0));
+    739|       await act(() => new Promise((r) => setTimeout(r, 20)));      // …
+    740|       expect(screen.getByRole("status")).toBeInTheDocument();
+       |                     ^
+    741|       expect(screen.queryByRole("navigation", { name: "Collection cont…
+    742|       expect(document.querySelector('a[href="/@alice/lisbon/day-1/tram…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  src/pages/public/PageView.test.tsx > PageView: outline confirmation is visit-scoped, not timestamp-based (review round 2) > an outline request from the previous visit still in flight when the URL changes can't confirm the new visit, even if it completes later
+AssertionError: expected 2 to be 3 // Object.is equality
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head>[39m
+    [36m<title>[39m
+      [0mAlgoQuest[0m
+    [36m</title>[39m
+  [36m</head>[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center justify-center gap-2 py-24 text-muted-foreground"[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-loader-circle h-5 w-5 animate-spin"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M21 12a9 9 0 1 1-6.219-8.56"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mLoading page...[0m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+
+- Expected
++ Received
+
+- 3
++ 2
+
+ ❯ src/pages/public/PageView.test.tsx:764:50
+    762|     const w = tramLinkWatcher();
+    763|     fireEvent.click(sidebar().getByRole("link", { name: "Museums" }));
+    764|     await waitFor(() => expect(o.pending.length).toBe(before + 2));   …
+       |                                                  ^
+    765|     o.answer(before, WITH_TRAM());                                // t…
+    766|     await act(() => new Promise((r) => setTimeout(r, 20)));
+ ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  src/pages/public/PageView.test.tsx > PageView: outline confirmation is visit-scoped, not timestamp-based (review round 2) > the previous visit's request completing AFTER the new visit was confirmed doesn't bring the old outline back
+AssertionError: expected 2 to be 3 // Object.is equality
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head>[39m
+    [36m<title>[39m
+      [0mAlgoQuest[0m
+    [36m</title>[39m
+  [36m</head>[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center justify-center gap-2 py-24 text-muted-foreground"[39m
+          [33mrole[39m=[32m"status"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33mclass[39m=[32m"lucide lucide-loader-circle h-5 w-5 animate-spin"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M21 12a9 9 0 1 1-6.219-8.56"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<span>[39m
+            [0mLoading page...[0m
+          [36m</span>[39m
+        [36m</div>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+
+- Expected
++ Received
+
+- 3
++ 2
+
+ ❯ src/pages/public/PageView.test.tsx:789:50
+    787|     await waitFor(() => expect(o.pending.length).toBe(before + 1));
+    788|     fireEvent.click(sidebar().getByRole("link", { name: "Museums" }));
+    789|     await waitFor(() => expect(o.pending.length).toBe(before + 2));
+       |                                                  ^
+    790|     o.answer(before + 1, WITHOUT_TRAM());
+    791|     await h1("Museums");
+ ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  src/pages/public/PageView.test.tsx > PageView: outline confirmation is visit-scoped, not timestamp-based (review round 2) > an outline request started BEFORE the visit (no cached data, so it can't be superseded) is followed by the visit's own request
+AssertionError: expected [] to have a length of 1 but got +0
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head>[39m
+    [36m<title>[39m
+      [0mMuseums · AlgoQuest[0m
+    [36m</title>[39m
+  [36m</head>[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-10"[39m
+        [36m>[39m
+          [36m<aside[39m
+            [33mclass[39m=[32m"hidden lg:block"[39m
+            [33mdata-testid[39m=[32m"page-sidebar"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2"[39m
+            [36m>[39m
+              [36m<nav[39m
+                [33maria-label[39m=[32m"Collection contents"[39m
+                [33mclass[39m=[32m"space-y-6"[39m
+                [33mdata-testid[39m=[32m"collection-outline"[39m
+              [36m>[39m
+                [36m<section[39m
+                  [33maria-labelledby[39m=[32m"sidebar-module-day-1"[39m
+                [36m>[39m
+                  [36m<h2[39m
+                    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                    [33mid[39m=[32m"sidebar-module-day-1"[39m
+                  [36m>[39m
+                    [0mDay one[0m
+                  [36m</h2>[39m
+                  [36m<ol[39m
+                    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                  [36m>[39m
+                    [36m<li>[39m
+                      [36m<a[39m
+                        [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                        [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"block break-words"[39m
+                        [36m>[39m
+                          [0mArrival[0m
+                        [36m</span>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"mt-0.5 block text-sm text-muted-foreground break-words"[39m
+                        [36m>[39m
+                          [0mAirport to Alfama[0m
+                        [36m</span>[39m
+                      [36m</a>[39m
+                    [36m</li>[39m
+                    [36m<li>[39m
+                      [36m<a[39m
+                        [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                        [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"block break-words"[39m
+                        [36m>[39m
+                          [0mTram 28[0m
+                        [36m</span>[39m
+                      [36m</a>[39m
+                    [36m</li>[39m
+                  [36m</ol>[39m
+                [36m</section>[39m
+                [36m<section[39m
+                  [33maria-labelledby[39m=[32m"sidebar-module-day-2"[39m
+                [36m>[39m
+                  [36m<h2[39m
+                    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                    [33mid[39m=[32m"sidebar-module-day-2"[39m
+                  [36m>[39m
+                    [0mDay two[0m
+                  [36m</h2>[39m
+                  [36m<ol[39m
+                    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                  [36m>[39m
+                    [36m<li>[39m
+                      [36m<a[39m
+                        [33maria-current[39m=[32m"page"[39m
+                        [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted bg-muted font-medium text-primary"[39m
+                        [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"block break-words"[39m
+                        [36m>[39m
+                          [0mMuseums[0m
+                        [36m</span>[39m
+                      [36m</a>[39m
+                    [36m</li>[39m
+                  [36m</ol>[39m
+                [36m</section>[39m
+              [36m</nav>[39m
+            [36m</div>[39m
+          [36m</aside>[39m
+          [36m<article[39m
+            [33mclass[39m=[32m"min-w-0 space-y-8"[39m
+          [36m>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Breadcrumb"[39m
+            [36m>[39m
+              [36m<ol[39m
+                [33mclass[39m=[32m"flex flex-wrap items-center gap-1 text-sm text-muted-foreground"[39m
+              [36m>[39m
+                [36m<li>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"hover:text-foreground"[39m
+                    [33mhref[39m=[32m"/discover"[39m
+                  [36m>[39m
+                    [0mDiscover[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"min-w-0"[39m
+                [36m>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"break-words hover:text-foreground"[39m
+                    [33mhref[39m=[32m"/@alice/lisbon"[39m
+                  [36m>[39m
+                    [0mLisbon in 3 days[0m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</li>[39m
+                [36m<li[39m
+                  [33mclass[39m=[32m"min-w-0 break-words"[39m
+                [36m>[39m
+                  [0mDay two[0m
+                [36m</li>[39m
+              [36m</ol>[39m
+            [36m</nav>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"lg:hidden"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33maria-controls[39m=[32m"radix-:r9:"[39m
+                [33maria-expanded[39m=[32m"false"[39m
+                [33maria-haspopup[39m=[32m"dialog"[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"[39m
+                [33mdata-state[39m=[32m"closed"[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-list-tree h-4 w-4"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M21 12h-8"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M21 6H8"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M21 18h-8"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M3 6v4c0 1.1.9 2 2 2h3"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M3 10v6c0 1.1.9 2 2 2h3"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [0mContents[0m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<header[39m
+              [33mclass[39m=[32m"space-y-3"[39m
+            [36m>[39m
+              [36m<h1[39m
+                [33mclass[39m=[32m"text-3xl font-bold break-words"[39m
+              [36m>[39m
+                [0mMuseums[0m
+              [36m</h1>[39m
+            [36m</header>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"max-w-[72ch]"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"space-y-8"[39m
+                [33mdata-testid[39m=[32m"public-blocks"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"space-y-8"[39m
+                [36m>[39m
+                  [36m<h2[39m
+                    [33mclass[39m=[32m"text-2xl font-bold mt-4"[39m
+                  [36m>[39m
+                    [0mMuseums body[0m
+                  [36m</h2>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Page navigation"[39m
+              [33mclass[39m=[32m"flex flex-col gap-3 border-t border-border pt-8 sm:flex-row"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33maria-label[39m=[32m"Previous: Tram 28"[39m
+                [33mclass[39m=[32m"flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border p-4 hover:bg-muted"[39m
+                [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33maria-hidden[39m=[32m"true"[39m
+                  [33mclass[39m=[32m"lucide lucide-chevron-left h-4 w-4 shrink-0"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m15 18-6-6 6-6"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"min-w-0"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"block text-xs text-muted-foreground"[39m
+                  [36m>[39m
+                    [0mPrevious[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"block break-words font-medium"[39m
+                  [36m>[39m
+                    [0mTram 28[0m
+                  [36m</span>[39m
+                [36m</span>[39m
+              [36m</a>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"hidden flex-1 sm:block"[39m
+              [36m/>[39m
+            [36m</nav>[39m
+          [36m</article>[39m
+        [36m</div>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ src/pages/public/PageView.test.tsx:813:43
+    811|     expect(o.pending).toHaveLength(0);                             // …
+    812|     act(() => answerEarly(WITH_TRAM()));                           // …
+    813|     await waitFor(() => expect(o.pending).toHaveLength(1));         //…
+       |                                           ^
+    814|     expect(screen.getByRole("status")).toBeInTheDocument();
+    815|     expect(document.querySelector('a[href="/@alice/lisbon/day-1/tram"]…
+ ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: 503
+ ❯ src/hooks/useConfirmedPublicData.test.tsx:149:38
+    147|     const r = deferred();
+    148|     const { result, rerender } = renderHook((p: Q) => useConfirmedPubl…
+    149|     await act(async () => { r.reject(new Error("503")); });
+       |                                      ^
+    150|     rerender(q({ isError: true }));
+    151|     expect(result.current).toBeUndefined();
+ ❯ node_modules/@testing-library/react/dist/act-compat.js:47:24
+ ❯ act node_modules/react/cjs/react.development.js:2512:16
+ ❯ Proxy.act node_modules/@testing-library/react/dist/act-compat.js:46:25
+ ❯ src/hooks/useConfirmedPublicData.test.tsx:149:11
+ ❯ node_modules/@vitest/runner/dist/index.js:146:14
+ ❯ node_modules/@vitest/runner/dist/index.js:533:11
+ ❯ runWithTimeout node_modules/@vitest/runner/dist/index.js:39:7
+ ❯ runTest node_modules/@vitest/runner/dist/index.js:1056:17
+ ❯ runSuite node_modules/@vitest/runner/dist/index.js:1205:15
+
+This error originated in "src/hooks/useConfirmedPublicData.test.tsx" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "only the current visit's request confirms: a failed one shows nothing until a later success (retry)". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+ Test Files  2 failed (2)
+      Tests  9 failed | 1 passed | 51 skipped (61)
+     Errors  1 error
+   Start at  11:06:46
+   Duration  4.49s (transform 166ms, setup 238ms, collect 342ms, tests 3.25s, environment 764ms, prepare 94ms)
+

@@ -1,0 +1,23 @@
+# Sensitivity R1: Readiness ignores images (stable time or cap only)
+File: src/hooks/usePublicArrival.ts
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/1 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 18ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 84ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 396ms
+   ✓ CollectionView arrival > a PUSH focuses the collection heading once confirmed 311ms
+ ❯ src/hooks/usePublicArrival.test.tsx (58 tests | 2 failed) 758ms
+   × settling readiness (S2, as implemented and documented in the correction report) > an image BEFORE the anchor that hasn't loaded holds settling past the stable time; its load corrects and lets it end 74ms
+   × settling readiness (S2, as implemented and documented in the correction report) > …and if it never loads, settling still ends at the 5 s cap 62ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 734ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 629ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 568ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 63ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 92ms
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 523ms
+      Tests  2 failed | 106 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/hooks/usePublicArrival.test.tsx:598:29
+ ❯ src/hooks/usePublicArrival.test.tsx:613:29
+

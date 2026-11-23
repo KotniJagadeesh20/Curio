@@ -68,6 +68,8 @@ function EditorBody({ detail }: { detail: CollectionDetail }) {
     m.mutate(v, { onSuccess: () => toast.success(ok), onError: (e) => toast.error(errorMessage(e)) });
 
   const draft = c.status === "DRAFT";
+  // Readers can open it: the same condition as the "View public page" link for the whole collection.
+  const viewable = !draft && c.publiclyVisible && !!user?.username;
   const canPublish = c.publishedPageCount > 0;
   const busy = publish.isPending || unpublish.isPending;
   const notes = visibilityNotes(c);
@@ -108,9 +110,9 @@ function EditorBody({ detail }: { detail: CollectionDetail }) {
             {!draft && (
               <Button variant="outline" disabled={busy} onClick={() => run(unpublish, c.id, "Collection is a draft again")}>Unpublish</Button>
             )}
-            {!draft && c.publiclyVisible && user?.username && (
+            {viewable && (
               <Button asChild variant="ghost" className="gap-1">
-                <Link to={paths.collection(user.username, c.slug)}><ExternalLink className="h-4 w-4" />View public page</Link>
+                <Link to={paths.collection(user!.username, c.slug)}><ExternalLink className="h-4 w-4" />View public page</Link>
               </Button>
             )}
           </div>
@@ -175,6 +177,13 @@ function EditorBody({ detail }: { detail: CollectionDetail }) {
                       <Button variant="ghost" size="icon" aria-label={`Move page ${p.title} down`} disabled={pi === pageCount(m) - 1 || reorderPage.isPending}
                         onClick={() => run(reorderPage, { id: p.id, position: pi + 1 }, "Page moved")}><ArrowDown className="h-4 w-4" /></Button>
                       <Button asChild variant="outline" size="sm"><Link to={paths.editPage(p.id)}>Edit content</Link></Button>
+                      {viewable && p.status === "PUBLISHED" && (
+                        <Button asChild variant="ghost" size="sm" className="gap-1">
+                          <Link to={paths.page(user!.username, c.slug, m.slug, p.slug)} aria-label={`View ${p.title} on the public site`}>
+                            <ExternalLink className="h-4 w-4" />View
+                          </Link>
+                        </Button>
+                      )}
                       {p.status === "PUBLISHED" ? (
                         <Button variant="outline" size="sm" disabled={publishPage.isPending}
                           onClick={() => run(publishPage, { id: p.id, publish: false }, "Page unpublished")}>Unpublish</Button>

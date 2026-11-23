@@ -1,0 +1,958 @@
+diff -ruN a/src/AppRoutes.test.tsx src/AppRoutes.test.tsx
+--- a/src/AppRoutes.test.tsx	2026-11-18 09:57:25
++++ src/AppRoutes.test.tsx	2026-11-23 17:54:37
+@@ -24,6 +24,9 @@
+ vi.mock("@/pages/public/CollectionView", () => ({
+   default: ({ username, slug }: { username: string; slug: string }) => <div data-testid="collection-view">{`collection-view ${username}/${slug}`}</div>,
+ }));
++vi.mock("@/pages/public/CreatorProfile", () => ({
++  default: ({ username }: { username: string }) => <div data-testid="creator-profile">{`creator-profile ${username}`}</div>,
++}));
+ vi.mock("@/pages/public/PageView", () => ({
+   default: ({ username, collectionSlug, moduleSlug, pageSlug }: { username: string; collectionSlug: string; moduleSlug: string; pageSlug: string }) =>
+     <div data-testid="page-view">{`page-view ${username}/${collectionSlug}/${moduleSlug}/${pageSlug}`}</div>,
+@@ -54,7 +57,6 @@
+ const anon = () => { auth.state = { user: null, loading: false, isAdmin: false }; };
+ const asUser = () => { auth.state = { user: { name: "Ann", role: "USER" }, loading: false, isAdmin: false }; };
+ const asAdmin = () => { auth.state = { user: { name: "Root", role: "ADMIN" }, loading: false, isAdmin: true }; };
+-const param = (n: string) => screen.getByTestId(`param-${n}`).textContent;
+ 
+ beforeEach(anon);
+ 
+@@ -64,10 +66,10 @@
+     expect(screen.getByText("discover-page")).toBeInTheDocument();
+   });
+ 
+-  it("renders @username, lower-cased", () => {
++  // Step 15b (disclosed change): the Step 15 placeholder was replaced by the real profile page
++  it("renders @username with the real creator profile (since Step 15b), lower-cased", () => {
+     visit("/@Alice");
+-    expect(screen.getByRole("heading", { name: "@alice" })).toBeInTheDocument();
+-    expect(param("username")).toBe("alice");
++    expect(screen.getByTestId("creator-profile")).toHaveTextContent("creator-profile alice");
+   });
+ 
+   it("renders /@username/collection with the real collection viewer (since Step 14b), handle lower-cased", () => {
+diff -ruN a/src/AppRoutes.tsx src/AppRoutes.tsx
+--- a/src/AppRoutes.tsx	2026-11-18 13:50:20
++++ src/AppRoutes.tsx	2026-11-23 17:55:41
+@@ -22,12 +22,11 @@
+ import Discover from "./pages/public/Discover";
+ import {
+   CollectionEditorPage,
+-  CreatorProfilePage,
+   PageEditorPage,
+   ProfileSettingsPage,
+   WorkspacePage,
+ } from "./pages/creator/Placeholders";
+-import { PublicCollectionPage, PublicPageViewPage } from "./pages/public/routes";
++import { PublicCollectionPage, PublicCreatorProfilePage, PublicPageViewPage } from "./pages/public/routes";
+ 
+ /**
+  * Every route of the app (the router itself lives in App.tsx so tests can mount this under a MemoryRouter).
+@@ -82,7 +81,7 @@
+               </Route>
+ 
+               {/* Public creator pages: "/@username[/collection[/module/page]]" (keep after the static routes) */}
+-              <Route path="/:handle" element={<CreatorProfilePage />} />
++              <Route path="/:handle" element={<PublicCreatorProfilePage />} />
+               <Route path="/:handle/:collectionSlug" element={<PublicCollectionPage />} />
+               <Route path="/:handle/:collectionSlug/:moduleSlug/:pageSlug" element={<PublicPageViewPage />} />
+ 
+diff -ruN a/src/components/public/CollectionCard.tsx src/components/public/CollectionCard.tsx
+--- a/src/components/public/CollectionCard.tsx	2026-11-17 14:54:10
++++ src/components/public/CollectionCard.tsx	2026-11-23 17:55:41
+@@ -8,15 +8,18 @@
+ const plural = (n: number, one: string) => `${n} ${n === 1 ? one : `${one}s`}`;
+ 
+ /**
+- * One published collection on Discover: cover (the thumb when there is one), title, description, category, creator and
+- * counts. The whole card links to the collection. The creator is plain text until Step 15 makes `/@username` a real page.
++ * One published collection (Discover, creator profile): cover (the thumb when there is one), title, description, category,
++ * counts and creator. The card body links to the collection. Step 15b: the creator line is a separate link to
++ * `/@username` (built from the username, never the display name), placed after the card link, never nested inside it.
++ * `showCreator={false}` on the creator's own profile, where a link back to the same page would only repeat it.
+  */
+-export function CollectionCard({ c }: { c: PublicCollectionSummary }) {
++export function CollectionCard({ c, showCreator = true }: { c: PublicCollectionSummary; showCreator?: boolean }) {
+   const cover = publicMediaSrc(c.coverThumbUrl) ?? publicMediaSrc(c.coverUrl);
+   const by = c.creator.displayName || c.creator.username;
+   return (
++    <div className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60">
+     <Link to={paths.collection(c.creator.username, c.slug)} data-testid="collection-card"
+-      className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
++      className="group flex flex-1 flex-col rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring">
+       <div className="aspect-[16/9] w-full overflow-hidden bg-muted">
+         {cover ? (
+           <img src={cover} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform group-hover:scale-[1.02]" />
+@@ -31,10 +34,15 @@
+         <h2 className="text-lg font-semibold leading-snug break-words group-hover:underline">{c.title}</h2>
+         {c.description && <p className="line-clamp-3 text-sm text-muted-foreground break-words">{c.description}</p>}
+         <div className="mt-auto pt-2 text-xs text-muted-foreground">
+-          <p>By <span className="font-medium text-foreground">{by}</span></p>
+           <p>{plural(c.moduleCount, "module")} · {plural(c.pageCount, "page")}</p>
+         </div>
+       </div>
+     </Link>
++    {showCreator && (
++      <p className="px-4 pb-4 text-xs text-muted-foreground">
++        By <Link to={paths.creatorProfile(c.creator.username)} className="font-medium text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm">{by}</Link>
++      </p>
++    )}
++    </div>
+   );
+ }
+diff -ruN a/src/components/public/NotAvailable.tsx src/components/public/NotAvailable.tsx
+--- a/src/components/public/NotAvailable.tsx	2026-11-18 17:03:27
++++ src/components/public/NotAvailable.tsx	2026-11-23 17:55:41
+@@ -7,7 +7,7 @@
+  * The one screen for every public 404. The API answers draft, hidden, deleted, suspended and nonexistent content with
+  * the same 404, and this screen says the same thing for all of them so the UI does not reveal which case it was.
+  */
+-export const NotAvailable = forwardRef<HTMLHeadingElement, { what?: "collection" | "page" }>(function NotAvailable({ what = "page" }, headingRef) {
++export const NotAvailable = forwardRef<HTMLHeadingElement, { what?: "collection" | "page" | "profile" }>(function NotAvailable({ what = "page" }, headingRef) {
+   return (
+     <div className="flex flex-col items-center gap-3 py-24 text-center" role="alert" data-testid="not-available">
+       {/* focusable (not tabbable) so a public view can move focus here on arrival (Step 14d-3); no ring for that programmatic focus */}
+diff -ruN a/src/components/public/ShareButton.test.tsx src/components/public/ShareButton.test.tsx
+--- a/src/components/public/ShareButton.test.tsx	2026-11-18 14:59:45
++++ src/components/public/ShareButton.test.tsx	2026-11-23 17:51:49
+@@ -26,6 +26,11 @@
+     expect(screen.getByRole("button", { name: "Share this collection" })).toBeInTheDocument();
+   });
+ 
++  it("Step 15b: a profile's button is named 'Share this profile'", () => {
++    render(<ShareButton what="profile" title="Alice Liddell" path="/@alice" />);
++    expect(screen.getByRole("button", { name: "Share this profile" })).toHaveTextContent("Share");
++  });
++
+   it("native share: canonical URL and title, no toast, no popover", async () => {
+     const share = vi.fn(async () => {});
+     stubNavigator({ share });
+diff -ruN a/src/components/public/ShareButton.tsx src/components/public/ShareButton.tsx
+--- a/src/components/public/ShareButton.tsx	2026-11-18 14:58:51
++++ src/components/public/ShareButton.tsx	2026-11-23 17:55:41
+@@ -6,11 +6,11 @@
+ import { canonicalUrl, copyToClipboard, sharePublicLink } from "@/lib/share";
+ 
+ interface Props {
+-  /** The share-sheet title ("<page> · <collection>" for pages, the collection title for collections). */
++  /** The share-sheet title ("<page> · <collection>" for pages, the collection title for collections, the display name for profiles). */
+   title: string;
+   /** A canonical public path from `paths.*`. */
+   path: string;
+-  what: "page" | "collection";
++  what: "page" | "collection" | "profile";
+ }
+ 
+ const FIRST_HINT = "Your browser didn't allow copying automatically. The link is selected: press Ctrl+C (⌘C on Mac) to copy it.";
+@@ -63,7 +63,7 @@
+     <Popover open={manual} onOpenChange={setManual}>
+       <PopoverTrigger asChild>
+         <Button type="button" variant="outline" className="gap-2" onClick={share} aria-busy={busy || undefined}
+-          aria-label={what === "page" ? "Share this page" : "Share this collection"}>
++          aria-label={`Share this ${what}`}>
+           <Share2 className="h-4 w-4" />Share
+         </Button>
+       </PopoverTrigger>
+diff -ruN a/src/hooks/useContent.ts src/hooks/useContent.ts
+--- a/src/hooks/useContent.ts	2026-11-17 14:53:39
++++ src/hooks/useContent.ts	2026-11-23 17:55:41
+@@ -1,4 +1,4 @@
+-import { keepPreviousData, useQuery } from "@tanstack/react-query";
++import { keepPreviousData, useInfiniteQuery, useQuery } from "@tanstack/react-query";
+ import { api, ApiError } from "@/lib/api";
+ import { apiPaths } from "@/lib/paths";
+ import type {
+@@ -12,6 +12,7 @@
+   ProblemSummary,
+   PublicCollectionDetail,
+   PublicCollectionSummary,
++  PublicCreator,
+   PublicPageView,
+   TrackDetail,
+   TrackSummary,
+@@ -51,6 +52,28 @@
+     queryFn: () => api.get<Paged<PublicCollectionSummary>>(apiPaths.publicCollections(params)),
+     retry: retryUnlessClientError,
+     placeholderData: opts.keepPrevious ? keepPreviousData : undefined,
++  });
++
++/** Step 15b: the public creator profile. 404 = PRIVATE, unknown or suspended (the same answer for all three). */
++export const usePublicCreator = (username?: string) =>
++  useQuery({
++    queryKey: ["public", "creator", username],
++    queryFn: () => api.get<PublicCreator>(apiPaths.publicCreator(username!)),
++    enabled: !!username,
++    retry: retryUnlessClientError,
++  });
++
++/** Step 15b: one creator's listed collections, 50 per page, loaded page by page ("Load more"). Only enabled once the profile is confirmed. */
++export const CREATOR_COLLECTIONS_PAGE_SIZE = 50;
++export const usePublicCreatorCollections = (username: string | undefined, enabled: boolean) =>
++  useInfiniteQuery({
++    queryKey: ["public", "creator-collections", username],
++    queryFn: ({ pageParam }) => api.get<Paged<PublicCollectionSummary>>(
++      apiPaths.publicCollections({ creator: username!, page: pageParam, size: CREATOR_COLLECTIONS_PAGE_SIZE })),
++    initialPageParam: 0,
++    getNextPageParam: (last) => (last.page + 1 < last.totalPages ? last.page + 1 : undefined),
++    enabled: !!username && enabled,
++    retry: retryUnlessClientError,
+   });
+ 
+ export const usePublicCollection = (username?: string, slug?: string) =>
+diff -ruN a/src/lib/paths.ts src/lib/paths.ts
+--- a/src/lib/paths.ts	2026-11-13 18:11:37
++++ src/lib/paths.ts	2026-11-23 17:55:41
+@@ -48,15 +48,17 @@
+ 
+ // ---- API paths (relative to /api, as `api.get` expects) ----
+ export const apiPaths = {
+-  publicCollections: (params: { category?: string; q?: string; page?: number; size?: number } = {}) => {
++  publicCollections: (params: { category?: string; q?: string; creator?: string; page?: number; size?: number } = {}) => {
+     const qs = new URLSearchParams();
+     if (params.category) qs.set("category", params.category);
+     if (params.q?.trim()) qs.set("q", params.q.trim());
++    if (params.creator) qs.set("creator", params.creator);     // Step 15a/15b: one creator's listed collections
+     if (params.page !== undefined) qs.set("page", String(params.page));
+     if (params.size !== undefined) qs.set("size", String(params.size));
+     const s = qs.toString();
+     return `/public/collections${s ? `?${s}` : ""}`;
+   },
++  publicCreator: (username: string) => `/public/creators/${enc(username)}`,
+   publicCollection: (username: string, slug: string) => `/public/collections/${enc(username)}/${enc(slug)}`,
+   publicPage: (username: string, collectionSlug: string, moduleSlug: string, pageSlug: string) =>
+     `/public/pages/${enc(username)}/${enc(collectionSlug)}/${enc(moduleSlug)}/${enc(pageSlug)}`,
+diff -ruN a/src/lib/types.ts src/lib/types.ts
+--- a/src/lib/types.ts	2026-11-17 14:53:30
++++ src/lib/types.ts	2026-11-23 17:55:41
+@@ -237,6 +237,19 @@
+   displayName: string;
+ }
+ 
++/** `GET /api/public/creators/{username}` (Step 1 `PublicCreatorDto`; Step 15b). Never contains email, id or visibility. */
++export interface PublicCreator {
++  username: string;
++  displayName: string;
++  bio: string;
++  avatarUrl: string | null;
++  bannerUrl: string | null;
++  /** label → https URL */
++  socialLinks: Record<string, string>;
++  /** ISO-8601 instant */
++  joinedAt: string;
++}
++
+ export interface PublicCategoryRef {
+   slug: string;
+   name: string;
+diff -ruN a/src/pages/creator/Placeholders.tsx src/pages/creator/Placeholders.tsx
+--- a/src/pages/creator/Placeholders.tsx	2026-11-18 13:50:20
++++ src/pages/creator/Placeholders.tsx	2026-11-23 17:55:41
+@@ -1,27 +1,14 @@
+ import { useParams } from "react-router-dom";
+-import { Param, PlaceholderPage } from "@/components/PlaceholderPage";
+-import { parseHandle, parseId } from "@/lib/paths";
++import { PlaceholderPage } from "@/components/PlaceholderPage";
++import { parseId } from "@/lib/paths";
+ import CollectionEditor from "@/pages/creator/CollectionEditor";
+ import PageEditor from "@/pages/creator/PageEditor";
+ import Workspace from "@/pages/creator/Workspace";
+ import NotFound from "@/pages/NotFound";
+ 
+-// Route adapters and placeholders. The public viewers (Discover, collection, page) and their route adapters live in
+-// src/pages/public/ (adapters moved to src/pages/public/routes.tsx in Step 14d); only the Step 15 profile placeholder is
+-// left here, next to the creator workspace adapters.
+-
+-// ---- public placeholder (Step 15) ----
+-
+-/** `/@username`: NotFound unless the segment really is an @handle (React Router can't match "@:username"). */
+-export function CreatorProfilePage() {
+-  const username = parseHandle(useParams().handle);
+-  if (!username) return <NotFound />;
+-  return (
+-    <PlaceholderPage title={`@${username}`} step="Step 15">
+-      <Param name="username" value={username} />
+-    </PlaceholderPage>
+-  );
+-}
++// Route adapters and placeholders. The public views (Discover, collection, page, and since Step 15b the creator
++// profile) and their route adapters live in src/pages/public/ (routes.tsx); only the Step 15 profile-settings
++// placeholder (Step 15c) is left here, next to the creator workspace adapters.
+ 
+ // ---- creator workspace (mounted behind ProtectedRoute) ----
+ // Steps 8-9 replaced the creator placeholders with real screens; the route adapters stay here so the id guard
+diff -ruN a/src/pages/public/CollectionView.test.tsx src/pages/public/CollectionView.test.tsx
+--- a/src/pages/public/CollectionView.test.tsx	2026-11-17 17:24:58
++++ src/pages/public/CollectionView.test.tsx	2026-11-23 17:51:35
+@@ -47,14 +47,14 @@
+ afterEach(() => { vi.unstubAllGlobals(); tokenStore.clear(); });
+ 
+ describe("CollectionView", () => {
+-  it("renders the header: full cover, category link, title, description, plain-text byline and counts", async () => {
++  it("renders the header: full cover, category link, title, description, byline link and counts", async () => {
+     installFakeApi({ [API]: () => ok(detail()) });
+     mount();
+     expect(await screen.findByRole("heading", { level: 1, name: "Lisbon in 3 days" })).toBeInTheDocument();
+     expect(screen.getByTestId("collection-cover")).toHaveAttribute("src", "/api/public/media/abc");   // the full cover, not the thumb
+     expect(screen.getByRole("link", { name: "Travel" })).toHaveAttribute("href", "/discover?category=travel");
+     expect(screen.getByText(/Trams, tiles/)).toBeInTheDocument();
+-    expect(screen.getByText("Alice").closest("a")).toBeNull();   // byline is plain text (Step 15 makes profiles real)
++    expect(screen.getByRole("link", { name: "Alice" })).toHaveAttribute("href", "/@alice");   // Step 15b (disclosed change): the byline links to the creator profile
+     expect(screen.getByText("2 modules · 3 pages")).toBeInTheDocument();
+     expect(screen.getByRole("link", { name: "Discover" })).toHaveAttribute("href", "/discover");
+   });
+diff -ruN a/src/pages/public/CollectionView.tsx src/pages/public/CollectionView.tsx
+--- a/src/pages/public/CollectionView.tsx	2026-11-18 17:04:17
++++ src/pages/public/CollectionView.tsx	2026-11-23 17:55:41
+@@ -76,7 +76,7 @@
+           <h1 ref={headingRef} tabIndex={-1} className="text-3xl font-bold break-words focus:outline-none">{c.title}</h1>
+           {c.description && <p className="text-lg text-muted-foreground whitespace-pre-line break-words">{c.description}</p>}
+           <div className="text-sm text-muted-foreground">
+-            <p>By <span className="font-medium text-foreground">{by}</span></p>
++            <p>By <Link to={paths.creatorProfile(c.creator.username)} className="font-medium text-foreground hover:underline">{by}</Link></p>
+             <p>{plural(c.moduleCount, "module")} · {plural(c.pageCount, "page")}</p>
+           </div>
+           <div className="flex flex-wrap items-center gap-3">
+diff -ruN a/src/pages/public/CreatorProfile.pagination.test.tsx src/pages/public/CreatorProfile.pagination.test.tsx
+--- a/src/pages/public/CreatorProfile.pagination.test.tsx	1970-01-01 05:30:00
++++ src/pages/public/CreatorProfile.pagination.test.tsx	2026-11-23 17:54:45
+@@ -0,0 +1,145 @@
++import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
++import { afterEach, describe, expect, it, vi } from "vitest";
++import { err, installFakeApi, ok } from "@/test/fakeApi";
++import { COLLECTIONS, CREATOR, creator, paged, summary } from "@/test/creatorProfileFixtures";
++import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
++import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
++import CreatorProfile from "./CreatorProfile";
++
++const where = { loc: "" };
++function Spy() { where.loc = useLocation().pathname; return null; }
++function mountProfile() {
++  return render(
++    <QueryClientProvider client={new QueryClient({ defaultOptions: { queries: { retryDelay: 1 } } })}>
++      <MemoryRouter initialEntries={["/@alice"]}>
++        <Routes>
++          <Route path="/:handle" element={<><CreatorProfile username="alice" /><Spy /></>} />
++          <Route path="/:handle/:collectionSlug" element={<Spy />} />
++          <Route path="/discover" element={<Spy />} />
++        </Routes>
++      </MemoryRouter>
++    </QueryClientProvider>,
++  );
++}
++
++// Step 15b, plan rev. 2.1 §3.3 / §5: "Load more" pagination of the creator's collections.
++afterEach(() => { vi.unstubAllGlobals(); });
++
++const loadMore = () => screen.getByRole("button", { name: "Load more collections" });
++const hrefs = () => screen.getAllByTestId("collection-card").map((a) => a.getAttribute("href"));
++
++describe("CreatorProfile pagination", () => {
++  it("shows Load more only while there are more pages, with 'Showing N of M', and removes it after the last page", async () => {
++    const fake = installFakeApi({
++      [CREATOR]: () => ok(creator()),
++      [COLLECTIONS(0)]: () => ok(paged([summary("c1"), summary("c2")], 0, 2, 3)),
++      [COLLECTIONS(1)]: () => ok(paged([summary("c3")], 1, 2, 3)),
++    });
++    mountProfile();
++    await waitFor(() => expect(hrefs()).toHaveLength(2));
++    expect(screen.getByText("Showing 2 of 3")).toBeInTheDocument();
++    fireEvent.click(loadMore());
++    await waitFor(() => expect(hrefs()).toHaveLength(3));
++    expect(screen.queryByRole("button", { name: "Load more collections" })).toBeNull();
++    expect(screen.queryByText(/Showing \d+ of \d+/)).toBeNull();
++    expect(fake.calls.map((c) => c.path).filter((p) => p.startsWith("/public/collections")))
++      .toEqual(["/public/collections?creator=alice&page=0&size=50", "/public/collections?creator=alice&page=1&size=50"]);
++  });
++
++  it("a single page shows no Load more", async () => {
++    installFakeApi({ [CREATOR]: () => ok(creator()), [COLLECTIONS(0)]: () => ok(paged([summary("c1")], 0, 1, 1)) });
++    mountProfile();
++    await waitFor(() => expect(hrefs()).toHaveLength(1));
++    expect(screen.queryByRole("button", { name: "Load more collections" })).toBeNull();
++  });
++
++  it("a next-page error leaves the loaded collections visible and offers a retry", async () => {
++    let fail = true;
++    installFakeApi({
++      [CREATOR]: () => ok(creator()),
++      [COLLECTIONS(0)]: () => ok(paged([summary("c1"), summary("c2")], 0, 2, 3)),
++      [COLLECTIONS(1)]: () => (fail ? err(503, "Service unavailable") : ok(paged([summary("c3")], 1, 2, 3))),
++    });
++    mountProfile();
++    await waitFor(() => expect(hrefs()).toHaveLength(2));
++    fireEvent.click(loadMore());
++    const alert = await screen.findByRole("alert", {}, { timeout: 3000 });
++    expect(alert).toHaveTextContent("Couldn't load more collections");
++    expect(hrefs()).toEqual(["/@alice/c1", "/@alice/c2"]);           // nothing already shown disappears
++    fail = false;
++    fireEvent.click(within(alert).getByRole("button", { name: "Retry" }));
++    await waitFor(() => expect(hrefs()).toEqual(["/@alice/c1", "/@alice/c2", "/@alice/c3"]));
++    expect(screen.queryByRole("alert")).toBeNull();
++  });
++
++  it("a collection returned on two pages renders exactly once", async () => {
++    installFakeApi({
++      [CREATOR]: () => ok(creator()),
++      [COLLECTIONS(0)]: () => ok(paged([summary("c1"), summary("c2")], 0, 2, 3)),
++      // c2 shifted onto page 1 (a collection was published meanwhile): de-duplicated by username/slug
++      [COLLECTIONS(1)]: () => ok(paged([summary("c2"), summary("c3")], 1, 2, 3)),
++    });
++    mountProfile();
++    await waitFor(() => expect(hrefs()).toHaveLength(2));
++    fireEvent.click(loadMore());
++    await waitFor(() => expect(hrefs()).toHaveLength(3));
++    expect(hrefs()).toEqual(["/@alice/c1", "/@alice/c2", "/@alice/c3"]);
++  });
++
++  it("category groups update after another page loads: an existing group grows and a new group appears", async () => {
++    const prog = { slug: "programming", name: "Programming" };
++    installFakeApi({
++      [CREATOR]: () => ok(creator()),
++      [COLLECTIONS(0)]: () => ok(paged([summary("t1"), summary("t2")], 0, 2, 4)),
++      [COLLECTIONS(1)]: () => ok(paged([summary("t3"), summary("p1", prog)], 1, 2, 4)),
++    });
++    mountProfile();
++    await waitFor(() => expect(hrefs()).toHaveLength(2));
++    expect(screen.getAllByRole("heading", { level: 3 }).map((h) => h.textContent)).toEqual(["Travel"]);
++    fireEvent.click(loadMore());
++    await waitFor(() => expect(hrefs()).toHaveLength(4));
++    expect(screen.getAllByRole("heading", { level: 3 }).map((h) => h.textContent)).toEqual(["Travel", "Programming"]);
++    expect(within(screen.getByRole("list", { name: "Travel" })).getAllByTestId("collection-card")).toHaveLength(3);
++    expect(within(screen.getByRole("list", { name: "Programming" })).getAllByTestId("collection-card")).toHaveLength(1);
++  });
++
++  it("focus stays on Load more after a page loads while more pages remain", async () => {
++    installFakeApi({
++      [CREATOR]: () => ok(creator()),
++      [COLLECTIONS(0)]: () => ok(paged([summary("c1")], 0, 3, 3)),
++      [COLLECTIONS(1)]: () => ok(paged([summary("c2")], 1, 3, 3)),
++    });
++    mountProfile();
++    await waitFor(() => expect(hrefs()).toHaveLength(1));
++    const button = loadMore();
++    act(() => button.focus());
++    fireEvent.click(button);
++    await waitFor(() => expect(hrefs()).toHaveLength(2));
++    expect(loadMore()).toBe(button);
++    expect(document.activeElement).toBe(button);
++    expect(screen.getByText("Showing 2 of 3")).toBeInTheDocument();
++  });
++
++  it("focus moves to the first new card when the button disappears", async () => {
++    installFakeApi({
++      [CREATOR]: () => ok(creator()),
++      [COLLECTIONS(0)]: () => ok(paged([summary("c1")], 0, 2, 3)),
++      [COLLECTIONS(1)]: () => ok(paged([summary("c2"), summary("c3")], 1, 2, 3)),
++    });
++    mountProfile();
++    await waitFor(() => expect(hrefs()).toHaveLength(1));
++    const button = loadMore();
++    act(() => button.focus());
++    fireEvent.click(button);
++    await waitFor(() => expect(hrefs()).toHaveLength(3));
++    await waitFor(() => expect(document.activeElement).toHaveAttribute("href", "/@alice/c2"));
++  });
++
++  it("no collections request is made after a profile 404", async () => {
++    const fake = installFakeApi({ [CREATOR]: () => err(404, "Creator not found"), [COLLECTIONS(0)]: () => ok(paged([summary("c1")])) });
++    mountProfile();
++    await screen.findByTestId("not-available");
++    await new Promise((r) => setTimeout(r, 30));
++    expect(fake.calls.filter((c) => c.path.startsWith("/public/collections"))).toEqual([]);
++  });
++});
+diff -ruN a/src/pages/public/CreatorProfile.test.tsx src/pages/public/CreatorProfile.test.tsx
+--- a/src/pages/public/CreatorProfile.test.tsx	1970-01-01 05:30:00
++++ src/pages/public/CreatorProfile.test.tsx	2026-11-23 17:54:45
+@@ -0,0 +1,159 @@
++import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
++import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
++import { SITE_NAME } from "@/hooks/useDocumentTitle";
++import { err, installFakeApi, ok } from "@/test/fakeApi";
++import { COLLECTIONS, CREATOR, creator, paged, summary } from "@/test/creatorProfileFixtures";
++import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
++import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
++import CreatorProfile from "./CreatorProfile";
++
++const where = { loc: "" };
++function Spy() { where.loc = useLocation().pathname; return null; }
++function mountProfile() {
++  return render(
++    <QueryClientProvider client={new QueryClient({ defaultOptions: { queries: { retryDelay: 1 } } })}>
++      <MemoryRouter initialEntries={["/@alice"]}>
++        <Routes>
++          <Route path="/:handle" element={<><CreatorProfile username="alice" /><Spy /></>} />
++          <Route path="/:handle/:collectionSlug" element={<Spy />} />
++          <Route path="/discover" element={<Spy />} />
++        </Routes>
++      </MemoryRouter>
++    </QueryClientProvider>,
++  );
++}
++
++beforeEach(() => { where.loc = ""; document.title = "Before"; });
++afterEach(() => { vi.unstubAllGlobals(); });
++
++describe("CreatorProfile", () => {
++  it("renders the header: banner, avatar, name, @username, bio, social links and join date", async () => {
++    installFakeApi({ [CREATOR]: () => ok(creator()), [COLLECTIONS()]: () => ok(paged([])) });
++    const { container } = mountProfile();
++    expect(await screen.findByRole("heading", { level: 1, name: "Alice Liddell" })).toBeInTheDocument();
++    expect(screen.getByText("@alice")).toBeInTheDocument();
++    expect(screen.getByText(/Travel writer\./)).toBeInTheDocument();
++    expect(screen.getByText(/Joined January 2026/)).toBeInTheDocument();
++    const banner = screen.getByTestId("creator-banner");
++    const avatar = screen.getByTestId("creator-avatar");
++    expect(banner).toHaveAttribute("src", "https://img.example.org/banner.png");
++    expect(avatar).toHaveAttribute("src", "https://img.example.org/alice.png");
++    for (const img of [banner, avatar]) expect(img).toHaveAttribute("referrerpolicy", "no-referrer");
++    // never a CSS url() built from a string
++    expect(container.innerHTML).not.toMatch(/url\(/);
++  });
++
++  it("renders social links as text labels with safe attributes", async () => {
++    installFakeApi({
++      [CREATOR]: () => ok(creator({ socialLinks: { "<b>GitHub</b>": "https://github.com/alice" } })),
++      [COLLECTIONS()]: () => ok(paged([])),
++    });
++    mountProfile();
++    const nav = await screen.findByRole("list", { name: "Links" });
++    const link = within(nav).getByRole("link", { name: "<b>GitHub</b>" });   // the label is text, never HTML
++    expect(link).toHaveAttribute("href", "https://github.com/alice");
++    expect(link).toHaveAttribute("target", "_blank");
++    expect(link).toHaveAttribute("rel", "noopener noreferrer nofollow");
++    expect(nav.querySelector("b")).toBeNull();
++  });
++
++  it("omits the banner, avatar, bio and links when the creator has none, and never renders a non-https image", async () => {
++    installFakeApi({
++      [CREATOR]: () => ok(creator({ bio: "", bannerUrl: null, avatarUrl: "http://insecure.example.org/a.png", socialLinks: {} })),
++      [COLLECTIONS()]: () => ok(paged([])),
++    });
++    mountProfile();
++    await screen.findByRole("heading", { level: 1, name: "Alice Liddell" });
++    expect(screen.queryByTestId("creator-banner")).toBeNull();
++    expect(screen.queryByTestId("creator-avatar")).toBeNull();
++    expect(screen.queryByRole("list", { name: "Links" })).toBeNull();
++  });
++
++  it("falls back to the username when there is no display name", async () => {
++    installFakeApi({ [CREATOR]: () => ok(creator({ displayName: "" })), [COLLECTIONS()]: () => ok(paged([])) });
++    mountProfile();
++    expect(await screen.findByRole("heading", { level: 1, name: "alice" })).toBeInTheDocument();
++    await waitFor(() => expect(document.title).toBe(`alice (@alice) · ${SITE_NAME}`));
++  });
++
++  it("sets the title to '<displayName> (@username) · AlgoQuest'", async () => {
++    installFakeApi({ [CREATOR]: () => ok(creator()), [COLLECTIONS()]: () => ok(paged([])) });
++    mountProfile();
++    await screen.findByRole("heading", { level: 1, name: "Alice Liddell" });
++    await waitFor(() => expect(document.title).toBe(`Alice Liddell (@alice) · ${SITE_NAME}`));
++  });
++
++  it("groups published collections by category in API order, with uncategorized ones under 'Other' last", async () => {
++    installFakeApi({
++      [CREATOR]: () => ok(creator()),
++      [COLLECTIONS()]: () => ok(paged([
++        summary("porto"), summary("notes", null), summary("java", { slug: "programming", name: "Programming" }), summary("lisbon"),
++      ])),
++    });
++    mountProfile();
++    const section = await screen.findByRole("region", { name: "Collections" });
++    await waitFor(() => expect(within(section).getAllByTestId("collection-card")).toHaveLength(4));
++    const groups = within(section).getAllByRole("heading", { level: 3 }).map((h) => h.textContent);
++    expect(groups).toEqual(["Travel", "Programming", "Other"]);
++    const travel = within(section).getByRole("list", { name: "Travel" });
++    expect(within(travel).getAllByTestId("collection-card").map((a) => a.getAttribute("href"))).toEqual(["/@alice/porto", "/@alice/lisbon"]);
++    expect(within(within(section).getByRole("list", { name: "Other" })).getByTestId("collection-card")).toHaveAttribute("href", "/@alice/notes");
++    // on the creator's own profile the cards don't repeat a link back to this page
++    expect(within(section).queryAllByRole("link", { name: "Alice Liddell" })).toHaveLength(0);
++  });
++
++  it("shows an empty state when the creator has no published collections", async () => {
++    installFakeApi({ [CREATOR]: () => ok(creator()), [COLLECTIONS()]: () => ok(paged([])) });
++    mountProfile();
++    expect(await screen.findByText("No published collections yet")).toBeInTheDocument();
++    expect(screen.queryByRole("button", { name: /Load more/ })).toBeNull();
++  });
++
++  it.each([["PRIVATE"], ["unknown"], ["suspended"]])("a %s creator (profile 404) gets the neutral not-available screen and no collections request", async () => {
++    const fake = installFakeApi({ [CREATOR]: () => err(404, "Creator not found"), [COLLECTIONS()]: () => ok(paged([summary("porto")])) });
++    mountProfile();
++    expect(await screen.findByRole("heading", { level: 1, name: "This profile isn't available" })).toBeInTheDocument();
++    expect(screen.getByTestId("not-available")).toBeInTheDocument();
++    await waitFor(() => expect(document.title).toBe(`Not available · ${SITE_NAME}`));
++    await new Promise((r) => setTimeout(r, 30));
++    expect(fake.calls.filter((c) => c.path.startsWith("/public/collections"))).toEqual([]);
++    expect(screen.queryByTestId("collection-card")).toBeNull();
++  });
++
++  it("an error loading the profile offers a retry and never shows collections", async () => {
++    let fail = true;
++    const fake = installFakeApi({ [CREATOR]: () => (fail ? err(503, "Service unavailable") : ok(creator())), [COLLECTIONS()]: () => ok(paged([summary("porto")])) });
++    mountProfile();
++    expect(await screen.findByRole("alert", {}, { timeout: 3000 })).toHaveTextContent("Service unavailable");
++    expect(fake.calls.filter((c) => c.path.startsWith("/public/collections"))).toEqual([]);
++    fail = false;
++    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
++    expect(await screen.findByRole("heading", { level: 1, name: "Alice Liddell" })).toBeInTheDocument();
++    expect(await screen.findByTestId("collection-card")).toBeInTheDocument();
++  });
++
++  it("an error loading the first collections page keeps the header and offers a retry", async () => {
++    let fail = true;
++    installFakeApi({ [CREATOR]: () => ok(creator()), [COLLECTIONS()]: () => (fail ? err(503, "Service unavailable") : ok(paged([summary("porto")]))) });
++    mountProfile();
++    await screen.findByRole("heading", { level: 1, name: "Alice Liddell" });
++    const section = await screen.findByRole("region", { name: "Collections" });
++    expect(await within(section).findByRole("alert", {}, { timeout: 3000 })).toHaveTextContent("Service unavailable");
++    fail = false;
++    fireEvent.click(within(section).getByRole("button", { name: "Try again" }));
++    expect(await within(section).findByTestId("collection-card")).toHaveAttribute("href", "/@alice/porto");
++  });
++
++  it("has a Share button for the profile", async () => {
++    installFakeApi({ [CREATOR]: () => ok(creator()), [COLLECTIONS()]: () => ok(paged([])) });
++    mountProfile();
++    expect(await screen.findByRole("button", { name: "Share this profile" })).toBeInTheDocument();
++  });
++
++  it("opening a card goes to the collection", async () => {
++    installFakeApi({ [CREATOR]: () => ok(creator()), [COLLECTIONS()]: () => ok(paged([summary("porto")])) });
++    mountProfile();
++    fireEvent.click(await screen.findByTestId("collection-card"));
++    await waitFor(() => expect(where.loc).toBe("/@alice/porto"));
++  });
++});
+diff -ruN a/src/pages/public/CreatorProfile.tsx src/pages/public/CreatorProfile.tsx
+--- a/src/pages/public/CreatorProfile.tsx	1970-01-01 05:30:00
++++ src/pages/public/CreatorProfile.tsx	2026-11-23 17:55:41
+@@ -0,0 +1,204 @@
++import { useEffect, useMemo, useRef, type ReactNode } from "react";
++import { Link } from "react-router-dom";
++import { ArrowLeft } from "lucide-react";
++import { Button } from "@/components/ui/button";
++import { CollectionCard } from "@/components/public/CollectionCard";
++import { NotAvailable } from "@/components/public/NotAvailable";
++import { ShareButton } from "@/components/public/ShareButton";
++import { EmptyState, ErrorState, LoadingState } from "@/components/QueryState";
++import { useDocumentTitle } from "@/hooks/useDocumentTitle";
++import { useConfirmedPublicData } from "@/hooks/useConfirmedPublicData";
++import { usePublicArrival, type ArrivalState } from "@/hooks/usePublicArrival";
++import { usePublicCreator, usePublicCreatorCollections } from "@/hooks/useContent";
++import { ApiError } from "@/lib/api";
++import { paths } from "@/lib/paths";
++import type { PublicCollectionSummary } from "@/lib/types";
++
++/** Images come from the server's https-only profile fields; anything else is never rendered (defence in depth). */
++const httpsOnly = (url: string | null | undefined) => (url && /^https:\/\//i.test(url.trim()) ? url.trim() : null);
++const refOf = (c: PublicCollectionSummary) => `${c.creator.username}/${c.slug}`;
++const joined = (iso: string) => {
++  const d = new Date(iso);
++  return Number.isNaN(d.getTime()) ? null : d.toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
++};
++
++interface Group { key: string; name: string; items: PublicCollectionSummary[] }
++
++/**
++ * Groups by category in the order categories first appear (the API's newest-first order), uncategorized under "Other"
++ * last. Recomputed over everything loaded, so a group grows (or a new one appears) when another page loads.
++ */
++function groupByCategory(items: PublicCollectionSummary[]): Group[] {
++  const groups = new Map<string, Group>();
++  let other: Group | null = null;
++  for (const c of items) {
++    if (!c.category) { (other ??= { key: "~other", name: "Other", items: [] }).items.push(c); continue; }
++    const g = groups.get(c.category.slug) ?? { key: c.category.slug, name: c.category.name, items: [] };
++    g.items.push(c);
++    groups.set(c.category.slug, g);
++  }
++  return other ? [...groups.values(), other] : [...groups.values()];
++}
++
++/**
++ * `/@username`: the public creator profile (Step 15b, plan rev. 2.1 §3.2–§4).
++ * - The profile request alone decides availability: a 404 (PRIVATE, unknown or suspended: the same answer) gets the
++ *   neutral not-available screen, and the collections are never requested.
++ * - Collections: the creator's LISTED collections (`?creator=`), 50 per page with "Load more", merged and de-duplicated by
++ *   username/slug, grouped by category. Offset paging is not a snapshot: a collection published or unpublished meanwhile
++ *   can shift page boundaries (plan §3.3 consistency limit); nothing here claims otherwise.
++ */
++export default function CreatorProfile({ username }: { username: string }) {
++  const q = usePublicCreator(username);
++  const notFound = q.error instanceof ApiError && q.error.status === 404;
++  const creator = useConfirmedPublicData(q, username);
++  const cols = usePublicCreatorCollections(username, !!creator);
++
++  const name = creator ? creator.displayName || creator.username : null;
++  useDocumentTitle(notFound ? "Not available" : creator ? `${name} (@${creator.username})` : null);
++
++  const contentRef = useRef<HTMLElement>(null);
++  const headingRef = useRef<HTMLHeadingElement>(null);
++  const errorRef = useRef<HTMLDivElement>(null);
++  const collectionsSettled = cols.isSuccess || (cols.isError && !cols.isFetching);
++  const arrivalState: ArrivalState = notFound ? "not-found"
++    : q.isError ? (q.isFetching ? "pending" : "error")
++    : creator && collectionsSettled ? "content" : "pending";
++  const arrival = usePublicArrival({ arrivalKey: `creator:${username}`, state: arrivalState, contentRef, headingRef, errorRef });
++
++  // Merged, de-duplicated collections ("Showing N of M": M is the latest response's totalItems, no snapshot claim).
++  const items = useMemo(() => {
++    const seen = new Set<string>();
++    const out: PublicCollectionSummary[] = [];
++    for (const page of cols.data?.pages ?? []) for (const c of page.items) {
++      const ref = refOf(c);
++      if (!seen.has(ref)) { seen.add(ref); out.push(c); }
++    }
++    return out;
++  }, [cols.data]);
++  const pages = cols.data?.pages ?? [];
++  const total = pages.length ? pages[pages.length - 1].totalItems : 0;
++  const groups = useMemo(() => groupByCategory(items), [items]);
++
++  // Focus after "Load more": stays on the button while it remains; when it disappears, moves to the first new card.
++  const loadMoreRef = useRef<HTMLButtonElement>(null);
++  const listRef = useRef<HTMLDivElement>(null);
++  const pendingFocus = useRef<{ before: Set<string> } | null>(null);
++  const loadMore = () => {
++    if (cols.isFetchingNextPage) return;
++    pendingFocus.current = document.activeElement === loadMoreRef.current ? { before: new Set(items.map(refOf)) } : null;
++    void cols.fetchNextPage();
++  };
++  useEffect(() => {
++    const p = pendingFocus.current;
++    if (!p || cols.isFetchingNextPage) return;
++    if (cols.isFetchNextPageError) { pendingFocus.current = null; return; }
++    pendingFocus.current = null;
++    if (cols.hasNextPage) { loadMoreRef.current?.focus(); return; }
++    const first = items.find((c) => !p.before.has(refOf(c)));
++    if (!first) return;
++    listRef.current?.querySelector<HTMLElement>(`[data-collection-ref="${CSS.escape(refOf(first))}"] [data-testid="collection-card"]`)?.focus();
++  }, [cols.isFetchingNextPage, cols.isFetchNextPageError, cols.hasNextPage, items]);
++
++  if (notFound) return <Shell><NotAvailable what="profile" ref={headingRef} /></Shell>;
++  if (q.isError) {
++    return (
++      <Shell>
++        <div ref={errorRef} tabIndex={-1} className="focus:outline-none">
++          <ErrorState error={q.error} onRetry={() => { arrival.retry(); q.refetch(); }} />
++        </div>
++      </Shell>
++    );
++  }
++  if (!creator) return <Shell><LoadingState label="Loading profile..." /></Shell>;
++
++  const banner = httpsOnly(creator.bannerUrl);
++  const avatar = httpsOnly(creator.avatarUrl);
++  const links = Object.entries(creator.socialLinks ?? {}).filter(([, url]) => httpsOnly(url));
++  const since = joined(creator.joinedAt);
++
++  return (
++    <Shell>
++      <article ref={contentRef} className="space-y-10">
++        <header className="space-y-4" data-scroll-anchor="header">
++          {banner && (
++            <div className="aspect-[4/1] w-full overflow-hidden rounded-lg bg-muted">
++              <img src={banner} alt="" referrerPolicy="no-referrer" className="h-full w-full object-cover" data-testid="creator-banner" />
++            </div>
++          )}
++          <div className="flex flex-wrap items-center gap-4">
++            {avatar && (
++              <img src={avatar} alt="" referrerPolicy="no-referrer" width={80} height={80}
++                className="h-20 w-20 rounded-full border border-border object-cover" data-testid="creator-avatar" />
++            )}
++            <div className="min-w-0 flex-1">
++              <h1 ref={headingRef} tabIndex={-1} className="text-3xl font-bold break-words focus:outline-none">{name}</h1>
++              <p className="text-muted-foreground">@{creator.username}</p>
++            </div>
++            <ShareButton what="profile" title={name!} path={paths.creatorProfile(creator.username)} />
++          </div>
++          {creator.bio && <p className="whitespace-pre-line break-words">{creator.bio}</p>}
++          {links.length > 0 && (
++            <ul aria-label="Links" className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
++              {links.map(([label, url]) => (
++                <li key={label}>
++                  <a href={httpsOnly(url)!} target="_blank" rel="noopener noreferrer nofollow" className="text-primary underline-offset-2 hover:underline">{label}</a>
++                </li>
++              ))}
++            </ul>
++          )}
++          {since && <p className="text-sm text-muted-foreground">Joined {since}</p>}
++        </header>
++
++        <section aria-labelledby="creator-collections" className="space-y-6" data-scroll-anchor="collections">
++          <h2 id="creator-collections" className="text-xl font-semibold">Collections</h2>
++          {cols.isError && !cols.data ? (
++            <ErrorState error={cols.error} onRetry={() => { void cols.refetch(); }} />
++          ) : !cols.data ? (
++            <LoadingState label="Loading collections..." />
++          ) : items.length === 0 ? (
++            <EmptyState message="No published collections yet" />
++          ) : (
++            <div ref={listRef} className="space-y-8">
++              {groups.map((g) => (
++                <div key={g.key} className="space-y-3">
++                  <h3 id={`group-${g.key}`} className="text-lg font-medium">{g.name}</h3>
++                  <ul aria-labelledby={`group-${g.key}`} className="grid gap-4 sm:grid-cols-2">
++                    {g.items.map((c) => (
++                      <li key={refOf(c)} data-collection-ref={refOf(c)}><CollectionCard c={c} showCreator={false} /></li>
++                    ))}
++                  </ul>
++                </div>
++              ))}
++              {cols.isFetchNextPageError && (
++                <div role="alert" className="flex flex-wrap items-center gap-3 text-sm">
++                  <span>Couldn't load more collections.</span>
++                  <Button variant="outline" size="sm" onClick={loadMore}>Retry</Button>
++                </div>
++              )}
++              {cols.hasNextPage && (
++                <div className="flex flex-wrap items-center gap-3">
++                  <Button ref={loadMoreRef} variant="outline" onClick={loadMore} aria-disabled={cols.isFetchingNextPage || undefined}>
++                    {cols.isFetchingNextPage ? "Loading..." : "Load more collections"}
++                  </Button>
++                  <span className="text-sm text-muted-foreground">Showing {items.length} of {total}</span>
++                </div>
++              )}
++            </div>
++          )}
++        </section>
++      </article>
++    </Shell>
++  );
++}
++
++function Shell({ children }: { children: ReactNode }) {
++  return (
++    <section className="container mx-auto max-w-4xl px-4 pb-16 pt-28">
++      <Link to={paths.discover()} className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
++        <ArrowLeft className="h-4 w-4" />Discover
++      </Link>
++      {children}
++    </section>
++  );
++}
+diff -ruN a/src/pages/public/Discover.test.tsx src/pages/public/Discover.test.tsx
+--- a/src/pages/public/Discover.test.tsx	2026-11-17 14:56:06
++++ src/pages/public/Discover.test.tsx	2026-11-23 17:51:35
+@@ -55,17 +55,20 @@
+     expect(first.getByRole("heading", { name: "Lisbon in 3 days" })).toBeInTheDocument();
+     expect(first.getByText("Tram 28 and pastéis.")).toBeInTheDocument();
+     expect(first.getByText("Travel")).toBeInTheDocument();
+-    expect(first.getByText("Alice")).toBeInTheDocument();
++    // Step 15b (disclosed change): the creator is now a link to /@username, a sibling of the card link (never nested)
++    const alice = screen.getAllByRole("link", { name: "Alice" })[0];
++    expect(alice).toHaveAttribute("href", "/@alice");
++    expect(alice.closest("[data-testid=collection-card]")).toBeNull();
+     expect(first.getByText("2 modules · 6 pages")).toBeInTheDocument();
+     expect(cards[0].querySelector("img")!.getAttribute("src")).toBe("/api/public/media/aaa/thumb");   // the thumb, not the full cover
+     expect(cards[0]).toHaveAttribute("href", "/@alice/lisbon");
+ 
+     expect(cards[1].querySelector("img")!.getAttribute("src")).toBe("https://images.example.org/p.jpg");   // falls back to coverUrl
+-    expect(within(cards[1]).getByText("bob")).toBeInTheDocument();                                         // username when no display name
++    expect(screen.getByRole("link", { name: "bob" })).toHaveAttribute("href", "/@bob");                    // username when no display name (Step 15b: a link)
+     expect(within(cards[1]).getByText("1 module · 1 page")).toBeInTheDocument();
+     expect(cards[2].querySelector("img")).toBeNull();                                                       // unsafe cover is never rendered
+     expect(within(cards[2]).getByTestId("cover-placeholder")).toBeInTheDocument();
+-    // the creator is plain text (no link to the Step 15 placeholder): the card's only link is the collection
++    // the card link contains no other link (Step 15b: the creator link sits next to it, not inside it)
+     expect(cards[0].querySelectorAll("a")).toHaveLength(0);
+   });
+ 
+diff -ruN a/src/pages/public/routes.test.tsx src/pages/public/routes.test.tsx
+--- a/src/pages/public/routes.test.tsx	2026-11-18 13:51:43
++++ src/pages/public/routes.test.tsx	2026-11-23 17:54:30
+@@ -10,18 +10,32 @@
+   default: (p: { username: string; collectionSlug: string; moduleSlug: string; pageSlug: string }) =>
+     <div data-testid="page-view">{`${p.username}|${p.collectionSlug}|${p.moduleSlug}|${p.pageSlug}`}</div>,
+ }));
++vi.mock("@/pages/public/CreatorProfile", () => ({ default: ({ username }: { username: string }) => <div data-testid="creator-profile">{username}</div> }));
+ vi.mock("@/pages/NotFound", () => ({ default: () => <div data-testid="not-found" /> }));
+-import { PublicCollectionPage, PublicPageViewPage } from "./routes";
++import { PublicCollectionPage, PublicCreatorProfilePage, PublicPageViewPage } from "./routes";
+ 
+ const visit = (path: string) => render(
+   <MemoryRouter initialEntries={[path]}>
+     <Routes>
++      <Route path="/:handle" element={<PublicCreatorProfilePage />} />
+       <Route path="/:handle/:collectionSlug" element={<PublicCollectionPage />} />
+       <Route path="/:handle/:collectionSlug/:moduleSlug/:pageSlug" element={<PublicPageViewPage />} />
+     </Routes>
+   </MemoryRouter>,
+ );
+ 
++describe("PublicCreatorProfilePage (Step 15b)", () => {
++  it("passes the lower-cased username", () => {
++    visit("/@Alice");
++    expect(screen.getByTestId("creator-profile")).toHaveTextContent("alice");
++  });
++  it.each(["/alice", "/@", "/@ab", "/@1abc", "/@al-ice"])("%s is NotFound (not an @handle)", (path) => {
++    visit(path);
++    expect(screen.getByTestId("not-found")).toBeInTheDocument();
++    expect(screen.queryByTestId("creator-profile")).toBeNull();
++  });
++});
++
+ describe("PublicCollectionPage", () => {
+   it("passes the lower-cased username and the slug as-is", () => {
+     visit("/@Alice/Java-Notes");
+@@ -51,6 +65,8 @@
+     const placeholders = await import("@/pages/creator/Placeholders");
+     expect(Object.keys(placeholders)).not.toContain("PublicCollectionPage");
+     expect(Object.keys(placeholders)).not.toContain("PublicPageViewPage");
+-    expect(Object.keys(placeholders)).toContain("CreatorProfilePage");
++    // Step 15b (disclosed change): the profile adapter moved here too, as PublicCreatorProfilePage
++    expect(Object.keys(placeholders)).not.toContain("CreatorProfilePage");
++    expect(Object.keys(placeholders)).not.toContain("PublicCreatorProfilePage");
+   });
+ });
+diff -ruN a/src/pages/public/routes.tsx src/pages/public/routes.tsx
+--- a/src/pages/public/routes.tsx	2026-11-18 13:50:20
++++ src/pages/public/routes.tsx	2026-11-23 17:55:41
+@@ -2,11 +2,19 @@
+ import { parseHandle } from "@/lib/paths";
+ import NotFound from "@/pages/NotFound";
+ import CollectionView from "@/pages/public/CollectionView";
++import CreatorProfile from "@/pages/public/CreatorProfile";
+ import PageView from "@/pages/public/PageView";
+ 
+ // Route adapters for the public viewers (moved here from src/pages/creator/Placeholders.tsx in Step 14d, unchanged).
+ // They turn the router's raw params into viewer props: the first segment must really be an @handle (React Router can't
+ // match "@:username"), and every other segment must be present; anything else is the app's NotFound, never an API call.
++
++/** `/@username`: the public creator profile (Step 15b; replaces the Step 15 placeholder from Placeholders.tsx). */
++export function PublicCreatorProfilePage() {
++  const username = parseHandle(useParams().handle);
++  if (!username) return <NotFound />;
++  return <CreatorProfile username={username} />;
++}
+ 
+ /** `/@username/collection`: the public collection viewer (Step 14b). */
+ export function PublicCollectionPage() {
+diff -ruN a/src/test/creatorProfileFixtures.ts src/test/creatorProfileFixtures.ts
+--- a/src/test/creatorProfileFixtures.ts	1970-01-01 05:30:00
++++ src/test/creatorProfileFixtures.ts	2026-11-23 17:54:37
+@@ -0,0 +1,21 @@
++import type { PublicCollectionSummary, PublicCreator } from "@/lib/types";
++
++// Step 15b (plan rev. 2.1 §3.2–§4): the public creator profile `/@username`.
++export const CREATOR = "GET /public/creators/alice";
++export const COLLECTIONS = (page = 0) => `GET /public/collections?creator=alice&page=${page}&size=50`;
++
++export const creator = (o: Partial<PublicCreator> = {}): PublicCreator => ({
++  username: "alice", displayName: "Alice Liddell", bio: "Travel writer.\nTrams and tiles.",
++  avatarUrl: "https://img.example.org/alice.png", bannerUrl: "https://img.example.org/banner.png",
++  socialLinks: { GitHub: "https://github.com/alice", Blog: "https://alice.example.org" },
++  joinedAt: "2026-01-15T10:00:00Z", ...o,
++});
++
++export const summary = (slug: string, category: { slug: string; name: string } | null = { slug: "travel", name: "Travel" }): PublicCollectionSummary => ({
++  slug, title: `Title ${slug}`, description: "", coverUrl: null, coverThumbUrl: null,
++  category, creator: { username: "alice", displayName: "Alice Liddell" }, moduleCount: 1, pageCount: 1,
++});
++
++export const paged = (items: PublicCollectionSummary[], page = 0, totalPages = 1, totalItems = items.length) =>
++  ({ items, page, size: 50, totalItems, totalPages });
++

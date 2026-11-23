@@ -1,0 +1,23 @@
+# Sensitivity V6: NETWORK_EMPTY counts as ready even with a declared source (the reviewed video-ZIP rule)
+File: src/hooks/usePublicArrival.ts
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/1 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 20ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 98ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 252ms
+ ❯ src/hooks/usePublicArrival.test.tsx (72 tests | 3 failed) 550ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_EMPTY with a src attribute (resource selection not started) holds settling; the cap still ends it 12ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_EMPTY with child <source> elements (resource selection not started) holds settling; the cap still ends it 3ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_EMPTY with a src → loading → metadata: the resize is corrected and settling then ends 3ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 540ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 490ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 484ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 67ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 85ms
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 495ms
+      Tests  3 failed | 119 passed (122)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/hooks/usePublicArrival.test.tsx:717:29
+ ❯ src/hooks/usePublicArrival.test.tsx:750:29
+

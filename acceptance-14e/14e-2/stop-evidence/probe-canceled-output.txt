@@ -1,0 +1,6 @@
+click leave after 300 ms (monaco mounted: 1): no errors
+click leave after 900 ms (monaco mounted: 1): no errors
+click leave after 2500 ms (monaco mounted: 1): no errors
+click leave after 5000 ms (monaco mounted: 1): no errors
+keyboard leave after 900 ms (monaco mounted: 1): no errors
+keyboard leave after 5000 ms (monaco mounted: 1): no errors

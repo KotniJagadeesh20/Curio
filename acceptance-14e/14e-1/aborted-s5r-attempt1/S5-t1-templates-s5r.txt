@@ -1,0 +1,14 @@
+node:internal/modules/run_main:104
+    triggerUncaughtException(
+    ^
+
+page.waitForURL: Timeout 30000ms exceeded.
+=========================== logs ===========================
+waiting for navigation until "load"
+============================================================
+    at login (/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/53dfce32-afe8-471d-8425-31edbb822ef5/scratchpad/run14e-s5r/13e/common.mjs:22:14)
+    at /private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/53dfce32-afe8-471d-8425-31edbb822ef5/scratchpad/run14e-s5r/13e/async file:/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/53dfce32-afe8-471d-8425-31edbb822ef5/scratchpad/run14e-s5r/13e/t1-templates.mjs:3:1 {
+  name: 'TimeoutError'
+}
+
+Node.js v23.10.0

@@ -1,0 +1,89 @@
+# Sensitivity V7: NETWORK_NO_SOURCE counts as ready before any candidate was tried (no currentSrc check)
+File: src/hooks/usePublicArrival.ts
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/1 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 13ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 98ms
+ ❯ src/hooks/usePublicArrival.test.tsx (72 tests | 3 failed) 478ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_NO_SOURCE with a src attribute but nothing tried yet (currentSrc "") holds settling; the cap still ends it 8ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_NO_SOURCE with child <source> elements but nothing tried yet (currentSrc "") holds settling; the cap still ends it 5ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > <source> children: pending → trying a candidate → every candidate failed: settling ends only then 9ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 206ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 543ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 501ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 93ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 442ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 66ms
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 498ms
+      Tests  3 failed | 119 passed (122)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/hooks/usePublicArrival.test.tsx:730:29
+ ❯ src/hooks/usePublicArrival.test.tsx:738:29
+
+## browser t14d3c.mjs run 1/3 (exit 0)
+PASS  C1 every iframe kind has its final box before its document loads (videos 16:9, HTML blocks their height)  — www.youtube.com,player.vimeo.com,html,html before=[[641,360],[641,360],[641,300],[641,360]] iframe load events before the embeds were released: 2 (the 2 HTML frames at most)
+PASS  C1 a 3000 px document arriving changes no iframe box  — after=[[641,360],[641,360],[641,300],[641,360]]
+PASS  C2 settling ends while the iframes above the anchor are still loading (not held to the 5 s cap); anchor restored  — saved 139.75 restored 139.75; inline overflow-anchor during=none after=auto; embeds pending=true
+PASS  C2 the embeds loading afterwards don't move the anchor  — before 139.75 after 139.75
+PASS  C3 overflow-anchor: "none" while settling, the previous inline value ("auto") after completion  — during=none after=auto
+PASS  C3 overflow-anchor: the previous inline value after a user cancellation (wheel)  — during=none after wheel=auto
+PASS  C1–C3 no page errors
+PASS  C4 drawer link to another page: every focusin recorded; "Contents" never among them; heading focused  — focusins=["A:Two","H1:Two"] active=H1:Two
+PASS  C4 control: the current page's own link → the recorder sees focus return to "Contents"  — focusins=["A:Two","BUTTON:Contents"]
+PASS  C5a precondition: the video's box really changes when its metadata arrives (≥ 50 px)  — before 152 px (readyState 0) → after 481 px (readyState 4)
+PASS  C5a settling waits for the video before the anchor (still "none" at 1.5 s, held metadata)  — inline overflow-anchor at 1.5 s=none; anchor top meanwhile 140
+PASS  C5a after the metadata arrives the anchor is where it was saved (±2 px); settling then ends  — saved 140.015625 final 140.015625; inline afterwards=""
+PASS  C5b metadata held 7 s: settling still ends at the 5 s cap (the cap is authoritative)  — settling ended after 5058 ms with readyState 0
+PASS  C5 no page errors
+PASS  C6a Chrome: a declared source before selection starts is NETWORK_NO_SOURCE with currentSrc "" and no error (pending)  — {"src":{"ns":3,"err":null,"cur":""},"sources":{"ns":3,"err":null,"cur":""},"none":{"ns":0,"err":null,"cur":""}}
+PASS  C6a Chrome: failed src → error set; every <source> failed → NETWORK_NO_SOURCE, error null, currentSrc set; no source → NETWORK_EMPTY  — {"src":{"ns":3,"err":4,"cur":"https://videos.example.org/broken-a.webm"},"sources":{"ns":3,"err":null,"cur":"https://videos.example.org/broken-b2.webm"},"none":{"ns":0,"err":null,"cur":""}}
+PASS  C6b a failing video before the anchor: settling waits while its source is pending, ends soon after the failure (well before the cap); anchor ±2 px  — pending at 1.2 s: inline=none; released at 1248 ms, settling ended at 1352 ms (error 4); saved 140 final 140
+PASS  C6 no page errors
+
+18/18 checks passed
+
+## browser t14d3c.mjs run 2/3 (exit 0)
+PASS  C1 every iframe kind has its final box before its document loads (videos 16:9, HTML blocks their height)  — www.youtube.com,player.vimeo.com,html,html before=[[641,360],[641,360],[641,300],[641,360]] iframe load events before the embeds were released: 2 (the 2 HTML frames at most)
+PASS  C1 a 3000 px document arriving changes no iframe box  — after=[[641,360],[641,360],[641,300],[641,360]]
+PASS  C2 settling ends while the iframes above the anchor are still loading (not held to the 5 s cap); anchor restored  — saved 139.75 restored 139.75; inline overflow-anchor during=none after=auto; embeds pending=true
+PASS  C2 the embeds loading afterwards don't move the anchor  — before 139.75 after 139.75
+PASS  C3 overflow-anchor: "none" while settling, the previous inline value ("auto") after completion  — during=none after=auto
+PASS  C3 overflow-anchor: the previous inline value after a user cancellation (wheel)  — during=none after wheel=auto
+PASS  C1–C3 no page errors
+PASS  C4 drawer link to another page: every focusin recorded; "Contents" never among them; heading focused  — focusins=["A:Two","H1:Two"] active=H1:Two
+PASS  C4 control: the current page's own link → the recorder sees focus return to "Contents"  — focusins=["A:Two","BUTTON:Contents"]
+PASS  C5a precondition: the video's box really changes when its metadata arrives (≥ 50 px)  — before 152 px (readyState 0) → after 481 px (readyState 4)
+PASS  C5a settling waits for the video before the anchor (still "none" at 1.5 s, held metadata)  — inline overflow-anchor at 1.5 s=none; anchor top meanwhile 140
+PASS  C5a after the metadata arrives the anchor is where it was saved (±2 px); settling then ends  — saved 140.015625 final 140.015625; inline afterwards=""
+PASS  C5b metadata held 7 s: settling still ends at the 5 s cap (the cap is authoritative)  — settling ended after 5060 ms with readyState 0
+PASS  C5 no page errors
+PASS  C6a Chrome: a declared source before selection starts is NETWORK_NO_SOURCE with currentSrc "" and no error (pending)  — {"src":{"ns":3,"err":null,"cur":""},"sources":{"ns":3,"err":null,"cur":""},"none":{"ns":0,"err":null,"cur":""}}
+PASS  C6a Chrome: failed src → error set; every <source> failed → NETWORK_NO_SOURCE, error null, currentSrc set; no source → NETWORK_EMPTY  — {"src":{"ns":3,"err":4,"cur":"https://videos.example.org/broken-a.webm"},"sources":{"ns":3,"err":null,"cur":"https://videos.example.org/broken-b2.webm"},"none":{"ns":0,"err":null,"cur":""}}
+PASS  C6b a failing video before the anchor: settling waits while its source is pending, ends soon after the failure (well before the cap); anchor ±2 px  — pending at 1.2 s: inline=none; released at 1237 ms, settling ended at 1342 ms (error 4); saved 140 final 140
+PASS  C6 no page errors
+
+18/18 checks passed
+
+## browser t14d3c.mjs run 3/3 (exit 0)
+PASS  C1 every iframe kind has its final box before its document loads (videos 16:9, HTML blocks their height)  — www.youtube.com,player.vimeo.com,html,html before=[[641,360],[641,360],[641,300],[641,360]] iframe load events before the embeds were released: 2 (the 2 HTML frames at most)
+PASS  C1 a 3000 px document arriving changes no iframe box  — after=[[641,360],[641,360],[641,300],[641,360]]
+PASS  C2 settling ends while the iframes above the anchor are still loading (not held to the 5 s cap); anchor restored  — saved 139.75 restored 139.75; inline overflow-anchor during=none after=auto; embeds pending=true
+PASS  C2 the embeds loading afterwards don't move the anchor  — before 139.75 after 139.75
+PASS  C3 overflow-anchor: "none" while settling, the previous inline value ("auto") after completion  — during=none after=auto
+PASS  C3 overflow-anchor: the previous inline value after a user cancellation (wheel)  — during=none after wheel=auto
+PASS  C1–C3 no page errors
+PASS  C4 drawer link to another page: every focusin recorded; "Contents" never among them; heading focused  — focusins=["A:Two","H1:Two"] active=H1:Two
+PASS  C4 control: the current page's own link → the recorder sees focus return to "Contents"  — focusins=["A:Two","BUTTON:Contents"]
+PASS  C5a precondition: the video's box really changes when its metadata arrives (≥ 50 px)  — before 152 px (readyState 0) → after 481 px (readyState 4)
+PASS  C5a settling waits for the video before the anchor (still "none" at 1.5 s, held metadata)  — inline overflow-anchor at 1.5 s=none; anchor top meanwhile 140
+PASS  C5a after the metadata arrives the anchor is where it was saved (±2 px); settling then ends  — saved 140.015625 final 140.015625; inline afterwards=""
+PASS  C5b metadata held 7 s: settling still ends at the 5 s cap (the cap is authoritative)  — settling ended after 5051 ms with readyState 0
+PASS  C5 no page errors
+PASS  C6a Chrome: a declared source before selection starts is NETWORK_NO_SOURCE with currentSrc "" and no error (pending)  — {"src":{"ns":3,"err":null,"cur":""},"sources":{"ns":3,"err":null,"cur":""},"none":{"ns":0,"err":null,"cur":""}}
+PASS  C6a Chrome: failed src → error set; every <source> failed → NETWORK_NO_SOURCE, error null, currentSrc set; no source → NETWORK_EMPTY  — {"src":{"ns":3,"err":4,"cur":"https://videos.example.org/broken-a.webm"},"sources":{"ns":3,"err":null,"cur":"https://videos.example.org/broken-b2.webm"},"none":{"ns":0,"err":null,"cur":""}}
+PASS  C6b a failing video before the anchor: settling waits while its source is pending, ends soon after the failure (well before the cap); anchor ±2 px  — pending at 1.2 s: inline=none; released at 1251 ms, settling ended at 1355 ms (error 4); saved 140 final 140
+PASS  C6 no page errors
+
+18/18 checks passed
+

@@ -1,0 +1,20 @@
+[10:29:15] playwright-core 1.48.2
+[10:29:15] all 19 copies verified against the manifest
+[10:29:15] amended copies verified: 3 (manifest acceptance-14e/14e-1/amended/manifest.sha256)
+[10:29:15] fixtures: 13e/red.png, 13e/blue.png, 14b/blue.png (120x80, generated with 13e mkpng.mjs; sha256 c7d45ead94225b0c / 1816a71dc5bb4e1f)
+[10:29:23] S5: FRESH backend pid=62623 (launcher 62592) port=8081 (H2 in-memory, profile h2; public API 200) · vite pid=62686 (launcher 62663) port=8080
+[10:29:23] S5: test 13e/t1-templates.mjs 
+[10:29:35] S5: result 0 FAILED ["503 POST http://localhost:8080/api/modules/92/pages"] [PASS lines 17, FAIL lines 0]
+[10:29:35] S5: test 13e/t2-editor.mjs 
+[10:29:45] S5: result 0 FAILED [] [PASS lines 23, FAIL lines 0]
+[10:29:45] S5: test 13e/amended/t3-media.mjs 
+[10:30:00] S5: result 1 FAILED ["FAILED POST http://localhost:8080/api/media net::ERR_ABORTED","503 POST http://localhost:8080/api/media"] [PASS lines 12, FAIL lines 1]
+[10:30:00] S5: t3-media.mjs failed — ALLOWED (classified), continuing
+[10:30:00] S5: test 13e/amended/t4-regression.mjs 
+[10:30:37] S5: result 1 FAILED ["503 POST http://localhost:8080/api/modules/94/pages","404 GET http://localhost:8080/api/creator/collections/17","404 GET http://localhost:8080/api/creator/collections/16"] [PASS lines 13, FAIL lines 1]
+[10:30:37] S5: t4-regression.mjs failed — ALLOWED (classified), continuing
+/Users/newuser/Downloads/Curio-main/acceptance-14e/scripts/run-all.sh: line 66: 62663 Terminated: 15          ( cd "$REPO" && exec npx vite --port 8080 --strictPort > "$OUT/$1-vite${TAG}.log" 2>&1 )
+[10:30:38] stopped vite tracked pids: 62687 62686 62663
+[10:30:39] stopped backend tracked pids: 62623 62592
+[10:30:39] S5: servers stopped; ports 8080/8081 free: yes
+[10:30:39] ALL REQUESTED STAGES COMPLETED: S5

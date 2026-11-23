@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Menu, X, Sun, Moon, User, Settings, LogOut, LayoutDashboard, PenSquare } from "lucide-react";
@@ -29,6 +29,10 @@ const writeLink = { name: "Write", path: "/create" };
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  // The mobile panel wrapper (#mobile-nav-panel) is always rendered so aria-controls has a target. It is `hidden` while the
+  // menu is closed, but only after the closing animation has finished, so the visible collapse is unchanged.
+  const [panelMounted, setPanelMounted] = useState(false);
+  useEffect(() => { if (isOpen) setPanelMounted(true); }, [isOpen]);
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
@@ -90,6 +94,7 @@ export function Navbar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={toggleTheme}
+                aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
                 className="p-2 rounded-lg hover:bg-muted transition-colors"
               >
                 <AnimatePresence mode="wait">
@@ -101,7 +106,7 @@ export function Navbar() {
                       exit={{ rotate: 90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Sun className="h-5 w-5" />
+                      <Sun aria-hidden="true" className="h-5 w-5" />
                     </motion.div>
                   ) : (
                     <motion.div
@@ -111,7 +116,7 @@ export function Navbar() {
                       exit={{ rotate: -90, opacity: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Moon className="h-5 w-5" />
+                      <Moon aria-hidden="true" className="h-5 w-5" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -189,9 +194,12 @@ export function Navbar() {
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isOpen}
+                aria-controls="mobile-nav-panel"
                 className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
               >
-                {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {isOpen ? <X aria-hidden="true" className="h-5 w-5" /> : <Menu aria-hidden="true" className="h-5 w-5" />}
               </motion.button>
             </div>
           </div>
@@ -199,7 +207,8 @@ export function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
+      <div id="mobile-nav-panel" className="md:hidden" hidden={!isOpen && !panelMounted}>
+      <AnimatePresence onExitComplete={() => setPanelMounted(false)}>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -257,6 +266,7 @@ export function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </motion.header>
   );
 }

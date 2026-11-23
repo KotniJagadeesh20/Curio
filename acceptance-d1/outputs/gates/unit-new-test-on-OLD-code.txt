@@ -1,0 +1,33 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ❯ src/components/CodeEditor.test.tsx (2 tests | 1 failed) 27ms
+   × CodeEditor Monaco options (D1) > turns occurrencesHighlight off for read-only editors 23ms
+     → expected undefined to be 'off' // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/CodeEditor.test.tsx > CodeEditor Monaco options (D1) > turns occurrencesHighlight off for read-only editors
+AssertionError: expected undefined to be 'off' // Object.is equality
+
+- Expected: 
+"off"
+
++ Received: 
+undefined
+
+ ❯ src/components/CodeEditor.test.tsx:20:43
+     18|     const options = editorProps.at(-1)?.options;
+     19|     expect(options?.readOnly).toBe(true);
+     20|     expect(options?.occurrencesHighlight).toBe("off");
+       |                                           ^
+     21|   });
+     22| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  13:21:46
+   Duration  1.17s (transform 55ms, setup 194ms, collect 169ms, tests 27ms, environment 344ms, prepare 45ms)
+

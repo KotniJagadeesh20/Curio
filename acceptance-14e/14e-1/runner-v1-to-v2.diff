@@ -1,0 +1,87 @@
+19c19
+< mkdir -p "$RUN" "$OUT"
+---
+> mkdir -p "$RUN" "$OUT"; RUN=$(cd "$RUN" && pwd); OUT=$(cd "$OUT" && pwd)   # v2: absolute (stages cd elsewhere)
+38a39,49
+> # v2: amended t3/t4 (approved C1) + fixture.mjs, verified against their own manifest; copied next to 13e's common.mjs.
+> AMAN="$REPO/acceptance-14e/14e-1/amended/manifest.sha256"
+> while read -r sum path; do
+>   cp "$REPO/$path" "$RUN/13e-amended-$(basename "$path")" 2>/dev/null || { log "ABORT: missing $path"; exit 3; }
+>   got=$(shasum -a 256 "$RUN/13e-amended-$(basename "$path")" | cut -d' ' -f1)
+>   [ "$got" != "$sum" ] && { echo "MISMATCH $path expected $sum got $got" | tee -a "$OUT/copy-verification${TAG}.txt"; log "ABORT: amended copy mismatch"; exit 3; }
+>   echo "OK $sum 13e/amended/$(basename "$path")" >> "$OUT/copy-verification${TAG}.txt"
+> done < "$AMAN"
+> mkdir -p "$RUN/13e/amended"; for f in "$RUN"/13e-amended-*; do mv "$f" "$RUN/13e/amended/${f##*/13e-amended-}"; done
+> log "amended copies verified: $(grep -c 'amended/' "$OUT/copy-verification${TAG}.txt") (manifest acceptance-14e/14e-1/amended/manifest.sha256)"
+> 
+45,46c56,69
+< BPID=""; VPID=""
+< free_port() { local p; for p in $(lsof -ti "tcp:$1" -sTCP:LISTEN 2>/dev/null); do kill "$p" 2>/dev/null; done; for _ in $(seq 1 30); do lsof -ti "tcp:$1" -sTCP:LISTEN >/dev/null 2>&1 || return 0; sleep 1; done; }
+---
+> # v2 (approved 14e-1 S5 correction): the runner stops ONLY the processes it started (tracked launcher PIDs and their
+> # descendants). It never uses pkill and never kills a process just because it owns a port. If 8080 or 8081 is already
+> # occupied before a stage, the runner aborts (exit 4) without touching it.
+> BPID=""; VPID=""; B_LAUNCH=""; V_LAUNCH=""
+> descendants() { local c; for c in $(pgrep -P "$1" 2>/dev/null); do descendants "$c"; echo "$c"; done; }
+> port_busy() { lsof -ti "tcp:$1" -sTCP:LISTEN >/dev/null 2>&1; }
+> kill_tracked() {   # $1 label, $2 launcher pid: stops the launcher and its descendants only
+>   [ -z "$2" ] && return 0
+>   local pids; pids="$(descendants "$2") $2"; pids=$(echo $pids)
+>   kill $pids 2>/dev/null
+>   for _ in $(seq 1 30); do local alive=""; for p in $pids; do kill -0 "$p" 2>/dev/null && alive="$alive $p"; done; [ -z "$alive" ] && break; sleep 1; done
+>   for p in $pids; do kill -0 "$p" 2>/dev/null && kill -9 "$p" 2>/dev/null; done
+>   log "stopped $1 tracked pids: $pids"
+> }
+48,49c71,74
+<   pkill -f "spring-boot:run" 2>/dev/null; free_port 8081; free_port 8080
+<   (cd "$REPO/backend" && mvn -q spring-boot:run -Dspring-boot.run.profiles=h2 > "$OUT/$1-backend${TAG}.log" 2>&1 &)
+---
+>   for port in 8081 8080; do
+>     if port_busy $port; then log "ABORT: port $port is already in use by pid(s) $(lsof -ti tcp:$port -sTCP:LISTEN | tr '\n' ' ')- not started by this runner, left untouched"; exit 4; fi
+>   done
+>   (cd "$REPO/backend" && exec mvn -q spring-boot:run -Dspring-boot.run.profiles=h2 > "$OUT/$1-backend${TAG}.log" 2>&1) & B_LAUNCH=$!
+52c77,79
+<   (cd "$REPO" && npx vite --port 8080 --strictPort > "$OUT/$1-vite${TAG}.log" 2>&1 &)
+---
+>   [ -z "$BPID" ] && { log "ABORT: backend did not start listening on 8081"; kill_tracked backend "$B_LAUNCH"; exit 4; }
+>   echo " $(descendants "$B_LAUNCH" | tr '\n' ' ') " | grep -q " $BPID " || { log "ABORT: :8081 listener $BPID is not a descendant of launcher $B_LAUNCH"; kill_tracked backend "$B_LAUNCH"; exit 4; }
+>   (cd "$REPO" && exec npx vite --port 8080 --strictPort > "$OUT/$1-vite${TAG}.log" 2>&1) & V_LAUNCH=$!
+54a82,83
+>   [ -z "$VPID" ] && { log "ABORT: vite did not start listening on 8080"; kill_tracked vite "$V_LAUNCH"; kill_tracked backend "$B_LAUNCH"; exit 4; }
+>   echo " $V_LAUNCH $(descendants "$V_LAUNCH" | tr '\n' ' ') " | grep -q " $VPID " || { log "ABORT: :8080 listener $VPID is not tracked (launcher $V_LAUNCH)"; kill_tracked vite "$V_LAUNCH"; kill_tracked backend "$B_LAUNCH"; exit 4; }
+56c85
+<   log "$1: FRESH backend pid=$BPID port=8081 (H2 in-memory, profile h2; public API $apistatus) · vite pid=$VPID port=8080"
+---
+>   log "$1: FRESH backend pid=$BPID (launcher $B_LAUNCH) port=8081 (H2 in-memory, profile h2; public API $apistatus) · vite pid=$VPID (launcher $V_LAUNCH) port=8080"
+59c88,92
+< stop_servers() { pkill -f "spring-boot:run" 2>/dev/null; free_port 8081; free_port 8080; log "$1: servers stopped"; }
+---
+> stop_servers() {
+>   kill_tracked vite "$V_LAUNCH"; kill_tracked backend "$B_LAUNCH"; V_LAUNCH=""; B_LAUNCH=""
+>   local free=yes; for port in 8080 8081; do port_busy $port && { free=no; log "WARNING: port $port still in use after stop: $(lsof -ti tcp:$port -sTCP:LISTEN | tr '\n' ' ')"; }; done
+>   log "$1: servers stopped; ports 8080/8081 free: $free"
+> }
+68d100
+<   echo -e "$(date -u +%FT%TZ)\t$st\t$kind\t$dir/$sc\t$ec\t$(basename "$of")" >> "$RESULTS"
+70c102,107
+<   log "$st: exit $ec $summary"
+---
+>   # v2: the 13e scripts print "FAIL  <check>" and still exit 0 - a failed check counts as a failure here.
+>   local nfail; nfail=$(grep -c '^FAIL  ' "$of"); local npass; npass=$(grep -c '^PASS  ' "$of")
+>   [ "$ec" -eq 0 ] && [ "$nfail" -gt 0 ] && ec=1
+>   summary="$summary [PASS lines $npass, FAIL lines $nfail]"
+>   echo -e "$(date -u +%FT%TZ)\t$st\t$kind\t$dir/$sc\t$ec\t$(basename "$of")" >> "$RESULTS"
+>   log "$st: result $ec $summary"
+105c142,143
+<       mkdir -p "$RUN/screenshots"                            # 13e writes to ../screenshots relative to its directory
+---
+>       mkdir -p "$RUN/screenshots" "$RUN/13e/screenshots"     # 13e writes to ../screenshots relative to its directory
+>       cp "$RUN/13e/common.mjs" "$RUN/13e/red.png" "$RUN/13e/blue.png" "$RUN/13e/amended/"   # verified original common.mjs + fixtures
+108,110c146,148
+<       step S5 test 13e t3-media.mjs || stop_here S5
+<       step S5 test 13e t4-regression.mjs || stop_here S5
+<       mkdir -p "$OUT/screenshots${TAG}/S5-13e"; cp "$RUN/screenshots/"* "$OUT/screenshots${TAG}/S5-13e/" 2>/dev/null ;;
+---
+>       step S5 test 13e/amended t3-media.mjs || stop_here S5      # v2: amended copy (C1), original stays verified + unchanged
+>       step S5 test 13e/amended t4-regression.mjs || stop_here S5
+>       mkdir -p "$OUT/screenshots${TAG}/S5-13e"; cp "$RUN/screenshots/"* "$RUN/13e/screenshots/"* "$OUT/screenshots${TAG}/S5-13e/" 2>/dev/null ;;

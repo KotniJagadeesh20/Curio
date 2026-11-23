@@ -1,0 +1,3 @@
+time	mode	step	exit	classification	output
+2026-11-20T07:11:36Z	neg-c	seed14e	0	pass	seed14e.txt
+2026-11-20T07:11:38Z	neg-c	contract14e	1	UNCLASSIFIED	contract14e.txt

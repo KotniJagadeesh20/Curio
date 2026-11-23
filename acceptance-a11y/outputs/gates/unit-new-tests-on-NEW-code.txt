@@ -1,0 +1,20 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+stderr | src/components/Footer.test.tsx > Footer social links > GitHub link is named and keeps href/target/rel
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/Footer.test.tsx (3 tests) 97ms
+ ✓ src/components/CodeEditor.test.tsx (3 tests) 89ms
+stderr | src/components/Navbar.test.tsx > Navbar > shows Discover to everyone, and no Write link to a visitor
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/Navbar.test.tsx (6 tests) 168ms
+
+ Test Files  3 passed (3)
+      Tests  12 passed (12)
+   Start at  14:54:34
+   Duration  1.55s (transform 202ms, setup 560ms, collect 691ms, tests 354ms, environment 1.43s, prepare 165ms)
+

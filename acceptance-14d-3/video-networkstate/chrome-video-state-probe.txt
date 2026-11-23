@@ -1,0 +1,14 @@
+# probe-video-states.mjs (networkState over time; 2=LOADING 3=NO_SOURCE)
+[["created",3],["inserted sync",3],["after microtask",3],["after task",2],["after 2 frames",2],["sources sync",3],["sources after task",2]]
+
+# probe-video-states-2.mjs (name | networkState | error code | currentSrc | readyState)
+src pending | 3 |  | "" | 0
+src failed | 3 | 4 | "https://videos.example.org/x.webm" | 0
+sources pending | 3 |  | "" | 0
+sources selecting | 2 |  | "https://videos.example.org/a.webm" | 0
+sources all failed | 3 |  | "https://videos.example.org/b.webm" | 0
+source error events | 2
+empty src sync | 3 |  | "" | 0
+empty src later | 3 | 4 | "" | 0
+no source | 0 |  | "" | 0
+no source later | 0 |  | "" | 0

@@ -1,0 +1,156 @@
+NEG a: POST /api/pages/548/publish → 200
+PASS  [J1] Discover: search "java" shows the card
+PASS  [J1] Discover: category "Programming" filter keeps the card  — http://localhost:8080/discover?q=java&category=programming
+PASS  [J1] Discover: no draft/unlisted title in the DOM
+FAIL  [J1] Collection /@anna_java/java-learning: header, outline = published pages in API order, Share  — outline=/@anna_java/java-learning/core-java/hello-java /@anna_java/java-learning/core-java/the-jvm /@anna_java/java-learning/core-java/collections /@anna_java/java-learning/core-java/generics-draft api=/@anna_java/java-learning/core-java/hello-java /@anna_java/java-learning/core-java/the-jvm /@anna_java/java-learning/core-java/collections /@anna_java/java-learning/core-java/generics-draft
+PASS  [R4] PUSH arrival (Start reading → A1): scrollY 0 and the <h1> receives focus (focusin recorded)  — ["A:Start reading","H1:Hello, Java"]
+PASS  [J1] Hello, Java: document title "Hello, Java · AlgoQuest" and the single <h1>  — Hello, Java · AlgoQuest / ["Hello, Java"]
+PASS  [J1] Hello, Java: breadcrumb → collection link + module "Core Java"  — /@anna_java/java-learning | Discover Java Learning Core Java
+PASS  A1 key block: <strong>, <em>, link with a safe rel, <ul> with the seeded items  — rel="noopener noreferrer nofollow ugc" items=["Install the JDK","Write Hello.java","Run it"]
+PASS  [J1] Hello, Java: Previous absent (first page); Next → The JVM  — prev=[] next=["/@anna_java/java-learning/core-java/the-jvm"]
+FAIL  [J1] Hello, Java: every rendered link into the collection is a published page (no draft/unknown)  — /@anna_java/java-learning/core-java/generics-draft
+PASS  [R4] PUSH (sidebar link) from a scrolled page: new page at scrollY 0 with heading focus  — y=0 ["A:The JVMHow the virtual machine","H1:The JVM"]
+PASS  [J1] The JVM: document title "The JVM · AlgoQuest" and the single <h1>  — The JVM · AlgoQuest / ["The JVM"]
+PASS  [J1] The JVM: breadcrumb → collection link + module "Core Java"  — /@anna_java/java-learning | Discover Java Learning Core Java
+PASS  A2 key block: SVG as a rendered <img> data:image/svg+xml (complete, naturalWidth > 0, box > 0, visible), never inline  — {"w":256,"h":96,"wAttr":null,"hAttr":null,"complete":true,"nw":240,"src":"data:image/svg+xml;charset=utf","visible":true}
+PASS  A2 key block: decoded SVG source holds the seeded text and fill; caption shown  — <svg xmlns="http://www.w3.org/2000/svg" height="80" width="240"><rect fill="#e45
+PASS  [J1] The JVM: Previous → Hello, Java; Next → Collections  — prev=["/@anna_java/java-learning/core-java/hello-java"] next=["/@anna_java/java-learning/core-java/collections"]
+FAIL  [J1] The JVM: every rendered link into the collection is a published page (no draft/unknown)  — /@anna_java/java-learning/core-java/generics-draft
+PASS  [R4] Back (POP) to A1: position restored ±5 px, focus not moved  — y=1200 saved=1200 focusins=[]
+PASS  [R4] Forward (POP) to A2: position restored (top) ±5 px, focus not moved  — y=0 []
+PASS  [R4] Refresh on scrolled A1: position restored ±5 px, heading not focused  — y=1200 saved=1200 focusins=[]
+PASS  [J1] Collections: document title "Collections · AlgoQuest" and the single <h1>  — Collections · AlgoQuest / ["Collections"]
+PASS  [J1] Collections: breadcrumb → collection link + module "Core Java"  — /@anna_java/java-learning | Discover Java Learning Core Java
+PASS  A3 key block: code block shows the seeded source in a read-only editor  — readOnly=true text="import java.util.*;\nList<String> names = new ArrayList<>();\n"
+PASS  A3 key block: table header cells and caption  — Type|Ordered|Unique / Collection types
+FAIL  [J1] Collections: Previous → The JVM; Next absent (last page)  — prev=["/@anna_java/java-learning/core-java/the-jvm"] next=["/@anna_java/java-learning/core-java/generics-draft"]
+FAIL  [J1] Collections: every rendered link into the collection is a published page (no draft/unknown)  — /@anna_java/java-learning/core-java/generics-draft /@anna_java/java-learning/core-java/generics-draft
+PASS  [J1] Previous chain returns to A1 (first page)
+PASS  [J1] Deep link and refresh on A2
+PASS  [J1] Back/Forward through the chain
+PASS  [J1] Share copies the canonical collection URL  — http://localhost:8080/@anna_java/java-learning
+PASS  [J1] The shared URL opens the same collection in a fresh logged-out context
+PASS  [J2] Discover: search "travel" shows the card
+PASS  [J2] Discover: category "Travel" filter keeps the card  — http://localhost:8080/discover?q=travel&category=travel
+PASS  [J2] Discover: no draft/unlisted title in the DOM
+PASS  [J2] Collection /@ben_travel/travel-experiences: header, outline = published pages in API order, Share  — outline=/@ben_travel/travel-experiences/lisbon/arrival /@ben_travel/travel-experiences/lisbon/tram-28 /@ben_travel/travel-experiences/porto/ribeira api=/@ben_travel/travel-experiences/lisbon/arrival /@ben_travel/travel-experiences/lisbon/tram-28 /@ben_travel/travel-experiences/porto/ribeira
+PASS  [J2] Arrival: document title "Arrival · AlgoQuest" and the single <h1>  — Arrival · AlgoQuest / ["Arrival"]
+PASS  [J2] Arrival: breadcrumb → collection link + module "Lisbon"  — /@ben_travel/travel-experiences | Discover Travel Experiences Lisbon
+PASS  B1 key block: image "Lisbon rooftops": width/height attributes = uploaded size 800×450  — {"w":"800","h":"450"}
+PASS  B1 key block: image "Lisbon rooftops": correct aspect box BEFORE the image response is released (held)  — {"held":true,"box":[640.6875,361.25],"ratio":1.7735294117647058,"expected":1.7777777777777777}
+PASS  B1 key block: image "Lisbon rooftops": loads through /api/public/media/* only (no /api/media/*)  — /api/public/media/9d65bd26-6f87-4cee-aa83-020056eb4f7a media=0
+PASS  B1 key block: info, tip and warning callouts present
+PASS  [J2] Arrival: Previous absent (first page); Next → Tram 28  — prev=[] next=["/@ben_travel/travel-experiences/lisbon/tram-28"]
+PASS  [J2] Arrival: every rendered link into the collection is a published page (no draft/unknown)  — 5 links
+PASS  [J2] Tram 28: document title "Tram 28 · AlgoQuest" and the single <h1>  — Tram 28 · AlgoQuest / ["Tram 28"]
+PASS  [J2] Tram 28: breadcrumb → collection link + module "Lisbon"  — /@ben_travel/travel-experiences | Discover Travel Experiences Lisbon
+PASS  B2 key block: video iframe box non-zero and 16:9 BEFORE its document loads (held)  — {"before":{"w":640.6875,"h":360.375},"held":1,"loadsBefore":0}
+PASS  B2 key block: iframe box unchanged after its document loads (stable)  — {"before":{"w":640.6875,"h":360.375},"after":{"w":640.6875,"h":360.375}}
+PASS  B2 key block: image "Yellow tram": width/height attributes = uploaded size 600×600  — {"w":"600","h":"600"}
+PASS  B2 key block: image "Yellow tram": correct aspect box BEFORE the image response is released (held)  — {"held":true,"box":[600,600],"ratio":1,"expected":1}
+PASS  B2 key block: image "Yellow tram": loads through /api/public/media/* only (no /api/media/*)  — /api/public/media/d981ca5b-0270-4241-8684-ffc187479258 media=0
+PASS  [J2] Tram 28: Previous → Arrival; Next → Ribeira  — prev=["/@ben_travel/travel-experiences/lisbon/arrival"] next=["/@ben_travel/travel-experiences/porto/ribeira"]
+PASS  [J2] Tram 28: every rendered link into the collection is a published page (no draft/unknown)  — 6 links
+PASS  [J2] B3 reached from B2 via Next (crossing Lisbon → Porto)
+PASS  [J2] Ribeira: document title "Ribeira · AlgoQuest" and the single <h1>  — Ribeira · AlgoQuest / ["Ribeira"]
+PASS  [J2] Ribeira: breadcrumb → collection link + module "Porto"  — /@ben_travel/travel-experiences | Discover Travel Experiences Porto
+PASS  B3 key block: the text renders
+PASS  [J2] Ribeira: Previous → Tram 28; Next absent (last page)  — prev=["/@ben_travel/travel-experiences/lisbon/tram-28"] next=[]
+PASS  [J2] Ribeira: every rendered link into the collection is a published page (no draft/unknown)  — 5 links
+PASS  [J2] Previous chain returns to B1 (first page)
+PASS  [J2] Deep link + refresh on B2; Back/Forward through the chain
+PASS  [J2-360] Discover: search "travel" shows the card
+PASS  [J2-360] Discover: category "Travel" filter keeps the card  — http://localhost:8080/discover?q=travel&category=travel
+PASS  [J2-360] Discover: no draft/unlisted title in the DOM
+PASS  [J2-360] Collection /@ben_travel/travel-experiences: header, outline = published pages in API order, Share  — outline=/@ben_travel/travel-experiences/lisbon/arrival /@ben_travel/travel-experiences/lisbon/tram-28 /@ben_travel/travel-experiences/porto/ribeira api=/@ben_travel/travel-experiences/lisbon/arrival /@ben_travel/travel-experiences/lisbon/tram-28 /@ben_travel/travel-experiences/porto/ribeira
+PASS  [J2-360] Collection: no horizontal overflow
+PASS  [J2-360] Arrival: document title "Arrival · AlgoQuest" and the single <h1>  — Arrival · AlgoQuest / ["Arrival"]
+PASS  [J2-360] Arrival: breadcrumb → collection link + module "Lisbon"  — /@ben_travel/travel-experiences | Discover Travel Experiences Lisbon
+PASS  [J2-360] Arrival: Previous absent (first page); Next → Tram 28  — prev=[] next=["/@ben_travel/travel-experiences/lisbon/tram-28"]
+PASS  [J2-360] Arrival: every rendered link into the collection is a published page (no draft/unknown)  — 5 links
+PASS  [J2-360] B1: sidebar hidden, Contents button shown, no horizontal overflow
+PASS  [J2-360] Contents drawer lists exactly the published outline (before → Tram 28)  — /@ben_travel/travel-experiences/lisbon/arrival /@ben_travel/travel-experiences/lisbon/tram-28 /@ben_travel/travel-experiences/porto/ribeira
+PASS  [R4] Drawer hand-off at 360 px (→ Tram 28): focus goes to the new <h1>, never back to "Contents"  — ["A:Tram 28The classic route","H1:Tram 28"]
+PASS  [J2-360] Tram 28: document title "Tram 28 · AlgoQuest" and the single <h1>  — Tram 28 · AlgoQuest / ["Tram 28"]
+PASS  [J2-360] Tram 28: breadcrumb → collection link + module "Lisbon"  — /@ben_travel/travel-experiences | Discover Travel Experiences Lisbon
+PASS  [J2-360] Tram 28: Previous → Arrival; Next → Ribeira  — prev=["/@ben_travel/travel-experiences/lisbon/arrival"] next=["/@ben_travel/travel-experiences/porto/ribeira"]
+PASS  [J2-360] Tram 28: every rendered link into the collection is a published page (no draft/unknown)  — 6 links
+PASS  [J2-360] Tram 28: no horizontal overflow
+PASS  [J2-360] Contents drawer lists exactly the published outline (before → Ribeira)  — /@ben_travel/travel-experiences/lisbon/arrival /@ben_travel/travel-experiences/lisbon/tram-28 /@ben_travel/travel-experiences/porto/ribeira
+PASS  [R4] Drawer hand-off at 360 px (→ Ribeira): focus goes to the new <h1>, never back to "Contents"  — ["A:RibeiraBy the river","H1:Ribeira"]
+PASS  [J2-360] Ribeira: document title "Ribeira · AlgoQuest" and the single <h1>  — Ribeira · AlgoQuest / ["Ribeira"]
+PASS  [J2-360] Ribeira: breadcrumb → collection link + module "Porto"  — /@ben_travel/travel-experiences | Discover Travel Experiences Porto
+PASS  B3 key block: the text renders
+PASS  [J2-360] Ribeira: Previous → Tram 28; Next absent (last page)  — prev=["/@ben_travel/travel-experiences/lisbon/tram-28"] next=[]
+PASS  [J2-360] Ribeira: every rendered link into the collection is a published page (no draft/unknown)  — 5 links
+PASS  [J2-360] Ribeira: no horizontal overflow
+FAIL  [R3 logged out] A-draft page → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-learning/core-java/generics-draft: "" / Generics draft · AlgoQuest / 200 GET /api/public/pages/anna_java/java-learning/core-java/generics-draft
+PASS  [R3 logged out] "Java Drafts" (draft collection) → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-drafts: "This collection isn't available" / Not available · AlgoQuest / 404 GET /api/public/collections/anna_java/java-drafts
+PASS  [R3 logged out] page in "Java Drafts" → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-drafts/ideas/streams-idea: "This page isn't available" / Not available · AlgoQuest / 404 GET /api/public/pages/anna_java/java-drafts/ideas/streams-idea
+PASS  [R3 logged out] B's draft page → not-available screen, neutral title, API 404 (network + DOM)  — /@ben_travel/travel-experiences/porto/port-wine-draft: "This page isn't available" / Not available · AlgoQuest / 404 GET /api/public/pages/ben_travel/travel-experiences/porto/port-wine-draft
+PASS  [R3 logged out] "Java Notes" (unlisted) opens by direct link with noindex
+PASS  [R3 logged out] unlisted page keeps noindex
+PASS  [R3 logged out] Discover search "java": "Java Notes"/"Java Drafts" absent, no draft title in the DOM  — /@anna_java/java-learning /@admin/java
+PASS  [R3 logged out] Discover search "notes": "Java Notes"/"Java Drafts" absent, no draft title in the DOM
+PASS  [R3 logged out] Discover (no filter): "Java Notes"/"Java Drafts" absent, no draft title in the DOM  — /@ben_travel/travel-experiences /@anna_java/java-learning /@admin/ai /@admin/kubernetes /@admin/docker /@admin/cloud /@admin/java /@admin/git /@admin/linux /@admin/system-design /@admin/dsa
+FAIL  [R3 logged out] Java Learning outline: published pages only, "Generics draft" absent
+FAIL  [R3 logged out] Collections: no Next (draft not linked) and no draft title anywhere on the page
+PASS  [R3 logged out] Travel Experiences outline: published pages only, "Port wine draft" absent
+PASS  [R3 logged out] Ribeira: no Next (draft not linked) and no draft title anywhere on the page
+PASS  [R3 logged out] no draft title in any document title seen  — ["AlgoQuest - Master DSA","AlgoQuest","Ribeira · AlgoQuest"]
+FAIL  [R3 logged in as B] A-draft page → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-learning/core-java/generics-draft: "" / Generics draft · AlgoQuest / 200 GET /api/public/pages/anna_java/java-learning/core-java/generics-draft
+PASS  [R3 logged in as B] "Java Drafts" (draft collection) → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-drafts: "This collection isn't available" / Not available · AlgoQuest / 404 GET /api/public/collections/anna_java/java-drafts
+PASS  [R3 logged in as B] page in "Java Drafts" → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-drafts/ideas/streams-idea: "This page isn't available" / Not available · AlgoQuest / 404 GET /api/public/pages/anna_java/java-drafts/ideas/streams-idea
+PASS  [R3 logged in as B] B's draft page → not-available screen, neutral title, API 404 (network + DOM)  — /@ben_travel/travel-experiences/porto/port-wine-draft: "This page isn't available" / Not available · AlgoQuest / 404 GET /api/public/pages/ben_travel/travel-experiences/porto/port-wine-draft
+PASS  [R3 logged in as B] "Java Notes" (unlisted) opens by direct link with noindex
+PASS  [R3 logged in as B] unlisted page keeps noindex
+PASS  [R3 logged in as B] Discover search "java": "Java Notes"/"Java Drafts" absent, no draft title in the DOM  — /@anna_java/java-learning /@admin/java
+PASS  [R3 logged in as B] Discover search "notes": "Java Notes"/"Java Drafts" absent, no draft title in the DOM
+PASS  [R3 logged in as B] Discover (no filter): "Java Notes"/"Java Drafts" absent, no draft title in the DOM  — /@ben_travel/travel-experiences /@anna_java/java-learning /@admin/ai /@admin/kubernetes /@admin/docker /@admin/cloud /@admin/java /@admin/git /@admin/linux /@admin/system-design /@admin/dsa
+FAIL  [R3 logged in as B] Java Learning outline: published pages only, "Generics draft" absent
+FAIL  [R3 logged in as B] Collections: no Next (draft not linked) and no draft title anywhere on the page
+PASS  [R3 logged in as B] Travel Experiences outline: published pages only, "Port wine draft" absent
+PASS  [R3 logged in as B] Ribeira: no Next (draft not linked) and no draft title anywhere on the page
+PASS  [R3 logged in as B] no draft title in any document title seen  — ["AlgoQuest - Master DSA","AlgoQuest","Ribeira · AlgoQuest"]
+PASS  [R4 keyboard] Tab to "Discover card" + Enter → "Java Learning"  — 22 Tab presses
+PASS  [R4 keyboard] Tab to "Start reading" + Enter → "Hello, Java"  — 1 Tab presses
+PASS  [R4 keyboard] Tab to "Next: The JVM" + Enter → "The JVM"  — 3 Tab presses
+PASS  [R4 keyboard] Tab to "Next: Collections" + Enter → "Collections"  — 3 Tab presses
+PASS  [R4 keyboard] Tab to "Previous: The JVM" + Enter → "The JVM"  — 5 Tab presses
+PASS  [R4 keyboard] Tab to "Previous: Hello, Java" + Enter → "Hello, Java"  — 2 Tab presses
+PASS  [H J1 desktop] no unexpected console errors
+PASS  [H J1 desktop] no unexpected failed requests
+PASS  [H J1 desktop] no Authorization header on public API calls  — 36 public calls, 0 with Authorization
+PASS  [H J1 desktop] zero /api/media/* requests
+PASS  [H J1 share] no unexpected console errors
+PASS  [H J1 share] no unexpected failed requests
+PASS  [H J1 share] no Authorization header on public API calls  — 1 public calls, 0 with Authorization
+PASS  [H J1 share] zero /api/media/* requests
+PASS  [H J1 share target] no unexpected console errors
+PASS  [H J1 share target] no unexpected failed requests
+PASS  [H J1 share target] no Authorization header on public API calls  — 1 public calls, 0 with Authorization
+PASS  [H J1 share target] zero /api/media/* requests
+PASS  [H J2 desktop] no unexpected console errors
+PASS  [H J2 desktop] no unexpected failed requests
+PASS  [H J2 desktop] no Authorization header on public API calls  — 30 public calls, 0 with Authorization
+PASS  [H J2 desktop] zero /api/media/* requests
+PASS  [H J2 mobile] no unexpected console errors
+PASS  [H J2 mobile] no unexpected failed requests
+PASS  [H J2 mobile] no Authorization header on public API calls  — 14 public calls, 0 with Authorization
+PASS  [H J2 mobile] zero /api/media/* requests
+PASS  [H J2 mobile] no horizontal overflow at 360 px (every checked view)
+PASS  [H R3 logged out] no unexpected console errors
+PASS  [H R3 logged out] no unexpected failed requests
+PASS  [H R3 logged out] no Authorization header on public API calls  — 23 public calls, 0 with Authorization
+PASS  [H R3 logged out] zero /api/media/* requests
+PASS  [H R3 logged in as B] no unexpected console errors
+PASS  [H R3 logged in as B] no unexpected failed requests
+PASS  [H R3 logged in as B] no Authorization header on public API calls  — 23 public calls, 0 with Authorization
+PASS  [H R3 logged in as B] zero /api/media/* requests
+FAIL  [H J1 keyboard] no unexpected console errors  — pageerror: Canceled
+PASS  [H J1 keyboard] no unexpected failed requests
+PASS  [H J1 keyboard] no Authorization header on public API calls  — 14 public calls, 0 with Authorization
+PASS  [H J1 keyboard] zero /api/media/* requests
+ALLOW-LIST (exact, R3 404s): 404 GET /api/public/pages/anna_java/java-learning/core-java/generics-draft ; 404 GET /api/public/collections/anna_java/java-drafts ; 404 GET /api/public/pages/anna_java/java-drafts/ideas/streams-idea ; 404 GET /api/public/pages/ben_travel/travel-experiences/porto/port-wine-draft
+
+140/152 checks passed (NEG a)

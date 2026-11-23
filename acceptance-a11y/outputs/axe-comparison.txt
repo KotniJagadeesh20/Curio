@@ -1,0 +1,14 @@
+axe-core: baseline ['4.10.2', '4.10.2', '4.10.2'], new ['4.10.2', '4.10.2', '4.10.2']
+baseline acceptance-14e/14e-2/run-1: scans 22, rendered 22, nodes by impact {'critical': 37, 'serious': 66, 'moderate': 26}, button-name 37, link-name 66
+baseline acceptance-14e/14e-2/run-2: scans 22, rendered 22, nodes by impact {'critical': 37, 'serious': 66, 'moderate': 26}, button-name 37, link-name 66
+baseline acceptance-14e/14e-2/run-3: scans 22, rendered 22, nodes by impact {'critical': 37, 'serious': 66, 'moderate': 26}, button-name 37, link-name 66
+new run-1: scans 22, rendered 22, nodes by impact {'moderate': 26}, button-name 0, link-name 0
+new run-2: scans 22, rendered 22, nodes by impact {'moderate': 26}, button-name 0, link-name 0
+new run-3: scans 22, rendered 22, nodes by impact {'moderate': 26}, button-name 0, link-name 0
+PASS run-1: button-name and link-name = 0 nodes in all views at both viewports
+PASS run-1: every other finding identical to baseline run 1 (26 nodes, rules ['heading-order', 'landmark-complementary-is-top-level', 'page-has-heading-one'])
+PASS run-2: button-name and link-name = 0 nodes in all views at both viewports
+PASS run-2: every other finding identical to baseline run 1 (26 nodes, rules ['heading-order', 'landmark-complementary-is-top-level', 'page-has-heading-one'])
+PASS run-3: button-name and link-name = 0 nodes in all views at both viewports
+PASS run-3: every other finding identical to baseline run 1 (26 nodes, rules ['heading-order', 'landmark-complementary-is-top-level', 'page-has-heading-one'])
+RESULT PASS

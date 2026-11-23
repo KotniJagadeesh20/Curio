@@ -1,0 +1,20 @@
+PASS  C1 every iframe kind has its final box before its document loads (videos 16:9, HTML blocks their height)  — www.youtube.com,player.vimeo.com,html,html before=[[641,360],[641,360],[641,300],[641,360]] iframe load events before the embeds were released: 2 (the 2 HTML frames at most)
+PASS  C1 a 3000 px document arriving changes no iframe box  — after=[[641,360],[641,360],[641,300],[641,360]]
+PASS  C2 settling ends while the iframes above the anchor are still loading (not held to the 5 s cap); anchor restored  — saved 139.75 restored 139.75; inline overflow-anchor during=none after=auto; embeds pending=true
+PASS  C2 the embeds loading afterwards don't move the anchor  — before 139.75 after 139.75
+PASS  C3 overflow-anchor: "none" while settling, the previous inline value ("auto") after completion  — during=none after=auto
+PASS  C3 overflow-anchor: the previous inline value after a user cancellation (wheel)  — during=none after wheel=auto
+PASS  C1–C3 no page errors
+PASS  C4 drawer link to another page: every focusin recorded; "Contents" never among them; heading focused  — focusins=["A:Two","H1:Two"] active=H1:Two
+PASS  C4 control: the current page's own link → the recorder sees focus return to "Contents"  — focusins=["A:Two","BUTTON:Contents"]
+PASS  C5a precondition: the video's box really changes when its metadata arrives (≥ 50 px)  — before 152 px (readyState 0) → after 481 px (readyState 4)
+PASS  C5a settling waits for the video before the anchor (still "none" at 1.5 s, held metadata)  — inline overflow-anchor at 1.5 s=none; anchor top meanwhile 140
+PASS  C5a after the metadata arrives the anchor is where it was saved (±2 px); settling then ends  — saved 140.015625 final 140.015625; inline afterwards=""
+PASS  C5b metadata held 7 s: settling still ends at the 5 s cap (the cap is authoritative)  — settling ended after 5061 ms with readyState 0
+PASS  C5 no page errors
+PASS  C6a Chrome: a declared source before selection starts is NETWORK_NO_SOURCE with currentSrc "" and no error (pending)  — {"src":{"ns":3,"err":null,"cur":""},"sources":{"ns":3,"err":null,"cur":""},"none":{"ns":0,"err":null,"cur":""}}
+PASS  C6a Chrome: failed src → error set; every <source> failed → NETWORK_NO_SOURCE, error null, currentSrc set; no source → NETWORK_EMPTY  — {"src":{"ns":3,"err":4,"cur":"https://videos.example.org/broken-a.webm"},"sources":{"ns":3,"err":null,"cur":"https://videos.example.org/broken-b2.webm"},"none":{"ns":0,"err":null,"cur":""}}
+PASS  C6b a failing video before the anchor: settling waits while its source is pending, ends soon after the failure (well before the cap); anchor ±2 px  — pending at 1.2 s: inline=none; released at 1248 ms, settling ended at 1353 ms (error 4); saved 140 final 140
+PASS  C6 no page errors
+
+18/18 checks passed

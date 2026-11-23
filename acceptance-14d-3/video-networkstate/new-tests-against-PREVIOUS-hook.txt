@@ -1,0 +1,107 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+stderr | src/hooks/usePublicArrival.test.tsx > R1/R3/S3: arrival and focus > PUSH: nothing while pending; on content: one scroll to 0 and the heading focused; then armed with a tracking observer
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ❯ src/hooks/usePublicArrival.test.tsx (72 tests | 6 failed) 232ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_EMPTY with a src attribute (resource selection not started) holds settling; the cap still ends it 6ms
+     → expected true to be false // Object.is equality
+   × settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_EMPTY with child <source> elements (resource selection not started) holds settling; the cap still ends it 3ms
+     → expected true to be false // Object.is equality
+   × settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_NO_SOURCE with a src attribute but nothing tried yet (currentSrc "") holds settling; the cap still ends it 2ms
+     → expected true to be false // Object.is equality
+   × settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_NO_SOURCE with child <source> elements but nothing tried yet (currentSrc "") holds settling; the cap still ends it 4ms
+     → expected true to be false // Object.is equality
+   × settling readiness: native videos (native-video correction, plan rev. 2) > <source> children: pending → trying a candidate → every candidate failed: settling ends only then 2ms
+     → expected true to be false // Object.is equality
+   × settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_EMPTY with a src → loading → metadata: the resize is corrected and settling then ends 2ms
+     → expected true to be false // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/hooks/usePublicArrival.test.tsx > settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_EMPTY with a src attribute (resource selection not started) holds settling; the cap still ends it
+ FAIL  src/hooks/usePublicArrival.test.tsx > settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_EMPTY with child <source> elements (resource selection not started) holds settling; the cap still ends it
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/hooks/usePublicArrival.test.tsx:717:29
+    715|     const { restoration } = returnWithVideo(where, EMPTY);
+    716|     act(() => { vi.advanceTimersByTime(1500); });
+    717|     expect(restoration.off).toBe(false);
+       |                             ^
+    718|     act(() => { vi.advanceTimersByTime(3700); });
+    719|     expect(restoration.off).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/hooks/usePublicArrival.test.tsx > settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_NO_SOURCE with a src attribute but nothing tried yet (currentSrc "") holds settling; the cap still ends it
+ FAIL  src/hooks/usePublicArrival.test.tsx > settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_NO_SOURCE with child <source> elements but nothing tried yet (currentSrc "") holds settling; the cap still ends it
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/hooks/usePublicArrival.test.tsx:730:29
+    728|     const { restoration } = returnWithVideo(where, PENDING);
+    729|     act(() => { vi.advanceTimersByTime(1500); });
+    730|     expect(restoration.off).toBe(false);
+       |                             ^
+    731|     act(() => { vi.advanceTimersByTime(3700); });
+    732|     expect(restoration.off).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/hooks/usePublicArrival.test.tsx > settling readiness: native videos (native-video correction, plan rev. 2) > <source> children: pending → trying a candidate → every candidate failed: settling ends only then
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/hooks/usePublicArrival.test.tsx:738:29
+    736|     const { cur, restoration } = returnWithVideo("before-sources", PEN…
+    737|     act(() => { vi.advanceTimersByTime(600); });
+    738|     expect(restoration.off).toBe(false);
+       |                             ^
+    739|     cur.networkState = HTMLMediaElement.NETWORK_LOADING; cur.currentSr…
+    740|     act(() => { vi.advanceTimersByTime(600); });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  src/hooks/usePublicArrival.test.tsx > settling readiness: native videos (native-video correction, plan rev. 2) > NETWORK_EMPTY with a src → loading → metadata: the resize is corrected and settling then ends
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/hooks/usePublicArrival.test.tsx:750:29
+    748|     const { v, cur, restoration } = returnWithVideo("before", EMPTY);
+    749|     act(() => { vi.advanceTimersByTime(600); });
+    750|     expect(restoration.off).toBe(false);
+       |                             ^
+    751|     cur.networkState = HTMLMediaElement.NETWORK_LOADING;     // resour…
+    752|     act(() => { vi.advanceTimersByTime(600); });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 66 passed (72)
+   Start at  11:22:31
+   Duration  1.18s (transform 115ms, setup 167ms, collect 76ms, tests 232ms, environment 362ms, prepare 38ms)
+
+Restored and byte-identical: True

@@ -1,0 +1,2 @@
+{"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzk1MDAyMTc3LCJleHAiOjE3OTUwODg1Nzd9.a75dsuSbTH0UENe8oCHP3M2hVC297Tu2L4GPWdZTN7I","readerToken":null,"lisbon":10,"arrivalPage":545,"cellarsPage":555,"sundayPage":558,"tramImg":"d47880e2-18e1-4f62-a5fe-4c202d831b7d","tileImg":"486455e0-4d3a-4558-8e42-ced7124dd948"}
+{"longRead":17,"hero":"f8b02dc0-a8e8-4e97-90e2-a6d4b7f65c18"}

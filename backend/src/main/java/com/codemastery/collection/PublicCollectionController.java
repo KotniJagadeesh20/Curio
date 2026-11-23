@@ -16,9 +16,10 @@ public class PublicCollectionController {
     @GetMapping("/collections")
     public PagedResult<PublicCollectionSummary> list(@RequestParam(required = false) String category,
                                                      @RequestParam(required = false) String q,
+                                                     @RequestParam(required = false) String creator,
                                                      @RequestParam(required = false) Integer page,
                                                      @RequestParam(required = false) Integer size) {
-        return service.list(category, q, page, size);
+        return service.list(category, q, creator, page, size);
     }
 
     @GetMapping("/collections/{username}/{slug}")

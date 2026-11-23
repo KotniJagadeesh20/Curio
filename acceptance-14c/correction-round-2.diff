@@ -1,0 +1,381 @@
+--- a/src/hooks/useConfirmedPublicData.ts (correction round 1)
++++ b/src/hooks/useConfirmedPublicData.ts
+@@ -1,4 +1,4 @@
+-import { useEffect, useRef } from "react";
++import { useEffect, useRef, useState } from "react";
+ import type { UseQueryResult } from "@tanstack/react-query";
+ 
+ type Q<T> = Pick<UseQueryResult<T, unknown>, "data" | "dataUpdatedAt" | "isFetching" | "isError"> & {
+@@ -9,32 +9,54 @@
+  * A public query's data, but only once the server has confirmed it during the current visit (Step 14b rule, shared by
+  * the collection and page viewers since 14c).
+  *
+- * Cached data from an earlier visit may be out of date (the content may since have been unpublished or deleted), and
+- * React Query hands it over at once while it revalidates in the background. It is returned only once confirmed: data
+- * fetched since this visit started, or cached data that is not being revalidated. The visit restarts when `visitKey`
+- * changes (the component is reused across URLs). A failed revalidation (404 or another error) also keeps React Query's
+- * old data around: it is never returned then either.
++ * Default (14b, unchanged): cached data from an earlier visit may be out of date (the content may since have been
++ * unpublished or deleted), and React Query hands it over at once while it revalidates in the background. It is returned
++ * only once confirmed: data fetched since this visit started, or cached data that is not being revalidated. The visit
++ * restarts when `visitKey` changes (the component is reused across URLs). A failed revalidation (404 or another error)
++ * also keeps React Query's old data around: it is never returned then either.
+  *
+- * `revalidateOnVisit` (14c): for a query whose KEY can stay the same while the visit changes (the page viewer's
+- * collection outline, shared by every page of a collection). React Query would not refetch it on its own, so it is
+- * refetched whenever the visit starts, and only data fetched since then counts as confirmed: "not being revalidated"
+- * is not enough, because nothing would be revalidating it.
++ * `revalidateOnVisit` (14c): for a query whose KEY stays the same while the visit changes (the page viewer's collection
++ * outline, shared by every page of a collection). Confirmation is tracked per visit, never by comparing timestamps:
++ * - every visit starts its OWN request (`cancelRefetch: true`), superseding any request still in flight from an earlier
++ *   visit (or from before the visit), so a response requested before this visit can never confirm it;
++ * - each request carries the visit's token; only the current visit's request, once it has settled, marks the visit
++ *   confirmed; a superseded or late request from an older visit is ignored;
++ * - until then nothing is returned, whatever the cache holds and whatever its `dataUpdatedAt`;
++ * - after that, data is returned while the query is not in error (a retry after a failed request shows the retried,
++ *   newer data; a later failed refetch hides it again).
++ * React Query can only cancel an in-flight request when the query already has data; with no data it always joins the
++ * running request. So the query's real fetch state is read from the cache when the visit starts (`isFetchingInCache`,
++ * before this visit's own mount fetch can begin): if a request was already running and couldn't be superseded, the
++ * visit waits for it and then sends its own, and only that one confirms the visit.
+  */
+-export function useConfirmedPublicData<T>(q: Q<T>, visitKey: string, opts: { revalidateOnVisit?: boolean } = {}): T | undefined {
+-  const { revalidateOnVisit = false } = opts;
+-  const openedAt = useRef({ visit: visitKey, at: Date.now() });
+-  if (openedAt.current.visit !== visitKey) openedAt.current = { visit: visitKey, at: Date.now() };
++export function useConfirmedPublicData<T>(
++  q: Q<T>, visitKey: string, opts: { revalidateOnVisit?: boolean; isFetchingInCache?: () => boolean } = {},
++): T | undefined {
++  const { revalidateOnVisit = false, isFetchingInCache } = opts;
++  // Recorded when the visit starts (during render, before this visit's own mount fetch can begin): a request that is
++  // already running and can't be superseded (no data yet, so React Query would join it) was requested before the visit.
++  const start = () => ({ visit: visitKey, at: Date.now(), joinsOlderRequest: revalidateOnVisit && q.data === undefined && !!isFetchingInCache?.() });
++  const openedAt = useRef(start());
++  if (openedAt.current.visit !== visitKey) openedAt.current = start();
+ 
++  // visit-scoped confirmation (revalidateOnVisit only)
++  const [settledVisit, setSettledVisit] = useState<string | null>(null);
+   const { refetch } = q;
+   useEffect(() => {
+-    // joins a fetch already in flight (e.g. the first mount's) instead of cancelling it and sending a second request
+-    if (revalidateOnVisit && refetch) void refetch({ cancelRefetch: false });
++    if (!revalidateOnVisit || !refetch) return;
++    let cancelled = false;                     // set when the visit ends: its requests can no longer confirm anything
++    const settle = () => { if (!cancelled) setSettledVisit(visitKey); };
++    // with data, cancelRefetch supersedes any running request; without data React Query joins it, so a request that
++    // was already running when the visit began is awaited first and followed by this visit's own request
++    const own = () => refetch({ cancelRefetch: true }).then(settle, settle);
++    const afterOlder = () => { if (!cancelled) void own(); };
++    if (openedAt.current.joinsOlderRequest) refetch({ cancelRefetch: true }).then(afterOlder, afterOlder);
++    else void own();
++    return () => { cancelled = true; };
+   }, [visitKey, revalidateOnVisit, refetch]);
+ 
+-  // (14b expression unchanged; with revalidateOnVisit, a response in the same millisecond the visit began also counts,
+-  // since cached data from before the visit is always strictly older)
+   const confirmed = revalidateOnVisit
+-    ? q.dataUpdatedAt >= openedAt.current.at
++    ? settledVisit === visitKey
+     : q.dataUpdatedAt > openedAt.current.at || !q.isFetching;
+   return q.data && confirmed && !q.isError ? q.data : undefined;
+ }
+--- a/src/pages/public/PageView.tsx (correction round 1)
++++ b/src/pages/public/PageView.tsx
+@@ -1,4 +1,5 @@
+ import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
++import { useQueryClient } from "@tanstack/react-query";
+ import { Link } from "react-router-dom";
+ import { ChevronRight, ListTree } from "lucide-react";
+ import { Button } from "@/components/ui/button";
+@@ -29,12 +30,17 @@
+  */
+ export default function PageView({ username, collectionSlug, moduleSlug, pageSlug }: Props) {
+   const pq = usePublicPage(username, collectionSlug, moduleSlug, pageSlug);
++  const qc = useQueryClient();
+   const cq = usePublicCollection(username, collectionSlug);
+   const visit = `${username}/${collectionSlug}/${moduleSlug}/${pageSlug}`;
+   const page = useConfirmedPublicData(pq, visit);
+   // The outline's query key is the same for every page of a collection, so it is explicitly revalidated on each visit
+   // and only an outline fetched during this visit is used (an unpublished page never lingers in the navigation).
+-  const outline = useConfirmedPublicData(cq, visit, { revalidateOnVisit: true });
++  const outline = useConfirmedPublicData(cq, visit, {
++    revalidateOnVisit: true,
++    // the real fetch state in the cache (usePublicCollection's key; guarded by the "request already running" test)
++    isFetchingInCache: () => qc.getQueryState(["public", "collection", username, collectionSlug])?.fetchStatus === "fetching",
++  });
+ 
+   const notFound = is404(pq.error) || is404(cq.error);
+   const failed = !notFound && (pq.isError || cq.isError);
+--- a/src/hooks/useConfirmedPublicData.test.tsx (correction round 1)
++++ b/src/hooks/useConfirmedPublicData.test.tsx
+@@ -1,7 +1,14 @@
+-import { renderHook } from "@testing-library/react";
++import { act, renderHook } from "@testing-library/react";
+ import { describe, expect, it, vi } from "vitest";
+ import { useConfirmedPublicData } from "./useConfirmedPublicData";
+ 
++/** A promise the test settles by hand. */
++function deferred() {
++  let resolve: () => void = () => {}, reject: (e: unknown) => void = () => {};
++  const promise = new Promise<void>((res, rej) => { resolve = res; reject = rej; });
++  return { promise, resolve, reject };
++}
++
+ type Q = { data: string | undefined; dataUpdatedAt: number; isFetching: boolean; isError: boolean };
+ const q = (o: Partial<Q>): Q => ({ data: "cached", dataUpdatedAt: Date.now() - 60_000, isFetching: false, isError: false, ...o });
+ 
+@@ -49,28 +56,31 @@
+ });
+ 
+ describe("useConfirmedPublicData with revalidateOnVisit (14c: a query whose key doesn't change between visits)", () => {
+-  it("refetches when the visit starts and on every visit change, joining a fetch already in flight", () => {
+-    const refetch = vi.fn(async () => undefined);
++  it("starts its own request when the visit starts and on every visit change, superseding one in flight", () => {
++    const refetch = vi.fn(() => new Promise<void>(() => {}))   // left pending: only the calls matter here;
+     const { rerender } = renderHook(({ k }: { k: string }) => useConfirmedPublicData({ ...q({}), refetch }, k, { revalidateOnVisit: true }), { initialProps: { k: "a" } });
+     expect(refetch).toHaveBeenCalledTimes(1);
+-    expect(refetch).toHaveBeenCalledWith({ cancelRefetch: false });
++    expect(refetch).toHaveBeenCalledWith({ cancelRefetch: true });
+     rerender({ k: "a" });
+     expect(refetch).toHaveBeenCalledTimes(1);
+     rerender({ k: "b" });
+     expect(refetch).toHaveBeenCalledTimes(2);
+   });
+ 
+-  it("cached data that isn't being fetched is NOT confirmed: only data fetched during this visit is", async () => {
+-    const refetch = vi.fn(async () => undefined);
++  it("cached data that isn't being fetched is NOT confirmed: only after this visit's own request settles", async () => {
++    const r = deferred();
++    const refetch = vi.fn(() => r.promise);
+     const { result, rerender } = renderHook((p: Q) => useConfirmedPublicData({ ...p, refetch }, "a", { revalidateOnVisit: true }), { initialProps: q({ isFetching: false }) });
+     expect(result.current).toBeUndefined();
+-    await new Promise((r) => setTimeout(r, 2));
+-    rerender(q({ data: "fresh", dataUpdatedAt: Date.now() }));
++    rerender(q({ data: "fresh", dataUpdatedAt: Date.now() + 5 }));    // even a newer timestamp doesn't confirm on its own
++    expect(result.current).toBeUndefined();
++    await act(async () => { r.resolve(); });
++    rerender(q({ data: "fresh", dataUpdatedAt: Date.now() + 5 }));
+     expect(result.current).toBe("fresh");
+   });
+ 
+   it("never returns data after an error", () => {
+-    const { result } = renderHook(() => useConfirmedPublicData({ ...q({ dataUpdatedAt: Date.now() + 1, isError: true }), refetch: async () => undefined }, "a", { revalidateOnVisit: true }));
++    const { result } = renderHook(() => useConfirmedPublicData({ ...q({ dataUpdatedAt: Date.now() + 1, isError: true }), refetch: () => new Promise<void>(() => {}) }, "a", { revalidateOnVisit: true }));
+     expect(result.current).toBeUndefined();
+   });
+ 
+@@ -80,3 +90,88 @@
+     expect(refetch).not.toHaveBeenCalled();
+   });
+ });
++
++describe("useConfirmedPublicData revalidateOnVisit: visit-scoped confirmation (review round 2)", () => {
++  const opts = { revalidateOnVisit: true } as const;
++
++  it("cached data whose dataUpdatedAt EQUALS the visit start time is not treated as confirmed", async () => {
++    const T = 1_800_000_000_000;
++    const now = vi.spyOn(Date, "now").mockReturnValue(T);
++    const r = deferred();
++    const { result, rerender } = renderHook((p: Q) => useConfirmedPublicData({ ...p, refetch: () => r.promise }, "a", opts),
++      { initialProps: q({ data: "cached", dataUpdatedAt: T, isFetching: false }) });
++    expect(result.current).toBeUndefined();
++    rerender(q({ data: "cached", dataUpdatedAt: T, isFetching: true }));
++    expect(result.current).toBeUndefined();
++    await act(async () => { r.resolve(); });
++    rerender(q({ data: "fresh", dataUpdatedAt: T }));          // same millisecond, but this visit's request has settled
++    expect(result.current).toBe("fresh");
++    now.mockRestore();
++  });
++
++  it("a request still in flight from the previous visit can't confirm the new one; only the new visit's request does", async () => {
++    const reqs: ReturnType<typeof deferred>[] = [];
++    const refetch = vi.fn(() => { const d = deferred(); reqs.push(d); return d.promise; });
++    const { result, rerender } = renderHook(({ k, p }: { k: string; p: Q }) => useConfirmedPublicData({ ...p, refetch }, k, opts),
++      { initialProps: { k: "a", p: q({}) } });
++    expect(reqs).toHaveLength(1);                                 // visit a's request, still pending
++    rerender({ k: "b", p: q({}) });                               // the URL changes while it is in flight
++    expect(reqs).toHaveLength(2);
++    expect(refetch).toHaveBeenLastCalledWith({ cancelRefetch: true });
++    await act(async () => { reqs[0].resolve(); });               // visit a's request completes after visit b began
++    rerender({ k: "b", p: q({ data: "from a's request", dataUpdatedAt: Date.now() + 1 }) });
++    expect(result.current).toBeUndefined();
++    await act(async () => { reqs[1].resolve(); });               // visit b's own request
++    rerender({ k: "b", p: q({ data: "b", dataUpdatedAt: Date.now() + 2 }) });
++    expect(result.current).toBe("b");
++  });
++
++  it("an older visit's request completing AFTER the newer visit was confirmed changes nothing", async () => {
++    const reqs: ReturnType<typeof deferred>[] = [];
++    const refetch = vi.fn(() => { const d = deferred(); reqs.push(d); return d.promise; });
++    const { result, rerender } = renderHook(({ k, p }: { k: string; p: Q }) => useConfirmedPublicData({ ...p, refetch }, k, opts),
++      { initialProps: { k: "a", p: q({}) } });
++    rerender({ k: "b", p: q({}) });
++    await act(async () => { reqs[1].resolve(); });
++    rerender({ k: "b", p: q({ data: "b" }) });
++    expect(result.current).toBe("b");
++    await act(async () => { reqs[0].resolve(); });
++    rerender({ k: "b", p: q({ data: "b" }) });
++    expect(result.current).toBe("b");
++    rerender({ k: "a", p: q({ data: "b" }) });                    // going back to "a" is a NEW visit: a's old request doesn't count
++    expect(result.current).toBeUndefined();
++    expect(reqs).toHaveLength(3);
++  });
++
++  it("only the current visit's request confirms: a failed one shows nothing until a later success (retry)", async () => {
++    const r = deferred();
++    const { result, rerender } = renderHook((p: Q) => useConfirmedPublicData({ ...p, refetch: () => r.promise }, "a", opts), { initialProps: q({}) });
++    await act(async () => { r.reject(new Error("503")); });
++    rerender(q({ isError: true }));
++    expect(result.current).toBeUndefined();
++    rerender(q({ data: "retried", isError: false }));             // the retry's success
++    expect(result.current).toBe("retried");
++  });
++
++  it("a request that was already running when the visit began (no data, so it can't be superseded) is followed by the visit's own request", async () => {
++    const reqs: ReturnType<typeof deferred>[] = [];
++    const refetch = vi.fn(() => { const d = deferred(); reqs.push(d); return d.promise; });
++    const { result, rerender } = renderHook((p: Q) => useConfirmedPublicData({ ...p, refetch }, "a", { ...opts, isFetchingInCache: () => true }),
++      { initialProps: q({ data: undefined, isFetching: true }) });
++    expect(reqs).toHaveLength(1);                                 // joins the running request
++    await act(async () => { reqs[0].resolve(); });
++    rerender(q({ data: "requested before the visit", dataUpdatedAt: Date.now() + 1 }));
++    expect(result.current).toBeUndefined();
++    expect(reqs).toHaveLength(2);                                 // then sends its own
++    await act(async () => { reqs[1].resolve(); });
++    rerender(q({ data: "own" }));
++    expect(result.current).toBe("own");
++  });
++
++  it("unmounting ends the visit: a late response doesn't update anything", async () => {
++    const r = deferred();
++    const { unmount } = renderHook(() => useConfirmedPublicData({ ...q({}), refetch: () => r.promise }, "a", opts));
++    unmount();
++    await act(async () => { r.resolve(); });                      // no error, no state update after unmount
++  });
++});
+--- a/src/pages/public/PageView.test.tsx (correction round 1)
++++ b/src/pages/public/PageView.test.tsx
+@@ -698,5 +698,123 @@
+     mount(undefined, qc);
+     await screen.findByRole("alert", {}, { timeout: 3000 });
+     expect(noindexTags()).toHaveLength(0);
++  });
++});
++
++describe("PageView: outline confirmation is visit-scoped, not timestamp-based (review round 2)", () => {
++  type Answer = (r: { status: number; body?: unknown }) => void;
++  const COLL_KEY = ["public", "collection", "alice", "lisbon"];
++  const WITH_TRAM = () => outline();
++  const WITHOUT_TRAM = () => outline({ modules: [
++    { slug: "day-2", title: "Day two", position: 1, pages: [{ slug: "museums", title: "Museums", summary: "", position: 0 }] },
++    { slug: "day-1", title: "Day one", position: 0, pages: [{ slug: "arrival", title: "Arrival", summary: "Airport to Alfama", position: 0 }] },
++  ] });
++  /** Every outline request is held in a queue until the test answers it. */
++  const queuedOutline = (routes: Record<string, () => unknown>) => {
++    const pending: Answer[] = [];
++    routes[COLL_API()] = () => new Promise((r) => { pending.push(r); });
++    return { pending, answer: (i: number, body: unknown) => act(() => pending[i]({ status: 200, body })) };
++  };
++  const tramLinkWatcher = () => {
++    const seen: string[] = [];
++    const obs = new MutationObserver(() => {
++      const h = document.querySelector("h1")?.textContent ?? "(no h1)";
++      if (h !== "Arrival" && document.querySelector('a[href="/@alice/lisbon/day-1/tram"]')) seen.push(h);
++    });
++    obs.observe(document.body, { subtree: true, childList: true, attributes: true });
++    return { seen, stop: () => obs.disconnect() };
++  };
++
++  it("cached outline with dataUpdatedAt EQUAL to the visit start time stays hidden until the visit's own request returns", async () => {
++    const T = 1_800_000_000_000;
++    const now = vi.spyOn(Date, "now").mockReturnValue(T);
++    try {
++      const qc = client();
++      qc.setQueryData(COLL_KEY, WITH_TRAM(), { updatedAt: T });   // same millisecond as the visit start
++      const routes: Record<string, () => unknown> = { ...ROUTES() };
++      const o = queuedOutline(routes);
++      installFakeApi(routes as never);
++      mount("/@alice/lisbon/day-2/museums", qc);
++      await waitFor(() => expect(o.pending.length).toBeGreaterThan(0));
++      await act(() => new Promise((r) => setTimeout(r, 20)));      // the page itself has been answered meanwhile
++      expect(screen.getByRole("status")).toBeInTheDocument();
++      expect(screen.queryByRole("navigation", { name: "Collection contents" })).toBeNull();
++      expect(document.querySelector('a[href="/@alice/lisbon/day-1/tram"]')).toBeNull();
++      o.answer(o.pending.length - 1, WITHOUT_TRAM());
++      await h1("Museums");
++      expect(screen.queryByRole("link", { name: /Tram 28/ })).toBeNull();
++    } finally {
++      now.mockRestore();
++    }
++  });
++
++  it("an outline request from the previous visit still in flight when the URL changes can't confirm the new visit, even if it completes later", async () => {
++    const routes: Record<string, () => unknown> = { ...ROUTES() };
++    const o = queuedOutline(routes);
++    installFakeApi(routes as never);
++    const { qc } = mount("/@alice/lisbon/day-1/arrival");
++    await waitFor(() => expect(o.pending.length).toBeGreaterThan(0));
++    o.answer(o.pending.length - 1, WITH_TRAM());
++    await h1("Arrival");
++    const before = o.pending.length;
++    void qc.refetchQueries({ queryKey: COLL_KEY });              // e.g. a window-focus refetch during visit 1: left pending
++    await waitFor(() => expect(o.pending.length).toBe(before + 1));
++    const w = tramLinkWatcher();
++    fireEvent.click(sidebar().getByRole("link", { name: "Museums" }));
++    await waitFor(() => expect(o.pending.length).toBe(before + 2));   // the new visit's own request
++    o.answer(before, WITH_TRAM());                                // the OLD request completes after the new visit began
++    await act(() => new Promise((r) => setTimeout(r, 20)));
++    expect(screen.getByRole("status")).toBeInTheDocument();       // still not confirmed
++    expect(screen.queryByRole("navigation", { name: "Collection contents" })).toBeNull();
++    o.answer(before + 1, WITHOUT_TRAM());                          // only the current visit's response makes it visible
++    await h1("Museums");
++    w.stop();
++    expect(w.seen).toEqual([]);
++    expect(screen.queryByRole("link", { name: /Tram 28/ })).toBeNull();
++    expect(screen.getByRole("link", { name: "Previous: Arrival" })).toBeInTheDocument();
+   });
++
++  it("the previous visit's request completing AFTER the new visit was confirmed doesn't bring the old outline back", async () => {
++    const routes: Record<string, () => unknown> = { ...ROUTES() };
++    const o = queuedOutline(routes);
++    installFakeApi(routes as never);
++    const { qc } = mount("/@alice/lisbon/day-1/arrival");
++    await waitFor(() => expect(o.pending.length).toBeGreaterThan(0));
++    o.answer(o.pending.length - 1, WITH_TRAM());
++    await h1("Arrival");
++    const before = o.pending.length;
++    void qc.refetchQueries({ queryKey: COLL_KEY });
++    await waitFor(() => expect(o.pending.length).toBe(before + 1));
++    fireEvent.click(sidebar().getByRole("link", { name: "Museums" }));
++    await waitFor(() => expect(o.pending.length).toBe(before + 2));
++    o.answer(before + 1, WITHOUT_TRAM());
++    await h1("Museums");
++    const w = tramLinkWatcher();
++    o.answer(before, WITH_TRAM());                                // the superseded old request finally returns
++    await act(() => new Promise((r) => setTimeout(r, 20)));
++    w.stop();
++    expect(w.seen).toEqual([]);
++    expect(screen.queryByRole("link", { name: /Tram 28/ })).toBeNull();
++    expect(qc.getQueryData<PublicCollectionDetail>(COLL_KEY)!.modules.flatMap((m) => m.pages.map((x) => x.slug))).not.toContain("tram");
++  });
++
++  it("an outline request started BEFORE the visit (no cached data, so it can't be superseded) is followed by the visit's own request", async () => {
++    const routes: Record<string, () => unknown> = { ...ROUTES() };
++    const o = queuedOutline(routes);
++    installFakeApi(routes as never);
++    const qc = client();
++    let answerEarly: (v: PublicCollectionDetail) => void = () => {};
++    // e.g. the collection page's request, still running when the reader clicked "Start reading"
++    void qc.prefetchQuery({ queryKey: COLL_KEY, queryFn: () => new Promise<PublicCollectionDetail>((r) => { answerEarly = r; }) });
++    mount("/@alice/lisbon/day-2/museums", qc);
++    await act(() => new Promise((r) => setTimeout(r, 20)));
++    expect(o.pending).toHaveLength(0);                             // joined the running request (React Query can't cancel it)
++    act(() => answerEarly(WITH_TRAM()));                           // it answers with the outline as it was before the visit
++    await waitFor(() => expect(o.pending).toHaveLength(1));         // then the visit's own request
++    expect(screen.getByRole("status")).toBeInTheDocument();
++    expect(document.querySelector('a[href="/@alice/lisbon/day-1/tram"]')).toBeNull();
++    o.answer(0, WITHOUT_TRAM());
++    await h1("Museums");
++    expect(screen.queryByRole("link", { name: /Tram 28/ })).toBeNull();
++  });
+ });

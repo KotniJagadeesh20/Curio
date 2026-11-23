@@ -1,0 +1,6 @@
+time	stage	kind	script	exit	output
+2026-11-19T10:24:59Z	S5	backend	pid=77839 vite=77888	0	S5-backend-s5f4.log
+2026-11-19T10:25:12Z	S5	test	13e/t1-templates.mjs	0	S5-t1-templates-s5f4.txt
+2026-11-19T10:25:23Z	S5	test	13e/t2-editor.mjs	0	S5-t2-editor-s5f4.txt
+2026-11-19T10:25:42Z	S5	test	13e/amended/t3-media.mjs	1	S5-t3-media-s5f4.txt
+2026-11-19T10:26:22Z	S5	test	13e/amended/t4-regression.mjs	1	S5-t4-regression-s5f4.txt

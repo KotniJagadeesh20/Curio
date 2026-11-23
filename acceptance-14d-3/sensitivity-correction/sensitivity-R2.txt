@@ -1,0 +1,20 @@
+# Sensitivity R2: Readiness waits for EVERY image in the content, not only those before the anchor
+File: src/hooks/usePublicArrival.ts
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/1 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 12ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 107ms
+ ❯ src/hooks/usePublicArrival.test.tsx (58 tests | 1 failed) 476ms
+   × settling readiness (S2, as implemented and documented in the correction report) > an image AFTER the anchor that hasn't loaded does not hold settling (it can't move the anchor's top) 19ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 224ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 551ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 506ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 78ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 62ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 410ms
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 470ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/hooks/usePublicArrival.test.tsx:624:29
+

@@ -1,0 +1,4 @@
+643e833770560b8fa2ea00a9e624a9412fed68aaa54dc6077c0ba49b6a5c0b98  backend/src/main/java/com/codemastery/content/TrackRepository.java
+f11ea66315a5cbf37c8d95e42ff25c35861eb850f1284869ef6bb9e8e62a5493  backend/src/main/java/com/codemastery/collection/PublicCollectionService.java
+54240258e93a66874bdb53e4a8acbbb4ff5a6857b42ea2e64982ce28a4c571ea  backend/src/main/java/com/codemastery/collection/PublicCollectionController.java
+3a9dd768cad55191bee30693ff9d8cb58b15b5f5426f30ee3b14e22d3dfe4f6b  backend/src/test/java/com/codemastery/PublicCreatorFilterApiTest.java

@@ -1,0 +1,9 @@
+      O2 read-back: {"api":true,"total":1,"matches":1,"readOnly":false,"occ":"singleFile"}
+PASS  [O2 problem option] /problem/two-sum editor (unique match) is editable and occurrencesHighlight equals the formal baseline "singleFile"  — editors 1, matches 1, now "singleFile"
+PASS  [O3 problem editing] typing into the /problem/two-sum editor changes its model  — model ends with " your java solution here\n\n// d1-o3-typed"
+PASS  [O2/O3] no uncaught error or console error on /problem/two-sum
+      O4 read-back: {"api":true,"total":1,"matches":1,"readOnly":true,"occ":"off"}
+PASS  [O4 creator Preview option] preview code editor (unique match) is read-only with occurrencesHighlight === "off"  — editors 1, matches 1, readOnly true, occurrencesHighlight "off"
+PASS  [O4] no uncaught error or console error on the creator page editor / Preview
+
+5/5 checks passed

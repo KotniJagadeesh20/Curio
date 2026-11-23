@@ -55,17 +55,20 @@ describe("Discover", () => {
     expect(first.getByRole("heading", { name: "Lisbon in 3 days" })).toBeInTheDocument();
     expect(first.getByText("Tram 28 and pastéis.")).toBeInTheDocument();
     expect(first.getByText("Travel")).toBeInTheDocument();
-    expect(first.getByText("Alice")).toBeInTheDocument();
+    // Step 15b (disclosed change): the creator is now a link to /@username, a sibling of the card link (never nested)
+    const alice = screen.getAllByRole("link", { name: "Alice" })[0];
+    expect(alice).toHaveAttribute("href", "/@alice");
+    expect(alice.closest("[data-testid=collection-card]")).toBeNull();
     expect(first.getByText("2 modules · 6 pages")).toBeInTheDocument();
     expect(cards[0].querySelector("img")!.getAttribute("src")).toBe("/api/public/media/aaa/thumb");   // the thumb, not the full cover
     expect(cards[0]).toHaveAttribute("href", "/@alice/lisbon");
 
     expect(cards[1].querySelector("img")!.getAttribute("src")).toBe("https://images.example.org/p.jpg");   // falls back to coverUrl
-    expect(within(cards[1]).getByText("bob")).toBeInTheDocument();                                         // username when no display name
+    expect(screen.getByRole("link", { name: "bob" })).toHaveAttribute("href", "/@bob");                    // username when no display name (Step 15b: a link)
     expect(within(cards[1]).getByText("1 module · 1 page")).toBeInTheDocument();
     expect(cards[2].querySelector("img")).toBeNull();                                                       // unsafe cover is never rendered
     expect(within(cards[2]).getByTestId("cover-placeholder")).toBeInTheDocument();
-    // the creator is plain text (no link to the Step 15 placeholder): the card's only link is the collection
+    // the card link contains no other link (Step 15b: the creator link sits next to it, not inside it)
     expect(cards[0].querySelectorAll("a")).toHaveLength(0);
   });
 

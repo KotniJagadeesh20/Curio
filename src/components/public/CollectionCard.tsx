@@ -8,15 +8,18 @@ import type { PublicCollectionSummary } from "@/lib/types";
 const plural = (n: number, one: string) => `${n} ${n === 1 ? one : `${one}s`}`;
 
 /**
- * One published collection on Discover: cover (the thumb when there is one), title, description, category, creator and
- * counts. The whole card links to the collection. The creator is plain text until Step 15 makes `/@username` a real page.
+ * One published collection (Discover, creator profile): cover (the thumb when there is one), title, description, category,
+ * counts and creator. The card body links to the collection. Step 15b: the creator line is a separate link to
+ * `/@username` (built from the username, never the display name), placed after the card link, never nested inside it.
+ * `showCreator={false}` on the creator's own profile, where a link back to the same page would only repeat it.
  */
-export function CollectionCard({ c }: { c: PublicCollectionSummary }) {
+export function CollectionCard({ c, showCreator = true }: { c: PublicCollectionSummary; showCreator?: boolean }) {
   const cover = publicMediaSrc(c.coverThumbUrl) ?? publicMediaSrc(c.coverUrl);
   const by = c.creator.displayName || c.creator.username;
   return (
+    <div className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60">
     <Link to={paths.collection(c.creator.username, c.slug)} data-testid="collection-card"
-      className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+      className="group flex flex-1 flex-col rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring">
       <div className="aspect-[16/9] w-full overflow-hidden bg-muted">
         {cover ? (
           <img src={cover} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform group-hover:scale-[1.02]" />
@@ -31,10 +34,15 @@ export function CollectionCard({ c }: { c: PublicCollectionSummary }) {
         <h2 className="text-lg font-semibold leading-snug break-words group-hover:underline">{c.title}</h2>
         {c.description && <p className="line-clamp-3 text-sm text-muted-foreground break-words">{c.description}</p>}
         <div className="mt-auto pt-2 text-xs text-muted-foreground">
-          <p>By <span className="font-medium text-foreground">{by}</span></p>
           <p>{plural(c.moduleCount, "module")} · {plural(c.pageCount, "page")}</p>
         </div>
       </div>
     </Link>
+    {showCreator && (
+      <p className="px-4 pb-4 text-xs text-muted-foreground">
+        By <Link to={paths.creatorProfile(c.creator.username)} className="font-medium text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm">{by}</Link>
+      </p>
+    )}
+    </div>
   );
 }

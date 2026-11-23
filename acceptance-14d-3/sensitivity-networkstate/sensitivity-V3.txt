@@ -1,0 +1,21 @@
+# Sensitivity V3: Document-order check removed for videos (every video in the content holds settling)
+File: src/hooks/usePublicArrival.ts
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/1 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 21ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 126ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 259ms
+ ❯ src/hooks/usePublicArrival.test.tsx (72 tests | 2 failed) 775ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > a video inside the anchor without metadata does not hold settling 9ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > a video after the anchor without metadata does not hold settling 3ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 637ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 587ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 75ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 112ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 623ms
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 639ms
+      Tests  2 failed | 120 passed (122)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/hooks/usePublicArrival.test.tsx:766:29
+

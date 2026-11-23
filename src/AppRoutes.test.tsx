@@ -24,6 +24,13 @@ vi.mock("@/pages/public/Discover", () => stub("discover-page"));
 vi.mock("@/pages/public/CollectionView", () => ({
   default: ({ username, slug }: { username: string; slug: string }) => <div data-testid="collection-view">{`collection-view ${username}/${slug}`}</div>,
 }));
+vi.mock("@/pages/public/CreatorProfile", () => ({
+  default: ({ username }: { username: string }) => <div data-testid="creator-profile">{`creator-profile ${username}`}</div>,
+}));
+vi.mock("@/pages/public/PageView", () => ({
+  default: ({ username, collectionSlug, moduleSlug, pageSlug }: { username: string; collectionSlug: string; moduleSlug: string; pageSlug: string }) =>
+    <div data-testid="page-view">{`page-view ${username}/${collectionSlug}/${moduleSlug}/${pageSlug}`}</div>,
+}));
 vi.mock("@/pages/admin/AdminDashboard", () => stub("admin-dashboard"));
 vi.mock("@/pages/admin/AdminProblems", () => stub("admin-problems"));
 vi.mock("@/pages/admin/AdminUsers", () => stub("admin-users"));
@@ -50,7 +57,6 @@ const visit = (path: string) =>
 const anon = () => { auth.state = { user: null, loading: false, isAdmin: false }; };
 const asUser = () => { auth.state = { user: { name: "Ann", role: "USER" }, loading: false, isAdmin: false }; };
 const asAdmin = () => { auth.state = { user: { name: "Root", role: "ADMIN" }, loading: false, isAdmin: true }; };
-const param = (n: string) => screen.getByTestId(`param-${n}`).textContent;
 
 beforeEach(anon);
 
@@ -60,10 +66,10 @@ describe("public creator routes (anonymous)", () => {
     expect(screen.getByText("discover-page")).toBeInTheDocument();
   });
 
-  it("renders @username, lower-cased", () => {
+  // Step 15b (disclosed change): the Step 15 placeholder was replaced by the real profile page
+  it("renders @username with the real creator profile (since Step 15b), lower-cased", () => {
     visit("/@Alice");
-    expect(screen.getByRole("heading", { name: "@alice" })).toBeInTheDocument();
-    expect(param("username")).toBe("alice");
+    expect(screen.getByTestId("creator-profile")).toHaveTextContent("creator-profile alice");
   });
 
   it("renders /@username/collection with the real collection viewer (since Step 14b), handle lower-cased", () => {
@@ -71,9 +77,14 @@ describe("public creator routes (anonymous)", () => {
     expect(screen.getByTestId("collection-view")).toHaveTextContent("collection-view alice/java-notes");
   });
 
-  it("renders the module-qualified page route with all four parameters", () => {
+  it("renders the module-qualified page route with the real page viewer (since Step 14c) and all four parameters", () => {
     visit("/@alice/java/core/intro");
-    expect([param("username"), param("collectionSlug"), param("moduleSlug"), param("pageSlug")]).toEqual(["alice", "java", "core", "intro"]);
+    expect(screen.getByTestId("page-view")).toHaveTextContent("page-view alice/java/core/intro");
+  });
+
+  it("the page route lower-cases the handle and passes the slugs as-is", () => {
+    visit("/@Alice/java/core/intro");
+    expect(screen.getByTestId("page-view")).toHaveTextContent("page-view alice/java/core/intro");
   });
 
   it.each(["/alice", "/alice/java", "/alice/java/core/intro", "/@", "/@ab", "/@1abc", "/@al-ice", "/someword"])(

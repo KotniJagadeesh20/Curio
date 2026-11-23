@@ -1,0 +1,50 @@
+SCAN  Discover @ 1280px — critical 0, serious 0, moderate 0, minor 0 (rules)
+SCAN  Collection (Java Learning) @ 1280px — critical 0, serious 0, moderate 0, minor 0 (rules)
+SCAN  Collection (Travel Experiences) @ 1280px — critical 0, serious 0, moderate 0, minor 0 (rules)
+SCAN  Page A1 (text: bold/italic/link/list, heading) @ 1280px — critical 0, serious 0, moderate 1, minor 0 (rules)
+SCAN  Page A2 (svg) @ 1280px — critical 0, serious 0, moderate 2, minor 0 (rules)
+SCAN  Page A3 (code, table) @ 1280px — critical 0, serious 0, moderate 2, minor 0 (rules)
+SCAN  Page B1 (image, callouts) @ 1280px — critical 0, serious 0, moderate 2, minor 0 (rules)
+SCAN  Page B2 (video, image) @ 1280px — critical 0, serious 0, moderate 2, minor 0 (rules)
+SCAN  Page B3 (text) @ 1280px — critical 0, serious 0, moderate 2, minor 0 (rules)
+SCAN  Not available (A-draft) @ 1280px — critical 0, serious 0, moderate 1, minor 0 (rules)
+SCAN  Error state (page API 503) @ 1280px — critical 0, serious 0, moderate 1, minor 0 (rules)
+SCAN  Discover @ 360px — critical 0, serious 0, moderate 0, minor 0 (rules)
+SCAN  Collection (Java Learning) @ 360px — critical 0, serious 0, moderate 0, minor 0 (rules)
+SCAN  Collection (Travel Experiences) @ 360px — critical 0, serious 0, moderate 0, minor 0 (rules)
+SCAN  Page A1 (text: bold/italic/link/list, heading) @ 360px — critical 0, serious 0, moderate 0, minor 0 (rules)
+SCAN  Page A2 (svg) @ 360px — critical 0, serious 0, moderate 1, minor 0 (rules)
+SCAN  Page A3 (code, table) @ 360px — critical 0, serious 0, moderate 1, minor 0 (rules)
+SCAN  Page B1 (image, callouts) @ 360px — critical 0, serious 0, moderate 2, minor 0 (rules)
+SCAN  Page B2 (video, image) @ 360px — critical 0, serious 0, moderate 1, minor 0 (rules)
+SCAN  Page B3 (text) @ 360px — critical 0, serious 0, moderate 1, minor 0 (rules)
+SCAN  Not available (A-draft) @ 360px — critical 0, serious 0, moderate 1, minor 0 (rules)
+SCAN  Error state (page API 503) @ 360px — critical 0, serious 0, moderate 1, minor 0 (rules)
+
+axe-core 4.10.2
+SERIOUS / CRITICAL findings (view | viewport | impact | rule | count | targets):
+  none
+MODERATE nodes: 26 · MINOR nodes: 0
+  (moderate) Page A1 (text: bold/italic/link/list, heading) | 1280px | landmark-complementary-is-top-level | 1
+  (moderate) Page A2 (svg) | 1280px | heading-order | 1
+  (moderate) Page A2 (svg) | 1280px | landmark-complementary-is-top-level | 1
+  (moderate) Page A3 (code, table) | 1280px | heading-order | 1
+  (moderate) Page A3 (code, table) | 1280px | landmark-complementary-is-top-level | 1
+  (moderate) Page B1 (image, callouts) | 1280px | heading-order | 1
+  (moderate) Page B1 (image, callouts) | 1280px | landmark-complementary-is-top-level | 4
+  (moderate) Page B2 (video, image) | 1280px | heading-order | 1
+  (moderate) Page B2 (video, image) | 1280px | landmark-complementary-is-top-level | 1
+  (moderate) Page B3 (text) | 1280px | heading-order | 1
+  (moderate) Page B3 (text) | 1280px | landmark-complementary-is-top-level | 1
+  (moderate) Not available (A-draft) | 1280px | heading-order | 1
+  (moderate) Error state (page API 503) | 1280px | page-has-heading-one | 1
+  (moderate) Page A2 (svg) | 360px | heading-order | 1
+  (moderate) Page A3 (code, table) | 360px | heading-order | 1
+  (moderate) Page B1 (image, callouts) | 360px | heading-order | 1
+  (moderate) Page B1 (image, callouts) | 360px | landmark-complementary-is-top-level | 3
+  (moderate) Page B2 (video, image) | 360px | heading-order | 1
+  (moderate) Page B3 (text) | 360px | heading-order | 1
+  (moderate) Not available (A-draft) | 360px | heading-order | 1
+  (moderate) Error state (page API 503) | 360px | page-has-heading-one | 1
+
+22/22 scans performed (report-only; findings do not fail the run)

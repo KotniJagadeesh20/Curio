@@ -1,0 +1,308 @@
+--- a/src/hooks/useConfirmedPublicData.ts (first 14c delivery)
++++ b/src/hooks/useConfirmedPublicData.ts
+@@ -1,6 +1,10 @@
+-import { useRef } from "react";
++import { useEffect, useRef } from "react";
+ import type { UseQueryResult } from "@tanstack/react-query";
+ 
++type Q<T> = Pick<UseQueryResult<T, unknown>, "data" | "dataUpdatedAt" | "isFetching" | "isError"> & {
++  refetch?: (opts: { cancelRefetch: boolean }) => Promise<unknown>;
++};
++
+ /**
+  * A public query's data, but only once the server has confirmed it during the current visit (Step 14b rule, shared by
+  * the collection and page viewers since 14c).
+@@ -10,10 +14,27 @@
+  * fetched since this visit started, or cached data that is not being revalidated. The visit restarts when `visitKey`
+  * changes (the component is reused across URLs). A failed revalidation (404 or another error) also keeps React Query's
+  * old data around: it is never returned then either.
++ *
++ * `revalidateOnVisit` (14c): for a query whose KEY can stay the same while the visit changes (the page viewer's
++ * collection outline, shared by every page of a collection). React Query would not refetch it on its own, so it is
++ * refetched whenever the visit starts, and only data fetched since then counts as confirmed: "not being revalidated"
++ * is not enough, because nothing would be revalidating it.
+  */
+-export function useConfirmedPublicData<T>(q: Pick<UseQueryResult<T>, "data" | "dataUpdatedAt" | "isFetching" | "isError">, visitKey: string): T | undefined {
++export function useConfirmedPublicData<T>(q: Q<T>, visitKey: string, opts: { revalidateOnVisit?: boolean } = {}): T | undefined {
++  const { revalidateOnVisit = false } = opts;
+   const openedAt = useRef({ visit: visitKey, at: Date.now() });
+   if (openedAt.current.visit !== visitKey) openedAt.current = { visit: visitKey, at: Date.now() };
+-  const confirmed = q.dataUpdatedAt > openedAt.current.at || !q.isFetching;
++
++  const { refetch } = q;
++  useEffect(() => {
++    // joins a fetch already in flight (e.g. the first mount's) instead of cancelling it and sending a second request
++    if (revalidateOnVisit && refetch) void refetch({ cancelRefetch: false });
++  }, [visitKey, revalidateOnVisit, refetch]);
++
++  // (14b expression unchanged; with revalidateOnVisit, a response in the same millisecond the visit began also counts,
++  // since cached data from before the visit is always strictly older)
++  const confirmed = revalidateOnVisit
++    ? q.dataUpdatedAt >= openedAt.current.at
++    : q.dataUpdatedAt > openedAt.current.at || !q.isFetching;
+   return q.data && confirmed && !q.isError ? q.data : undefined;
+ }
+--- a/src/pages/public/PageView.tsx (first 14c delivery)
++++ b/src/pages/public/PageView.tsx
+@@ -32,16 +32,25 @@
+   const cq = usePublicCollection(username, collectionSlug);
+   const visit = `${username}/${collectionSlug}/${moduleSlug}/${pageSlug}`;
+   const page = useConfirmedPublicData(pq, visit);
+-  const outline = useConfirmedPublicData(cq, visit);
++  // The outline's query key is the same for every page of a collection, so it is explicitly revalidated on each visit
++  // and only an outline fetched during this visit is used (an unpublished page never lingers in the navigation).
++  const outline = useConfirmedPublicData(cq, visit, { revalidateOnVisit: true });
+ 
+   const notFound = is404(pq.error) || is404(cq.error);
+   const failed = !notFound && (pq.isError || cq.isError);
+   const ready = !notFound && !failed && page && outline ? { page, outline } : null;
+ 
+-  // Titles and noindex come from confirmed data only: never a cached title or tag after a failed revalidation.
++  // The title comes from confirmed data only: never a cached title after a failed revalidation.
+   useDocumentTitle(notFound ? "Not available" : ready ? ready.page.page.title : null);
+-  useNoIndex(ready?.page.collection.unlisted === true);
+ 
++  // noindex follows the last CONFIRMED page: set or cleared when a page is confirmed, cleared on a definitive 404, and
++  // otherwise kept as it was. So it never drops while moving between unlisted pages (the next page is briefly
++  // unconfirmed) or while only the outline query is failing, and it never comes from unconfirmed cached data.
++  const [lastUnlisted, setLastUnlisted] = useState(false);
++  const unlisted = notFound ? false : page ? page.collection.unlisted === true : lastUnlisted;
++  if (unlisted !== lastUnlisted) setLastUnlisted(unlisted);
++  useNoIndex(unlisted);
++
+   if (notFound) return <Shell><NotAvailable what="page" /></Shell>;
+   if (failed) {
+     const error = pq.isError ? pq.error : cq.error;
+--- a/src/hooks/useConfirmedPublicData.test.tsx (first 14c delivery)
++++ b/src/hooks/useConfirmedPublicData.test.tsx
+@@ -1,5 +1,5 @@
+ import { renderHook } from "@testing-library/react";
+-import { describe, expect, it } from "vitest";
++import { describe, expect, it, vi } from "vitest";
+ import { useConfirmedPublicData } from "./useConfirmedPublicData";
+ 
+ type Q = { data: string | undefined; dataUpdatedAt: number; isFetching: boolean; isError: boolean };
+@@ -47,3 +47,36 @@
+     expect(result.current).toBeUndefined();
+   });
+ });
++
++describe("useConfirmedPublicData with revalidateOnVisit (14c: a query whose key doesn't change between visits)", () => {
++  it("refetches when the visit starts and on every visit change, joining a fetch already in flight", () => {
++    const refetch = vi.fn(async () => undefined);
++    const { rerender } = renderHook(({ k }: { k: string }) => useConfirmedPublicData({ ...q({}), refetch }, k, { revalidateOnVisit: true }), { initialProps: { k: "a" } });
++    expect(refetch).toHaveBeenCalledTimes(1);
++    expect(refetch).toHaveBeenCalledWith({ cancelRefetch: false });
++    rerender({ k: "a" });
++    expect(refetch).toHaveBeenCalledTimes(1);
++    rerender({ k: "b" });
++    expect(refetch).toHaveBeenCalledTimes(2);
++  });
++
++  it("cached data that isn't being fetched is NOT confirmed: only data fetched during this visit is", async () => {
++    const refetch = vi.fn(async () => undefined);
++    const { result, rerender } = renderHook((p: Q) => useConfirmedPublicData({ ...p, refetch }, "a", { revalidateOnVisit: true }), { initialProps: q({ isFetching: false }) });
++    expect(result.current).toBeUndefined();
++    await new Promise((r) => setTimeout(r, 2));
++    rerender(q({ data: "fresh", dataUpdatedAt: Date.now() }));
++    expect(result.current).toBe("fresh");
++  });
++
++  it("never returns data after an error", () => {
++    const { result } = renderHook(() => useConfirmedPublicData({ ...q({ dataUpdatedAt: Date.now() + 1, isError: true }), refetch: async () => undefined }, "a", { revalidateOnVisit: true }));
++    expect(result.current).toBeUndefined();
++  });
++
++  it("without the option, no refetch is triggered (14b behavior)", () => {
++    const refetch = vi.fn(async () => undefined);
++    renderHook(() => useConfirmedPublicData({ ...q({}), refetch }, "a"));
++    expect(refetch).not.toHaveBeenCalled();
++  });
++});
+--- a/src/pages/public/PageView.test.tsx (first 14c delivery)
++++ b/src/pages/public/PageView.test.tsx
+@@ -450,7 +450,7 @@
+     mount(undefined, cachedClient(pageView("day-1", "tram", "Old cached title", { unlisted: true })));
+     await screen.findByRole("status");
+     coll({ status: 200, body: outline() });
+-    await new Promise((r) => setTimeout(r, 10));
++    await act(() => new Promise((r) => setTimeout(r, 10)));
+     expect(screen.getByRole("status")).toBeInTheDocument();   // the outline alone never shows the stale page
+     expectNoReadingView();
+     expect(noindexTags()).toHaveLength(0);
+@@ -464,7 +464,7 @@
+     mount(undefined, cachedClient());
+     await screen.findByRole("status");
+     page({ status: 200, body: pageView("day-1", "tram", "Tram 28") });
+-    await new Promise((r) => setTimeout(r, 10));
++    await act(() => new Promise((r) => setTimeout(r, 10)));
+     expectNoReadingView();
+     coll({ status: 200, body: outline() });
+     await h1("Tram 28");
+@@ -537,3 +537,166 @@
+     expect(screen.queryByText("Tram 28")).toBeNull();
+   });
+ });
++
++// ---------------------------------------------------------------------------------------------------------------------
++// 14c review fixes
++// ---------------------------------------------------------------------------------------------------------------------
++describe("PageView: the outline is revalidated on every page visit (same collection)", () => {
++  type Answer = (r: { status: number; body?: unknown }) => void;
++  const WITHOUT_TRAM = () => outline({ modules: [
++    { slug: "day-2", title: "Day two", position: 1, pages: [{ slug: "museums", title: "Museums", summary: "", position: 0 }] },
++    { slug: "day-1", title: "Day one", position: 0, pages: [{ slug: "arrival", title: "Arrival", summary: "Airport to Alfama", position: 0 }] },
++  ] });
++
++  it("a page unpublished between two visits never appears in the sidebar or previous/next, even while the outline is pending", async () => {
++    let tramUnpublished = false;
++    let answerOutline: Answer = () => {};
++    const routes: Record<string, () => unknown> = { ...ROUTES() };
++    routes[COLL_API()] = () => (tramUnpublished ? new Promise((r) => { answerOutline = r; }) : ok(outline()));
++    routes[PAGE_API("day-1", "tram")] = () => (tramUnpublished ? err(404, "Not found") : ok(pageView("day-1", "tram", "Tram 28")));
++    const fake = installFakeApi(routes as never);
++    mount("/@alice/lisbon/day-1/arrival");
++    await h1("Arrival");
++    expect(sidebar().getByRole("link", { name: "Tram 28" })).toBeInTheDocument();
++    expect(screen.getByRole("link", { name: "Next: Tram 28" })).toBeInTheDocument();
++    const outlineCalls = fake.sent("GET", "/public/collections/alice/lisbon").length;
++
++    tramUnpublished = true;                                    // the creator unpublishes "Tram 28"
++    const seen: string[] = [];
++    const obs = new MutationObserver(() => {
++      if (document.querySelector('a[href="/@alice/lisbon/day-1/tram"]')) seen.push("tram link");
++    });
++    obs.observe(document.body, { subtree: true, childList: true, attributes: true });
++    fireEvent.click(sidebar().getByRole("link", { name: "Museums" }));   // same collection: the outline's key doesn't change
++
++    await waitFor(() => expect(fake.sent("GET", "/public/collections/alice/lisbon").length).toBe(outlineCalls + 1));   // revalidated
++    expect(screen.getByRole("status")).toHaveTextContent("Loading page...");          // the old outline is not used meanwhile
++    expect(screen.queryByRole("navigation", { name: "Collection contents" })).toBeNull();
++    expect(screen.queryByRole("navigation", { name: "Page navigation" })).toBeNull();
++
++    act(() => answerOutline({ status: 200, body: WITHOUT_TRAM() }));
++    await h1("Museums");
++    obs.disconnect();
++    expect(seen).toEqual([]);
++    expect(document.querySelector('a[href="/@alice/lisbon/day-1/tram"]')).toBeNull();
++    expect(sidebar().queryByRole("link", { name: "Tram 28" })).toBeNull();
++    expect(screen.getByRole("link", { name: "Previous: Arrival" })).toHaveAttribute("href", "/@alice/lisbon/day-1/arrival");
++  });
++
++  it("also with an immediate response: previous/next skips the unpublished page", async () => {
++    let tramUnpublished = false;
++    const routes: Record<string, () => unknown> = { ...ROUTES() };
++    routes[COLL_API()] = () => ok(tramUnpublished ? WITHOUT_TRAM() : outline());
++    installFakeApi(routes as never);
++    mount("/@alice/lisbon/day-1/arrival");
++    await h1("Arrival");
++    tramUnpublished = true;
++    fireEvent.click(sidebar().getByRole("link", { name: "Museums" }));
++    await h1("Museums");
++    expect(screen.getByRole("link", { name: "Previous: Arrival" })).toBeInTheDocument();
++    expect(screen.queryByRole("link", { name: /Tram 28/ })).toBeNull();
++  });
++
++  it("an outline that fails to revalidate on the next visit shows the error state, never the old outline", async () => {
++    let down = false;
++    const routes: Record<string, () => unknown> = { ...ROUTES() };
++    routes[COLL_API()] = () => (down ? err(503, "Service unavailable") : ok(outline()));
++    installFakeApi(routes as never);
++    mount("/@alice/lisbon/day-1/arrival");
++    await h1("Arrival");
++    down = true;
++    fireEvent.click(sidebar().getByRole("link", { name: "Museums" }));
++    expect(await screen.findByRole("alert", {}, { timeout: 3000 })).toHaveTextContent("Service unavailable");
++    expect(screen.queryByRole("navigation", { name: "Collection contents" })).toBeNull();
++  });
++
++  it("the first visit sends one outline request (the revalidation joins the initial fetch)", async () => {
++    const fake = installFakeApi(ROUTES());
++    mount();
++    await h1("Tram 28");
++    expect(fake.sent("GET", "/public/collections/alice/lisbon")).toHaveLength(1);
++  });
++});
++
++describe("PageView: noindex is kept across unlisted navigation", () => {
++  type Answer = (r: { status: number; body?: unknown }) => void;
++  /** Records every time the managed tag leaves <head>. */
++  const watchRemovals = () => {
++    const removed: string[] = [];
++    const obs = new MutationObserver((ms) => {
++      for (const m of ms) for (const n of m.removedNodes) if (n instanceof HTMLMetaElement && n.hasAttribute(NOINDEX_ATTR)) removed.push(n.outerHTML);
++    });
++    obs.observe(document.head, { childList: true });
++    return { removed, stop: () => obs.disconnect() };
++  };
++
++  it("unlisted → unlisted: the tag is never removed, also while the next page is pending (MutationObserver)", async () => {
++    let answerMuseums: Answer = () => {};
++    let answerOutline: Answer = () => {};
++    let held = false;
++    const routes: Record<string, () => unknown> = { ...ROUTES({ unlisted: true }) };
++    routes[PAGE_API("day-2", "museums")] = () => new Promise((r) => { answerMuseums = r; });
++    routes[COLL_API()] = () => (held ? new Promise((r) => { answerOutline = r; }) : ok(outline({ unlisted: true })));
++    installFakeApi(routes as never);
++    mount();
++    await h1("Tram 28");
++    expect(noindexTags()).toHaveLength(1);
++    const w = watchRemovals();
++    held = true;
++    fireEvent.click(screen.getByRole("link", { name: "Next: Museums" }));
++    await screen.findByRole("status");
++    expect(noindexTags()).toHaveLength(1);                     // still there while nothing is confirmed
++    act(() => answerOutline({ status: 200, body: outline({ unlisted: true }) }));
++    await act(() => new Promise((r) => setTimeout(r, 10)));
++    expect(noindexTags()).toHaveLength(1);
++    act(() => answerMuseums({ status: 200, body: pageView("day-2", "museums", "Museums", { unlisted: true }) }));
++    await h1("Museums");
++    w.stop();
++    expect(w.removed).toEqual([]);
++    expect(noindexTags()).toHaveLength(1);
++  });
++
++  it("a page confirmed unlisted while the outline returns 503: error state, noindex kept", async () => {
++    const routes: Record<string, () => unknown> = { ...ROUTES({ unlisted: true }) };
++    routes[COLL_API()] = () => err(503, "Service unavailable");
++    installFakeApi(routes as never);
++    mount();
++    expect(await screen.findByRole("alert", {}, { timeout: 3000 })).toHaveTextContent("Service unavailable");
++    expect(noindexTags()).toHaveLength(1);
++  });
++
++  it("unlisted page, then the outline starts failing on the next visit: the tag is not removed", async () => {
++    let down = false;
++    const routes: Record<string, () => unknown> = { ...ROUTES({ unlisted: true }) };
++    routes[COLL_API()] = () => (down ? err(503, "Service unavailable") : ok(outline({ unlisted: true })));
++    installFakeApi(routes as never);
++    mount();
++    await h1("Tram 28");
++    const w = watchRemovals();
++    down = true;
++    fireEvent.click(screen.getByRole("link", { name: "Next: Museums" }));
++    await screen.findByRole("alert", {}, { timeout: 3000 });
++    w.stop();
++    expect(w.removed).toEqual([]);
++    expect(noindexTags()).toHaveLength(1);
++  });
++
++  it("unlisted → a page that 404s (navigation): the tag is removed on the definitive 404", async () => {
++    installFakeApi(ROUTES({ unlisted: true }));
++    mount("/@alice/lisbon/day-1/tram", client(), ["/@alice/lisbon/day-2/secret"]);
++    await h1("Tram 28");
++    expect(noindexTags()).toHaveLength(1);
++    fireEvent.click(screen.getByRole("button", { name: "go /@alice/lisbon/day-2/secret" }));
++    expect(await screen.findByTestId("not-available")).toBeInTheDocument();
++    expect(noindexTags()).toHaveLength(0);
++  });
++
++  it("a cached unlisted page that was never confirmed in this visit never adds the tag, even if the outline fails", async () => {
++    const qc = client();
++    qc.setQueryData(["public", "page", "alice", "lisbon", "day-1", "tram"], pageView("day-1", "tram", "Tram 28", { unlisted: true }), { updatedAt: Date.now() - 60_000 });
++    installFakeApi({ [PAGE_API("day-1", "tram")]: () => err(503, "down"), [COLL_API()]: () => err(503, "down") });
++    mount(undefined, qc);
++    await screen.findByRole("alert", {}, { timeout: 3000 });
++    expect(noindexTags()).toHaveLength(0);
++  });
++});

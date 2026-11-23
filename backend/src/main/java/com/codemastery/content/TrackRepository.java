@@ -67,6 +67,20 @@ public interface TrackRepository extends JpaRepository<Track, Long> {
             + " and c.id = :categoryId and (lower(t.name) like :q escape '!' or lower(t.description) like :q escape '!')")
     Page<Track> listPublicInCategory(Long categoryId, String q, Pageable page);
 
+    /** Step 15a: {@link #listPublic} narrowed to one owner ({@code username} already normalized). Profile visibility is not consulted. */
+    @Query(value = "select t from Track t join fetch t.owner o left join fetch t.category where " + LISTED
+            + " and o.username = :username and (lower(t.name) like :q escape '!' or lower(t.description) like :q escape '!') order by t.id desc",
+           countQuery = "select count(t) from Track t join t.owner o where " + LISTED
+            + " and o.username = :username and (lower(t.name) like :q escape '!' or lower(t.description) like :q escape '!')")
+    Page<Track> listPublicByOwner(String username, String q, Pageable page);
+
+    /** Step 15a: {@link #listPublicInCategory} narrowed to one owner ({@code username} already normalized). */
+    @Query(value = "select t from Track t join fetch t.owner o left join fetch t.category c where " + LISTED
+            + " and o.username = :username and c.id = :categoryId and (lower(t.name) like :q escape '!' or lower(t.description) like :q escape '!') order by t.id desc",
+           countQuery = "select count(t) from Track t join t.owner o join t.category c where " + LISTED
+            + " and o.username = :username and c.id = :categoryId and (lower(t.name) like :q escape '!' or lower(t.description) like :q escape '!')")
+    Page<Track> listPublicByOwnerInCategory(String username, Long categoryId, String q, Pageable page);
+
     /** Owner-scoped public lookup (username + slug). Status rules are applied by the caller through {@link Visibility}. */
     @Query("select t from Track t join fetch t.owner o left join fetch t.category "
          + "where o.username = :username and t.slug = :slug and t.deletedAt is null")

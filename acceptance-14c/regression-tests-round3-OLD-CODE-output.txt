@@ -1,0 +1,1038 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ❯ src/hooks/useConfirmedPublicData.test.tsx (19 tests | 1 failed | 16 skipped) 19ms
+   × useConfirmedPublicData revalidateOnVisit: revisiting a URL is a new visit (review round 3) > A settles → B (pending) → back to A: A stays hidden until the THIRD visit's own request settles 13ms
+     → expected 'A1' to be undefined
+stderr | src/pages/public/PageView.test.tsx > PageView: A → B → A gets a fresh outline confirmation (review round 3) > returning to A while B's outline is pending: loading until the third visit's own request settles; older responses don't confirm it; the latest decides
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ❯ src/pages/public/PageView.test.tsx (46 tests | 1 failed | 45 skipped) 162ms
+   × PageView: A → B → A gets a fresh outline confirmation (review round 3) > returning to A while B's outline is pending: loading until the third visit's own request settles; older responses don't confirm it; the latest decides 162ms
+     → Unable to find an accessible element with the role "status"
+
+Here are the accessible roles:
+
+  button:
+
+  Name "go /@alice/lisbon/day-1/arrival":
+  [36m<button />[39m
+
+  Name "Contents":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"radix-:r3:"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-haspopup[39m=[32m"dialog"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"[39m
+    [33mdata-state[39m=[32m"closed"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  complementary:
+
+  Name "":
+  [36m<aside[39m
+    [33mclass[39m=[32m"hidden lg:block"[39m
+    [33mdata-testid[39m=[32m"page-sidebar"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Collection contents":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Collection contents"[39m
+    [33mclass[39m=[32m"space-y-6"[39m
+    [33mdata-testid[39m=[32m"collection-outline"[39m
+  [36m/>[39m
+
+  Name "Breadcrumb":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Breadcrumb"[39m
+  [36m/>[39m
+
+  Name "Page navigation":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Page navigation"[39m
+    [33mclass[39m=[32m"flex flex-col gap-3 border-t border-border pt-8 sm:flex-row"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Day one":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"sidebar-module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"sidebar-module-day-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Day one":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"sidebar-module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"sidebar-module-day-2"[39m
+  [36m/>[39m
+
+  Name "Arrival":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-3xl font-bold break-words"[39m
+  [36m/>[39m
+
+  Name "Arrival body":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-2xl font-bold mt-4"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"flex flex-wrap items-center gap-1 text-sm text-muted-foreground"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"min-w-0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"min-w-0 break-words"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "Arrival Airport to Alfama":
+  [36m<a[39m
+    [33maria-current[39m=[32m"page"[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted bg-muted font-medium text-primary"[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+  [36m/>[39m
+
+  Name "Tram 28":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+  [36m/>[39m
+
+  Name "Museums":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+  [36m/>[39m
+
+  Name "Discover":
+  [36m<a[39m
+    [33mclass[39m=[32m"hover:text-foreground"[39m
+    [33mhref[39m=[32m"/discover"[39m
+  [36m/>[39m
+
+  Name "Lisbon in 3 days":
+  [36m<a[39m
+    [33mclass[39m=[32m"break-words hover:text-foreground"[39m
+    [33mhref[39m=[32m"/@alice/lisbon"[39m
+  [36m/>[39m
+
+  Name "Next: Tram 28":
+  [36m<a[39m
+    [33maria-label[39m=[32m"Next: Tram 28"[39m
+    [33mclass[39m=[32m"flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border p-4 hover:bg-muted justify-end text-right"[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"min-w-0 space-y-8"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"space-y-3"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-lg text-muted-foreground whitespace-pre-line break-words"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<button>[39m
+      [0mgo /@alice/lisbon/day-1/arrival[0m
+    [36m</button>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-10"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33mclass[39m=[32m"hidden lg:block"[39m
+          [33mdata-testid[39m=[32m"page-sidebar"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2"[39m
+          [36m>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Collection contents"[39m
+              [33mclass[39m=[32m"space-y-6"[39m
+              [33mdata-testid[39m=[32m"collection-outline"[39m
+            [36m>[39m
+              [36m<section[39m
+                [33maria-labelledby[39m=[32m"sidebar-module-day-1"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                  [33mid[39m=[32m"sidebar-module-day-1"[39m
+                [36m>[39m
+                  [0mDay one[0m
+                [36m</h2>[39m
+                [36m<ol[39m
+                  [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                [36m>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33maria-current[39m=[32m"page"[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted bg-muted font-medium text-primary"[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mArrival[0m
+                      [36m</span>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"mt-0.5 block text-sm text-muted-foreground break-words"[39m
+                      [36m>[39m
+                        [0mAirport to Alfama[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mTram 28[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                [36m</ol>[39m
+              [36m</section>[39m
+              [36m<section[39m
+                [33maria-labelledby[39m=[32m"sidebar-module-day-2"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                  [33mid[39m=[32m"sidebar-module-day-2"[39m
+                [36m>[39m
+                  [0mDay two[0m
+                [36m</h2>[39m
+                [36m<ol[39m
+                  [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                [36m>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mMuseums[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                [36m</ol>[39m
+              [36m</section>[39m
+            [36m</nav>[39m
+          [36m</div>[39m
+        [36m</aside>[39m
+        [36m<article[39m
+          [33mclass[39m=[32m"min-w-0 space-y-8"[39m
+        [36m>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Breadcrumb"[39m
+          [36m>[39m
+            [36m<ol[39m
+              [33mclass[39m=[32m"flex flex-wrap items-center gap-1 text-sm text-muted-foreground"[39m
+            [36m>[39m
+              [36m<li>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"hover:text-foreground"[39m
+                  [33mhref[39m=[32m"/discover"[39m
+                [36m>[39m
+                  [0mDiscover[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33maria-hidden[39m=[32m"true"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"min-w-0"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"break-words hover:text-foreground"[39m
+                  [33mhref[39m=[32m"/@alice/lisbon"[39m
+                [36m>[39m
+                  [0mLisbon in 3 days[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33maria-hidden[39m=[32m"true"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"min-w-0 break-words"[39m
+              [36m>[39m
+                [0mDay one[0m
+              [36m</li>[39m
+            [36m</ol>[39m
+          [36m</nav>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lg:hidden"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-controls[39m=[32m"radix-:r3:"[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33maria-haspopup[39m=[32m"dialog"[39m
+              [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"[39m
+              [33mdata-state[39m=[32m"closed"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33mclass[39m=[32m"lucide lucide-list-tree h-4 w-4"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 12h-8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 6H8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 18h-8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 6v4c0 1.1.9 2 2 2h3"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10v6c0 1.1.9 2 2 2h3"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [0mContents[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"space-y-3"[39m
+          [36m>[39m
+            [36m<h1[39m
+              [33mclass[39m=[32m"text-3xl font-bold break-words"[39m
+            [36m>[39m
+              [0mArrival[0m
+            [36m</h1>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-lg text-muted-foreground whitespace-pre-line break-words"[39m
+            [36m>[39m
+              [0mAirport to Alfama[0m
+            [36m</p>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"max-w-[72ch]"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"space-y-8"[39m
+              [33mdata-testid[39m=[32m"public-blocks"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"space-y-8"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-2xl font-bold mt-4"[39m
+                [36m>[39m
+                  [0mArrival body[0m
+                [36m</h2>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Page navigation"[39m
+            [33mclass[39m=[32m"flex flex-col gap-3 border-t border-border pt-8 sm:flex-row"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hidden flex-1 sm:block"[39m
+            [36m/>[39m
+            [36m<a[39m
+              [33maria-label[39m=[32m"Next: Tram 28"[39m
+              [33mclass[39m=[32m"flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border p-4 hover:bg-muted justify-end text-right"[39m
+              [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"min-w-0"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"block text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [0mNext[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"block break-words font-medium"[39m
+                [36m>[39m
+                  [0mTram 28[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"lucide lucide-chevron-right h-4 w-4 shrink-0"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</a>[39m
+          [36m</nav>[39m
+        [36m</article>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/hooks/useConfirmedPublicData.test.tsx > useConfirmedPublicData revalidateOnVisit: revisiting a URL is a new visit (review round 3) > A settles → B (pending) → back to A: A stays hidden until the THIRD visit's own request settles
+AssertionError: expected 'A1' to be undefined
+
+- Expected: 
+undefined
+
++ Received: 
+"A1"
+
+ ❯ src/hooks/useConfirmedPublicData.test.tsx:198:28
+    196|     rerender({ k: "A", p: q({ data: "A1" }) });                   // v…
+    197|     expect(reqs).toHaveLength(3);
+    198|     expect(result.current).toBeUndefined();                       // v…
+       |                            ^
+    199|     await act(async () => { reqs[1].resolve(); });               // B'…
+    200|     rerender({ k: "A", p: q({ data: "from B's request" }) });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/pages/public/PageView.test.tsx > PageView: A → B → A gets a fresh outline confirmation (review round 3) > returning to A while B's outline is pending: loading until the third visit's own request settles; older responses don't confirm it; the latest decides
+TestingLibraryElementError: Unable to find an accessible element with the role "status"
+
+Here are the accessible roles:
+
+  button:
+
+  Name "go /@alice/lisbon/day-1/arrival":
+  [36m<button />[39m
+
+  Name "Contents":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"radix-:r3:"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-haspopup[39m=[32m"dialog"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"[39m
+    [33mdata-state[39m=[32m"closed"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  complementary:
+
+  Name "":
+  [36m<aside[39m
+    [33mclass[39m=[32m"hidden lg:block"[39m
+    [33mdata-testid[39m=[32m"page-sidebar"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Collection contents":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Collection contents"[39m
+    [33mclass[39m=[32m"space-y-6"[39m
+    [33mdata-testid[39m=[32m"collection-outline"[39m
+  [36m/>[39m
+
+  Name "Breadcrumb":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Breadcrumb"[39m
+  [36m/>[39m
+
+  Name "Page navigation":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Page navigation"[39m
+    [33mclass[39m=[32m"flex flex-col gap-3 border-t border-border pt-8 sm:flex-row"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Day one":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"sidebar-module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"sidebar-module-day-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Day one":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"sidebar-module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"sidebar-module-day-2"[39m
+  [36m/>[39m
+
+  Name "Arrival":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-3xl font-bold break-words"[39m
+  [36m/>[39m
+
+  Name "Arrival body":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-2xl font-bold mt-4"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"flex flex-wrap items-center gap-1 text-sm text-muted-foreground"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li />[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"min-w-0"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mclass[39m=[32m"min-w-0 break-words"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "Arrival Airport to Alfama":
+  [36m<a[39m
+    [33maria-current[39m=[32m"page"[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted bg-muted font-medium text-primary"[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+  [36m/>[39m
+
+  Name "Tram 28":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+  [36m/>[39m
+
+  Name "Museums":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+  [36m/>[39m
+
+  Name "Discover":
+  [36m<a[39m
+    [33mclass[39m=[32m"hover:text-foreground"[39m
+    [33mhref[39m=[32m"/discover"[39m
+  [36m/>[39m
+
+  Name "Lisbon in 3 days":
+  [36m<a[39m
+    [33mclass[39m=[32m"break-words hover:text-foreground"[39m
+    [33mhref[39m=[32m"/@alice/lisbon"[39m
+  [36m/>[39m
+
+  Name "Next: Tram 28":
+  [36m<a[39m
+    [33maria-label[39m=[32m"Next: Tram 28"[39m
+    [33mclass[39m=[32m"flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border p-4 hover:bg-muted justify-end text-right"[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"min-w-0 space-y-8"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"space-y-3"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-lg text-muted-foreground whitespace-pre-line break-words"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<button>[39m
+      [0mgo /@alice/lisbon/day-1/arrival[0m
+    [36m</button>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-10"[39m
+      [36m>[39m
+        [36m<aside[39m
+          [33mclass[39m=[32m"hidden lg:block"[39m
+          [33mdata-testid[39m=[32m"page-sidebar"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2"[39m
+          [36m>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Collection contents"[39m
+              [33mclass[39m=[32m"space-y-6"[39m
+              [33mdata-testid[39m=[32m"collection-outline"[39m
+            [36m>[39m
+              [36m<section[39m
+                [33maria-labelledby[39m=[32m"sidebar-module-day-1"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                  [33mid[39m=[32m"sidebar-module-day-1"[39m
+                [36m>[39m
+                  [0mDay one[0m
+                [36m</h2>[39m
+                [36m<ol[39m
+                  [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                [36m>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33maria-current[39m=[32m"page"[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted bg-muted font-medium text-primary"[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mArrival[0m
+                      [36m</span>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"mt-0.5 block text-sm text-muted-foreground break-words"[39m
+                      [36m>[39m
+                        [0mAirport to Alfama[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mTram 28[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                [36m</ol>[39m
+              [36m</section>[39m
+              [36m<section[39m
+                [33maria-labelledby[39m=[32m"sidebar-module-day-2"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+                  [33mid[39m=[32m"sidebar-module-day-2"[39m
+                [36m>[39m
+                  [0mDay two[0m
+                [36m</h2>[39m
+                [36m<ol[39m
+                  [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+                [36m>[39m
+                  [36m<li>[39m
+                    [36m<a[39m
+                      [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                      [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+                    [36m>[39m
+                      [36m<span[39m
+                        [33mclass[39m=[32m"block break-words"[39m
+                      [36m>[39m
+                        [0mMuseums[0m
+                      [36m</span>[39m
+                    [36m</a>[39m
+                  [36m</li>[39m
+                [36m</ol>[39m
+              [36m</section>[39m
+            [36m</nav>[39m
+          [36m</div>[39m
+        [36m</aside>[39m
+        [36m<article[39m
+          [33mclass[39m=[32m"min-w-0 space-y-8"[39m
+        [36m>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Breadcrumb"[39m
+          [36m>[39m
+            [36m<ol[39m
+              [33mclass[39m=[32m"flex flex-wrap items-center gap-1 text-sm text-muted-foreground"[39m
+            [36m>[39m
+              [36m<li>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"hover:text-foreground"[39m
+                  [33mhref[39m=[32m"/discover"[39m
+                [36m>[39m
+                  [0mDiscover[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33maria-hidden[39m=[32m"true"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"min-w-0"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"break-words hover:text-foreground"[39m
+                  [33mhref[39m=[32m"/@alice/lisbon"[39m
+                [36m>[39m
+                  [0mLisbon in 3 days[0m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33maria-hidden[39m=[32m"true"[39m
+              [36m>[39m
+                [36m<svg[39m
+                  [33mclass[39m=[32m"lucide lucide-chevron-right h-3.5 w-3.5"[39m
+                  [33mfill[39m=[32m"none"[39m
+                  [33mheight[39m=[32m"24"[39m
+                  [33mstroke[39m=[32m"currentColor"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"2"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                  [33mwidth[39m=[32m"24"[39m
+                  [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                  [36m/>[39m
+                [36m</svg>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mclass[39m=[32m"min-w-0 break-words"[39m
+              [36m>[39m
+                [0mDay one[0m
+              [36m</li>[39m
+            [36m</ol>[39m
+          [36m</nav>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"lg:hidden"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-controls[39m=[32m"radix-:r3:"[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33maria-haspopup[39m=[32m"dialog"[39m
+              [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 gap-2"[39m
+              [33mdata-state[39m=[32m"closed"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33mclass[39m=[32m"lucide lucide-list-tree h-4 w-4"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 12h-8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 6H8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M21 18h-8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 6v4c0 1.1.9 2 2 2h3"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 10v6c0 1.1.9 2 2 2h3"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [0mContents[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"space-y-3"[39m
+          [36m>[39m
+            [36m<h1[39m
+              [33mclass[39m=[32m"text-3xl font-bold break-words"[39m
+            [36m>[39m
+              [0mArrival[0m
+            [36m</h1>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-lg text-muted-foreground whitespace-pre-line break-words"[39m
+            [36m>[39m
+              [0mAirport to Alfama[0m
+            [36m</p>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"max-w-[72ch]"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"space-y-8"[39m
+              [33mdata-testid[39m=[32m"public-blocks"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"space-y-8"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-2xl font-bold mt-4"[39m
+                [36m>[39m
+                  [0mArrival body[0m
+                [36m</h2>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Page navigation"[39m
+            [33mclass[39m=[32m"flex flex-col gap-3 border-t border-border pt-8 sm:flex-row"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"hidden flex-1 sm:block"[39m
+            [36m/>[39m
+            [36m<a[39m
+              [33maria-label[39m=[32m"Next: Tram 28"[39m
+              [33mclass[39m=[32m"flex min-w-0 flex-1 items-center gap-2 rounded-lg border border-border p-4 hover:bg-muted justify-end text-right"[39m
+              [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"min-w-0"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"block text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [0mNext[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"block break-words font-medium"[39m
+                [36m>[39m
+                  [0mTram 28[0m
+                [36m</span>[39m
+              [36m</span>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"lucide lucide-chevron-right h-4 w-4 shrink-0"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</a>[39m
+          [36m</nav>[39m
+        [36m</article>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ getByRole node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/pages/public/PageView.test.tsx:850:19
+    848|     obs.observe(document.body, { subtree: true, childList: true, chara…
+    849|     await act(() => new Promise((r) => setTimeout(r, 20)));
+    850|     expect(screen.getByRole("status")).toHaveTextContent("Loading page…
+       |                   ^
+    851|     act(() => pending[n]({ status: 200, body: outline() }));          …
+    852|     await act(() => new Promise((r) => setTimeout(r, 20)));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 2 passed | 61 skipped (65)
+   Start at  11:36:09
+   Duration  1.24s (transform 246ms, setup 161ms, collect 429ms, tests 181ms, environment 681ms, prepare 92ms)
+

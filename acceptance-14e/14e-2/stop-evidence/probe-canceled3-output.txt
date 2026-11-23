@@ -1,0 +1,3 @@
+mouse click into the code, then click Previous (focused before leaving: DIV:Editor content): no errors
+mouse click into the code, then sidebar link (focused before leaving: DIV:Editor content): no errors
+no editor focus, Tab past nothing, click Previous (focused before leaving: BODY:): no errors

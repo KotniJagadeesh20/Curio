@@ -1,0 +1,2712 @@
+
+ RUN  v2.1.9 ~/Downloads/Curio-main
+
+ ❯ src/pages/public/CreatorProfile.pagination.test.tsx (0 test)
+ ❯ src/pages/public/CreatorProfile.test.tsx (0 test)
+stderr | src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > passes the lower-cased username
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+The above error occurred in the <Route.Provider> component:
+
+    at RenderedRoute (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:539:7)
+    at Routes (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1273:7)
+    at Router (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > /alice is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+The above error occurred in the <Route.Provider> component:
+
+    at RenderedRoute (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:539:7)
+    at Routes (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1273:7)
+    at Router (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > /@ is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+The above error occurred in the <Route.Provider> component:
+
+    at RenderedRoute (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:539:7)
+    at Routes (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1273:7)
+    at Router (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > /@ab is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+The above error occurred in the <Route.Provider> component:
+
+    at RenderedRoute (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:539:7)
+    at Routes (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1273:7)
+    at Router (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > /@1abc is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+The above error occurred in the <Route.Provider> component:
+
+    at RenderedRoute (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:539:7)
+    at Routes (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1273:7)
+    at Router (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > /@al-ice is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+Error: Uncaught [Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.]
+    at reportException (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+    at createFiberFromTypeAndProps (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28478:17)
+    at createFiberFromElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:28504:15)
+    at reconcileSingleElement (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:13986:23)
+    at reconcileChildFibers (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:14044:35)
+    at reconcileChildren (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:19186:28)
+    at updateContextProvider (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21193:3)
+    at beginWork (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21688:14)
+    at HTMLUnknownElement.callCallback (~/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (~/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+The above error occurred in the <Route.Provider> component:
+
+    at RenderedRoute (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:539:7)
+    at Routes (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1273:7)
+    at Router (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (~/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/pages/public/routes.test.tsx > PublicCollectionPage > passes the lower-cased username and the slug as-is
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/public/routes.test.tsx > PublicCollectionPage > /alice/java is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+
+stderr | src/pages/public/routes.test.tsx > PublicCollectionPage > /@/java is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+
+stderr | src/pages/public/routes.test.tsx > PublicCollectionPage > /@ab/java is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+
+stderr | src/pages/public/routes.test.tsx > PublicCollectionPage > /@1abc/java is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+
+stderr | src/pages/public/routes.test.tsx > PublicCollectionPage > /@al-ice/java is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+
+stderr | src/pages/public/routes.test.tsx > PublicPageViewPage > passes the lower-cased username and the three slugs as-is
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+
+stderr | src/pages/public/routes.test.tsx > PublicPageViewPage > /alice/java/core/intro is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+
+stderr | src/pages/public/routes.test.tsx > PublicPageViewPage > /@ab/java/core/intro is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+
+stderr | src/pages/public/routes.test.tsx > PublicPageViewPage > /@al-ice/java/core/intro is NotFound (not an @handle)
+Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at routes.test.tsx:20.
+
+stderr | src/pages/public/Discover.test.tsx > Discover > lists collections as cards with cover thumb, title, description, category, creator and counts; sets the title
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/public/CollectionView.test.tsx > CollectionView > renders the header: full cover, category link, title, description, byline link and counts
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > renders /discover (the real Discover page since Step 14a)
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice/java is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice/java
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice/java/core/intro is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice/java/core/intro
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@ is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@ab is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@ab
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@1abc is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@1abc
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@al-ice is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@al-ice
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /someword is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /someword
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@alice/java/core is a 404 (no such shape)
+404 Error: User attempted to access non-existent route: /@alice/java/core
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@alice/java/core/intro/extra is a 404 (no such shape)
+404 Error: User attempted to access non-existent route: /@alice/java/core/intro/extra
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/abc is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/abc
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/0 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/0
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/-3 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/-3
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/pages/1.5 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/pages/1.5
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/pages/9999999999999999999999 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/pages/9999999999999999999999
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create is not swallowed by the :handle route, and is a 404 for deeper unknown paths
+404 Error: User attempted to access non-existent route: /create/unknown/thing
+
+stderr | src/AppRoutes.test.tsx > under the app's data router (router.tsx) > a logged-in user reaches the page editor route, an invalid id is NotFound, and the admin redirect still lands on /create
+404 Error: User attempted to access non-existent route: /create/pages/abc
+
+ ❯ src/AppRoutes.test.tsx (45 tests | 1 failed) 193ms
+   × public creator routes (anonymous) > renders @username with the real creator profile (since Step 15b), lower-cased 16ms
+     → Unable to find an element by: [data-testid="creator-profile"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"min-h-screen flex flex-col"[39m
+    [36m>[39m
+      [36m<nav />[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"flex-1"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"container mx-auto px-4 pt-32 pb-16"[39m
+          [33mdata-testid[39m=[32m"placeholder"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-3xl font-bold mb-2"[39m
+          [36m>[39m
+            [0m@alice[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-muted-foreground mb-6"[39m
+          [36m>[39m
+            [0mComing in [0m
+            [0mStep 15[0m
+            [0m.[0m
+          [36m</p>[39m
+          [36m<dl[39m
+            [33mclass[39m=[32m"text-sm space-y-1"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex gap-2"[39m
+            [36m>[39m
+              [36m<dt[39m
+                [33mclass[39m=[32m"font-mono text-muted-foreground"[39m
+              [36m>[39m
+                [0musername[0m
+              [36m</dt>[39m
+              [36m<dd[39m
+                [33mclass[39m=[32m"font-mono"[39m
+                [33mdata-testid[39m=[32m"param-username"[39m
+              [36m>[39m
+                [0malice[0m
+              [36m</dd>[39m
+            [36m</div>[39m
+          [36m</dl>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+      [36m<footer />[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ src/components/public/ShareButton.test.tsx (12 tests | 1 failed) 388ms
+   × ShareButton > Step 15b: a profile's button is named 'Share this profile' 29ms
+     → Unable to find an accessible element with the role "button" and name "Share this profile"
+
+Here are the accessible roles:
+
+  button:
+
+  Name "Share this collection":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"radix-:r5:"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-haspopup[39m=[32m"dialog"[39m
+    [33maria-label[39m=[32m"Share this collection"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 gap-2"[39m
+    [33mdata-state[39m=[32m"closed"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<button[39m
+      [33maria-controls[39m=[32m"radix-:r5:"[39m
+      [33maria-expanded[39m=[32m"false"[39m
+      [33maria-haspopup[39m=[32m"dialog"[39m
+      [33maria-label[39m=[32m"Share this collection"[39m
+      [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 gap-2"[39m
+      [33mdata-state[39m=[32m"closed"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33mclass[39m=[32m"lucide lucide-share2 h-4 w-4"[39m
+        [33mfill[39m=[32m"none"[39m
+        [33mheight[39m=[32m"24"[39m
+        [33mstroke[39m=[32m"currentColor"[39m
+        [33mstroke-linecap[39m=[32m"round"[39m
+        [33mstroke-linejoin[39m=[32m"round"[39m
+        [33mstroke-width[39m=[32m"2"[39m
+        [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [33mwidth[39m=[32m"24"[39m
+        [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+      [36m>[39m
+        [36m<circle[39m
+          [33mcx[39m=[32m"18"[39m
+          [33mcy[39m=[32m"5"[39m
+          [33mr[39m=[32m"3"[39m
+        [36m/>[39m
+        [36m<circle[39m
+          [33mcx[39m=[32m"6"[39m
+          [33mcy[39m=[32m"12"[39m
+          [33mr[39m=[32m"3"[39m
+        [36m/>[39m
+        [36m<circle[39m
+          [33mcx[39m=[32m"18"[39m
+          [33mcy[39m=[32m"19"[39m
+          [33mr[39m=[32m"3"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mx1[39m=[32m"8.59"[39m
+          [33mx2[39m=[32m"15.42"[39m
+          [33my1[39m=[32m"13.51"[39m
+          [33my2[39m=[32m"17.49"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mx1[39m=[32m"15.41"[39m
+          [33mx2[39m=[32m"8.59"[39m
+          [33my1[39m=[32m"6.51"[39m
+          [33my2[39m=[32m"10.49"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [0mShare[0m
+    [36m</button>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ src/pages/public/Discover.test.tsx (13 tests | 1 failed) 521ms
+   × Discover > lists collections as cards with cover thumb, title, description, category, creator and counts; sets the title 214ms
+     → Unable to find an accessible element with the role "link" and name "Alice"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"mb-6 space-y-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Discover":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-3xl font-bold focus:outline-none"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "Lisbon in 3 days":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+  [36m/>[39m
+
+  Name "Fresh pasta":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+  [36m/>[39m
+
+  Name "No cover":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-muted-foreground"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33maria-live[39m=[32m"polite"[39m
+    [33mclass[39m=[32m"mb-3 text-sm text-muted-foreground"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  search:
+
+  Name "":
+  [36m<form[39m
+    [33mclass[39m=[32m"relative mb-4"[39m
+    [33mrole[39m=[32m"search"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  searchbox:
+
+  Name "Search collections":
+  [36m<input[39m
+    [33maria-label[39m=[32m"Search collections"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-9"[39m
+    [33mmaxlength[39m=[32m"100"[39m
+    [33mplaceholder[39m=[32m"Search by title or description"[39m
+    [33mtype[39m=[32m"search"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "Categories":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Categories"[39m
+    [33mclass[39m=[32m"mb-6 flex flex-wrap gap-2"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "All":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Travel":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Food & Recipes":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"grid gap-4 sm:grid-cols-2 lg:grid-cols-3"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"card-alice/lisbon"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"card-bob/pasta"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"card-alice/x"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "Travel Lisbon in 3 days Tram 28 and pastéis. By Alice 2 modules · 6 pages":
+  [36m<a[39m
+    [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+    [33mdata-testid[39m=[32m"collection-card"[39m
+    [33mhref[39m=[32m"/@alice/lisbon"[39m
+  [36m/>[39m
+
+  Name "Fresh pasta Tram 28 and pastéis. By bob 1 module · 1 page":
+  [36m<a[39m
+    [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+    [33mdata-testid[39m=[32m"collection-card"[39m
+    [33mhref[39m=[32m"/@bob/pasta"[39m
+  [36m/>[39m
+
+  Name "Travel No cover Tram 28 and pastéis. By Alice 2 modules · 6 pages":
+  [36m<a[39m
+    [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+    [33mdata-testid[39m=[32m"collection-card"[39m
+    [33mhref[39m=[32m"/@alice/x"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  presentation:
+
+  Name "":
+  [36m<img[39m
+    [33malt[39m=[32m""[39m
+    [33mclass[39m=[32m"h-full w-full object-cover transition-transform group-hover:scale-[1.02]"[39m
+    [33mdecoding[39m=[32m"async"[39m
+    [33mloading[39m=[32m"lazy"[39m
+    [33msrc[39m=[32m"/api/public/media/aaa/thumb"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<img[39m
+    [33malt[39m=[32m""[39m
+    [33mclass[39m=[32m"h-full w-full object-cover transition-transform group-hover:scale-[1.02]"[39m
+    [33mdecoding[39m=[32m"async"[39m
+    [33mloading[39m=[32m"lazy"[39m
+    [33msrc[39m=[32m"https://images.example.org/p.jpg"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"mb-6 space-y-2"[39m
+      [36m>[39m
+        [36m<h1[39m
+          [33mclass[39m=[32m"text-3xl font-bold focus:outline-none"[39m
+          [33mtabindex[39m=[32m"-1"[39m
+        [36m>[39m
+          [0mDiscover[0m
+        [36m</h1>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"text-muted-foreground"[39m
+        [36m>[39m
+          [0mGuides, tutorials, recipes, travel notes and stories published by creators.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"relative mb-4"[39m
+        [33mrole[39m=[32m"search"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"lucide lucide-search pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"24"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"24"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"11"[39m
+            [33mcy[39m=[32m"11"[39m
+            [33mr[39m=[32m"8"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"m21 21-4.3-4.3"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [36m<input[39m
+          [33maria-label[39m=[32m"Search collections"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-9"[39m
+          [33mmaxlength[39m=[32m"100"[39m
+          [33mplaceholder[39m=[32m"Search by title or description"[39m
+          [33mtype[39m=[32m"search"[39m
+          [33mvalue[39m=[32m""[39m
+        [36m/>[39m
+      [36m</form>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"Categories"[39m
+        [33mclass[39m=[32m"mb-6 flex flex-wrap gap-2"[39m
+        [33mrole[39m=[32m"group"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"true"[39m
+          [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mAll[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mTravel[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mFood & Recipes[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-busy[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<p[39m
+          [33maria-live[39m=[32m"polite"[39m
+          [33mclass[39m=[32m"mb-3 text-sm text-muted-foreground"[39m
+        [36m>[39m
+          [0m3 collections[0m
+        [36m</p>[39m
+        [36m<ul[39m
+          [33mclass[39m=[32m"grid gap-4 sm:grid-cols-2 lg:grid-cols-3"[39m
+        [36m>[39m
+          [36m<li[39m
+            [33mdata-scroll-anchor[39m=[32m"card-alice/lisbon"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+              [33mdata-testid[39m=[32m"collection-card"[39m
+              [33mhref[39m=[32m"/@alice/lisbon"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"aspect-[16/9] w-full overflow-hidden bg-muted"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mclass[39m=[32m"h-full w-full object-cover transition-transform group-hover:scale-[1.02]"[39m
+                  [33mdecoding[39m=[32m"async"[39m
+                  [33mloading[39m=[32m"lazy"[39m
+                  [33msrc[39m=[32m"/api/public/media/aaa/thumb"[39m
+                [36m/>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"flex flex-1 flex-col gap-2 p-4"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 w-fit"[39m
+                [36m>[39m
+                  [0mTravel[0m
+                [36m</div>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+                [36m>[39m
+                  [0mLisbon in 3 days[0m
+                [36m</h2>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+                [36m>[39m
+                  [0mTram 28 and pastéis.[0m
+                [36m</p>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"mt-auto pt-2 text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [36m<p>[39m
+                    [0mBy [0m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"font-medium text-foreground"[39m
+                    [36m>[39m
+                      [0mAlice[0m
+                    [36m</span>[39m
+                  [36m</p>[39m
+                  [36m<p>[39m
+                    [0m2 modules[0m
+                    [0m · [0m
+                    [0m6 pages[0m
+                  [36m</p>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</a>[39m
+          [36m</li>[39m
+          [36m<li[39m
+            [33mdata-scroll-anchor[39m=[32m"card-bob/pasta"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+              [33mdata-testid[39m=[32m"collection-card"[39m
+              [33mhref[39m=[32m"/@bob/pasta"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"aspect-[16/9] w-full overflow-hidden bg-muted"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mclass[39m=[32m"h-full w-full object-cover transition-transform group-hover:scale-[1.02]"[39m
+                  [33mdecoding[39m=[32m"async"[39m
+                  [33mloading[39m=[32m"lazy"[39m
+                  [33msrc[39m=[32m"https://images.example.org/p.jpg"[39m
+                [36m/>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"flex flex-1 flex-col gap-2 p-4"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+                [36m>[39m
+                  [0mFresh pasta[0m
+                [36m</h2>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+                [36m>[39m
+                  [0mTram 28 and pastéis.[0m
+                [36m</p>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"mt-auto pt-2 text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [36m<p>[39m
+                    [0mBy [0m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"font-medium text-foreground"[39m
+                    [36m>[39m
+                      [0mbob[0m
+                    [36m</span>[39m
+                  [36m</p>[39m
+                  [36m<p>[39m
+                    [0m1 module[0m
+                    [0m · [0m
+                    [0m1 page[0m
+                  [36m</p>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</a>[39m
+          [36m</li>[39m
+          [36m<li[39m
+            [33mdata-scroll-anchor[39m=[32m"card-alice/x"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+              [33mdata-testid[39m=[32m"collection-card"[39m
+              [33mhref[39m=[32m"/@alice/x"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"aspect-[16/9] w-full overflow-hidden bg-muted"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"flex h-full w-full items-center justify-center text-muted-foreground"[39m
+                  [33mdata-testid[39m=[32m"cover-placeholder"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"lucide lucide-book-open h-8 w-8"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M12 7v14"[39m
+                    [36m/>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"flex flex-1 flex-col gap-2 p-4"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 w-fit"[39m
+                [36m>[39m
+                  [0mTravel[0m
+                [36m</div>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+                [36m>[39m
+                  [0mNo cover[0m
+                [36m</h2>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+                [36m>[39m
+                  [0mTram 28 and pastéis.[0m
+                [36m</p>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"mt-auto pt-2 text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [36m<p>[39m
+                    [0mBy [0m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"font-medium text-foreground"[39m
+                    [36m>[39m
+                      [0mAlice[0m
+                    [36m</span>[39m
+                  [36m</p>[39m
+                  [36m<p>[39m
+                    [0m2 modules[0m
+                    [0m · [0m
+                    [0m6 pages[0m
+                  [36m</p>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</a>[39m
+          [36m</li>[39m
+        [36m</ul>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ src/pages/public/CollectionView.test.tsx (16 tests | 1 failed) 550ms
+   × CollectionView > renders the header: full cover, category link, title, description, byline link and counts 201ms
+     → Unable to find an accessible element with the role "link" and name "Alice"
+
+Here are the accessible roles:
+
+  link:
+
+  Name "Discover":
+  [36m<a[39m
+    [33mclass[39m=[32m"mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"[39m
+    [33mhref[39m=[32m"/discover"[39m
+  [36m/>[39m
+
+  Name "Travel":
+  [36m<a[39m
+    [33mclass[39m=[32m"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 w-fit"[39m
+    [33mhref[39m=[32m"/discover?category=travel"[39m
+  [36m/>[39m
+
+  Name "Start reading":
+  [36m<a[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 gap-2"[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+  [36m/>[39m
+
+  Name "Arrival Airport to Alfama":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+  [36m/>[39m
+
+  Name "Tram 28":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+  [36m/>[39m
+
+  Name "Museums":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"space-y-8"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"space-y-4"[39m
+    [33mdata-scroll-anchor[39m=[32m"header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  presentation:
+
+  Name "":
+  [36m<img[39m
+    [33malt[39m=[32m""[39m
+    [33mclass[39m=[32m"h-full w-full object-cover"[39m
+    [33mdata-testid[39m=[32m"collection-cover"[39m
+    [33msrc[39m=[32m"/api/public/media/abc"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Lisbon in 3 days":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-3xl font-bold break-words focus:outline-none"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "Day one":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"module-day-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-lg text-muted-foreground whitespace-pre-line break-words"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Share this collection":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"radix-:r1:"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-haspopup[39m=[32m"dialog"[39m
+    [33maria-label[39m=[32m"Share this collection"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 gap-2"[39m
+    [33mdata-state[39m=[32m"closed"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Collection contents":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Collection contents"[39m
+    [33mclass[39m=[32m"space-y-6"[39m
+    [33mdata-testid[39m=[32m"collection-outline"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Day one":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"module-day-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"page-day-1/arrival"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"page-day-1/tram"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"page-day-2/museums"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto max-w-3xl px-4 pb-16 pt-28"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"[39m
+        [33mhref[39m=[32m"/discover"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"24"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"24"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"m12 19-7-7 7-7"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M19 12H5"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [0mDiscover[0m
+      [36m</a>[39m
+      [36m<article[39m
+        [33mclass[39m=[32m"space-y-8"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"space-y-4"[39m
+          [33mdata-scroll-anchor[39m=[32m"header"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"aspect-[16/9] max-h-80 w-full overflow-hidden rounded-lg bg-muted"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m""[39m
+              [33mclass[39m=[32m"h-full w-full object-cover"[39m
+              [33mdata-testid[39m=[32m"collection-cover"[39m
+              [33msrc[39m=[32m"/api/public/media/abc"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 w-fit"[39m
+            [33mhref[39m=[32m"/discover?category=travel"[39m
+          [36m>[39m
+            [0mTravel[0m
+          [36m</a>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-3xl font-bold break-words focus:outline-none"[39m
+            [33mtabindex[39m=[32m"-1"[39m
+          [36m>[39m
+            [0mLisbon in 3 days[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-lg text-muted-foreground whitespace-pre-line break-words"[39m
+          [36m>[39m
+            [0mTrams, tiles\nand pastéis.[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"text-sm text-muted-foreground"[39m
+          [36m>[39m
+            [36m<p>[39m
+              [0mBy [0m
+              [36m<span[39m
+                [33mclass[39m=[32m"font-medium text-foreground"[39m
+              [36m>[39m
+                [0mAlice[0m
+              [36m</span>[39m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0m2 modules[0m
+              [0m · [0m
+              [0m3 pages[0m
+            [36m</p>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex flex-wrap items-center gap-3"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 gap-2"[39m
+              [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33mclass[39m=[32m"lucide lucide-book-open h-4 w-4"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M12 7v14"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [0mStart reading[0m
+            [36m</a>[39m
+            [36m<button[39m
+              [33maria-controls[39m=[32m"radix-:r1:"[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33maria-haspopup[39m=[32m"dialog"[39m
+              [33maria-label[39m=[32m"Share this collection"[39m
+              [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 gap-2"[39m
+              [33mdata-state[39m=[32m"closed"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33mclass[39m=[32m"lucide lucide-share2 h-4 w-4"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"18"[39m
+                  [33mcy[39m=[32m"5"[39m
+                  [33mr[39m=[32m"3"[39m
+                [36m/>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"6"[39m
+                  [33mcy[39m=[32m"12"[39m
+                  [33mr[39m=[32m"3"[39m
+                [36m/>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"18"[39m
+                  [33mcy[39m=[32m"19"[39m
+                  [33mr[39m=[32m"3"[39m
+                [36m/>[39m
+                [36m<line[39m
+                  [33mx1[39m=[32m"8.59"[39m
+                  [33mx2[39m=[32m"15.42"[39m
+                  [33my1[39m=[32m"13.51"[39m
+                  [33my2[39m=[32m"17.49"[39m
+                [36m/>[39m
+                [36m<line[39m
+                  [33mx1[39m=[32m"15.41"[39m
+                  [33mx2[39m=[32m"8.59"[39m
+                  [33my1[39m=[32m"6.51"[39m
+                  [33my2[39m=[32m"10.49"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [0mShare[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</header>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Collection contents"[39m
+          [33mclass[39m=[32m"space-y-6"[39m
+          [33mdata-testid[39m=[32m"collection-outline"[39m
+        [36m>[39m
+          [36m<section[39m
+            [33maria-labelledby[39m=[32m"module-day-1"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+              [33mid[39m=[32m"module-day-1"[39m
+            [36m>[39m
+              [0mDay one[0m
+            [36m</h2>[39m
+            [36m<ol[39m
+              [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+            [36m>[39m
+              [36m<li[39m
+                [33mdata-scroll-anchor[39m=[32m"page-day-1/arrival"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                  [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"block break-words"[39m
+                  [36m>[39m
+                    [0mArrival[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"mt-0.5 block text-sm text-muted-foreground break-words"[39m
+                  [36m>[39m
+                    [0mAirport to Alfama[0m
+                  [36m</span>[39m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mdata-scroll-anchor[39m=[32m"page-day-1/tram"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                  [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"block break-words"[39m
+                  [36m>[39m
+                    [0mTram 28[0m
+                  [36m</span>[39m
+                [36m</a>[39m
+              [36m</li>[39m
+            [36m</ol>[39m
+          [36m</section>[39m
+          [36m<section[39m
+            [33maria-labelledby[39m=[32m"module-day-2"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+              [33mid[39m=[32m"module-day-2"[39m
+            [36m>[39m
+              [0mDay two[0m
+            [36m</h2>[39m
+            [36m<ol[39m
+              [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+            [36m>[39m
+              [36m<li[39m
+                [33mdata-scroll-anchor[39m=[32m"page-day-2/museums"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                  [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"block break-words"[39m
+                  [36m>[39m
+                    [0mMuseums[0m
+                  [36m</span>[39m
+                [36m</a>[39m
+              [36m</li>[39m
+            [36m</ol>[39m
+          [36m</section>[39m
+        [36m</nav>[39m
+      [36m</article>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ src/pages/public/routes.test.tsx (17 tests | 7 failed) 843ms
+   × PublicCreatorProfilePage (Step 15b) > passes the lower-cased username 18ms
+     → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+   × PublicCreatorProfilePage (Step 15b) > /alice is NotFound (not an @handle) 3ms
+     → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+   × PublicCreatorProfilePage (Step 15b) > /@ is NotFound (not an @handle) 2ms
+     → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+   × PublicCreatorProfilePage (Step 15b) > /@ab is NotFound (not an @handle) 2ms
+     → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+   × PublicCreatorProfilePage (Step 15b) > /@1abc is NotFound (not an @handle) 3ms
+     → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+   × PublicCreatorProfilePage (Step 15b) > /@al-ice is NotFound (not an @handle) 1ms
+     → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+   × the move > Placeholders.tsx no longer exports the public adapters 766ms
+     → expected [ 'CreatorProfilePage', …(4) ] to not include 'CreatorProfilePage'
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/public/CreatorProfile.pagination.test.tsx [ src/pages/public/CreatorProfile.pagination.test.tsx ]
+Error: Failed to resolve import "./CreatorProfile" from "src/pages/public/CreatorProfile.pagination.test.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: ~/Downloads/Curio-main/src/pages/public/CreatorProfile.pagination.test.tsx:7:27
+  6  |  import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+  7  |  import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
+  8  |  import CreatorProfile from "./CreatorProfile";
+     |                              ^
+  9  |  const where = {
+  10 |      loc: ""
+ ❯ TransformPluginContext._formatError node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16
+ ❯ normalizeUrl node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23
+ ❯ node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7
+ ❯ PluginContainer.transform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  src/pages/public/CreatorProfile.test.tsx [ src/pages/public/CreatorProfile.test.tsx ]
+Error: Failed to resolve import "./CreatorProfile" from "src/pages/public/CreatorProfile.test.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: ~/Downloads/Curio-main/src/pages/public/CreatorProfile.test.tsx:8:27
+  7  |  import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+  8  |  import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
+  9  |  import CreatorProfile from "./CreatorProfile";
+     |                              ^
+  10 |  const where = {
+  11 |      loc: ""
+ ❯ TransformPluginContext._formatError node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16
+ ❯ normalizeUrl node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23
+ ❯ node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7
+ ❯ PluginContainer.transform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/AppRoutes.test.tsx > public creator routes (anonymous) > renders @username with the real creator profile (since Step 15b), lower-cased
+TestingLibraryElementError: Unable to find an element by: [data-testid="creator-profile"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"min-h-screen flex flex-col"[39m
+    [36m>[39m
+      [36m<nav />[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"flex-1"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33mclass[39m=[32m"container mx-auto px-4 pt-32 pb-16"[39m
+          [33mdata-testid[39m=[32m"placeholder"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-3xl font-bold mb-2"[39m
+          [36m>[39m
+            [0m@alice[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-muted-foreground mb-6"[39m
+          [36m>[39m
+            [0mComing in [0m
+            [0mStep 15[0m
+            [0m.[0m
+          [36m</p>[39m
+          [36m<dl[39m
+            [33mclass[39m=[32m"text-sm space-y-1"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex gap-2"[39m
+            [36m>[39m
+              [36m<dt[39m
+                [33mclass[39m=[32m"font-mono text-muted-foreground"[39m
+              [36m>[39m
+                [0musername[0m
+              [36m</dt>[39m
+              [36m<dd[39m
+                [33mclass[39m=[32m"font-mono"[39m
+                [33mdata-testid[39m=[32m"param-username"[39m
+              [36m>[39m
+                [0malice[0m
+              [36m</dd>[39m
+            [36m</div>[39m
+          [36m</dl>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+      [36m<footer />[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ getByTestId node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/AppRoutes.test.tsx:72:19
+     70|   it("renders @username with the real creator profile (since Step 15b)…
+     71|     visit("/@Alice");
+     72|     expect(screen.getByTestId("creator-profile")).toHaveTextContent("c…
+       |                   ^
+     73|   });
+     74| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+ FAIL  src/components/public/ShareButton.test.tsx > ShareButton > Step 15b: a profile's button is named 'Share this profile'
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Share this profile"
+
+Here are the accessible roles:
+
+  button:
+
+  Name "Share this collection":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"radix-:r5:"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-haspopup[39m=[32m"dialog"[39m
+    [33maria-label[39m=[32m"Share this collection"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 gap-2"[39m
+    [33mdata-state[39m=[32m"closed"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<button[39m
+      [33maria-controls[39m=[32m"radix-:r5:"[39m
+      [33maria-expanded[39m=[32m"false"[39m
+      [33maria-haspopup[39m=[32m"dialog"[39m
+      [33maria-label[39m=[32m"Share this collection"[39m
+      [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 gap-2"[39m
+      [33mdata-state[39m=[32m"closed"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33mclass[39m=[32m"lucide lucide-share2 h-4 w-4"[39m
+        [33mfill[39m=[32m"none"[39m
+        [33mheight[39m=[32m"24"[39m
+        [33mstroke[39m=[32m"currentColor"[39m
+        [33mstroke-linecap[39m=[32m"round"[39m
+        [33mstroke-linejoin[39m=[32m"round"[39m
+        [33mstroke-width[39m=[32m"2"[39m
+        [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [33mwidth[39m=[32m"24"[39m
+        [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+      [36m>[39m
+        [36m<circle[39m
+          [33mcx[39m=[32m"18"[39m
+          [33mcy[39m=[32m"5"[39m
+          [33mr[39m=[32m"3"[39m
+        [36m/>[39m
+        [36m<circle[39m
+          [33mcx[39m=[32m"6"[39m
+          [33mcy[39m=[32m"12"[39m
+          [33mr[39m=[32m"3"[39m
+        [36m/>[39m
+        [36m<circle[39m
+          [33mcx[39m=[32m"18"[39m
+          [33mcy[39m=[32m"19"[39m
+          [33mr[39m=[32m"3"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mx1[39m=[32m"8.59"[39m
+          [33mx2[39m=[32m"15.42"[39m
+          [33my1[39m=[32m"13.51"[39m
+          [33my2[39m=[32m"17.49"[39m
+        [36m/>[39m
+        [36m<line[39m
+          [33mx1[39m=[32m"15.41"[39m
+          [33mx2[39m=[32m"8.59"[39m
+          [33my1[39m=[32m"6.51"[39m
+          [33my2[39m=[32m"10.49"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [0mShare[0m
+    [36m</button>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ getByRole node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/components/public/ShareButton.test.tsx:31:19
+     29|   it("Step 15b: a profile's button is named 'Share this profile'", () …
+     30|     render(<ShareButton what="profile" title="Alice Liddell" path="/@a…
+     31|     expect(screen.getByRole("button", { name: "Share this profile" }))…
+       |                   ^
+     32|   });
+     33| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+ FAIL  src/pages/public/CollectionView.test.tsx > CollectionView > renders the header: full cover, category link, title, description, byline link and counts
+TestingLibraryElementError: Unable to find an accessible element with the role "link" and name "Alice"
+
+Here are the accessible roles:
+
+  link:
+
+  Name "Discover":
+  [36m<a[39m
+    [33mclass[39m=[32m"mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"[39m
+    [33mhref[39m=[32m"/discover"[39m
+  [36m/>[39m
+
+  Name "Travel":
+  [36m<a[39m
+    [33mclass[39m=[32m"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 w-fit"[39m
+    [33mhref[39m=[32m"/discover?category=travel"[39m
+  [36m/>[39m
+
+  Name "Start reading":
+  [36m<a[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 gap-2"[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+  [36m/>[39m
+
+  Name "Arrival Airport to Alfama":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+  [36m/>[39m
+
+  Name "Tram 28":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+  [36m/>[39m
+
+  Name "Museums":
+  [36m<a[39m
+    [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+    [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  article:
+
+  Name "":
+  [36m<article[39m
+    [33mclass[39m=[32m"space-y-8"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"space-y-4"[39m
+    [33mdata-scroll-anchor[39m=[32m"header"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  presentation:
+
+  Name "":
+  [36m<img[39m
+    [33malt[39m=[32m""[39m
+    [33mclass[39m=[32m"h-full w-full object-cover"[39m
+    [33mdata-testid[39m=[32m"collection-cover"[39m
+    [33msrc[39m=[32m"/api/public/media/abc"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Lisbon in 3 days":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-3xl font-bold break-words focus:outline-none"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "Day one":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<h2[39m
+    [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+    [33mid[39m=[32m"module-day-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-lg text-muted-foreground whitespace-pre-line break-words"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Share this collection":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"radix-:r1:"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-haspopup[39m=[32m"dialog"[39m
+    [33maria-label[39m=[32m"Share this collection"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 gap-2"[39m
+    [33mdata-state[39m=[32m"closed"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  navigation:
+
+  Name "Collection contents":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Collection contents"[39m
+    [33mclass[39m=[32m"space-y-6"[39m
+    [33mdata-testid[39m=[32m"collection-outline"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  region:
+
+  Name "Day one":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"module-day-1"[39m
+  [36m/>[39m
+
+  Name "Day two":
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"module-day-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<ol[39m
+    [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"page-day-1/arrival"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"page-day-1/tram"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"page-day-2/museums"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto max-w-3xl px-4 pb-16 pt-28"[39m
+    [36m>[39m
+      [36m<a[39m
+        [33mclass[39m=[32m"mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"[39m
+        [33mhref[39m=[32m"/discover"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33mclass[39m=[32m"lucide lucide-arrow-left h-4 w-4"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"24"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"24"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"m12 19-7-7 7-7"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M19 12H5"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [0mDiscover[0m
+      [36m</a>[39m
+      [36m<article[39m
+        [33mclass[39m=[32m"space-y-8"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"space-y-4"[39m
+          [33mdata-scroll-anchor[39m=[32m"header"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"aspect-[16/9] max-h-80 w-full overflow-hidden rounded-lg bg-muted"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m""[39m
+              [33mclass[39m=[32m"h-full w-full object-cover"[39m
+              [33mdata-testid[39m=[32m"collection-cover"[39m
+              [33msrc[39m=[32m"/api/public/media/abc"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 w-fit"[39m
+            [33mhref[39m=[32m"/discover?category=travel"[39m
+          [36m>[39m
+            [0mTravel[0m
+          [36m</a>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-3xl font-bold break-words focus:outline-none"[39m
+            [33mtabindex[39m=[32m"-1"[39m
+          [36m>[39m
+            [0mLisbon in 3 days[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-lg text-muted-foreground whitespace-pre-line break-words"[39m
+          [36m>[39m
+            [0mTrams, tiles\nand pastéis.[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"text-sm text-muted-foreground"[39m
+          [36m>[39m
+            [36m<p>[39m
+              [0mBy [0m
+              [36m<span[39m
+                [33mclass[39m=[32m"font-medium text-foreground"[39m
+              [36m>[39m
+                [0mAlice[0m
+              [36m</span>[39m
+            [36m</p>[39m
+            [36m<p>[39m
+              [0m2 modules[0m
+              [0m · [0m
+              [0m3 pages[0m
+            [36m</p>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex flex-wrap items-center gap-3"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 gap-2"[39m
+              [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33mclass[39m=[32m"lucide lucide-book-open h-4 w-4"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M12 7v14"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [0mStart reading[0m
+            [36m</a>[39m
+            [36m<button[39m
+              [33maria-controls[39m=[32m"radix-:r1:"[39m
+              [33maria-expanded[39m=[32m"false"[39m
+              [33maria-haspopup[39m=[32m"dialog"[39m
+              [33maria-label[39m=[32m"Share this collection"[39m
+              [33mclass[39m=[32m"inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 gap-2"[39m
+              [33mdata-state[39m=[32m"closed"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33mclass[39m=[32m"lucide lucide-share2 h-4 w-4"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"18"[39m
+                  [33mcy[39m=[32m"5"[39m
+                  [33mr[39m=[32m"3"[39m
+                [36m/>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"6"[39m
+                  [33mcy[39m=[32m"12"[39m
+                  [33mr[39m=[32m"3"[39m
+                [36m/>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"18"[39m
+                  [33mcy[39m=[32m"19"[39m
+                  [33mr[39m=[32m"3"[39m
+                [36m/>[39m
+                [36m<line[39m
+                  [33mx1[39m=[32m"8.59"[39m
+                  [33mx2[39m=[32m"15.42"[39m
+                  [33my1[39m=[32m"13.51"[39m
+                  [33my2[39m=[32m"17.49"[39m
+                [36m/>[39m
+                [36m<line[39m
+                  [33mx1[39m=[32m"15.41"[39m
+                  [33mx2[39m=[32m"8.59"[39m
+                  [33my1[39m=[32m"6.51"[39m
+                  [33my2[39m=[32m"10.49"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+              [0mShare[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</header>[39m
+        [36m<nav[39m
+          [33maria-label[39m=[32m"Collection contents"[39m
+          [33mclass[39m=[32m"space-y-6"[39m
+          [33mdata-testid[39m=[32m"collection-outline"[39m
+        [36m>[39m
+          [36m<section[39m
+            [33maria-labelledby[39m=[32m"module-day-1"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+              [33mid[39m=[32m"module-day-1"[39m
+            [36m>[39m
+              [0mDay one[0m
+            [36m</h2>[39m
+            [36m<ol[39m
+              [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+            [36m>[39m
+              [36m<li[39m
+                [33mdata-scroll-anchor[39m=[32m"page-day-1/arrival"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                  [33mhref[39m=[32m"/@alice/lisbon/day-1/arrival"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"block break-words"[39m
+                  [36m>[39m
+                    [0mArrival[0m
+                  [36m</span>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"mt-0.5 block text-sm text-muted-foreground break-words"[39m
+                  [36m>[39m
+                    [0mAirport to Alfama[0m
+                  [36m</span>[39m
+                [36m</a>[39m
+              [36m</li>[39m
+              [36m<li[39m
+                [33mdata-scroll-anchor[39m=[32m"page-day-1/tram"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                  [33mhref[39m=[32m"/@alice/lisbon/day-1/tram"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"block break-words"[39m
+                  [36m>[39m
+                    [0mTram 28[0m
+                  [36m</span>[39m
+                [36m</a>[39m
+              [36m</li>[39m
+            [36m</ol>[39m
+          [36m</section>[39m
+          [36m<section[39m
+            [33maria-labelledby[39m=[32m"module-day-2"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"mb-2 text-lg font-semibold break-words"[39m
+              [33mid[39m=[32m"module-day-2"[39m
+            [36m>[39m
+              [0mDay two[0m
+            [36m</h2>[39m
+            [36m<ol[39m
+              [33mclass[39m=[32m"space-y-1 border-l border-border pl-4"[39m
+            [36m>[39m
+              [36m<li[39m
+                [33mdata-scroll-anchor[39m=[32m"page-day-2/museums"[39m
+              [36m>[39m
+                [36m<a[39m
+                  [33mclass[39m=[32m"block rounded-md px-2 py-1.5 hover:bg-muted "[39m
+                  [33mhref[39m=[32m"/@alice/lisbon/day-2/museums"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"block break-words"[39m
+                  [36m>[39m
+                    [0mMuseums[0m
+                  [36m</span>[39m
+                [36m</a>[39m
+              [36m</li>[39m
+            [36m</ol>[39m
+          [36m</section>[39m
+        [36m</nav>[39m
+      [36m</article>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ getByRole node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/pages/public/CollectionView.test.tsx:57:19
+     55|     expect(screen.getByRole("link", { name: "Travel" })).toHaveAttribu…
+     56|     expect(screen.getByText(/Trams, tiles/)).toBeInTheDocument();
+     57|     expect(screen.getByRole("link", { name: "Alice" })).toHaveAttribut…
+       |                   ^
+     58|     expect(screen.getByText("2 modules · 3 pages")).toBeInTheDocument(…
+     59|     expect(screen.getByRole("link", { name: "Discover" })).toHaveAttri…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/13]⎯
+
+ FAIL  src/pages/public/Discover.test.tsx > Discover > lists collections as cards with cover thumb, title, description, category, creator and counts; sets the title
+TestingLibraryElementError: Unable to find an accessible element with the role "link" and name "Alice"
+
+Here are the accessible roles:
+
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"mb-6 space-y-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "Discover":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-3xl font-bold focus:outline-none"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  Name "Lisbon in 3 days":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+  [36m/>[39m
+
+  Name "Fresh pasta":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+  [36m/>[39m
+
+  Name "No cover":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-muted-foreground"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33maria-live[39m=[32m"polite"[39m
+    [33mclass[39m=[32m"mb-3 text-sm text-muted-foreground"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p />[39m
+
+  Name "":
+  [36m<p />[39m
+
+  --------------------------------------------------
+  search:
+
+  Name "":
+  [36m<form[39m
+    [33mclass[39m=[32m"relative mb-4"[39m
+    [33mrole[39m=[32m"search"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  searchbox:
+
+  Name "Search collections":
+  [36m<input[39m
+    [33maria-label[39m=[32m"Search collections"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-9"[39m
+    [33mmaxlength[39m=[32m"100"[39m
+    [33mplaceholder[39m=[32m"Search by title or description"[39m
+    [33mtype[39m=[32m"search"[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "Categories":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Categories"[39m
+    [33mclass[39m=[32m"mb-6 flex flex-wrap gap-2"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "All":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"true"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Travel":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Food & Recipes":
+  [36m<button[39m
+    [33maria-pressed[39m=[32m"false"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  list:
+
+  Name "":
+  [36m<ul[39m
+    [33mclass[39m=[32m"grid gap-4 sm:grid-cols-2 lg:grid-cols-3"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  listitem:
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"card-alice/lisbon"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"card-bob/pasta"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<li[39m
+    [33mdata-scroll-anchor[39m=[32m"card-alice/x"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "Travel Lisbon in 3 days Tram 28 and pastéis. By Alice 2 modules · 6 pages":
+  [36m<a[39m
+    [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+    [33mdata-testid[39m=[32m"collection-card"[39m
+    [33mhref[39m=[32m"/@alice/lisbon"[39m
+  [36m/>[39m
+
+  Name "Fresh pasta Tram 28 and pastéis. By bob 1 module · 1 page":
+  [36m<a[39m
+    [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+    [33mdata-testid[39m=[32m"collection-card"[39m
+    [33mhref[39m=[32m"/@bob/pasta"[39m
+  [36m/>[39m
+
+  Name "Travel No cover Tram 28 and pastéis. By Alice 2 modules · 6 pages":
+  [36m<a[39m
+    [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+    [33mdata-testid[39m=[32m"collection-card"[39m
+    [33mhref[39m=[32m"/@alice/x"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  presentation:
+
+  Name "":
+  [36m<img[39m
+    [33malt[39m=[32m""[39m
+    [33mclass[39m=[32m"h-full w-full object-cover transition-transform group-hover:scale-[1.02]"[39m
+    [33mdecoding[39m=[32m"async"[39m
+    [33mloading[39m=[32m"lazy"[39m
+    [33msrc[39m=[32m"/api/public/media/aaa/thumb"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<img[39m
+    [33malt[39m=[32m""[39m
+    [33mclass[39m=[32m"h-full w-full object-cover transition-transform group-hover:scale-[1.02]"[39m
+    [33mdecoding[39m=[32m"async"[39m
+    [33mloading[39m=[32m"lazy"[39m
+    [33msrc[39m=[32m"https://images.example.org/p.jpg"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto max-w-6xl px-4 pb-16 pt-28"[39m
+    [36m>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"mb-6 space-y-2"[39m
+      [36m>[39m
+        [36m<h1[39m
+          [33mclass[39m=[32m"text-3xl font-bold focus:outline-none"[39m
+          [33mtabindex[39m=[32m"-1"[39m
+        [36m>[39m
+          [0mDiscover[0m
+        [36m</h1>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"text-muted-foreground"[39m
+        [36m>[39m
+          [0mGuides, tutorials, recipes, travel notes and stories published by creators.[0m
+        [36m</p>[39m
+      [36m</header>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"relative mb-4"[39m
+        [33mrole[39m=[32m"search"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"lucide lucide-search pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"24"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"24"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<circle[39m
+            [33mcx[39m=[32m"11"[39m
+            [33mcy[39m=[32m"11"[39m
+            [33mr[39m=[32m"8"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"m21 21-4.3-4.3"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [36m<input[39m
+          [33maria-label[39m=[32m"Search collections"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm pl-9"[39m
+          [33mmaxlength[39m=[32m"100"[39m
+          [33mplaceholder[39m=[32m"Search by title or description"[39m
+          [33mtype[39m=[32m"search"[39m
+          [33mvalue[39m=[32m""[39m
+        [36m/>[39m
+      [36m</form>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"Categories"[39m
+        [33mclass[39m=[32m"mb-6 flex flex-wrap gap-2"[39m
+        [33mrole[39m=[32m"group"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"true"[39m
+          [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mAll[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mTravel[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mFood & Recipes[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-busy[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<p[39m
+          [33maria-live[39m=[32m"polite"[39m
+          [33mclass[39m=[32m"mb-3 text-sm text-muted-foreground"[39m
+        [36m>[39m
+          [0m3 collections[0m
+        [36m</p>[39m
+        [36m<ul[39m
+          [33mclass[39m=[32m"grid gap-4 sm:grid-cols-2 lg:grid-cols-3"[39m
+        [36m>[39m
+          [36m<li[39m
+            [33mdata-scroll-anchor[39m=[32m"card-alice/lisbon"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+              [33mdata-testid[39m=[32m"collection-card"[39m
+              [33mhref[39m=[32m"/@alice/lisbon"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"aspect-[16/9] w-full overflow-hidden bg-muted"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mclass[39m=[32m"h-full w-full object-cover transition-transform group-hover:scale-[1.02]"[39m
+                  [33mdecoding[39m=[32m"async"[39m
+                  [33mloading[39m=[32m"lazy"[39m
+                  [33msrc[39m=[32m"/api/public/media/aaa/thumb"[39m
+                [36m/>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"flex flex-1 flex-col gap-2 p-4"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 w-fit"[39m
+                [36m>[39m
+                  [0mTravel[0m
+                [36m</div>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+                [36m>[39m
+                  [0mLisbon in 3 days[0m
+                [36m</h2>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+                [36m>[39m
+                  [0mTram 28 and pastéis.[0m
+                [36m</p>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"mt-auto pt-2 text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [36m<p>[39m
+                    [0mBy [0m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"font-medium text-foreground"[39m
+                    [36m>[39m
+                      [0mAlice[0m
+                    [36m</span>[39m
+                  [36m</p>[39m
+                  [36m<p>[39m
+                    [0m2 modules[0m
+                    [0m · [0m
+                    [0m6 pages[0m
+                  [36m</p>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</a>[39m
+          [36m</li>[39m
+          [36m<li[39m
+            [33mdata-scroll-anchor[39m=[32m"card-bob/pasta"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+              [33mdata-testid[39m=[32m"collection-card"[39m
+              [33mhref[39m=[32m"/@bob/pasta"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"aspect-[16/9] w-full overflow-hidden bg-muted"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mclass[39m=[32m"h-full w-full object-cover transition-transform group-hover:scale-[1.02]"[39m
+                  [33mdecoding[39m=[32m"async"[39m
+                  [33mloading[39m=[32m"lazy"[39m
+                  [33msrc[39m=[32m"https://images.example.org/p.jpg"[39m
+                [36m/>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"flex flex-1 flex-col gap-2 p-4"[39m
+              [36m>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+                [36m>[39m
+                  [0mFresh pasta[0m
+                [36m</h2>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+                [36m>[39m
+                  [0mTram 28 and pastéis.[0m
+                [36m</p>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"mt-auto pt-2 text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [36m<p>[39m
+                    [0mBy [0m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"font-medium text-foreground"[39m
+                    [36m>[39m
+                      [0mbob[0m
+                    [36m</span>[39m
+                  [36m</p>[39m
+                  [36m<p>[39m
+                    [0m1 module[0m
+                    [0m · [0m
+                    [0m1 page[0m
+                  [36m</p>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</a>[39m
+          [36m</li>[39m
+          [36m<li[39m
+            [33mdata-scroll-anchor[39m=[32m"card-alice/x"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"[39m
+              [33mdata-testid[39m=[32m"collection-card"[39m
+              [33mhref[39m=[32m"/@alice/x"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"aspect-[16/9] w-full overflow-hidden bg-muted"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"flex h-full w-full items-center justify-center text-muted-foreground"[39m
+                  [33mdata-testid[39m=[32m"cover-placeholder"[39m
+                [36m>[39m
+                  [36m<svg[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"lucide lucide-book-open h-8 w-8"[39m
+                    [33mfill[39m=[32m"none"[39m
+                    [33mheight[39m=[32m"24"[39m
+                    [33mstroke[39m=[32m"currentColor"[39m
+                    [33mstroke-linecap[39m=[32m"round"[39m
+                    [33mstroke-linejoin[39m=[32m"round"[39m
+                    [33mstroke-width[39m=[32m"2"[39m
+                    [33mviewBox[39m=[32m"0 0 24 24"[39m
+                    [33mwidth[39m=[32m"24"[39m
+                    [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M12 7v14"[39m
+                    [36m/>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"flex flex-1 flex-col gap-2 p-4"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 w-fit"[39m
+                [36m>[39m
+                  [0mTravel[0m
+                [36m</div>[39m
+                [36m<h2[39m
+                  [33mclass[39m=[32m"text-lg font-semibold leading-snug break-words group-hover:underline"[39m
+                [36m>[39m
+                  [0mNo cover[0m
+                [36m</h2>[39m
+                [36m<p[39m
+                  [33mclass[39m=[32m"line-clamp-3 text-sm text-muted-foreground break-words"[39m
+                [36m>[39m
+                  [0mTram 28 and pastéis.[0m
+                [36m</p>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"mt-auto pt-2 text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [36m<p>[39m
+                    [0mBy [0m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"font-medium text-foreground"[39m
+                    [36m>[39m
+                      [0mAlice[0m
+                    [36m</span>[39m
+                  [36m</p>[39m
+                  [36m<p>[39m
+                    [0m2 modules[0m
+                    [0m · [0m
+                    [0m6 pages[0m
+                  [36m</p>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</a>[39m
+          [36m</li>[39m
+        [36m</ul>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ getAllByRole node_modules/@testing-library/dom/dist/query-helpers.js:109:15
+ ❯ src/pages/public/Discover.test.tsx:59:26
+     57|     expect(first.getByText("Travel")).toBeInTheDocument();
+     58|     // Step 15b (disclosed change): the creator is now a link to /@use…
+     59|     const alice = screen.getAllByRole("link", { name: "Alice" })[0];
+       |                          ^
+     60|     expect(alice).toHaveAttribute("href", "/@alice");
+     61|     expect(alice.closest("[data-testid=collection-card]")).toBeNull();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/13]⎯
+
+ FAIL  src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > passes the lower-cased username
+ FAIL  src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > /alice is NotFound (not an @handle)
+ FAIL  src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > /@ is NotFound (not an @handle)
+ FAIL  src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > /@ab is NotFound (not an @handle)
+ FAIL  src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > /@1abc is NotFound (not an @handle)
+ FAIL  src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > /@al-ice is NotFound (not an @handle)
+Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+ ❯ createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom.development.js:28478:17
+ ❯ createFiberFromElement node_modules/react-dom/cjs/react-dom.development.js:28504:15
+ ❯ reconcileSingleElement node_modules/react-dom/cjs/react-dom.development.js:13986:23
+ ❯ reconcileChildFibers node_modules/react-dom/cjs/react-dom.development.js:14044:35
+ ❯ reconcileChildren node_modules/react-dom/cjs/react-dom.development.js:19186:28
+ ❯ updateContextProvider node_modules/react-dom/cjs/react-dom.development.js:21193:3
+ ❯ beginWork node_modules/react-dom/cjs/react-dom.development.js:21688:14
+ ❯ beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/13]⎯
+
+ FAIL  src/pages/public/routes.test.tsx > the move > Placeholders.tsx no longer exports the public adapters
+AssertionError: expected [ 'CreatorProfilePage', …(4) ] to not include 'CreatorProfilePage'
+ ❯ src/pages/public/routes.test.tsx:69:43
+     67|     expect(Object.keys(placeholders)).not.toContain("PublicPageViewPag…
+     68|     // Step 15b (disclosed change): the profile adapter moved here too…
+     69|     expect(Object.keys(placeholders)).not.toContain("CreatorProfilePag…
+       |                                           ^
+     70|     expect(Object.keys(placeholders)).not.toContain("PublicCreatorProf…
+     71|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/13]⎯
+
+ Test Files  7 failed (7)
+      Tests  11 failed | 92 passed (103)
+   Start at  17:55:39
+   Duration  2.23s (transform 792ms, setup 1.69s, collect 1.28s, tests 2.49s, environment 4.42s, prepare 601ms)
+

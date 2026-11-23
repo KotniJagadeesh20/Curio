@@ -1,0 +1,7 @@
+1a2
+> import { resolveFixture } from './fixture.mjs';
+5c6,7
+< await page.goto(BASE + '/create/pages/586'); await page.getByTestId('block-editor').waitFor();
+---
+> const { PAGE } = await resolveFixture(page);
+> await page.goto(BASE + '/create/pages/' + PAGE); await page.getByTestId('block-editor').waitFor();

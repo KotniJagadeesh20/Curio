@@ -1,4 +1,4 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { api, ApiError } from "@/lib/api";
 import { apiPaths } from "@/lib/paths";
 import type {
@@ -12,6 +12,7 @@ import type {
   ProblemSummary,
   PublicCollectionDetail,
   PublicCollectionSummary,
+  PublicCreator,
   PublicPageView,
   TrackDetail,
   TrackSummary,
@@ -51,6 +52,28 @@ export const usePublicCollections = (params: { category?: string; q?: string; pa
     queryFn: () => api.get<Paged<PublicCollectionSummary>>(apiPaths.publicCollections(params)),
     retry: retryUnlessClientError,
     placeholderData: opts.keepPrevious ? keepPreviousData : undefined,
+  });
+
+/** Step 15b: the public creator profile. 404 = PRIVATE, unknown or suspended (the same answer for all three). */
+export const usePublicCreator = (username?: string) =>
+  useQuery({
+    queryKey: ["public", "creator", username],
+    queryFn: () => api.get<PublicCreator>(apiPaths.publicCreator(username!)),
+    enabled: !!username,
+    retry: retryUnlessClientError,
+  });
+
+/** Step 15b: one creator's listed collections, 50 per page, loaded page by page ("Load more"). Only enabled once the profile is confirmed. */
+export const CREATOR_COLLECTIONS_PAGE_SIZE = 50;
+export const usePublicCreatorCollections = (username: string | undefined, enabled: boolean) =>
+  useInfiniteQuery({
+    queryKey: ["public", "creator-collections", username],
+    queryFn: ({ pageParam }) => api.get<Paged<PublicCollectionSummary>>(
+      apiPaths.publicCollections({ creator: username!, page: pageParam, size: CREATOR_COLLECTIONS_PAGE_SIZE })),
+    initialPageParam: 0,
+    getNextPageParam: (last) => (last.page + 1 < last.totalPages ? last.page + 1 : undefined),
+    enabled: !!username && enabled,
+    retry: retryUnlessClientError,
   });
 
 export const usePublicCollection = (username?: string, slug?: string) =>

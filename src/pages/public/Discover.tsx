@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { CollectionCard } from "@/components/public/CollectionCard";
 import { ErrorState, LoadingState } from "@/components/QueryState";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+import { usePublicArrival, type ArrivalState } from "@/hooks/usePublicArrival";
 import { useCategories, usePublicCollections } from "@/hooks/useContent";
 
 export const DISCOVER_PAGE_SIZE = 12;
@@ -58,10 +59,18 @@ export default function Discover() {
   const filtered = !!q || !!category;
   const clear = () => { setText(""); update({ q: null, category: null }); };
 
+  // Arrival, scroll restoration and focus (Step 14d-3). The key is constant: search, filters and paging change only the
+  // query string, which is never an arrival (no scroll, no focus).
+  const contentRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const errorRef = useRef<HTMLDivElement>(null);
+  const arrivalState: ArrivalState = data ? "content" : list.isError ? (list.isFetching ? "pending" : "error") : "pending";
+  const arrival = usePublicArrival({ arrivalKey: "discover", state: arrivalState, contentRef, headingRef, errorRef });
+
   return (
     <section className="container mx-auto max-w-6xl px-4 pb-16 pt-28">
       <header className="mb-6 space-y-2">
-        <h1 className="text-3xl font-bold">Discover</h1>
+        <h1 ref={headingRef} tabIndex={-1} className="text-3xl font-bold focus:outline-none">Discover</h1>
         <p className="text-muted-foreground">Guides, tutorials, recipes, travel notes and stories published by creators.</p>
       </header>
 
@@ -83,10 +92,14 @@ export default function Discover() {
       )}
 
       {list.isLoading && <LoadingState label="Loading collections..." />}
-      {list.isError && !data && <ErrorState error={list.error} onRetry={() => list.refetch()} />}
+      {list.isError && !data && (
+        <div ref={errorRef} tabIndex={-1} role="region" aria-label="Couldn't load Discover" className="focus:outline-none">
+          <ErrorState error={list.error} onRetry={() => { arrival.retry(); list.refetch(); }} />
+        </div>
+      )}
 
       {data && (
-        <div aria-busy={list.isFetching} className={list.isPlaceholderData ? "opacity-60 transition-opacity" : undefined}>
+        <div ref={contentRef} aria-busy={list.isFetching} className={list.isPlaceholderData ? "opacity-60 transition-opacity" : undefined}>
           <p className="mb-3 text-sm text-muted-foreground" aria-live="polite">
             {data.totalItems === 0 ? "" : `${data.totalItems} ${data.totalItems === 1 ? "collection" : "collections"}`}
           </p>
@@ -109,12 +122,12 @@ export default function Discover() {
             </div>
           ) : (
             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {data.items.map((c) => <li key={`${c.creator.username}/${c.slug}`}><CollectionCard c={c} /></li>)}
+              {data.items.map((c) => <li key={`${c.creator.username}/${c.slug}`} data-scroll-anchor={`card-${c.creator.username}/${c.slug}`}><CollectionCard c={c} /></li>)}
             </ul>
           )}
 
           {totalPages > 1 && (
-            <nav aria-label="Pagination" className="mt-8 flex items-center justify-center gap-3">
+            <nav aria-label="Pagination" data-scroll-anchor="pager" className="mt-8 flex items-center justify-center gap-3">
               <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => update({ page: page - 1 > 1 ? String(page - 1) : null })}>
                 <ChevronLeft className="mr-1 h-4 w-4" />Previous
               </Button>

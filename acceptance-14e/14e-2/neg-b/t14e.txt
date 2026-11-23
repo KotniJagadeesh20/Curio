@@ -1,0 +1,70 @@
+PASS  [J1] Discover: search "java" shows the card
+PASS  [J1] Discover: category "Programming" filter keeps the card  — http://localhost:8080/discover?q=java&category=programming
+PASS  [J1] Discover: no draft/unlisted title in the DOM
+PASS  [J1] Collection /@anna_java/java-learning: header, outline = published pages in API order, Share  — outline=/@anna_java/java-learning/core-java/hello-java /@anna_java/java-learning/core-java/the-jvm /@anna_java/java-learning/core-java/collections api=/@anna_java/java-learning/core-java/hello-java /@anna_java/java-learning/core-java/the-jvm /@anna_java/java-learning/core-java/collections
+FAIL  [J1] A1 opens in the page viewer (NEG b: the page view is stubbed to 503)  — error state shown: "Service unavailable\n\nTry again"; retry button: 1
+FAIL  [J1] journey completed without an exception  — NEG b: J1 stopped at the error state
+PASS  [J1] Share copies the canonical collection URL  — http://localhost:8080/@anna_java/java-learning
+PASS  [J1] The shared URL opens the same collection in a fresh logged-out context
+PASS  [J2] Discover: search "travel" shows the card
+PASS  [J2] Discover: category "Travel" filter keeps the card  — http://localhost:8080/discover?q=travel&category=travel
+PASS  [J2] Discover: no draft/unlisted title in the DOM
+PASS  [J2] Collection /@ben_travel/travel-experiences: header, outline = published pages in API order, Share  — outline=/@ben_travel/travel-experiences/lisbon/arrival /@ben_travel/travel-experiences/lisbon/tram-28 /@ben_travel/travel-experiences/porto/ribeira api=/@ben_travel/travel-experiences/lisbon/arrival /@ben_travel/travel-experiences/lisbon/tram-28 /@ben_travel/travel-experiences/porto/ribeira
+FAIL  [J2] desktop journey completed without an exception  — locator.waitFor: Timeout 12000ms exceeded.
+PASS  [J2-360] Discover: search "travel" shows the card
+PASS  [J2-360] Discover: category "Travel" filter keeps the card  — http://localhost:8080/discover?q=travel&category=travel
+PASS  [J2-360] Discover: no draft/unlisted title in the DOM
+PASS  [J2-360] Collection /@ben_travel/travel-experiences: header, outline = published pages in API order, Share  — outline=/@ben_travel/travel-experiences/lisbon/arrival /@ben_travel/travel-experiences/lisbon/tram-28 /@ben_travel/travel-experiences/porto/ribeira api=/@ben_travel/travel-experiences/lisbon/arrival /@ben_travel/travel-experiences/lisbon/tram-28 /@ben_travel/travel-experiences/porto/ribeira
+PASS  [J2-360] Collection: no horizontal overflow
+FAIL  [J2-360] mobile journey completed without an exception  — locator.waitFor: Timeout 12000ms exceeded.
+FAIL  [R3 logged out] A-draft page → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-learning/core-java/generics-draft: "" / AlgoQuest / 503 GET /api/public/pages/anna_java/java-learning/core-java/generics-draft,503 GET /api/public/pages/anna_java/java-learning/core-java/generics-draft,503 GET /api/public/pages/anna_java/java-learning/core-java/generics-draft
+PASS  [R3 logged out] "Java Drafts" (draft collection) → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-drafts: "This collection isn't available" / Not available · AlgoQuest / 404 GET /api/public/collections/anna_java/java-drafts
+FAIL  [R3 logged out] page in "Java Drafts" → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-drafts/ideas/streams-idea: "This page isn't available" / Not available · AlgoQuest / 503 GET /api/public/pages/anna_java/java-drafts/ideas/streams-idea
+FAIL  [R3 logged out] B's draft page → not-available screen, neutral title, API 404 (network + DOM)  — /@ben_travel/travel-experiences/porto/port-wine-draft: "" / AlgoQuest / 503 GET /api/public/pages/ben_travel/travel-experiences/porto/port-wine-draft,503 GET /api/public/pages/ben_travel/travel-experiences/porto/port-wine-draft,503 GET /api/public/pages/ben_travel/travel-experiences/porto/port-wine-draft
+PASS  [R3 logged out] "Java Notes" (unlisted) opens by direct link with noindex
+FAIL  [R3 logged out] isolation checks completed without an exception  — locator.waitFor: Timeout 12000ms exceeded.
+FAIL  [R3 logged in as B] A-draft page → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-learning/core-java/generics-draft: "" / AlgoQuest / 503 GET /api/public/pages/anna_java/java-learning/core-java/generics-draft,503 GET /api/public/pages/anna_java/java-learning/core-java/generics-draft,503 GET /api/public/pages/anna_java/java-learning/core-java/generics-draft
+PASS  [R3 logged in as B] "Java Drafts" (draft collection) → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-drafts: "This collection isn't available" / Not available · AlgoQuest / 404 GET /api/public/collections/anna_java/java-drafts
+FAIL  [R3 logged in as B] page in "Java Drafts" → not-available screen, neutral title, API 404 (network + DOM)  — /@anna_java/java-drafts/ideas/streams-idea: "This page isn't available" / Not available · AlgoQuest / 503 GET /api/public/pages/anna_java/java-drafts/ideas/streams-idea
+FAIL  [R3 logged in as B] B's draft page → not-available screen, neutral title, API 404 (network + DOM)  — /@ben_travel/travel-experiences/porto/port-wine-draft: "" / AlgoQuest / 503 GET /api/public/pages/ben_travel/travel-experiences/porto/port-wine-draft,503 GET /api/public/pages/ben_travel/travel-experiences/porto/port-wine-draft,503 GET /api/public/pages/ben_travel/travel-experiences/porto/port-wine-draft
+PASS  [R3 logged in as B] "Java Notes" (unlisted) opens by direct link with noindex
+FAIL  [R3 logged in as B] isolation checks completed without an exception  — locator.waitFor: Timeout 12000ms exceeded.
+PASS  [R4 keyboard] Tab to "Discover card" + Enter → "Java Learning"  — 22 Tab presses
+FAIL  [R4 keyboard] Tab to "Start reading" + Enter → "Hello, Java"  — 1 Tab presses
+FAIL  [R4 keyboard] Tab to "Next: The JVM" + Enter → "The JVM"  — 80 Tab presses; stuck at "A:Login"
+PASS  [H J1 desktop] no unexpected console errors
+PASS  [H J1 desktop] no unexpected failed requests
+PASS  [H J1 desktop] no Authorization header on public API calls  — 10 public calls, 0 with Authorization
+PASS  [H J1 desktop] zero /api/media/* requests
+PASS  [H J1 share] no unexpected console errors
+PASS  [H J1 share] no unexpected failed requests
+PASS  [H J1 share] no Authorization header on public API calls  — 1 public calls, 0 with Authorization
+PASS  [H J1 share] zero /api/media/* requests
+PASS  [H J1 share target] no unexpected console errors
+PASS  [H J1 share target] no unexpected failed requests
+PASS  [H J1 share target] no Authorization header on public API calls  — 1 public calls, 0 with Authorization
+PASS  [H J1 share target] zero /api/media/* requests
+PASS  [H J2 desktop] no unexpected console errors
+PASS  [H J2 desktop] no unexpected failed requests
+PASS  [H J2 desktop] no Authorization header on public API calls  — 10 public calls, 0 with Authorization
+PASS  [H J2 desktop] zero /api/media/* requests
+PASS  [H J2 mobile] no unexpected console errors
+PASS  [H J2 mobile] no unexpected failed requests
+PASS  [H J2 mobile] no Authorization header on public API calls  — 10 public calls, 0 with Authorization
+PASS  [H J2 mobile] zero /api/media/* requests
+PASS  [H J2 mobile] no horizontal overflow at 360 px (every checked view)
+PASS  [H R3 logged out] no unexpected console errors
+PASS  [H R3 logged out] no unexpected failed requests
+PASS  [H R3 logged out] no Authorization header on public API calls  — 17 public calls, 0 with Authorization
+PASS  [H R3 logged out] zero /api/media/* requests
+PASS  [H R3 logged in as B] no unexpected console errors
+PASS  [H R3 logged in as B] no unexpected failed requests
+PASS  [H R3 logged in as B] no Authorization header on public API calls  — 17 public calls, 0 with Authorization
+PASS  [H R3 logged in as B] zero /api/media/* requests
+PASS  [H J1 keyboard] no unexpected console errors
+PASS  [H J1 keyboard] no unexpected failed requests
+PASS  [H J1 keyboard] no Authorization header on public API calls  — 8 public calls, 0 with Authorization
+PASS  [H J1 keyboard] zero /api/media/* requests
+ALLOW-LIST (exact, R3 404s): 404 GET /api/public/pages/anna_java/java-learning/core-java/generics-draft ; 404 GET /api/public/collections/anna_java/java-drafts ; 404 GET /api/public/pages/anna_java/java-drafts/ideas/streams-idea ; 404 GET /api/public/pages/ben_travel/travel-experiences/porto/port-wine-draft ; NEG b: 503 GET /api/public/pages/**
+
+53/67 checks passed (NEG b)

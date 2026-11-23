@@ -48,15 +48,17 @@ export const paths = {
 
 // ---- API paths (relative to /api, as `api.get` expects) ----
 export const apiPaths = {
-  publicCollections: (params: { category?: string; q?: string; page?: number; size?: number } = {}) => {
+  publicCollections: (params: { category?: string; q?: string; creator?: string; page?: number; size?: number } = {}) => {
     const qs = new URLSearchParams();
     if (params.category) qs.set("category", params.category);
     if (params.q?.trim()) qs.set("q", params.q.trim());
+    if (params.creator) qs.set("creator", params.creator);     // Step 15a/15b: one creator's listed collections
     if (params.page !== undefined) qs.set("page", String(params.page));
     if (params.size !== undefined) qs.set("size", String(params.size));
     const s = qs.toString();
     return `/public/collections${s ? `?${s}` : ""}`;
   },
+  publicCreator: (username: string) => `/public/creators/${enc(username)}`,
   publicCollection: (username: string, slug: string) => `/public/collections/${enc(username)}/${enc(slug)}`,
   publicPage: (username: string, collectionSlug: string, moduleSlug: string, pageSlug: string) =>
     `/public/pages/${enc(username)}/${enc(collectionSlug)}/${enc(moduleSlug)}/${enc(pageSlug)}`,

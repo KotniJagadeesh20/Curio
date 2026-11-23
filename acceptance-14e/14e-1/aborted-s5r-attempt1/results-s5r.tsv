@@ -1,0 +1,4 @@
+time	stage	kind	script	exit	output
+2026-11-19T09:37:00Z	S5	backend	pid= vite=67709	0	S5-backend-s5r.log
+2026-11-19T09:37:34Z	S5	test	13e/t1-templates.mjs	1	S5-t1-templates-s5r.txt
+STOPPED: S5 13e/t1-templates.mjs (exit 1)

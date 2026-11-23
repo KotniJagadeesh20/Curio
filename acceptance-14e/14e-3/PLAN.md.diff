@@ -1,0 +1,67 @@
+442c442
+< - The hooks are tested against a stubbed `fetch`, not a running backend; the types were written from the Java records and are not generated, so a DTO change must be mirrored by hand (a contract test against a live backend is a candidate for Step 14).
+---
+> - The hooks are tested against a stubbed `fetch`, not a running backend; the types were written from the Java records and are not generated, so a DTO change must be mirrored by hand (a contract test against a live backend is a candidate for Step 14). **Closed in Step 14:** `acceptance-14e/scripts/contract14e.mjs` checks every consumed field of the public API against a live backend.
+511c511
+< - Tests run against a fake `fetch`, not a live backend; hand-mirrored types remain a contract risk (candidate for Step 14).
+---
+> - Tests run against a fake `fetch`, not a live backend; hand-mirrored types remain a contract risk (candidate for Step 14). **Closed for the public API in Step 14 (`contract14e`).**
+575c575
+< - The public read API (Step 6) still renders a malformed body as `[]` for readers (a read, not a write: no data is lost, but a reader sees an empty page). Whether a malformed published page should instead 404 for readers is a Step 14 decision.
+---
+> - The public read API (Step 6) still renders a malformed body as `[]` for readers (a read, not a write: no data is lost, but a reader sees an empty page). Whether a malformed published page should instead 404 for readers is a Step 14 decision. **Decided in 14c:** no 404; the reader drops invalid blocks individually and keeps the valid ones (`src/lib/publicBlocks.ts`).
+612c612
+< - **Step 14 decision still open:** the public read API returns an empty body for malformed content; consider an "unavailable content" response (noted at Step 9 approval).
+---
+> - **Step 14 decision (closed in 14c):** the public read API returns an empty body for malformed content; consider an "unavailable content" response (noted at Step 9 approval). Decision: no new response; the public reader validates and drops invalid blocks one by one (`src/lib/publicBlocks.ts`).
+833c833
+< **Step 14: Public pages: Discover, Collection viewer, Page viewer**
+---
+> **Step 14: Public pages: Discover, Collection viewer, Page viewer (DONE, closed in 14e-3 on 2026-11-23)**
+835c835,858
+< - Done when: Scenarios A and B can be read end to end by a logged-out visitor
+---
+> - Done when: [x] Scenarios A and B can be read end to end by a logged-out visitor (14e-2 J1/J2/R3, see AC2 below)
+> 
+> *Substeps and approvals*
+> | Substep | Content | Status |
+> |---|---|---|
+> | 14a | Discover (`/discover`, category filter, search, pager) | closed 2026-11-18 |
+> | 14b | Collection viewer (outline, Start reading) | closed 2026-11-18 |
+> | 14c | Page viewer (prev/next, public block validation, titles) | closed 2026-11-18 |
+> | 14d-1 | Route adapters, workspace "View" links | closed 2026-11-18 |
+> | 14d-2 | Sharing (`share.ts`, `ShareButton`) | closed 2026-11-18 |
+> | 14d-3 | Arrival, scroll and focus; native-video and network-state corrections | closed 2026-11-19 (`Curio-main-step14d-3-networkstate.zip`, `0828e1e2…3c44`) |
+> | 14e-1 | Combined regression on fresh backends | closed 2026-11-19 (`Curio-main-step14e-1-f4.zip`, `7051d974…5ad4`) |
+> | 14e-2 | Scenario A/B acceptance, contract check, axe scan, negative controls | evidence accepted 2026-11-20, with D1 open (`Curio-main-step14e-2.zip`, `855a3647…6599`) |
+> | D1 | Correction: Monaco `Canceled` on public code blocks (F1, `occurrencesHighlight: "off"` for read-only editors) | closed 2026-11-23 (`Curio-main-stepD1-r2.zip`, `66e1869d…8d21`) |
+> | A11Y | Correction: accessible names for seven controls (axe `button-name`/`link-name` → 0) | closed 2026-11-23 (`Curio-main-stepA11Y-r2.zip`, `b92662d8…4def`) |
+> | 14e-3 | Close-out (this entry, `acceptance-14e/REPORT.md`) | delivered 2026-11-23, awaiting review |
+> 
+> *Acceptance criteria (approved Step 14 plan §17) and evidence* (details: `acceptance-14e/REPORT.md`)
+> - [x] **AC1** The browser report covers Step 14 with all checks passing on the final code. The only exceptions are the accepted superseded S5 F2/F3.
+>   - On the final code (after D1 and A11Y): t14e 152/152 ×3, contract14e 14/14 ×3, axe 22/22 scans ×3 (`acceptance-a11y/outputs/run-{1,2,3}`); 14a t14a 26/26; 14c/14d t14d3 28/28, t14d1 14/14, t14d2 27/27, t14c 76/76 (`acceptance-a11y/outputs/regression`); D1 td1 15/15 ×3 (`acceptance-d1`).
+>   - Final code, S2/S4/S5 (`acceptance-14e/14e-3/final-baseline/`): t14b 30/30, t14b-stale 15/15, t14d3c 18/18, 13e creator scripts 65/67. The 2 failures are only the accepted, superseded F2/F3 (`acceptance-14e/14e-1/classification.md`), identical to 14e-1.
+> - [x] **AC2** Scenarios A and B are readable end to end by a logged-out visitor: t14e J1 (A), J2 (B, 1280 and 360 px), R3 isolation, R4 arrival/keyboard, R6 hygiene, all passing ×3 on the final code. Scenario B's "shares their profile" part is Step 15 (excluded).
+> - [x] **AC3** The creator regression passes: 14e-1 S5 65/67 with the 2 failures classified as superseded and accepted (F2, F3); 13e t2-editor 23/23 again after D1.
+> - [x] **AC4** The final ZIP excludes `backend/data/`, `node_modules`, `dist`, `target` and `*.tsbuildinfo`, verified by listing the 14e-3 ZIP (`Curio-step14e-3-ac4-zip-listing.txt`).
+836a860,878
+> *Decisions recorded during Step 14 (from the plans and reports available in the repository)*
+> - Public block validation (14c, `src/lib/publicBlocks.ts`): the reader re-validates every block from the public API; an invalid block is dropped on its own and its valid neighbours still render. This answers the malformed-content question noted at Steps 9/10 below; the API itself was not changed.
+> - Document titles: `<page> · AlgoQuest`, `<collection> · AlgoQuest`, `Discover · AlgoQuest`, `Not available · AlgoQuest` (14c rev. 2 B); branding "AlgoQuest" → "Curio" moves to Step 16 (Q8).
+> - Q-b1: route adapters move together in 14d. Q-c3: scroll and focus deferred from 14c to 14d.
+> - 14d: Q-d1 scroll/focus handling on public views only (`history.scrollRestoration = "manual"` while mounted); Q-d2 manual-copy popover when no clipboard; Q-d3 per-page "View" links for published pages in the collection editor; Q-d4 Discover arrival behaviour on entry only; Q-d5 share title `<page> · <collection>`.
+> - 14e: Q-e1 axe report-only; Q-e2 Chrome only; Q-e3 live contract check; Q-e4 original scripts byte-identical (approved exceptions: amended 13e t3/t4, C1 and F4); Q-e5 each substep authorized separately.
+> - D1: F1 approved (documented Monaco option, read-only editors only); F2 not needed; F3 not authorized.
+> - Not found in the repository: the 14a, 14b and 14c reports and the Step 14 plan itself, so decisions recorded only there are not repeated here.
+> 
+> *Open items carried forward (not resolved by Step 14)*
+> - `MediaUrlResolver.resolveBlocks` key-order bug (an `assetId` before `url: ""` yields an empty public URL): needs a backend correction plan.
+> - Intermittent YouTube iframe `compute-pressure` console message in t14c (third-party; not seen in the A11Y run).
+> - Public image gradient observation (solid red PNG shown red→orange in 14e-1 S5): unasserted, uninvestigated.
+> - Read-only `CodeEditor` Reset button blanks the code (`defaultCode` is `""`): separate item.
+> - Moderate axe findings (`heading-order`, `landmark-complementary-is-top-level`, `page-has-heading-one`): 26 nodes, report-only.
+> - Editable Monaco editors (`/problem/:slug`) keep the D1 `Delayer` window (not observed); D1 F2/F3 not authorized.
+> - 14d-3 open point: programmatic navigation in the same task as a programmatic scroll isn't saved (no public UI path does this).
+> - Limits: Chrome only, H2 only (PostgreSQL is a Step 20 gate), native-video metadata after the 5 s cap.
+> 

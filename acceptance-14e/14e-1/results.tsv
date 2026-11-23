@@ -1,0 +1,26 @@
+time	stage	kind	script	exit	output
+2026-11-19T07:43:11Z	S1	backend	pid=50509 vite=50553	0	S1-backend.log
+2026-11-19T07:43:12Z	S1	seed	14a/seed14a.mjs	0	S1-seed14a.txt
+2026-11-19T07:43:21Z	S1	test	14a/t14a.mjs	0	S1-t14a.txt
+2026-11-19T07:43:28Z	S2	backend	pid=50711 vite=50746	0	S2-backend.log
+2026-11-19T07:43:29Z	S2	seed	14a/seed14a.mjs	0	S2-seed14a.txt
+2026-11-19T07:43:29Z	S2	seed	14b/seed14b.mjs	0	S2-seed14b.txt
+2026-11-19T07:43:35Z	S2	test	14b/t14b.mjs	0	S2-t14b.txt
+2026-11-19T07:43:49Z	S2	test	14b/t14b-stale.mjs	0	S2-t14b-stale.txt
+2026-11-19T07:43:57Z	S3	backend	pid=50950 vite=50993	0	S3-backend.log
+2026-11-19T07:43:58Z	S3	seed	14d3/seed14c.mjs	0	S3-seed14c.txt
+2026-11-19T07:43:58Z	S3	seed	14d3/seed14d3.mjs	0	S3-seed14d3.txt
+2026-11-19T07:45:09Z	S3	test	14d3/t14d3.mjs	0	S3-t14d3.txt
+2026-11-19T07:45:12Z	S3	test	14d3/t14d1.mjs	0	S3-t14d1.txt
+2026-11-19T07:45:23Z	S3	test	14d3/t14d2.mjs	0	S3-t14d2.txt
+2026-11-19T07:45:42Z	S3	test	14d3/t14c.mjs	0	S3-t14c.txt
+2026-11-19T07:45:49Z	S4	backend	pid=51503 vite=51538	0	S4-backend.log
+2026-11-19T07:45:50Z	S4	seed	14d3/seed14c.mjs	0	S4-seed14c.txt
+2026-11-19T07:45:51Z	S4	seed	14d3/seed14d3.mjs	0	S4-seed14d3.txt
+2026-11-19T07:45:51Z	S4	seed	14d3/seed14d3c.mjs	0	S4-seed14d3c.txt
+2026-11-19T07:46:21Z	S4	test	14d3/t14d3c.mjs	0	S4-t14d3c.txt
+2026-11-19T07:46:36Z	S5	backend	pid=51795 vite=51865	0	S5-backend.log
+2026-11-19T07:47:03Z	S5	test	13e/t1-templates.mjs	0	S5-t1-templates.txt
+2026-11-19T07:47:19Z	S5	test	13e/t2-editor.mjs	0	S5-t2-editor.txt
+2026-11-19T07:47:55Z	S5	test	13e/t3-media.mjs	1	S5-t3-media.txt
+STOPPED: S5 13e/t3-media.mjs (exit 1)

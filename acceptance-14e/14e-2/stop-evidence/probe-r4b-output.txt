@@ -1,0 +1,2 @@
+[2829,"scrollTo","{\"top\":3493,\"behavior\":\"instant\"}","at setScrollY (/src/lib/scrollAnchor.ts:34:76) < at restore (/src/hooks/usePublicArrival.ts:207:9) < at Object.step (/src/hooks/usePublicArrival.ts:228:42)"]
+[2841,"scroll-event",3493]

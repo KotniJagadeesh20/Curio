@@ -1,0 +1,38 @@
+{
+  "aToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3OTUxNTg0NTEsImV4cCI6MTc5NTI0NDg1MX0.ZaNjNYkTBgG8QtimwepvnvIMajxtSer6qGF88jKRAug",
+  "bToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3OTUxNTg0NTEsImV4cCI6MTc5NTI0NDg1MX0.iP00fN_MvCEI4_pilaFrNisNFKlZuYfiSoTYRUbqoAs",
+  "aUser": "anna_java",
+  "bUser": "ben_travel",
+  "ids": {
+    "javaLearning": 10,
+    "javaDrafts": 11,
+    "javaNotes": 12,
+    "travel": 13,
+    "a1": 545,
+    "a2": 546,
+    "a3": 547,
+    "aDraft": 548,
+    "jdPage": 549,
+    "jnPage": 550,
+    "b1": 551,
+    "b2": 552,
+    "b3": 553,
+    "bDraft": 554
+  },
+  "media": {
+    "img1": "f365949b-b73c-4d28-ab8d-8717d739d7f4",
+    "img2": "14cb515e-d27b-488b-82a7-8b6062666a91"
+  },
+  "sizes": {
+    "img1": {
+      "w": 800,
+      "h": 450
+    },
+    "img2": {
+      "w": 600,
+      "h": 600
+    }
+  },
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"240\" height=\"80\"><rect width=\"240\" height=\"80\" fill=\"#e4572e\"/><text x=\"24\" y=\"48\" fill=\"#ffffff\">Bytecode</text></svg>",
+  "code": "import java.util.*;\n\nList<String> names = new ArrayList<>();\nnames.add(\"Ada\");\nMap<String, Integer> ages = new HashMap<>();"
+}

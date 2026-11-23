@@ -7,6 +7,10 @@ import { OwnerImage } from "@/components/media/OwnerImage";
 import { useTheme } from "@/components/ThemeProvider";
 import { embedUrl, isSafeUrl, isWellFormedTable, type Block } from "@/lib/blocks";
 import { HTML_FRAME_SANDBOX, htmlFrameDocument, htmlFrameHeight } from "@/lib/htmlFrame";
+import { publicImageSrc } from "@/lib/publicBlocks";
+
+/** "owner" (default): the editor preview and TopicPage, exactly as before. "public": the public reader (Step 14c). */
+export type RenderMode = "owner" | "public";
 
 const CALLOUT = {
   info: { icon: Info, cls: "border-accent bg-accent/5", iconCls: "text-accent" },
@@ -17,7 +21,7 @@ const CALLOUT = {
 const Caption = ({ text }: { text: string }) =>
   text ? <figcaption className="mt-2 text-center text-sm text-muted-foreground">{text}</figcaption> : null;
 
-function BlockView({ block }: { block: Block }) {
+function BlockView({ block, mode }: { block: Block; mode: RenderMode }) {
   const { theme } = useTheme();
   switch (block.type) {
     case "heading":
@@ -41,6 +45,7 @@ function BlockView({ block }: { block: Block }) {
       );
     }
     case "image":
+      if (mode === "public") return <PublicImage block={block} />;
       // an uploaded image in the editor's preview: the block still names the asset (public pages get a URL instead)
       if (block.assetId && !block.url) {
         return (
@@ -127,10 +132,31 @@ function BlockView({ block }: { block: Block }) {
   }
 }
 
-export function BlockRenderer({ blocks }: { blocks: Block[] }) {
+/**
+ * A public image: only a public-media or external image URL is ever requested (`publicImageSrc`), never the owner-only
+ * media endpoint, and there is no OwnerImage fallback: an assetId-only or owner-media block renders nothing.
+ * `width`/`height` come from the public API (not the shared Block type) and are used only when both are positive finite
+ * numbers, to reserve the image's space.
+ */
+function PublicImage({ block }: { block: Extract<Block, { type: "image" }> }) {
+  const src = publicImageSrc(block.url);
+  if (!src) return null;
+  const { width, height } = block as { width?: unknown; height?: unknown };
+  const sized = typeof width === "number" && typeof height === "number" && Number.isFinite(width) && Number.isFinite(height) && width > 0 && height > 0;
+  const caption = typeof block.caption === "string" ? block.caption : "";
+  return (
+    <figure>
+      <img src={src} alt={caption} loading="lazy" decoding="async" {...(sized ? { width, height } : {})}
+        className="mx-auto h-auto max-w-full rounded-xl border border-border" />
+      <Caption text={caption} />
+    </figure>
+  );
+}
+
+export function BlockRenderer({ blocks, mode = "owner" }: { blocks: Block[]; mode?: RenderMode }) {
   return (
     <div className="space-y-8">
-      {blocks.map((b) => <BlockView key={b.id} block={b} />)}
+      {blocks.map((b) => <BlockView key={b.id} block={b} mode={mode} />)}
     </div>
   );
 }

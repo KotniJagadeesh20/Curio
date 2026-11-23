@@ -1,0 +1,28 @@
+PASS  /discover loads with collections  — 12 cards on page 1; title="Discover · AlgoQuest"
+PASS  Count shows all listed collections (UNLISTED and DRAFT excluded)
+PASS  Unlisted/draft collections not shown
+PASS  Search is debounced (no request per keystroke; URL waits for the pause)  — requests while typing: ["/api/public/collections?q=kyo&page=0&size=12"]
+PASS  Search filters results  — Kyoto temples
+PASS  Category filter (Travel)  — Lima food walk,Oslo on a budget,Kyoto temples,Lisbon in 3 days
+PASS  Chip shows pressed state
+PASS  Search combined with category  — http://localhost:8080/discover?category=travel&q=lima
+PASS  Pagination: page 2 shows the remaining 3, none repeated  — Linux,System Design,Data Structures & Algorithms
+PASS  Pagination request is 0-based
+PASS  Paging preserves the search filter  — 15 collections; url=http://localhost:8080/discover?q=e&page=2
+PASS  State survives refresh (q + category)  — {"q":"o","travel":"true","titles":["Lima food walk","Oslo on a budget","Kyoto temples","Lisbon in 3 days"]}
+PASS  Page number survives refresh
+PASS  Back/forward restore filters and results  — http://localhost:8080/discover?category=food
+PASS  Typed search replaces (not pushes) history entries  — after Back: http://localhost:8080/discover?category=food
+PASS  Card navigates to the collection URL  — /@admin/kyoto → http://localhost:8080/@admin/kyoto (14b placeholder expected)
+PASS  Back from collection returns to the filtered Discover
+PASS  No horizontal overflow at 360px  — [360,360]
+PASS  Discover works with valid token  — cards=12; stored token after: kept; non-public API calls: ["GET /api/auth/me"]
+PASS  Discover works with expired token  — cards=12; stored token after: cleared; non-public API calls: ["GET /api/auth/me"]
+PASS  [anonymous] no public request sent Authorization  — 38 public requests, 0 with Authorization
+PASS  [anonymous] no unexpected console errors / failed requests  — unexpected errors=[] unexpected failed=[]; expected-and-seen=[]
+PASS  [valid token] no public request sent Authorization  — 3 public requests, 0 with Authorization
+PASS  [valid token] no unexpected console errors / failed requests  — unexpected errors=[] unexpected failed=[]; expected-and-seen=[]
+PASS  [expired token] no public request sent Authorization  — 3 public requests, 0 with Authorization
+PASS  [expired token] no unexpected console errors / failed requests  — unexpected errors=[] unexpected failed=[]; expected-and-seen=["401 GET /api/auth/me"]
+
+TOTAL 26/26 passed

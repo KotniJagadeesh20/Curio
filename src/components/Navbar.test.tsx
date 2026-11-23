@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { useState } from "react";
 import { MemoryRouter } from "react-router-dom";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -6,14 +7,21 @@ const auth = vi.hoisted(() => ({
   state: { user: null as null | { name: string; email: string; role: string }, isAdmin: false, logout: () => {} },
 }));
 vi.mock("@/context/AuthContext", () => ({ useAuth: () => auth.state }));
-vi.mock("./ThemeProvider", () => ({ useTheme: () => ({ theme: "light", toggleTheme: () => {} }) }));
+// A11Y: stateful theme mock (initial theme from `themeState.initial`, default "light" as before) so the toggle's name can flip.
+const themeState = vi.hoisted(() => ({ initial: "light" as "light" | "dark" }));
+vi.mock("./ThemeProvider", () => ({
+  useTheme: () => {
+    const [theme, setTheme] = useState(themeState.initial);
+    return { theme, toggleTheme: () => setTheme((t) => (t === "dark" ? "light" : "dark")) };
+  },
+}));
 
 import { Navbar } from "./Navbar";
 
 const open = () => render(<MemoryRouter><Navbar /></MemoryRouter>);
 const link = (name: string) => screen.queryAllByRole("link", { name }).filter((a) => a.closest("div.hidden"));
 
-beforeEach(() => { auth.state = { user: null, isAdmin: false, logout: () => {} }; });
+beforeEach(() => { auth.state = { user: null, isAdmin: false, logout: () => {} }; themeState.initial = "light"; });
 
 describe("Navbar", () => {
   it("shows Discover to everyone, and no Write link to a visitor", () => {
@@ -34,5 +42,45 @@ describe("Navbar", () => {
     open();
     for (const name of ["Home", "Tracks", "Practice", "System Design", "Dashboard", "Blog"])
       expect(screen.getByRole("link", { name }), name).toBeInTheDocument();
+  });
+
+  // A11Y plan rev. 2, controls 3 and 4.
+  it("names the theme toggle by the action it performs, and the name flips after toggling", () => {
+    open();
+    const toggle = screen.getByRole("button", { name: "Switch to dark theme" });
+    fireEvent.click(toggle);
+    expect(screen.getByRole("button", { name: "Switch to light theme" })).toBe(toggle);
+    expect(toggle.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("in dark theme the toggle is named \"Switch to light theme\"", () => {
+    themeState.initial = "dark";
+    open();
+    expect(screen.getByRole("button", { name: "Switch to light theme" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Switch to dark theme" })).not.toBeInTheDocument();
+  });
+
+  it("names the mobile menu button, exposes aria-expanded, and controls a panel that always exists", async () => {
+    const { container } = open();
+    const button = screen.getByRole("button", { name: "Open menu" });
+    expect(button).toHaveAttribute("aria-expanded", "false");
+    expect(button).toHaveAttribute("aria-controls", "mobile-nav-panel");
+    expect(button.querySelector("svg")).toHaveAttribute("aria-hidden", "true");
+    const panel = container.querySelector("#mobile-nav-panel");
+    expect(panel).not.toBeNull();
+    expect(panel).toHaveAttribute("hidden");
+
+    fireEvent.click(button);
+    expect(screen.getByRole("button", { name: "Close menu" })).toBe(button);
+    expect(button).toHaveAttribute("aria-expanded", "true");
+    expect(container.querySelector("#mobile-nav-panel")).toBe(panel);
+    expect(panel).not.toHaveAttribute("hidden");
+    expect(panel!.querySelector('a[href="/discover"]')).not.toBeNull();
+
+    fireEvent.click(button);
+    expect(screen.getByRole("button", { name: "Open menu" })).toBe(button);
+    expect(button).toHaveAttribute("aria-expanded", "false");
+    await waitFor(() => expect(container.querySelector("#mobile-nav-panel")).toHaveAttribute("hidden"));
+    expect(container.querySelector("#mobile-nav-panel")).toBe(panel);
   });
 });

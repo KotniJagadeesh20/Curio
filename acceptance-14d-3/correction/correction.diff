@@ -1,0 +1,306 @@
+--- a/src/pages/public/PageView.tsx
++++ b/src/pages/public/PageView.tsx
+@@ -134,8 +134,9 @@
+  * Below `lg`: the same outline in a drawer. It closes when a page link is followed (or the page changes). When the link
+  * opens ANOTHER page, focus is left to the arrival (the new page's heading) instead of Radix returning it to "Contents";
+  * Escape, the close button or the current page's own link keep the default (focus back on "Contents").
++ * Exported only for its focus test (ContentsDrawer.focus.test.tsx), which keeps the drawer mounted across the navigation.
+  */
+-function ContentsDrawer({ visit, currentPath, children }: { visit: string; currentPath: string; children: ReactNode }) {
++export function ContentsDrawer({ visit, currentPath, children }: { visit: string; currentPath: string; children: ReactNode }) {
+   const [open, setOpen] = useState(false);
+   const closedByNavigation = useRef(false);
+   useEffect(() => setOpen(false), [visit]);
+--- a/src/hooks/usePublicArrival.test.tsx
++++ b/src/hooks/usePublicArrival.test.tsx
+@@ -35,6 +35,7 @@
+ // ---- the test view ----------------------------------------------------------------------------------------------------
+ const states = new Map<string, ArrivalState>();
+ const anchorsFor = new Map<string, string[]>();
++const mediaBefore = new Map<string, "img" | "iframe">();     // 14d-3 correction: a media element BEFORE the anchors
+ const forcers = new Set<() => void>();
+ const rerenderAll = () => act(() => { forcers.forEach((f) => f()); });
+ const setState = (path: string, s: ArrivalState) => act(() => { states.set(path, s); forcers.forEach((f) => f()); });
+@@ -53,6 +54,8 @@
+       <article ref={contentRef} data-testid="content">
+         <h1 ref={headingRef} tabIndex={-1}>{loc.pathname}</h1>
+         <section data-testid="section">
++          {mediaBefore.get(loc.pathname) === "img" && <img alt="" data-testid="img-before" />}
++          {mediaBefore.get(loc.pathname) === "iframe" && <iframe title="before" data-testid="iframe-before" />}
+           {(anchorsFor.get(loc.pathname) ?? []).map((id) => <div key={id} data-scroll-anchor={id} data-testid={`a-${id}`} />)}
+           <img alt="" data-testid="img" />
+         </section>
+@@ -96,7 +99,7 @@
+ 
+ beforeEach(() => {
+   frames = new Map(); FakeRO.all = []; y = 0; sets = []; reads = 0; layout = {};
+-  states.clear(); anchorsFor.clear();
++  states.clear(); anchorsFor.clear(); mediaBefore.clear();
+   vi.stubGlobal("requestAnimationFrame", (cb: FrameRequestCallback) => { const id = ++frameId; frames.set(id, cb); return id; });
+   vi.stubGlobal("cancelAnimationFrame", (id: number) => { frames.delete(id); });
+   vi.stubGlobal("ResizeObserver", FakeRO);
+@@ -562,9 +565,118 @@
+     expect(stored(a)).toBeUndefined();
+     userScroll(10); flushFrame();
+     expect(stored(a)!.y).toBe(10);
++  });
++});
++
++// =====================================================================================================================
++// 14d-3 review correction, findings 1 and 4: settling readiness and the overflow-anchor exit paths.
++describe("settling readiness (S2, as implemented and documented in the correction report)", () => {
++  /** a with anchors b0..b2 scrolled to 1100 (anchor b1) → b → Back; optional media element before the anchors on a. */
++  function returnWith(media?: "img" | "iframe") {
++    vi.useFakeTimers({ toFake: ["setInterval", "clearInterval", "setTimeout", "clearTimeout", "performance"] });
++    const a = `/p/${uniq()}`, b = `/p/${uniq()}`;
++    layout = { b0: 0, b1: 1000, b2: 2000 };
++    if (media) mediaBefore.set(a, media);
++    arriveAt(a, ["b0", "b1", "b2"]);
++    userScroll(1100); flushFrame();
++    go(b); setState(b, "content"); flushFrame();
++    back();
++    return a;
++  }
++  const incomplete = (el: HTMLElement) => {
++    let complete = false;
++    Object.defineProperty(el, "complete", { configurable: true, get: () => complete });
++    return () => { complete = true; };
++  };
++
++  it("an image BEFORE the anchor that hasn't loaded holds settling past the stable time; its load corrects and lets it end", () => {
++    returnWith("img");
++    const loaded = incomplete(screen.getByTestId("img-before"));
++    flushFrame();
++    const restoration = live()[0];
++    act(() => { vi.advanceTimersByTime(1500); });             // stable for 1.5 s, but an earlier image is still loading
++    expect(restoration.off).toBe(false);
++    layout.b1 = 1400;                                         // it loads and pushes the anchor down by 400
++    loaded();
++    fireEvent.load(screen.getByTestId("img-before"));
++    expect(sets.at(-1)).toBe(1500);                           // corrected by the residual
++    act(() => { vi.advanceTimersByTime(700); });
++    expect(restoration.off).toBe(true);
++  });
++
++  it("…and if it never loads, settling still ends at the 5 s cap", () => {
++    returnWith("img");
++    incomplete(screen.getByTestId("img-before"));
++    flushFrame();
++    const restoration = live()[0];
++    act(() => { vi.advanceTimersByTime(4800); });
++    expect(restoration.off).toBe(false);
++    act(() => { vi.advanceTimersByTime(400); });
++    expect(restoration.off).toBe(true);
++  });
++
++  it("an image AFTER the anchor that hasn't loaded does not hold settling (it can't move the anchor's top)", () => {
++    returnWith();
++    incomplete(screen.getByTestId("img"));                    // the harness image follows every anchor
++    flushFrame();
++    const restoration = live()[0];
++    act(() => { vi.advanceTimersByTime(700); });
++    expect(restoration.off).toBe(true);
+   });
++
++  it("an iframe before the anchor does not hold settling (its box never depends on its document); a resize is still corrected", () => {
++    returnWith("iframe");
++    flushFrame();
++    const restoration = live()[0];
++    layout.b1 = 1050;                                         // any size change while settling is still corrected
++    restoration.fire();
++    expect(sets.at(-1)).toBe(1150);
++    act(() => { vi.advanceTimersByTime(700); });
++    expect(restoration.off).toBe(true);
++  });
+ });
+ 
++describe("overflow-anchor: the previous inline value comes back on every settling exit path", () => {
++  const root = () => document.documentElement.style;
++  function settlingAt(previous: string) {
++    vi.useFakeTimers({ toFake: ["setInterval", "clearInterval", "setTimeout", "clearTimeout", "performance"] });
++    root().overflowAnchor = previous;
++    const a = `/p/${uniq()}`, b = `/p/${uniq()}`;
++    layout = { b0: 0, b1: 1000, b2: 2000 };
++    arriveAt(a, ["b0", "b1", "b2"]);
++    userScroll(1100); flushFrame();
++    go(b); setState(b, "content"); flushFrame();
++    back();
++    flushFrame();                                             // settling starts
++    expect(live()).toHaveLength(1);
++    expect(root().overflowAnchor).toBe("none");
++  }
++  afterEach(() => { root().overflowAnchor = ""; });
++
++  const exits: [string, () => void][] = [
++    ["normal completion (stable, images ready)", () => { act(() => { vi.advanceTimersByTime(700); }); }],
++    ["the 5 s cap", () => { act(() => { vi.advanceTimersByTime(5200); }); }],
++    ["user cancellation (wheel)", () => { act(() => { fireEvent.wheel(window); }); }],
++    ["user cancellation (a scroll we didn't cause)", () => userScroll(1600)],
++    ["a new arrival", () => { go(`/p/${uniq()}`); }],
++    ["unmount (leaving to a non-public screen)", () => { go("/out"); }],
++  ];
++  it.each(exits.flatMap(([name, exit]) => [["auto", name, exit], ["", name, exit]] as [string, string, () => void][]))(
++    "previous inline value %j: restored after %s", (previous, _name, exit) => {
++      settlingAt(previous);
++      exit();
++      expect(root().overflowAnchor).toBe(previous);
++    });
++
++  it("a query-only change while settling is no exit: still none, and restored when settling completes", () => {
++    settlingAt("auto");
++    act(() => { nav({ search: "?q=1" }); });
++    expect(root().overflowAnchor).toBe("none");
++    act(() => { vi.advanceTimersByTime(700); });
++    expect(root().overflowAnchor).toBe("auto");
++  });
++});
++
+ // Last on purpose: a storage failure turns persistence off for the rest of the page lifetime (the store is module-wide),
+ // so later tests could no longer inspect sessionStorage.
+ describe("storage failure", () => {
+--- /dev/null
++++ b/src/pages/public/ContentsDrawer.focus.test.tsx
+@@ -0,0 +1,92 @@
++// Step 14d-3 review correction (finding 2, sensitivity #9): the Contents drawer's focus hand-off, tested deterministically.
++//
++// Why a component test: in PageView every link to ANOTHER page replaces the view with its loading state, which unmounts
++// the drawer and its "Contents" trigger before Radix's close auto-focus runs, so a real navigation can't show whether the
++// prevention is there (see the 14d-3 correction report). Here the drawer stays mounted across the route change, the
++// worst case for the hand-off, with the real Radix Sheet. Every focusin is recorded; "Contents" must never be among them.
++import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
++import { Link, MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
++import { describe, expect, it } from "vitest";
++import { ContentsDrawer } from "./PageView";
++
++function Harness() {
++  const { pathname } = useLocation();
++  return (
++    <>
++      <p data-testid="where">{pathname}</p>
++      <ContentsDrawer visit="v" currentPath="/a">
++        <nav><Link to="/a">Current page</Link><Link to="/b">Another page</Link></nav>
++      </ContentsDrawer>
++    </>
++  );
++}
++function setup() {
++  render(<MemoryRouter initialEntries={["/a"]}><Routes><Route path="*" element={<Harness />} /></Routes></MemoryRouter>);
++  const focusins: string[] = [];
++  const log = (e: FocusEvent) => {
++    const t = e.target as HTMLElement;
++    focusins.push(`${t.tagName}:${(t.textContent ?? "").trim()}`);
++  };
++  document.addEventListener("focusin", log, true);
++  const trigger = screen.getByRole("button", { name: "Contents" });
++  return { trigger, focusins, done: () => document.removeEventListener("focusin", log, true) };
++}
++/** Until the dialog is gone AND Radix's deferred (setTimeout 0) unmount auto-focus has had its chance to run. */
++async function closed() {
++  await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
++  await act(() => new Promise((r) => setTimeout(r, 50)));
++}
++const contents = (log: string[]) => log.filter((x) => x === "BUTTON:Contents");
++
++describe("ContentsDrawer focus hand-off (deterministic; drawer kept mounted)", () => {
++  it("a link to another page: 'Contents' never receives focus, not even briefly", async () => {
++    const { trigger, focusins, done } = setup();
++    fireEvent.click(trigger);
++    const drawer = await screen.findByRole("dialog");
++    const opened = focusins.length;                              // opening focuses inside the dialog; only log what follows
++    fireEvent.click(within(drawer).getByRole("link", { name: "Another page" }));
++    await closed();
++    expect(screen.getByTestId("where").textContent).toBe("/b");
++    expect(contents(focusins.slice(opened))).toEqual([]);
++    expect(document.activeElement).not.toBe(trigger);
++    done();
++  });
++
++  it("control: Escape returns focus to 'Contents' (Radix's close auto-focus is active in this harness)", async () => {
++    const { trigger, focusins, done } = setup();
++    fireEvent.click(trigger);
++    await screen.findByRole("dialog");
++    const opened = focusins.length;
++    fireEvent.keyDown(document.activeElement!, { key: "Escape" });
++    await closed();
++    expect(contents(focusins.slice(opened))).toEqual(["BUTTON:Contents"]);
++    expect(document.activeElement).toBe(trigger);
++    done();
++  });
++
++  it("control: the current page's own link keeps the default (focus back on 'Contents')", async () => {
++    const { trigger, focusins, done } = setup();
++    fireEvent.click(trigger);
++    const drawer = await screen.findByRole("dialog");
++    const opened = focusins.length;
++    fireEvent.click(within(drawer).getByRole("link", { name: "Current page" }));
++    await closed();
++    expect(contents(focusins.slice(opened))).toEqual(["BUTTON:Contents"]);
++    expect(document.activeElement).toBe(trigger);
++    done();
++  });
++
++  it("the flag is per close: after a navigation close, a later Escape still returns focus to 'Contents'", async () => {
++    const { trigger, focusins, done } = setup();
++    fireEvent.click(trigger);
++    fireEvent.click(within(await screen.findByRole("dialog")).getByRole("link", { name: "Another page" }));
++    await closed();
++    fireEvent.click(trigger);
++    await screen.findByRole("dialog");
++    const opened = focusins.length;
++    fireEvent.keyDown(document.activeElement!, { key: "Escape" });
++    await closed();
++    expect(contents(focusins.slice(opened))).toEqual(["BUTTON:Contents"]);
++    done();
++  });
++});
+--- /dev/null
++++ b/src/components/public/PublicBlocks.frameSize.test.tsx
+@@ -0,0 +1,48 @@
++// Step 14d-3 review correction (finding 1): settling doesn't wait for iframes because every iframe the public renderer
++// produces has its box fixed by our own markup before its document loads. An iframe's box never depends on its document
++// (iframes don't size to content; the HTML blocks' documents are sandboxed with no scripts, so they can't ask to be
++// resized either). This pins the markup that makes that true; t14d3c.mjs C1 measures it in Chrome.
++import { render } from "@testing-library/react";
++import { describe, expect, it, vi } from "vitest";
++import type { StoredBlock } from "@/lib/types";
++import { HTML_FRAME_DEFAULT_HEIGHT, HTML_FRAME_MAX_HEIGHT, HTML_FRAME_MIN_HEIGHT } from "@/lib/htmlFrame";
++
++vi.mock("@/components/CodeEditor", () => ({ CodeEditor: () => <pre /> }));
++vi.mock("@/components/ThemeProvider", () => ({ useTheme: () => ({ theme: "light" }) }));
++import { PublicBlocks } from "./PublicBlocks";
++
++const frames = (blocks: unknown[]) =>
++  Array.from(render(<PublicBlocks page={{ blocks: blocks as StoredBlock[], legacy: null }} />).container.querySelectorAll("iframe"));
++
++describe("public iframes reserve their box before loading", () => {
++  it.each([
++    ["YouTube", "https://www.youtube.com/watch?v=dQw4w9WgXcQ"],
++    ["youtu.be", "https://youtu.be/dQw4w9WgXcQ"],
++    ["Vimeo", "https://vimeo.com/76979871"],
++  ])("video embed (%s): full width with a fixed 16:9 aspect ratio, no content-dependent size", (_n, url) => {
++    const [f] = frames([{ type: "video", url, caption: "" }]);
++    expect(f).toBeDefined();
++    expect(f.className.split(" ")).toEqual(expect.arrayContaining(["w-full", "aspect-video"]));
++    expect(f.hasAttribute("height")).toBe(false);             // nothing that could compete with the aspect ratio
++  });
++
++  it.each([
++    [200, "200px"],
++    [undefined, `${HTML_FRAME_DEFAULT_HEIGHT}px`],
++    [5, `${HTML_FRAME_MIN_HEIGHT}px`],
++    [99999, `${HTML_FRAME_MAX_HEIGHT}px`],
++  ])("HTML block (height %s): an explicit inline height (%s), sandboxed without scripts", (height, css) => {
++    const [f] = frames([{ type: "html", html: "<div style='height:3000px'>tall</div>", ...(height === undefined ? {} : { height }) }]);
++    expect(f.style.height).toBe(css);
++    expect(f.getAttribute("sandbox")).toBe("");                 // no allow-scripts: the document can't resize anything
++  });
++
++  it("the renderer produces no other iframe kinds (a non-embeddable video URL is a <video>, not an iframe)", () => {
++    const all = frames([
++      { type: "video", url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", caption: "" },
++      { type: "video", url: "https://cdn.example.org/clip.mp4", caption: "" },
++      { type: "html", html: "<p>x</p>" },
++    ]);
++    expect(all).toHaveLength(2);
++  });
++});

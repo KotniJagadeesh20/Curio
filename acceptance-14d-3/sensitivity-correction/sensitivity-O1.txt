@@ -1,0 +1,34 @@
+# Sensitivity O1: overflow-anchor never put back when settling ends
+File: src/hooks/usePublicArrival.ts
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/1 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 16ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 87ms
+ ❯ src/hooks/usePublicArrival.test.tsx (58 tests | 13 failed) 483ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "auto": restored after normal completion (stable, images ready) 21ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "": restored after normal completion (stable, images ready) 8ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "auto": restored after the 5 s cap 5ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "": restored after the 5 s cap 3ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "auto": restored after user cancellation (wheel) 6ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "": restored after user cancellation (wheel) 27ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "auto": restored after user cancellation (a scroll we didn't cause) 11ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "": restored after user cancellation (a scroll we didn't cause) 9ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "auto": restored after a new arrival 7ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "": restored after a new arrival 4ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "auto": restored after unmount (leaving to a non-public screen) 3ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "": restored after unmount (leaving to a non-public screen) 2ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > a query-only change while settling is no exit: still none, and restored when settling completes 2ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 240ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 572ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 522ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 464ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 57ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 77ms
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 535ms
+      Tests  13 failed | 95 passed (108)
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/hooks/usePublicArrival.test.tsx:668:37
+ ❯ src/hooks/usePublicArrival.test.tsx:668:37
+ ❯ src/hooks/usePublicArrival.test.tsx:676:35
+

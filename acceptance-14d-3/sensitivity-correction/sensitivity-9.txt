@@ -1,0 +1,203 @@
+# Sensitivity 9: Drawer: no onCloseAutoFocus prevention (original sensitivity #9), 10 unit runs + 3 browser runs
+File: src/pages/public/PageView.tsx
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/10 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 21ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 138ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 232ms
+ ✓ src/hooks/usePublicArrival.test.tsx (58 tests) 711ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 607ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 537ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 634ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 73ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 87ms
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests | 1 failed) 671ms
+   × ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly 327ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx:50:46
+
+## unit run 2/10 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 22ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 274ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 279ms
+ ✓ src/hooks/usePublicArrival.test.tsx (58 tests) 694ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 587ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 542ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 499ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 84ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 88ms
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests | 1 failed) 565ms
+   × ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly 252ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx:50:46
+
+## unit run 3/10 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 28ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 154ms
+ ✓ src/hooks/usePublicArrival.test.tsx (58 tests) 560ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 214ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 659ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 558ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 77ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 564ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 106ms
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests | 1 failed) 663ms
+   × ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly 273ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx:50:46
+
+## unit run 4/10 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 11ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 140ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 249ms
+ ✓ src/hooks/usePublicArrival.test.tsx (58 tests) 548ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 586ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 550ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 506ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 61ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 80ms
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests | 1 failed) 543ms
+   × ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly 231ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx:50:46
+
+## unit run 5/10 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 14ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 96ms
+ ✓ src/hooks/usePublicArrival.test.tsx (58 tests) 445ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 213ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 525ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 491ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 62ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 442ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 95ms
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests | 1 failed) 521ms
+   × ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly 209ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx:50:46
+
+## unit run 6/10 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 12ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 93ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 236ms
+ ✓ src/hooks/usePublicArrival.test.tsx (58 tests) 549ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 590ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 544ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 61ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 517ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 81ms
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests | 1 failed) 571ms
+   × ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly 234ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx:50:46
+
+## unit run 7/10 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 18ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 141ms
+ ✓ src/hooks/usePublicArrival.test.tsx (58 tests) 418ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 225ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 578ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 543ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 61ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 428ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 96ms
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests | 1 failed) 560ms
+   × ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly 246ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx:50:46
+
+## unit run 8/10 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 16ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 119ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 169ms
+ ✓ src/hooks/usePublicArrival.test.tsx (58 tests) 479ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 585ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 527ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 468ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 66ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 148ms
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests | 1 failed) 566ms
+   × ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly 209ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx:50:46
+
+## unit run 9/10 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 11ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 106ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 304ms
+ ✓ src/hooks/usePublicArrival.test.tsx (58 tests) 630ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 579ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 738ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 692ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 85ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 99ms
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests | 1 failed) 541ms
+   × ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly 207ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx:50:46
+
+## unit run 10/10 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 19ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 123ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 259ms
+ ✓ src/hooks/usePublicArrival.test.tsx (58 tests) 574ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 634ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 580ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 69ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 483ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 86ms
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests | 1 failed) 529ms
+   × ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly 199ms
+      Tests  1 failed | 107 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/pages/public/ContentsDrawer.focus.test.tsx:50:46
+
+## browser t14d3c.mjs run 1/3 (exit 0)
+PASS  C1 every iframe kind has its final box before its document loads (videos 16:9, HTML blocks their height)  — www.youtube.com,player.vimeo.com,html,html before=[[641,360],[641,360],[641,300],[641,360]] iframe load events before the embeds were released: 2 (the 2 HTML frames at most)
+PASS  C1 a 3000 px document arriving changes no iframe box  — after=[[641,360],[641,360],[641,300],[641,360]]
+PASS  C2 settling ends while the iframes above the anchor are still loading (not held to the 5 s cap); anchor restored  — saved 139.75 restored 139.75; inline overflow-anchor during=none after=auto; embeds pending=true
+PASS  C2 the embeds loading afterwards don't move the anchor  — before 139.75 after 139.75
+PASS  C3 overflow-anchor: "none" while settling, the previous inline value ("auto") after completion  — during=none after=auto
+PASS  C3 overflow-anchor: the previous inline value after a user cancellation (wheel)  — during=none after wheel=auto
+PASS  C1–C3 no page errors
+PASS  C4 drawer link to another page: every focusin recorded; "Contents" never among them; heading focused  — focusins=["A:Two","H1:Two"] active=H1:Two
+PASS  C4 control: the current page's own link → the recorder sees focus return to "Contents"  — focusins=["A:Two","BUTTON:Contents"]
+
+9/9 checks passed
+
+## browser t14d3c.mjs run 2/3 (exit 0)
+PASS  C1 every iframe kind has its final box before its document loads (videos 16:9, HTML blocks their height)  — www.youtube.com,player.vimeo.com,html,html before=[[641,360],[641,360],[641,300],[641,360]] iframe load events before the embeds were released: 2 (the 2 HTML frames at most)
+PASS  C1 a 3000 px document arriving changes no iframe box  — after=[[641,360],[641,360],[641,300],[641,360]]
+PASS  C2 settling ends while the iframes above the anchor are still loading (not held to the 5 s cap); anchor restored  — saved 139.75 restored 139.75; inline overflow-anchor during=none after=auto; embeds pending=true
+PASS  C2 the embeds loading afterwards don't move the anchor  — before 139.75 after 139.75
+PASS  C3 overflow-anchor: "none" while settling, the previous inline value ("auto") after completion  — during=none after=auto
+PASS  C3 overflow-anchor: the previous inline value after a user cancellation (wheel)  — during=none after wheel=auto
+PASS  C1–C3 no page errors
+PASS  C4 drawer link to another page: every focusin recorded; "Contents" never among them; heading focused  — focusins=["A:Two","H1:Two"] active=H1:Two
+PASS  C4 control: the current page's own link → the recorder sees focus return to "Contents"  — focusins=["A:Two","BUTTON:Contents"]
+
+9/9 checks passed
+
+## browser t14d3c.mjs run 3/3 (exit 0)
+PASS  C1 every iframe kind has its final box before its document loads (videos 16:9, HTML blocks their height)  — www.youtube.com,player.vimeo.com,html,html before=[[641,360],[641,360],[641,300],[641,360]] iframe load events before the embeds were released: 2 (the 2 HTML frames at most)
+PASS  C1 a 3000 px document arriving changes no iframe box  — after=[[641,360],[641,360],[641,300],[641,360]]
+PASS  C2 settling ends while the iframes above the anchor are still loading (not held to the 5 s cap); anchor restored  — saved 139.75 restored 139.75; inline overflow-anchor during=none after=auto; embeds pending=true
+PASS  C2 the embeds loading afterwards don't move the anchor  — before 139.75 after 139.75
+PASS  C3 overflow-anchor: "none" while settling, the previous inline value ("auto") after completion  — during=none after=auto
+PASS  C3 overflow-anchor: the previous inline value after a user cancellation (wheel)  — during=none after wheel=auto
+PASS  C1–C3 no page errors
+PASS  C4 drawer link to another page: every focusin recorded; "Contents" never among them; heading focused  — focusins=["A:Two","H1:Two"] active=H1:Two
+PASS  C4 control: the current page's own link → the recorder sees focus return to "Contents"  — focusins=["A:Two","BUTTON:Contents"]
+
+9/9 checks passed
+

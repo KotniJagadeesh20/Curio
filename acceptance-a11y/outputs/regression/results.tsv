@@ -1,0 +1,11 @@
+time	stage	kind	script	exit	output
+2026-11-23T09:21:23Z	S1	backend	pid=50297 vite=50339	0	S1-backend.log
+2026-11-23T09:21:24Z	S1	seed	14a/seed14a.mjs	0	S1-seed14a.txt
+2026-11-23T09:21:31Z	S1	test	14a/t14a.mjs	0	S1-t14a.txt
+2026-11-23T09:21:41Z	S3	backend	pid=50498 vite=50537	0	S3-backend.log
+2026-11-23T09:21:41Z	S3	seed	14d3/seed14c.mjs	0	S3-seed14c.txt
+2026-11-23T09:21:42Z	S3	seed	14d3/seed14d3.mjs	0	S3-seed14d3.txt
+2026-11-23T09:22:55Z	S3	test	14d3/t14d3.mjs	0	S3-t14d3.txt
+2026-11-23T09:22:58Z	S3	test	14d3/t14d1.mjs	0	S3-t14d1.txt
+2026-11-23T09:23:09Z	S3	test	14d3/t14d2.mjs	0	S3-t14d2.txt
+2026-11-23T09:23:29Z	S3	test	14d3/t14c.mjs	0	S3-t14c.txt

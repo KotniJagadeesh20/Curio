@@ -1,0 +1,16 @@
+PASS  Collection editor (published): "View public page" → /@admin/lisbon  — /@admin/lisbon
+PASS  Per-page "View" links: one per PUBLISHED page, module-qualified; none for the draft page  — /@admin/lisbon/day-one/arrival /@admin/lisbon/day-one/tram-28 /@admin/lisbon/day-two/belem
+PASS  Per-page link accessible name and visible text
+PASS  "View public page" opens the real collection viewer
+PASS  Per-page "View" opens the real page viewer (content + outline)
+PASS  Back returns to the collection editor
+PASS  Unlisted collection: collection link + per-page links shown
+PASS  Unlisted per-page link opens the page (by link)
+PASS  Draft collection: no collection link and no per-page links (even for its published page)
+PASS  Creator session: no /api/media/* requests, no console errors, no failed requests
+PASS  Moved collection adapter: uppercase handle accepted (lower-cased)
+PASS  Moved page adapter: uppercase handle accepted; page renders
+PASS  Moved adapters: invalid handles are the app 404 (no API call)
+PASS  Anonymous: no failed API requests
+
+14/14 checks passed

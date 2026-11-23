@@ -1,0 +1,93 @@
+SCAN  Discover @ 1280px — critical 1, serious 1, moderate 0, minor 0 (rules)
+SCAN  Collection (Java Learning) @ 1280px — critical 1, serious 1, moderate 0, minor 0 (rules)
+SCAN  Collection (Travel Experiences) @ 1280px — critical 1, serious 1, moderate 0, minor 0 (rules)
+SCAN  Page A1 (text: bold/italic/link/list, heading) @ 1280px — critical 1, serious 1, moderate 1, minor 0 (rules)
+SCAN  Page A2 (svg) @ 1280px — critical 1, serious 1, moderate 2, minor 0 (rules)
+SCAN  Page A3 (code, table) @ 1280px — critical 1, serious 1, moderate 2, minor 0 (rules)
+SCAN  Page B1 (image, callouts) @ 1280px — critical 1, serious 1, moderate 2, minor 0 (rules)
+SCAN  Page B2 (video, image) @ 1280px — critical 1, serious 1, moderate 2, minor 0 (rules)
+SCAN  Page B3 (text) @ 1280px — critical 1, serious 1, moderate 2, minor 0 (rules)
+SCAN  Not available (A-draft) @ 1280px — critical 1, serious 1, moderate 1, minor 0 (rules)
+SCAN  Error state (page API 503) @ 1280px — critical 1, serious 1, moderate 1, minor 0 (rules)
+SCAN  Discover @ 360px — critical 1, serious 1, moderate 0, minor 0 (rules)
+SCAN  Collection (Java Learning) @ 360px — critical 1, serious 1, moderate 0, minor 0 (rules)
+SCAN  Collection (Travel Experiences) @ 360px — critical 1, serious 1, moderate 0, minor 0 (rules)
+SCAN  Page A1 (text: bold/italic/link/list, heading) @ 360px — critical 1, serious 1, moderate 0, minor 0 (rules)
+SCAN  Page A2 (svg) @ 360px — critical 1, serious 1, moderate 1, minor 0 (rules)
+SCAN  Page A3 (code, table) @ 360px — critical 1, serious 1, moderate 1, minor 0 (rules)
+SCAN  Page B1 (image, callouts) @ 360px — critical 1, serious 1, moderate 2, minor 0 (rules)
+SCAN  Page B2 (video, image) @ 360px — critical 1, serious 1, moderate 1, minor 0 (rules)
+SCAN  Page B3 (text) @ 360px — critical 1, serious 1, moderate 1, minor 0 (rules)
+SCAN  Not available (A-draft) @ 360px — critical 1, serious 1, moderate 1, minor 0 (rules)
+SCAN  Error state (page API 503) @ 360px — critical 1, serious 1, moderate 1, minor 0 (rules)
+
+axe-core 4.10.2
+SERIOUS / CRITICAL findings (view | viewport | impact | rule | count | targets):
+  Discover | 1280px | critical | button-name | 1 | .hover\:bg-muted.p-2:nth-child(1)
+  Discover | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Collection (Java Learning) | 1280px | critical | button-name | 1 | .rounded-lg.p-2:nth-child(1)
+  Collection (Java Learning) | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Collection (Travel Experiences) | 1280px | critical | button-name | 1 | .rounded-lg.p-2:nth-child(1)
+  Collection (Travel Experiences) | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page A1 (text: bold/italic/link/list, heading) | 1280px | critical | button-name | 1 | .rounded-lg.p-2:nth-child(1)
+  Page A1 (text: bold/italic/link/list, heading) | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page A2 (svg) | 1280px | critical | button-name | 1 | .rounded-lg.p-2:nth-child(1)
+  Page A2 (svg) | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page A3 (code, table) | 1280px | critical | button-name | 3 | .rounded-lg.p-2.hover\:bg-muted:nth-child(1) ; .h-8.hover\:bg-accent.hover\:text-accent-foreground:nth-child(1) ; .h-8.hover\:bg-accent.hover\:text-accent-foreground:nth-child(2)
+  Page A3 (code, table) | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page B1 (image, callouts) | 1280px | critical | button-name | 1 | .rounded-lg.p-2:nth-child(1)
+  Page B1 (image, callouts) | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page B2 (video, image) | 1280px | critical | button-name | 1 | .p-2.rounded-lg:nth-child(1)
+  Page B2 (video, image) | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page B3 (text) | 1280px | critical | button-name | 1 | .rounded-lg.p-2:nth-child(1)
+  Page B3 (text) | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Not available (A-draft) | 1280px | critical | button-name | 1 | .rounded-lg.hover\:bg-muted:nth-child(1)
+  Not available (A-draft) | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Error state (page API 503) | 1280px | critical | button-name | 1 | .rounded-lg.hover\:bg-muted.p-2:nth-child(1)
+  Error state (page API 503) | 1280px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Discover | 360px | critical | button-name | 2 | .hover\:bg-muted.p-2:nth-child(1) ; .md\:hidden
+  Discover | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Collection (Java Learning) | 360px | critical | button-name | 2 | .rounded-lg.p-2:nth-child(1) ; .md\:hidden
+  Collection (Java Learning) | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Collection (Travel Experiences) | 360px | critical | button-name | 2 | .rounded-lg.p-2:nth-child(1) ; .md\:hidden
+  Collection (Travel Experiences) | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page A1 (text: bold/italic/link/list, heading) | 360px | critical | button-name | 2 | .rounded-lg.p-2:nth-child(1) ; .md\:hidden
+  Page A1 (text: bold/italic/link/list, heading) | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page A2 (svg) | 360px | critical | button-name | 2 | .rounded-lg.p-2:nth-child(1) ; .md\:hidden
+  Page A2 (svg) | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page A3 (code, table) | 360px | critical | button-name | 4 | .rounded-lg.p-2.hover\:bg-muted:nth-child(1) ; .md\:hidden ; .h-8.hover\:bg-accent.hover\:text-accent-foreground:nth-child(1) ; .h-8.hover\:bg-accent.hover\:text-accent-foreground:nth-child(2)
+  Page A3 (code, table) | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page B1 (image, callouts) | 360px | critical | button-name | 2 | .rounded-lg.p-2:nth-child(1) ; .md\:hidden
+  Page B1 (image, callouts) | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page B2 (video, image) | 360px | critical | button-name | 2 | .p-2.rounded-lg:nth-child(1) ; .md\:hidden
+  Page B2 (video, image) | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Page B3 (text) | 360px | critical | button-name | 2 | .rounded-lg.p-2:nth-child(1) ; .md\:hidden
+  Page B3 (text) | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Not available (A-draft) | 360px | critical | button-name | 2 | .rounded-lg.hover\:bg-muted:nth-child(1) ; .md\:hidden
+  Not available (A-draft) | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+  Error state (page API 503) | 360px | critical | button-name | 2 | .rounded-lg.hover\:bg-muted.p-2:nth-child(1) ; .md\:hidden
+  Error state (page API 503) | 360px | serious | link-name | 3 | a[href$="github.com"] ; a[href$="twitter.com"] ; a[href$="linkedin.com"]
+MODERATE nodes: 26 · MINOR nodes: 0
+  (moderate) Page A1 (text: bold/italic/link/list, heading) | 1280px | landmark-complementary-is-top-level | 1
+  (moderate) Page A2 (svg) | 1280px | heading-order | 1
+  (moderate) Page A2 (svg) | 1280px | landmark-complementary-is-top-level | 1
+  (moderate) Page A3 (code, table) | 1280px | heading-order | 1
+  (moderate) Page A3 (code, table) | 1280px | landmark-complementary-is-top-level | 1
+  (moderate) Page B1 (image, callouts) | 1280px | heading-order | 1
+  (moderate) Page B1 (image, callouts) | 1280px | landmark-complementary-is-top-level | 4
+  (moderate) Page B2 (video, image) | 1280px | heading-order | 1
+  (moderate) Page B2 (video, image) | 1280px | landmark-complementary-is-top-level | 1
+  (moderate) Page B3 (text) | 1280px | heading-order | 1
+  (moderate) Page B3 (text) | 1280px | landmark-complementary-is-top-level | 1
+  (moderate) Not available (A-draft) | 1280px | heading-order | 1
+  (moderate) Error state (page API 503) | 1280px | page-has-heading-one | 1
+  (moderate) Page A2 (svg) | 360px | heading-order | 1
+  (moderate) Page A3 (code, table) | 360px | heading-order | 1
+  (moderate) Page B1 (image, callouts) | 360px | heading-order | 1
+  (moderate) Page B1 (image, callouts) | 360px | landmark-complementary-is-top-level | 3
+  (moderate) Page B2 (video, image) | 360px | heading-order | 1
+  (moderate) Page B3 (text) | 360px | heading-order | 1
+  (moderate) Not available (A-draft) | 360px | heading-order | 1
+  (moderate) Error state (page API 503) | 360px | page-has-heading-one | 1
+
+22/22 scans performed (report-only; findings do not fail the run)

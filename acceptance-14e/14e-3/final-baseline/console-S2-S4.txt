@@ -1,0 +1,32 @@
+[10:27:57] playwright-core 1.48.2
+[10:27:58] all 19 copies verified against the manifest
+[10:27:58] amended copies verified: 3 (manifest acceptance-14e/14e-1/amended/manifest.sha256)
+[10:27:58] fixtures: 13e/red.png, 13e/blue.png, 14b/blue.png (120x80, generated with 13e mkpng.mjs; sha256 c7d45ead94225b0c / 1816a71dc5bb4e1f)
+[10:28:08] S2: FRESH backend pid=61511 (launcher 61475) port=8081 (H2 in-memory, profile h2; public API 200) · vite pid=61606 (launcher 61582) port=8080
+[10:28:08] S2: seed 14a/seed14a.mjs 
+[10:28:08] S2: result 0  [PASS lines 0, FAIL lines 0]
+[10:28:08] S2: tokens.json = seed14a stdout (last line)
+[10:28:08] S2: seed 14b/seed14b.mjs 
+[10:28:09] S2: result 0  [PASS lines 0, FAIL lines 0]
+[10:28:09] S2: test 14b/t14b.mjs /Users/newuser/Downloads/Curio-main/acceptance-14e/14e-3/final-baseline/screenshots/S2-14b
+[10:28:15] S2: result 0 TOTAL 30/30 passed [PASS lines 30, FAIL lines 0]
+[10:28:15] S2: test 14b/t14b-stale.mjs /Users/newuser/Downloads/Curio-main/acceptance-14e/14e-3/final-baseline/screenshots/S2-14b-stale
+[10:28:30] S2: result 0 TOTAL 15/15 passed [PASS lines 15, FAIL lines 0]
+/Users/newuser/Downloads/Curio-main/acceptance-14e/scripts/run-all.sh: line 66: 61582 Terminated: 15          ( cd "$REPO" && exec npx vite --port 8080 --strictPort > "$OUT/$1-vite${TAG}.log" 2>&1 )
+[10:28:31] stopped vite tracked pids: 61607 61606 61582
+[10:28:32] stopped backend tracked pids: 61511 61475
+[10:28:32] S2: servers stopped; ports 8080/8081 free: yes
+[10:28:39] S4: FRESH backend pid=61940 (launcher 61915) port=8081 (H2 in-memory, profile h2; public API 200) · vite pid=62002 (launcher 61983) port=8080
+[10:28:39] S4: seed 14d3/seed14c.mjs 
+[10:28:40] S4: result 0  [PASS lines 0, FAIL lines 0]
+[10:28:40] S4: seed 14d3/seed14d3.mjs 
+[10:28:40] S4: result 0  [PASS lines 0, FAIL lines 0]
+[10:28:40] S4: seed 14d3/seed14d3c.mjs 
+[10:28:41] S4: result 0  [PASS lines 0, FAIL lines 0]
+[10:28:41] S4: test 14d3/t14d3c.mjs 
+[10:29:11] S4: result 0 18/18 checks passed [PASS lines 18, FAIL lines 0]
+/Users/newuser/Downloads/Curio-main/acceptance-14e/scripts/run-all.sh: line 66: 61983 Terminated: 15          ( cd "$REPO" && exec npx vite --port 8080 --strictPort > "$OUT/$1-vite${TAG}.log" 2>&1 )
+[10:29:12] stopped vite tracked pids: 62003 62002 61983
+[10:29:14] stopped backend tracked pids: 61940 61915
+[10:29:14] S4: servers stopped; ports 8080/8081 free: yes
+[10:29:14] ALL REQUESTED STAGES COMPLETED: S2 S4

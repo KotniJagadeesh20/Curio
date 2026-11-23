@@ -1,0 +1,8 @@
+# Step 14e-1 baseline verification (2026-11-19T07:41:52Z)
+approved ZIP: ~/Downloads/Curio-main-step14d-3-networkstate_2.zip (restored copy of Curio-main-step14d-3-networkstate.zip)
+expected SHA-256: 0828e1e2c7b0f6f58cc9caa12cf32557b4f5b1b857a2b044bb4c4f4c4f813c44
+actual   SHA-256: 0828e1e2c7b0f6f58cc9caa12cf32557b4f5b1b857a2b044bb4c4f4c4f813c44
+ZIP entries (files): 841
+working copy vs ZIP, file by file: 0 differences
+files in the working copy not in the ZIP (excluding node_modules, dist, backend/target, backend/data, *.tsbuildinfo, acceptance-14e/): none
+version control: not a git repository (no commit id); the ZIP SHA-256 identifies the source

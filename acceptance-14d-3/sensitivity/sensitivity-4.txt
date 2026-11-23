@@ -1,0 +1,90 @@
+Mutation 4: Tracking armed during POP restoration (armed at the start of restore)
+File: src/hooks/usePublicArrival.ts
+Edits:
+  - '    setScrollY(t.y);                                        // coarse numeric placement'
+  + '    arm();\n    setScrollY(t.y);'
+
+Restored and byte-identical to the fixed file: True
+
+== Failing unit/integration tests (9):
+  × S2/T2/T3/T4: POP restoration > T2: the restoration observer watches the content container and the anchor's parent, not documentElement
+  × S2/T2/T3/T4: POP restoration > T3/T4: while settling nothing is sampled; when settling ends the tracking observer takes over in the same step
+  × S2/T2/T3/T4: POP restoration > restores numerically, then by anchor; a delayed layout shift above is corrected by the residual only
+  × S2/T2/T3/T4: POP restoration > settling stops at the 5 s cap even if the layout keeps moving
+  × S2/T2/T3/T4: POP restoration > user input (PageDown) cancels settling immediately and arms tracking
+  × S2/T2/T3/T4: POP restoration > user input (a scroll we didn't cause) cancels settling immediately and arms tracking
+  × S2/T2/T3/T4: POP restoration > user input (pointerdown) cancels settling immediately and arms tracking
+  × S2/T2/T3/T4: POP restoration > user input (touchstart) cancels settling immediately and arms tracking
+  × S2/T2/T3/T4: POP restoration > user input (wheel) cancels settling immediately and arms tracking
+
+== Failing browser checks (0):
+
+
+== Raw vitest output
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 20ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 79ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 86ms
+ ❯ src/hooks/usePublicArrival.test.tsx (41 tests | 9 failed) 274ms
+   × S2/T2/T3/T4: POP restoration > restores numerically, then by anchor; a delayed layout shift above is corrected by the residual only 12ms
+     → expected [ Array(2) ] to have a length of 1 but got 2
+   × S2/T2/T3/T4: POP restoration > T2: the restoration observer watches the content container and the anchor's parent, not documentElement 5ms
+     → expected [ <article …(1)>…(2)</article> ] to include <section data-testid="section">…(4)</section>
+   × S2/T2/T3/T4: POP restoration > T3/T4: while settling nothing is sampled; when settling ends the tracking observer takes over in the same step 3ms
+     → expected 23 to be 21 // Object.is equality
+   × S2/T2/T3/T4: POP restoration > user input (wheel) cancels settling immediately and arms tracking 5ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > user input (touchstart) cancels settling immediately and arms tracking 5ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > user input (pointerdown) cancels settling immediately and arms tracking 3ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > user input (PageDown) cancels settling immediately and arms tracking 4ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > user input (a scroll we didn't cause) cancels settling immediately and arms tracking 3ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > settling stops at the 5 s cap even if the layout keeps moving 4ms
+     → expected false to be true // Object.is equality
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 119ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 283ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 472ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 440ms
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  9 failed | 70 passed (79)
+   Start at  17:43:35
+   Duration  2.15s (transform 475ms, setup 1.91s, collect 1.38s, tests 1.33s, environment 4.47s, prepare 604ms)
+
+
+== Raw browser output
+PASS  B1 card → collection (PUSH): top, collection heading focused  — {"tag":"H1","text":"Long read","label":null}
+PASS  B1 "Start reading"/outline → page (PUSH): top, page heading focused  — {"tag":"H1","text":"One","label":null}
+PASS  B1 Next (PUSH): scrollY 0, "Two" heading focused  — y=0 {"tag":"H1","text":"Two","label":null}
+PASS  B1 sidebar link (PUSH): scrollY 0, "Three" heading focused  — y=0 {"tag":"H1","text":"Three","label":null}
+PASS  B1 Previous (PUSH): scrollY 0, "Two" heading focused  — y=0 {"tag":"H1","text":"Two","label":null}
+PASS  B2 Back: previous page restored (marker ±5 px), focus not moved to the heading  — marker 199.5 vs 199.5; active {"tag":"BODY","text":"AlgoQuestHomeDiscoverTracksPracticeSyste","label":null}
+PASS  B2 Forward: next page restored (marker ±5 px)  — marker 150 vs 150
+PASS  B3 Refresh restores the position (marker ±5 px)  — marker 300 vs 300
+PASS  B4 A → B → A (new entry → top) → Back → Back: each entry restores its own position  — top=0 B 250/250 A 100/100
+PASS  B5 entering Discover focuses its heading; search, category and Back/Forward between query states never scroll or focus it  — first={"tag":"H1","text":"Discover","label":null} search={"tag":"INPUT","text":"","label":"Search collections"} scrolls=0 end={"tag":"BUTTON","text":"Programming","label":null}
+PASS  B6 Discover scrolled, a card clicked immediately (real pointer) → Back restores Discover (±5 px)  — scrollY=420
+PASS  B7 delayed uploaded image (width/height reserved) above the anchor: marker back at its offset ±5 px after the load  — marker 199.5 vs 199.5
+PASS  B7 the stored entry still holds the departure position after settling (restoration scrolls not sampled as a new position)  — departed={"y":1507,"anchor":{"id":"block-b5","offset":7.5},"seq":3} now={"y":1507,"anchor":{"id":"block-b5","offset":7.5},"seq":7}
+PASS  B8 delayed external image WITHOUT dimensions above the anchor: marker back at its offset ±5 px after the late load  — marker 200 vs 200
+PASS  B8 the late image grew the content and a correction followed the numeric placement  — imgHeight=402 programmaticScrolls=[1458,1058,1458]
+PASS  B11 wheel right after Back: no correction after the input, the late image doesn't pull the reader back  — corrections=0 marker 300 vs 200
+PASS  B11 PageDown right after Back: no correction after the input, the late image doesn't pull the reader back  — corrections=0 marker -260 vs 200
+PASS  B9 PUSH → 404: top, not-available heading focused  — {"tag":"H1","text":"This collection isn't available","label":null}
+PASS  B9 PUSH → 5xx: top, the labelled error region focused  — {"tag":"DIV","text":"Service unavailableTry again","label":"Couldn't load this collection"}
+PASS  B10 Retry succeeds → the content heading focused, no scroll after Retry  — {"tag":"H1","text":"Long read","label":null}
+PASS  B10 Retry fails again → error region refocused; Retry succeeds → heading focused  — {"tag":"DIV","text":"Service unavailableTry again","label":"Couldn't load this collection"} → {"tag":"H1","text":"Long read","label":null}
+PASS  B12 history.scrollRestoration: manual on public views, restored when returning to the workspace  — auto → manual → auto
+PASS  B13 deep link (POP, no saved entry): stays at the top, no programmatic scroll, focus not moved; the first user scroll is stored  — scrolls=0 active={"tag":"BODY","text":"AlgoQuestHomeDiscoverTracksPracticeSyste","label":null} entry={"y":350,"anchor":{"id":"block-b0","offset":-114},"seq":2}
+PASS  B14 POP with a numeric position but no matching anchor: one numeric restore, then tracking active quickly (well before 5 s)  — missing=true scrolls=[{"t":1756.699999999255,"top":1500}] saved.y=1500 entry={"y":1600,"anchor":{"id":"block-b8","offset":-20},"seq":6}
+PASS  B15 drawer link → the new page heading focused; "Contents" never focused in between  — {"tag":"H1","text":"Two","label":null} contentsFocused=0
+PASS  B15 drawer closed with Escape → focus on "Contents"  — {"tag":"BUTTON","text":"Contents","label":null}
+PASS  B16 mobile 360 px: Next → top + heading focus; Back → marker restored ±5 px  — y=0 active=Three marker 119.796875 vs 119.796875
+PASS  B17 no console errors, no unexpected failed requests (404/503 only where injected), zero /api/media/* requests
+
+28/28 checks passed

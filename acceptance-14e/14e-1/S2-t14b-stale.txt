@@ -1,0 +1,17 @@
+PASS  Published → unpublished (Porto): loading shown while revalidating (cache held back)  — {"title":false,"cover":false,"outline":false,"noindex":false,"loading":true}
+PASS  Published → unpublished (Porto): stale title/cover/outline NEVER rendered  — {"title":false,"cover":false,"outline":false,"noindex":false,"loading":true}
+PASS  Published → unpublished (Porto): neutral screen + "Not available · AlgoQuest"  — Not available · AlgoQuest
+PASS  Published → unpublished (Porto): no noindex during or after (tag existed before: 0)  — seen=false final=0
+PASS  Published → unpublished (Porto): after restoring, revisiting shows the collection again
+PASS  Unlisted → unpublished (Secret family recipe): loading shown while revalidating (cache held back)  — {"title":false,"cover":false,"outline":false,"noindex":false,"loading":true}
+PASS  Unlisted → unpublished (Secret family recipe): stale title/cover/outline NEVER rendered  — {"title":false,"cover":false,"outline":false,"noindex":false,"loading":true}
+PASS  Unlisted → unpublished (Secret family recipe): neutral screen + "Not available · AlgoQuest"  — Not available · AlgoQuest
+PASS  Unlisted → unpublished (Secret family recipe): no noindex during or after (tag existed before: 1)  — seen=false final=0
+PASS  Unlisted → unpublished (Secret family recipe): after restoring, revisiting shows the collection again
+PASS  Published → deleted (Porto): loading shown while revalidating (cache held back)  — {"title":false,"cover":false,"outline":false,"noindex":false,"loading":true}
+PASS  Published → deleted (Porto): stale title/cover/outline NEVER rendered  — {"title":false,"cover":false,"outline":false,"noindex":false,"loading":true}
+PASS  Published → deleted (Porto): neutral screen + "Not available · AlgoQuest"  — Not available · AlgoQuest
+PASS  Published → deleted (Porto): no noindex during or after (tag existed before: 0)  — seen=false final=0
+PASS  Published → deleted (Porto): after restoring, revisiting shows the collection again
+
+TOTAL 15/15 passed

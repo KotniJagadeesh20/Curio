@@ -1,0 +1,3 @@
+time	mode	step	exit	classification	output
+2026-11-23T07:48:10Z	td1	seed14e	0	pass	seed14e.txt
+2026-11-23T07:49:13Z	td1	td1	1	UNCLASSIFIED	td1.txt

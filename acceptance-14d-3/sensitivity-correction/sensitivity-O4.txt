@@ -1,0 +1,22 @@
+# Sensitivity O4: Unmount doesn't stop settling
+File: src/hooks/usePublicArrival.ts
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/1 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 23ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 218ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 197ms
+ ❯ src/hooks/usePublicArrival.test.tsx (58 tests | 2 failed) 609ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "auto": restored after unmount (leaving to a non-public screen) 8ms
+   × overflow-anchor: the previous inline value comes back on every settling exit path > previous inline value "": restored after unmount (leaving to a non-public screen) 3ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 558ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 496ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 69ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 78ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 440ms
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 505ms
+      Tests  2 failed | 106 passed (108)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/hooks/usePublicArrival.test.tsx:668:37
+ ❯ src/hooks/usePublicArrival.test.tsx:668:37
+

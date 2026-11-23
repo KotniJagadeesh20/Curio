@@ -1,0 +1,18 @@
+import { chromium } from 'playwright-core';
+const sleep=(ms)=>new Promise(r=>setTimeout(r,ms));
+const delay=+process.argv[2]||0;
+const b=await chromium.launch({channel:'chrome',headless:true});
+const ctx=await b.newContext({viewport:{width:360,height:780}});
+await ctx.addInitScript(()=>{window.__f=[];document.addEventListener('focusin',e=>{const t=e.target;window.__f.push(`${Math.round(performance.now())} ${t.tagName} ${(t.textContent||'').trim().slice(0,20)} conn=${t.isConnected}`)},true);});
+if(delay) await ctx.route('**/api/public/**/two*',async r=>{await sleep(delay);await r.continue();});
+const p=await ctx.newPage();
+const reqs=[];p.on('request',r=>{if(r.url().includes('/api/'))reqs.push(r.url().replace(/.*\/api/,''))});
+await p.goto('http://localhost:8080/@admin/long-read/part/two');await p.getByRole('heading',{name:'Two',level:1}).waitFor();await p.getByRole('link',{name:/Previous/}).first().click();await p.getByRole('heading',{name:'One',level:1}).waitFor();await sleep(500);
+await p.getByRole('button',{name:'Contents'}).click();await p.getByRole('dialog').waitFor();await sleep(400);
+await p.evaluate(()=>{window.__f.push('--click--')});
+reqs.length=0;
+await p.getByRole('dialog').getByRole('link',{name:'Two'}).click();
+await p.getByRole('heading',{name:'Two',level:1}).waitFor();await sleep(800);
+console.log(JSON.stringify(await p.evaluate(()=>window.__f.slice(window.__f.indexOf('--click--'))),null,0));
+console.log(reqs.join(' '));
+await b.close();

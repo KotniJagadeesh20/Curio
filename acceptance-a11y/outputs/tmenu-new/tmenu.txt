@@ -1,0 +1,14 @@
+GEOM  [new] /discover closed: {"scrollW":360,"clientW":360,"headerH":82,"contentTop":0}
+PASS  [M1 /discover] closed: panel exists, [hidden], no box, nothing exposed to AT  — {"exists":true,"hidden":true,"h":0,"links":0,"axLinks":0}
+PASS  [M2 /discover] open: aria-expanded "true" immediately, name "Close menu", panel visible with links  — {"exp1":"true","exists":true,"hidden":false,"h":515,"links":9}
+PASS  [M3 /discover] close: aria-expanded "false" immediately; still visible mid-animation; then [hidden], no box, nothing exposed; same element  — {"exp2":"false","mid":{"exists":true,"hidden":false,"h":333,"links":9},"after":{"exists":true,"hidden":true,"h":0,"links":0},"axLinks":0,"same":true}
+PASS  [M4 /discover] no horizontal overflow at 360 px (closed, open, after close); closed geometry unchanged after a cycle  — {"g0":{"scrollW":360,"clientW":360,"headerH":82,"contentTop":0},"g1":{"scrollW":360,"clientW":360,"headerH":605,"contentTop":0},"g2":{"scrollW":360,"clientW":360,"headerH":82,"contentTop":0}}
+PASS  [M /discover] no uncaught errors
+GEOM  [new] / closed: {"scrollW":360,"clientW":360,"headerH":82,"contentTop":0}
+PASS  [M1 /] closed: panel exists, [hidden], no box, nothing exposed to AT  — {"exists":true,"hidden":true,"h":0,"links":0,"axLinks":0}
+PASS  [M2 /] open: aria-expanded "true" immediately, name "Close menu", panel visible with links  — {"exp1":"true","exists":true,"hidden":false,"h":515,"links":9}
+PASS  [M3 /] close: aria-expanded "false" immediately; still visible mid-animation; then [hidden], no box, nothing exposed; same element  — {"exp2":"false","mid":{"exists":true,"hidden":false,"h":335,"links":9},"after":{"exists":true,"hidden":true,"h":0,"links":0},"axLinks":0,"same":true}
+PASS  [M4 /] no horizontal overflow at 360 px (closed, open, after close); closed geometry unchanged after a cycle  — {"g0":{"scrollW":360,"clientW":360,"headerH":82,"contentTop":0},"g1":{"scrollW":360,"clientW":360,"headerH":605,"contentTop":0},"g2":{"scrollW":360,"clientW":360,"headerH":82,"contentTop":0}}
+PASS  [M /] no uncaught errors
+
+10/10 checks passed

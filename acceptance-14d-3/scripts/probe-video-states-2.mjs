@@ -1,0 +1,11 @@
+import { chromium } from 'playwright-core';
+const b=await chromium.launch({channel:'chrome',headless:true});const p=await b.newPage();
+await p.route('https://videos.example.org/**',async r=>{await new Promise(x=>setTimeout(x,300));await r.fulfill({status:404,body:''})});
+await p.setContent('<body></body>');
+console.log(await p.evaluate(async()=>{const out=[];const st=(n,v)=>out.push([n,v.networkState,v.error&&v.error.code,JSON.stringify(v.currentSrc),v.readyState]);
+const v=document.createElement('video');v.src='https://videos.example.org/x.webm';document.body.append(v);st('src pending',v);await new Promise(r=>setTimeout(r,1500));st('src failed',v);
+const w=document.createElement('video');for(const u of ['a','b']){const s=document.createElement('source');s.src='https://videos.example.org/'+u+'.webm';w.append(s);}let errs=0;w.addEventListener('error',()=>errs++,true);document.body.append(w);st('sources pending',w);await new Promise(r=>setTimeout(r,0));st('sources selecting',w);await new Promise(r=>setTimeout(r,2000));st('sources all failed',w);out.push(['source error events',errs]);
+const e=document.createElement('video');e.setAttribute('src','');document.body.append(e);st('empty src sync',e);await new Promise(r=>setTimeout(r,100));st('empty src later',e);
+const n=document.createElement('video');document.body.append(n);st('no source',n);await new Promise(r=>setTimeout(r,100));st('no source later',n);
+return out.map(x=>x.join(' | ')).join('\n')}));
+await b.close();

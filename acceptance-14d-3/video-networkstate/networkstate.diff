@@ -1,0 +1,242 @@
+--- a/src/hooks/usePublicArrival.ts
++++ b/src/hooks/usePublicArrival.ts
+@@ -103,10 +103,19 @@
+   };
+ 
+   // ---------------------------------------------------------------- restoration (S2/T2) with the restoration observer (T4)
+-  /** Its final size is known: metadata loaded, or it failed / has no usable source (then it keeps its default size). */
++  /** A source is declared: a `src` attribute (even empty: that ends in an error), `<source>` children, or a `srcObject`. */
++  const declaresSource = (v: HTMLVideoElement) =>
++    v.hasAttribute("src") || v.querySelector("source") !== null || v.srcObject != null;
++  /** Its final size is known: metadata loaded, or it failed / has no usable source (then it keeps its default size).
++   *  Neither network state alone proves "no source": NETWORK_EMPTY is also the state before resource selection starts,
++   *  and resource selection reports NETWORK_NO_SOURCE before it has tried anything (Chrome, per the HTML spec). So:
++   *  NETWORK_EMPTY counts only without any declared source; NETWORK_NO_SOURCE only once a candidate has been tried
++   *  (`currentSrc` is set; the load algorithm resets it to "") — i.e. every candidate failed. A `src` failure also sets
++   *  `error`. Anything else waits for its metadata or the 5 s cap. */
+   const videoReady = (v: HTMLVideoElement) =>
+     v.readyState >= HTMLMediaElement.HAVE_METADATA || v.error !== null
+-    || v.networkState === HTMLMediaElement.NETWORK_EMPTY || v.networkState === HTMLMediaElement.NETWORK_NO_SOURCE;
++    || (v.networkState === HTMLMediaElement.NETWORK_NO_SOURCE && v.currentSrc !== "")
++    || (v.networkState === HTMLMediaElement.NETWORK_EMPTY && !declaresSource(v));
+   /** Media strictly BEFORE the anchor (document order) are the only ones that can still move it: images until complete,
+    *  native videos until their metadata (dimensions) is known. Iframes reserve their box (see the correction report). */
+   const mediaBeforeReady = (content: HTMLElement | null, anchor: HTMLElement) => {
+--- a/src/hooks/usePublicArrival.test.tsx
++++ b/src/hooks/usePublicArrival.test.tsx
+@@ -36,7 +36,7 @@
+ const states = new Map<string, ArrivalState>();
+ const anchorsFor = new Map<string, string[]>();
+ const mediaBefore = new Map<string, "img" | "iframe">();     // 14d-3 correction: a media element BEFORE the anchors
+-const videoAt = new Map<string, "before" | "before-sources" | "inside" | "after">();   // native-video correction
++const videoAt = new Map<string, "before" | "before-sources" | "before-nosrc" | "inside" | "after">();   // native-video correction
+ const forcers = new Set<() => void>();
+ const rerenderAll = () => act(() => { forcers.forEach((f) => f()); });
+ const setState = (path: string, s: ArrivalState) => act(() => { states.set(path, s); forcers.forEach((f) => f()); });
+@@ -58,6 +58,7 @@
+           {mediaBefore.get(loc.pathname) === "img" && <img alt="" data-testid="img-before" />}
+           {mediaBefore.get(loc.pathname) === "iframe" && <iframe title="before" data-testid="iframe-before" />}
+           {videoAt.get(loc.pathname) === "before" && <video src="https://v.example.org/a.webm" data-testid="video" />}
++          {videoAt.get(loc.pathname) === "before-nosrc" && <video data-testid="video" />}
+           {videoAt.get(loc.pathname) === "before-sources" && <video data-testid="video"><source src="https://v.example.org/a.webm" /><source src="https://v.example.org/a.mp4" /></video>}
+           {(anchorsFor.get(loc.pathname) ?? []).map((id) => (
+             <div key={id} data-scroll-anchor={id} data-testid={`a-${id}`}>
+@@ -645,9 +646,9 @@
+ });
+ 
+ describe("settling readiness: native videos (native-video correction, plan rev. 2)", () => {
+-  type V = { readyState: number; networkState: number; error: MediaError | null };
++  type V = { readyState: number; networkState: number; error: MediaError | null; currentSrc?: string };
+   /** a with anchors b0..b2 and a video at `where`, scrolled to 1100 (anchor b1) → b → Back; the video's media state set. */
+-  function returnWithVideo(where: "before" | "before-sources" | "inside" | "after", state: V) {
++  function returnWithVideo(where: "before" | "before-sources" | "before-nosrc" | "inside" | "after", state: V) {
+     vi.useFakeTimers({ toFake: ["setInterval", "clearInterval", "setTimeout", "clearTimeout", "performance"] });
+     const a = `/p/${uniq()}`, b = `/p/${uniq()}`;
+     layout = { b0: 0, b1: 1000, b2: 2000 };
+@@ -659,6 +660,7 @@
+     const v = screen.getByTestId("video") as HTMLVideoElement;
+     const cur = { ...state };
+     for (const k of ["readyState", "networkState", "error"] as const) Object.defineProperty(v, k, { configurable: true, get: () => cur[k] });
++    Object.defineProperty(v, "currentSrc", { configurable: true, get: () => cur.currentSrc ?? "" });
+     flushFrame();                                             // anchor found → settling
+     return { v, cur, restoration: live()[0] };
+   }
+@@ -696,10 +698,64 @@
+ 
+   it.each([
+     ["errored (src failed)", "before", { readyState: 0, networkState: HTMLMediaElement.NETWORK_IDLE, error: { code: 4 } as MediaError }],
+-    ["NETWORK_NO_SOURCE (every child <source> failed; video.error stays null)", "before-sources", { readyState: 0, networkState: HTMLMediaElement.NETWORK_NO_SOURCE, error: null }],
+-    ["NETWORK_EMPTY (no source)", "before", { readyState: 0, networkState: HTMLMediaElement.NETWORK_EMPTY, error: null }],
++    ["NETWORK_NO_SOURCE after every child <source> failed (video.error stays null; currentSrc = the last candidate tried)", "before-sources", { readyState: 0, networkState: HTMLMediaElement.NETWORK_NO_SOURCE, error: null, currentSrc: "https://v.example.org/a.mp4" }],
++    ["NETWORK_EMPTY with genuinely no source (no src, no <source>)", "before-nosrc", { readyState: 0, networkState: HTMLMediaElement.NETWORK_EMPTY, error: null }],
+   ] as const)("a video before the anchor that is %s does not hold settling", (_n, where, state) => {
+     const { restoration } = returnWithVideo(where, state);
++    act(() => { vi.advanceTimersByTime(700); });
++    expect(restoration.off).toBe(true);
++  });
++
++  // NETWORK_EMPTY is also the state BEFORE resource selection starts: with a declared source it must not count as ready.
++  const EMPTY: V = { readyState: 0, networkState: HTMLMediaElement.NETWORK_EMPTY, error: null };
++  it.each([
++    ["a src attribute", "before"],
++    ["child <source> elements", "before-sources"],
++  ] as const)("NETWORK_EMPTY with %s (resource selection not started) holds settling; the cap still ends it", (_n, where) => {
++    const { restoration } = returnWithVideo(where, EMPTY);
++    act(() => { vi.advanceTimersByTime(1500); });
++    expect(restoration.off).toBe(false);
++    act(() => { vi.advanceTimersByTime(3700); });
++    expect(restoration.off).toBe(true);
++  });
++
++  // …and resource selection reports NETWORK_NO_SOURCE before it has tried anything (currentSrc still ""): not ready either.
++  const PENDING: V = { readyState: 0, networkState: HTMLMediaElement.NETWORK_NO_SOURCE, error: null, currentSrc: "" };
++  it.each([
++    ["a src attribute", "before"],
++    ["child <source> elements", "before-sources"],
++  ] as const)("NETWORK_NO_SOURCE with %s but nothing tried yet (currentSrc \"\") holds settling; the cap still ends it", (_n, where) => {
++    const { restoration } = returnWithVideo(where, PENDING);
++    act(() => { vi.advanceTimersByTime(1500); });
++    expect(restoration.off).toBe(false);
++    act(() => { vi.advanceTimersByTime(3700); });
++    expect(restoration.off).toBe(true);
++  });
++
++  it("<source> children: pending → trying a candidate → every candidate failed: settling ends only then", () => {
++    const { cur, restoration } = returnWithVideo("before-sources", PENDING);
++    act(() => { vi.advanceTimersByTime(600); });
++    expect(restoration.off).toBe(false);
++    cur.networkState = HTMLMediaElement.NETWORK_LOADING; cur.currentSrc = "https://v.example.org/a.webm";
++    act(() => { vi.advanceTimersByTime(600); });
++    expect(restoration.off).toBe(false);
++    cur.networkState = HTMLMediaElement.NETWORK_NO_SOURCE; cur.currentSrc = "https://v.example.org/a.mp4";
++    act(() => { vi.advanceTimersByTime(200); });
++    expect(restoration.off).toBe(true);
++  });
++
++  it("NETWORK_EMPTY with a src → loading → metadata: the resize is corrected and settling then ends", () => {
++    const { v, cur, restoration } = returnWithVideo("before", EMPTY);
++    act(() => { vi.advanceTimersByTime(600); });
++    expect(restoration.off).toBe(false);
++    cur.networkState = HTMLMediaElement.NETWORK_LOADING;     // resource selection started
++    act(() => { vi.advanceTimersByTime(600); });
++    expect(restoration.off).toBe(false);
++    layout.b1 = 1250;                                         // the real ratio is taller than the default box
++    cur.readyState = HTMLMediaElement.HAVE_METADATA;
++    cur.networkState = HTMLMediaElement.NETWORK_IDLE;
++    fireEvent(v, new Event("loadedmetadata"));
++    expect(sets.at(-1)).toBe(1350);
+     act(() => { vi.advanceTimersByTime(700); });
+     expect(restoration.off).toBe(true);
+   });
+--- a/acceptance-14d-3/scripts/seed14d3c.mjs
++++ b/acceptance-14d-3/scripts/seed14d3c.mjs
+@@ -30,6 +30,8 @@
+ const pageIn = async (mod, title, slug, blocks) => { const p = await call('POST', `/modules/${mod.id}/pages`, { title, slug, summary: '', blocks }); await call('POST', `/pages/${p.id}/publish`); return p; };
+ await pageIn(mv, 'Clip', 'clip', [{ id: 'vid', type: 'video', url: 'https://videos.example.org/clip.webm', caption: 'Native video' }, ...paras]);
+ await pageIn(mv, 'Clip end', 'clip-end', paras.slice(0, 5));
++// NETWORK_EMPTY/NO_SOURCE correction: a native video whose source fails (404, served late by t14d3c.mjs C6b)
++await pageIn(mv, 'Broken clip', 'broken-clip', [{ id: 'vid', type: 'video', url: 'https://videos.example.org/broken.webm', caption: 'Failing video' }, ...paras]);
+ await call('POST', `/collections/${c.id}/publish`, { status: 'PUBLISHED' });
+ const out = { embeds: c.id };
+ fs.writeFileSync(new URL('./seed14d3c.json', import.meta.url), JSON.stringify(out, null, 2));
+--- a/acceptance-14d-3/scripts/t14d3c.mjs
++++ b/acceptance-14d-3/scripts/t14d3c.mjs
+@@ -11,6 +11,10 @@
+ //      repo) served with a held response. C5a: Back with the video above the anchor and its metadata held → settling
+ //      waits; once the metadata arrives the video's box really changes (≥ 50 px) and the anchor ends ±2 px from where it
+ //      was saved. C5b: metadata held 7 s → settling still ends at the 5 s cap (the documented limitation).
++//  C6  network-state correction. C6a: Chrome's own media state model, on which videoReady relies: a declared source
++//      reports NETWORK_NO_SOURCE with currentSrc "" until resource selection starts (pending, NOT ready); every <source>
++//      failed → NETWORK_NO_SOURCE with currentSrc set; a failed src → error; no source → NETWORK_EMPTY. C6b: Back with a
++//      failing video before the anchor (404 held 2 s): settling waits for the failure, then ends well before the cap.
+ import { chromium } from 'playwright-core';
+ const BASE = 'http://localhost:8080';
+ const FR = '/@admin/embeds/part/frames', AF = '/@admin/embeds/part/after';
+@@ -49,7 +53,7 @@
+   await ctx.route('https://player.vimeo.com/**', embed);
+   s.vhold = () => { let r; s.vgate = new Promise((res) => { r = res; }); s.vrelease = r; };
+   s.vhold(); s.vrelease();
+-  await ctx.route('https://videos.example.org/**', async (route) => { await s.vgate; await route.fulfill({ status: 200, contentType: 'video/webm', body: WEBM }); });
++  await ctx.route('https://videos.example.org/**', async (route) => { await s.vgate; if (route.request().url().includes('broken')) await route.fulfill({ status: 404, body: '' }); else await route.fulfill({ status: 200, contentType: 'video/webm', body: WEBM }); });
+   const page = await ctx.newPage();
+   s.page = page;
+   page.on('pageerror', (e) => s.errors.push('pageerror: ' + e.message));
+@@ -191,6 +195,57 @@
+   await S.ctx.close();
+ }
+ 
++// C6 network states
++{
++  const S = await session(); const p = S.page;
++  // C6a: Chrome's state model (a scratch page; the 404s are this script's own)
++  await p.goto(BASE + '/@admin/embeds/media/clip-end'); await h1(p, 'Clip end');
++  S.vhold();
++  const model = await p.evaluate(async () => {
++    const st = (v) => ({ ns: v.networkState, err: v.error ? v.error.code : null, cur: v.currentSrc });
++    const host = document.createElement('div'); host.hidden = true; document.body.append(host);
++    const a = document.createElement('video'); a.src = 'https://videos.example.org/broken-a.webm'; host.append(a);
++    const b = document.createElement('video');
++    for (const u of ['broken-b1', 'broken-b2']) { const s = document.createElement('source'); s.src = `https://videos.example.org/${u}.webm`; b.append(s); }
++    host.append(b);
++    const n = document.createElement('video'); host.append(n);
++    const pending = { src: st(a), sources: st(b), none: st(n) };
++    return { pending };
++  });
++  S.vrelease();
++  await sleep(1500);
++  const done = await p.evaluate(() => { const [a, b, n] = document.querySelectorAll('div[hidden] video'); const st = (v) => ({ ns: v.networkState, err: v.error ? v.error.code : null, cur: v.currentSrc }); const r = { src: st(a), sources: st(b), none: st(n) }; document.querySelector('div[hidden]').remove(); return r; });
++  const pend = model.pending;
++  check('C6a Chrome: a declared source before selection starts is NETWORK_NO_SOURCE with currentSrc "" and no error (pending)', pend.src.ns === 3 && pend.src.cur === '' && pend.src.err === null && pend.sources.ns === 3 && pend.sources.cur === '' && pend.sources.err === null, JSON.stringify(pend));
++  check('C6a Chrome: failed src → error set; every <source> failed → NETWORK_NO_SOURCE, error null, currentSrc set; no source → NETWORK_EMPTY', done.src.err !== null && done.sources.ns === 3 && done.sources.err === null && done.sources.cur !== '' && done.none.ns === 0 && done.none.cur === '', JSON.stringify(done));
++  // C6b: a failing video before the anchor
++  const BR = '/@admin/embeds/media/broken-clip';
++  await p.goto(BASE + BR); await h1(p, 'Broken clip');
++  await p.waitForFunction(() => document.querySelector('article video')?.error !== null, null, { timeout: 10000 }); await sleep(300);
++  await p.evaluate(() => { const el = document.querySelector('[data-scroll-anchor="block-b14"]'); window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 140, behavior: 'instant' }); });
++  await sleep(300);
++  const saved = await markerTop(p, 'block-b14');
++  await jsClick(p, 'a[aria-label^="Previous"]'); await h1(p, 'Clip end'); await sleep(400);
++  S.vhold();
++  const t0 = Date.now();
++  await p.goBack(); await h1(p, 'Broken clip');
++  await p.waitForFunction(() => document.documentElement.style.overflowAnchor === 'none', null, { timeout: 3000, polling: 10 });
++  await sleep(1200);
++  const held = await inlineAnchor(p);
++  const errHeld = await p.evaluate(() => document.querySelector('article video').error);
++  S.vrelease();
++  const tRel = Date.now() - t0;
++  await p.waitForFunction(() => document.documentElement.style.overflowAnchor === '', null, { timeout: 9000, polling: 50 });
++  const ended = Date.now() - t0;
++  const err = await p.evaluate(() => document.querySelector('article video').error?.code ?? null);
++  const top = await markerTop(p, 'block-b14');
++  check('C6b a failing video before the anchor: settling waits while its source is pending, ends soon after the failure (well before the cap); anchor ±2 px',
++    held === 'none' && errHeld === null && err !== null && ended - tRel < 1500 && ended < 4500 && near(top, saved, 2),
++    `pending at 1.2 s: inline=${held}; released at ${tRel} ms, settling ended at ${ended} ms (error ${err}); saved ${saved} final ${top}`);
++  check('C6 no page errors', S.errors.every((e) => /404/.test(e)), S.errors.filter((e) => !/404/.test(e)).slice(0, 3).join(' | '));
++  await S.ctx.close();
++}
++
+ await browser.close();
+ const pass = results.filter(Boolean).length;
+ console.log(`\n${pass}/${results.length} checks passed`);
+--- a/acceptance-14d-3/scripts/sensitivity_correction.py
++++ b/acceptance-14d-3/scripts/sensitivity_correction.py
+@@ -51,9 +51,16 @@
+       ('    document.addEventListener("loadedmetadata", onLoad, true);', '    document.addEventListener("loadeddata", onLoad, true);'),
+       ('      document.removeEventListener("loadedmetadata", onLoad, true);', '      document.removeEventListener("loadeddata", onLoad, true);'),
+     ], 1, True),
+-  "V5": ("networkState clause removed from videoReady", HOOK, [
+-      ("\n    || v.networkState === HTMLMediaElement.NETWORK_EMPTY || v.networkState === HTMLMediaElement.NETWORK_NO_SOURCE;", ";"),
++  "V5": ("Both networkState clauses removed from videoReady", HOOK, [
++      ('\n    || (v.networkState === HTMLMediaElement.NETWORK_NO_SOURCE && v.currentSrc !== "")\n    || (v.networkState === HTMLMediaElement.NETWORK_EMPTY && !declaresSource(v));', ";"),
+     ], 1, False),
++  # ---- network-state correction ----
++  "V6": ("NETWORK_EMPTY counts as ready even with a declared source (the reviewed video-ZIP rule)", HOOK, [
++      ("(v.networkState === HTMLMediaElement.NETWORK_EMPTY && !declaresSource(v))", "v.networkState === HTMLMediaElement.NETWORK_EMPTY"),
++    ], 1, False),
++  "V7": ("NETWORK_NO_SOURCE counts as ready before any candidate was tried (no currentSrc check)", HOOK, [
++      ('(v.networkState === HTMLMediaElement.NETWORK_NO_SOURCE && v.currentSrc !== "")', "v.networkState === HTMLMediaElement.NETWORK_NO_SOURCE"),
++    ], 1, True),
+ }
+ 
+ def summarize(text):

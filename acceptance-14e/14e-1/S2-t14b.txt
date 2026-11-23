@@ -1,0 +1,32 @@
+PASS  Opens from a Discover card  — http://localhost:8080/@admin/porto
+PASS  Document title  — Porto by tram · AlgoQuest
+PASS  Uploaded cover renders for an anonymous visitor via public media  — {"src":"/api/public/media/ab73fbc5-1ec9-47f7-97af-56bd3b027548","w":120,"h":80}
+PASS  Cover response is public image (200, image/*)  — 200 image/jpeg
+PASS  Header: category link, description, byline, counts
+PASS  Outline matches API order (published pages only)  — /@admin/porto/day-one/arrival /@admin/porto/day-one/tram-1 /@admin/porto/day-two/cellars
+PASS  "Start reading" opens the first page URL (14c placeholder expected)
+PASS  Back returns to Discover with its filter
+PASS  Direct link and refresh work
+PASS  Uppercase handle works; links stay canonical
+PASS  Category badge opens Discover filtered  — http://localhost:8080/discover?category=travel
+PASS  Unlisted collection opens by direct link
+PASS  Unlisted: noindex present, no "Unlisted" label
+PASS  noindex removed after leaving the unlisted collection (client navigation)
+PASS  Unlisted not in Discover; deleted not in Discover  — 15 listed
+PASS  Listed collection has no noindex
+PASS  draft → neutral not-available screen; title hides the name  — /@admin/draft-trip: "This collection isn't available" / Not available · AlgoQuest
+PASS  deleted → neutral not-available screen; title hides the name  — /@admin/oslo: "This collection isn't available" / Not available · AlgoQuest
+PASS  mistyped slug → neutral not-available screen; title hides the name  — /@admin/no-such-thing: "This collection isn't available" / Not available · AlgoQuest
+PASS  unknown creator → neutral not-available screen; title hides the name  — /@nobody123/porto: "This collection isn't available" / Not available · AlgoQuest
+PASS  Invalid handle (no @) → NotFound, no API request  — 404
+PASS  No horizontal overflow at 360px  — [360,360]
+PASS  Collection works with valid token (header + cover)  — stored token after: kept
+PASS  Collection works with expired token (header + cover)  — stored token after: cleared
+PASS  [anonymous] no public request sent Authorization; no owner-media request  — 34 public requests, 0 with Authorization, owner-media=0
+PASS  [anonymous] no unexpected console errors / failed requests  — unexpected failed=[] unexpected errors=[]; expected-and-seen=["404 GET /api/public/collections/admin/draft-trip","404 GET /api/public/collections/admin/oslo","404 GET /api/public/collections/admin/no-such-thing","404 GET /api/public/collections/nobody123/porto"]
+PASS  [valid token] no public request sent Authorization; no owner-media request  — 2 public requests, 0 with Authorization, owner-media=0
+PASS  [valid token] no unexpected console errors / failed requests  — unexpected failed=[] unexpected errors=[]; expected-and-seen=[]
+PASS  [expired token] no public request sent Authorization; no owner-media request  — 2 public requests, 0 with Authorization, owner-media=0
+PASS  [expired token] no unexpected console errors / failed requests  — unexpected failed=[] unexpected errors=[]; expected-and-seen=["401 GET /api/auth/me"]
+
+TOTAL 30/30 passed

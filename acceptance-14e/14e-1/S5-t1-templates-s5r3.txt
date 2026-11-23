@@ -1,0 +1,20 @@
+PASS  picker shows 5 templates  — 5
+PASS  Tab lands on the selected radio (blank)  — radio/blank
+PASS  Arrow keys move focus + selection through all templates  — programming-tutorial:true, travel-guide:true, recipe:true, personal-experience:true
+PASS  Arrow wraps to first option  — blank
+PASS  Tab leaves the radio group in one press  — null
+PASS  Shift+Tab returns to the selected radio  — radio:blank
+PASS  Space selects the focused radio  — true
+PASS  Exactly one radio is a tab stop  — -1,-1,0,-1,-1
+PASS  template personal-experience creates collection + pages  — category="Personal Experience", pages=8, http://localhost:8080/create/collections/10
+PASS  template programming-tutorial creates collection + pages  — category="Programming", pages=12, http://localhost:8080/create/collections/11
+PASS  template recipe creates collection + pages  — category="Food & Recipes", pages=8, http://localhost:8080/create/collections/12
+PASS  template travel-guide creates collection + pages  — category="Travel", pages=12, http://localhost:8080/create/collections/13
+PASS  double-click did not create duplicate collections
+PASS  blank template creates empty collection
+PASS  failure shows alert with step + keeps progress  — Couldn't create Page "Introduction": Service Unavailable
+PASS  picker hidden after partial creation
+PASS  dialog stays usable after Escape (not running → closes allowed)  — dialog visible=false
+CREATED {"personal-experience":"http://localhost:8080/create/collections/10","programming-tutorial":"http://localhost:8080/create/collections/11","recipe":"http://localhost:8080/create/collections/12","travel-guide":"http://localhost:8080/create/collections/13"}
+ERRORS ["Failed to load resource: the server responded with a status of 503 (Service Unavailable)"]
+FAILED ["503 POST http://localhost:8080/api/modules/92/pages"]

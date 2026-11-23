@@ -1,0 +1,78 @@
+PASS  "Start reading" opens the first page in the real page viewer  — http://localhost:8080/@admin/lisbon/day-one/arrival
+PASS  Document title is "<page> · AlgoQuest"  — Arrival · AlgoQuest
+PASS  Breadcrumbs: Discover › collection (link) › module
+PASS  Summary shown under the title
+PASS  Uploaded image loads for an anonymous visitor through public media  — {"src":"/api/public/media/6a75f996-1138-41ff-af98-c0914b788ac8","w":"640","h":"400","nw":640}
+PASS  Uploaded image reserves its space (width/height from the public API)
+PASS  Callouts info / tip / warning render
+PASS  Sidebar = published outline in API order; no draft page  — /@admin/lisbon/day-one/arrival /@admin/lisbon/day-one/tram-28 /@admin/lisbon/day-two/belem
+PASS  Sidebar marks the current page (aria-current)
+PASS  First page: no Previous, Next = Tram 28
+PASS  Reading view has exactly one <h1>
+PASS  Listed collection: no noindex
+PASS  YouTube video embedded from the validated id  — https://www.youtube.com/embed/dQw4w9WgXcQ
+PASS  Second uploaded image loads
+PASS  Sidebar highlight follows navigation
+PASS  Next crosses the module boundary (Day one → Day two)
+PASS  Last page: no Next; Previous = Tram 28
+PASS  Back / forward between pages work
+PASS  Deep link and refresh work
+PASS  Uppercase handle works; links stay canonical
+PASS  Rich text: bold and italic
+PASS  Rich text: link with a safe rel  — noopener noreferrer nofollow ugc
+PASS  Rich text: list
+PASS  Code block renders (read-only editor)  — monaco instances: 1
+PASS  SVG rendered only as <img> (data URL), never inline
+PASS  Next crosses into the "Collections" module
+PASS  Table: header cells and caption
+PASS  HTML block is a fully sandboxed iframe (sandbox="")
+PASS  Legacy seeded page with content renders through the legacy conversion (Concept + Example code)  — Concept, Example, Common mistakes, Best practices
+PASS  Legacy seeded page whose legacy fields are all empty → the neutral no-content message
+PASS  Unlisted page: noindex present, no "Unlisted" label
+PASS  Unlisted → unlisted page: noindex stays (one tag)
+PASS  noindex removed after leaving (client navigation)
+PASS  Unlisted → published (full load): no noindex
+PASS  draft page → neutral not-available screen, neutral title, no noindex  — /@admin/lisbon/day-one/secret-draft: "This page isn't available" / Not available · AlgoQuest
+PASS  page in a draft collection → neutral not-available screen, neutral title, no noindex  — /@admin/draft-trip/plan/ideas: "This page isn't available" / Not available · AlgoQuest
+PASS  page in a deleted collection → neutral not-available screen, neutral title, no noindex  — /@admin/oslo/day/fjord: "This page isn't available" / Not available · AlgoQuest
+PASS  mistyped module → neutral not-available screen, neutral title, no noindex  — /@admin/lisbon/no-such-module/arrival: "This page isn't available" / Not available · AlgoQuest
+PASS  mistyped page → neutral not-available screen, neutral title, no noindex  — /@admin/lisbon/day-one/no-such-page: "This page isn't available" / Not available · AlgoQuest
+PASS  Unqualified 3-segment URL is the app 404 (no unqualified page API call)
+PASS  Injected owner-media / assetId-only images are not rendered
+PASS  Zero requests to /api/media/* (whole anonymous session)
+PASS  Valid public image still renders next to the injected ones
+PASS  Invalid heading level → h2; invalid callout variant → info style  — H2 / rounded-xl border-l-4 p-5 flex gap-3 border-accent bg-accent/5
+PASS  Malformed code block dropped; the page still renders its other blocks
+PASS  Anonymous: no Authorization header on public calls  — 53 public calls
+PASS  Anonymous: no unexpected console errors
+PASS  Anonymous: no unexpected failed requests
+PASS  Mobile: sidebar hidden, "Contents" button shown
+PASS  Mobile: no horizontal page overflow at 360 px (arrival)
+PASS  Mobile: no horizontal page overflow at 360 px (tram-28)
+PASS  Mobile: no horizontal page overflow at 360 px (hello-java)
+PASS  Mobile: no horizontal page overflow at 360 px (lists-and-maps)
+PASS  Mobile drawer: same published outline as the sidebar/API  — /@admin/lisbon/day-one/arrival /@admin/lisbon/day-one/tram-28 /@admin/lisbon/day-two/belem
+PASS  Mobile drawer: current page highlighted
+PASS  Mobile drawer: following a link navigates and closes the drawer
+FAIL  Mobile: no unexpected console errors / failed requests  — Permissions policy violation: compute-pressure is not allowed in this document.
+PASS  valid token: page renders, image loads, navigation works
+PASS  valid token: no Authorization on public calls; zero /api/media/* requests  — 6 public calls, media: 0
+PASS  valid token: no unexpected console errors / failed requests
+PASS  expired token: page renders, image loads, navigation works
+PASS  expired token: no Authorization on public calls; zero /api/media/* requests  — 6 public calls, media: 0
+PASS  expired token: no unexpected console errors / failed requests
+PASS  Stale: the cached page was unpublished through the API  — 200
+PASS  Stale: Back to the unpublished page never shows its cached content or title  — []
+PASS  Stale: ends on the neutral not-available screen with a neutral title
+PASS  Stale session: no unexpected console errors / failed requests
+PASS  Fix 1 setup: Sunday is in the outline before it is unpublished
+PASS  Fix 1: Sunday unpublished through the API (cache still holds the old outline)  — 200
+PASS  Fix 1: the outline was re-requested for the new page visit
+PASS  Fix 1: the unpublished page never appeared in the sidebar or previous/next after the navigation (MutationObserver)  — []
+PASS  Fix 1: Previous now skips to Saturday; Sunday is not linked anywhere
+PASS  Fix 2: unlisted → unlisted (next page delayed 1.5 s): noindex present while pending and never removed (MutationObserver)  — {"tagsWhilePending":1,"removed":0,"minTags":1}
+PASS  Fix 2: page confirmed unlisted + outline 503 → error state, noindex kept
+PASS  Fix 2: unlisted → 404 (client navigation): noindex removed
+PASS  Review-fix session: zero /api/media/* requests; no unexpected console errors / failed requests
+
+75/76 checks passed

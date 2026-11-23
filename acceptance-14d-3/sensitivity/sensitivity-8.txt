@@ -1,0 +1,34 @@
+Mutation 8: Retry success restarts the arrival (scrolls to the top again)
+File: src/hooks/usePublicArrival.ts
+Edits:
+  - '      else { a.phase = "DONE"; focus(headingRef); }'
+  + '      else { a.phase = "DONE"; setScrollY(0); focus(headingRef); }'
+
+Restored and byte-identical to the fixed file: True
+
+== Failing unit/integration tests (2):
+  × S3: error and Retry > PUSH → pending → error → Retry → pending → content: content heading focused, NO further scroll
+  × S3: error and Retry > … → error → Retry → error again (region refocused, no scroll) → Retry → content (heading)
+
+== Raw vitest output
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 20ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 95ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 117ms
+ ❯ src/hooks/usePublicArrival.test.tsx (41 tests | 2 failed) 258ms
+   × S3: error and Retry > PUSH → pending → error → Retry → pending → content: content heading focused, NO further scroll 32ms
+     → expected [ +0, +0 ] to deeply equal [ +0 ]
+   × S3: error and Retry > … → error → Retry → error again (region refocused, no scroll) → Retry → content (heading) 10ms
+     → expected [ +0, +0 ] to deeply equal [ +0 ]
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 121ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 285ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 459ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 430ms
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  2 failed | 77 passed (79)
+   Start at  17:21:17
+   Duration  1.75s (transform 474ms, setup 952ms, collect 1.39s, tests 1.36s, environment 3.89s, prepare 524ms)
+

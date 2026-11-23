@@ -1,0 +1,765 @@
+{
+  "axeVersion": "4.10.2",
+  "scans": [
+    {
+      "view": "Discover",
+      "path": "/discover",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".hover\\:bg-muted.p-2:nth-child(1)"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Collection (Java Learning)",
+      "path": "/@anna_java/java-learning",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Collection (Travel Experiences)",
+      "path": "/@ben_travel/travel-experiences",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page A1 (text: bold/italic/link/list, heading)",
+      "path": "/@anna_java/java-learning/core-java/hello-java",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            "aside"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page A2 (svg)",
+      "path": "/@anna_java/java-learning/core-java/the-jvm",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            "aside"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page A3 (code, table)",
+      "path": "/@anna_java/java-learning/core-java/collections",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2.hover\\:bg-muted:nth-child(1)",
+            ".h-8.hover\\:bg-accent.hover\\:text-accent-foreground:nth-child(1)",
+            ".h-8.hover\\:bg-accent.hover\\:text-accent-foreground:nth-child(2)"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            "aside"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B1 (image, callouts)",
+      "path": "/@ben_travel/travel-experiences/lisbon/arrival",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            ".lg\\:block",
+            ".border-accent",
+            ".border-emerald-500",
+            ".border-amber-500"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B2 (video, image)",
+      "path": "/@ben_travel/travel-experiences/lisbon/tram-28",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".p-2.rounded-lg:nth-child(1)"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            "aside"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B3 (text)",
+      "path": "/@ben_travel/travel-experiences/porto/ribeira",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            "aside"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Not available (A-draft)",
+      "path": "/@anna_java/java-learning/core-java/generics-draft",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.hover\\:bg-muted:nth-child(1)"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Error state (page API 503)",
+      "path": "/@anna_java/java-learning/core-java/hello-java",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.hover\\:bg-muted.p-2:nth-child(1)"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "nodes": [
+            "html"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Discover",
+      "path": "/discover",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".hover\\:bg-muted.p-2:nth-child(1)",
+            ".md\\:hidden"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Collection (Java Learning)",
+      "path": "/@anna_java/java-learning",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)",
+            ".md\\:hidden"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Collection (Travel Experiences)",
+      "path": "/@ben_travel/travel-experiences",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)",
+            ".md\\:hidden"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page A1 (text: bold/italic/link/list, heading)",
+      "path": "/@anna_java/java-learning/core-java/hello-java",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)",
+            ".md\\:hidden"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page A2 (svg)",
+      "path": "/@anna_java/java-learning/core-java/the-jvm",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)",
+            ".md\\:hidden"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page A3 (code, table)",
+      "path": "/@anna_java/java-learning/core-java/collections",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2.hover\\:bg-muted:nth-child(1)",
+            ".md\\:hidden",
+            ".h-8.hover\\:bg-accent.hover\\:text-accent-foreground:nth-child(1)",
+            ".h-8.hover\\:bg-accent.hover\\:text-accent-foreground:nth-child(2)"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B1 (image, callouts)",
+      "path": "/@ben_travel/travel-experiences/lisbon/arrival",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)",
+            ".md\\:hidden"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            ".border-accent",
+            ".border-emerald-500",
+            ".border-amber-500"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B2 (video, image)",
+      "path": "/@ben_travel/travel-experiences/lisbon/tram-28",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".p-2.rounded-lg:nth-child(1)",
+            ".md\\:hidden"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B3 (text)",
+      "path": "/@ben_travel/travel-experiences/porto/ribeira",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.p-2:nth-child(1)",
+            ".md\\:hidden"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Not available (A-draft)",
+      "path": "/@anna_java/java-learning/core-java/generics-draft",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.hover\\:bg-muted:nth-child(1)",
+            ".md\\:hidden"
+          ]
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Error state (page API 503)",
+      "path": "/@anna_java/java-learning/core-java/hello-java",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            ".rounded-lg.hover\\:bg-muted.p-2:nth-child(1)",
+            ".md\\:hidden"
+          ]
+        },
+        {
+          "id": "link-name",
+          "impact": "serious",
+          "help": "Links must have discernible text",
+          "nodes": [
+            "a[href$=\"github.com\"]",
+            "a[href$=\"twitter.com\"]",
+            "a[href$=\"linkedin.com\"]"
+          ]
+        },
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "nodes": [
+            "html"
+          ]
+        }
+      ]
+    }
+  ]
+}

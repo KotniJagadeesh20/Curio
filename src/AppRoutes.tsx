@@ -22,13 +22,11 @@ import AdminUsers from "./pages/admin/AdminUsers";
 import Discover from "./pages/public/Discover";
 import {
   CollectionEditorPage,
-  CreatorProfilePage,
   PageEditorPage,
   ProfileSettingsPage,
-  PublicCollectionPage,
-  PublicPageViewPage,
   WorkspacePage,
 } from "./pages/creator/Placeholders";
+import { PublicCollectionPage, PublicCreatorProfilePage, PublicPageViewPage } from "./pages/public/routes";
 
 /**
  * Every route of the app (the router itself lives in App.tsx so tests can mount this under a MemoryRouter).
@@ -83,7 +81,7 @@ export const AppRoutes = () => (
               </Route>
 
               {/* Public creator pages: "/@username[/collection[/module/page]]" (keep after the static routes) */}
-              <Route path="/:handle" element={<CreatorProfilePage />} />
+              <Route path="/:handle" element={<PublicCreatorProfilePage />} />
               <Route path="/:handle/:collectionSlug" element={<PublicCollectionPage />} />
               <Route path="/:handle/:collectionSlug/:moduleSlug/:pageSlug" element={<PublicPageViewPage />} />
 

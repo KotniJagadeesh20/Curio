@@ -1,0 +1,92 @@
+
+ RUN  v2.1.9 ~/Downloads/Curio-main
+
+stderr | src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > passes the lower-cased username
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/public/Discover.test.tsx > Discover > lists collections as cards with cover thumb, title, description, category, creator and counts; sets the title
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/public/CreatorProfile.pagination.test.tsx > CreatorProfile pagination > shows Load more only while there are more pages, with 'Showing N of M', and removes it after the last page
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/public/CollectionView.test.tsx > CollectionView > renders the header: full cover, category link, title, description, byline link and counts
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/public/CreatorProfile.test.tsx > CreatorProfile > renders the header: banner, avatar, name, @username, bio, social links and join date
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > renders /discover (the real Discover page since Step 14a)
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice/java is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice/java
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice/java/core/intro is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice/java/core/intro
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@ is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@ab is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@ab
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@1abc is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@1abc
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@al-ice is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@al-ice
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /someword is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /someword
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@alice/java/core is a 404 (no such shape)
+404 Error: User attempted to access non-existent route: /@alice/java/core
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@alice/java/core/intro/extra is a 404 (no such shape)
+404 Error: User attempted to access non-existent route: /@alice/java/core/intro/extra
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/abc is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/abc
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/0 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/0
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/-3 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/-3
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/pages/1.5 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/pages/1.5
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/pages/9999999999999999999999 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/pages/9999999999999999999999
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create is not swallowed by the :handle route, and is a 404 for deeper unknown paths
+404 Error: User attempted to access non-existent route: /create/unknown/thing
+
+stderr | src/AppRoutes.test.tsx > under the app's data router (router.tsx) > a logged-in user reaches the page editor route, an invalid id is NotFound, and the admin redirect still lands on /create
+404 Error: User attempted to access non-existent route: /create/pages/abc
+
+ ✓ src/AppRoutes.test.tsx (45 tests) 431ms
+ ✓ src/components/public/ShareButton.test.tsx (12 tests) 560ms
+ ✓ src/pages/public/Discover.test.tsx (13 tests) 639ms
+ ✓ src/pages/public/CreatorProfile.pagination.test.tsx (8 tests) 690ms
+ ✓ src/pages/public/routes.test.tsx (17 tests) 1090ms
+   ✓ the move > Placeholders.tsx no longer exports the public adapters 938ms
+ ✓ src/pages/public/CollectionView.test.tsx (16 tests) 773ms
+ ✓ src/pages/public/CreatorProfile.test.tsx (14 tests) 788ms
+
+ Test Files  7 passed (7)
+      Tests  125 passed (125)
+   Start at  17:55:41
+   Duration  2.28s (transform 975ms, setup 1.10s, collect 2.77s, tests 4.97s, environment 3.98s, prepare 503ms)
+

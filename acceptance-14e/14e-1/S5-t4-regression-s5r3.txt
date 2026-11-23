@@ -1,0 +1,18 @@
+FIXTURE  collection 16 "Editor accept 13598" · page 565 "Page One" (created by t2-editor in this run)
+PASS  Retry after mid-run failure completes with exactly the template structure (6 pages)  — progress at failure: "3 of 9 created", pages now 6
+PASS  Existing seeded collection opens in editor  — 46 pages
+FAIL  Existing page loads in block editor without spurious dirty state  — blocks=0, unsupported=0, status=Saved
+PASS  Page publishes  — PUBLISHED
+collection 16 undefined  404
+PASS  Public route Landing renders (/)  — AlgoQuest Home Discover Tracks Practice System Design Dashboard Blog Login Get S
+PASS  Public route Discover renders (/discover)  — AlgoQuest Home Discover Tracks Practice System Design Dashboard Blog Login Get S
+PASS  Public route Creator profile renders (/@admin)  — AlgoQuest Home Discover Tracks Practice System Design Dashboard Blog Login Get S
+PASS  Public route Public seeded collection renders (/@admin/kubernetes)  — AlgoQuest Home Discover Tracks Practice System Design Dashboard Blog Login Get S
+FAIL  Public test collection  — collection slug unknown
+PASS  Public route Unknown handle-less path → 404 renders (/admin-no-at/x)  — AlgoQuest Home Discover Tracks Practice System Design Dashboard Blog Login Get S
+PASS  Public route Tracks (legacy) renders (/tracks)  — AlgoQuest Home Discover Tracks Practice System Design Dashboard Blog Login Get S
+PASS  Logged-out /create redirects to login  — http://localhost:8080/login
+PASS  Logged-out page editor redirects to login  — http://localhost:8080/login
+ERRORS ["Failed to load resource: the server responded with a status of 503 (Service Unavailable)","Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)","Failed to load resource: the server responded with a status of 404 (Not Found)"]
+ANON_ERRORS ["404 Error: User attempted to access non-existent route: /admin-no-at/x"]
+FAILED ["503 POST http://localhost:8080/api/modules/94/pages","404 GET http://localhost:8080/api/creator/collections/17","404 GET http://localhost:8080/api/creator/collections/16","404 GET http://localhost:8080/api/me/collections"]

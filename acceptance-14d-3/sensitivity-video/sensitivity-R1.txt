@@ -1,0 +1,26 @@
+# Sensitivity R1: Readiness ignores media (stable time or cap only)
+File: src/hooks/usePublicArrival.ts
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/1 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 17ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 132ms
+ ❯ src/hooks/usePublicArrival.test.tsx (66 tests | 4 failed) 533ms
+   × settling readiness (S2, as implemented and documented in the correction report) > an image BEFORE the anchor that hasn't loaded holds settling past the stable time; its load corrects and lets it end 14ms
+   × settling readiness (S2, as implemented and documented in the correction report) > …and if it never loads, settling still ends at the 5 s cap 8ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > a video BEFORE the anchor without metadata holds settling; loadedmetadata + its resize is corrected, then settling ends 3ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > …and if its metadata never arrives, settling ends at the 5 s cap 12ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 232ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 537ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 500ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 508ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 88ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 60ms
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 539ms
+      Tests  4 failed | 112 passed (116)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/hooks/usePublicArrival.test.tsx:606:29
+ ❯ src/hooks/usePublicArrival.test.tsx:621:29
+ ❯ src/hooks/usePublicArrival.test.tsx:670:29
+ ❯ src/hooks/usePublicArrival.test.tsx:692:29
+

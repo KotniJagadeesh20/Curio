@@ -1,0 +1,3 @@
+time	mode	step	exit	classification	output
+2026-11-20T06:55:56Z	verify-r4	seed14e	0	pass	seed14e.txt
+2026-11-20T06:56:54Z	verify-r4	t14e	1	KNOWN-FAILURE D1 (unsuppressed; counted as a failure by t14e)	t14e.txt

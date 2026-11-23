@@ -82,21 +82,23 @@ export function CodeEditor({
             variant="ghost"
             size="sm"
             onClick={handleCopy}
+            aria-label={copied ? "Copied" : "Copy code"}
             className="h-8 px-2"
           >
             {copied ? (
-              <Check className="h-4 w-4 text-emerald-500" />
+              <Check aria-hidden="true" className="h-4 w-4 text-emerald-500" />
             ) : (
-              <Copy className="h-4 w-4" />
+              <Copy aria-hidden="true" className="h-4 w-4" />
             )}
           </Button>
           <Button
             variant="ghost"
             size="sm"
             onClick={handleReset}
+            aria-label="Reset code"
             className="h-8 px-2"
           >
-            <RotateCcw className="h-4 w-4" />
+            <RotateCcw aria-hidden="true" className="h-4 w-4" />
           </Button>
           {!readOnly && (
             <Button
@@ -130,6 +132,10 @@ export function CodeEditor({
           cursorBlinking: "smooth",
           cursorSmoothCaretAnimation: "on",
           readOnly: isReadOnly,
+          // D1: Monaco's word highlighter starts an un-awaited Delayer(50) on focus/cursor change; disposing the editor
+          // within that window rejects it ("Uncaught (in promise) Canceled"). Read-only (public/preview) editors turn
+          // the documented option off; editable editors keep Monaco's default (no override).
+          ...(isReadOnly ? { occurrencesHighlight: "off" as const } : {}),
         }}
       />
 

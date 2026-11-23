@@ -1,0 +1,23 @@
+# Sensitivity V5: Both networkState clauses removed from videoReady
+File: src/hooks/usePublicArrival.ts
+Restored and byte-identical to the verified copy: True
+
+## unit run 1/1 (exit 1)
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 44ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 264ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 331ms
+ ❯ src/hooks/usePublicArrival.test.tsx (72 tests | 3 failed) 784ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > a video before the anchor that is NETWORK_NO_SOURCE after every child <source> failed (video.error stays null; currentSrc = the last candidate tried) does not hold settling 20ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > a video before the anchor that is NETWORK_EMPTY with genuinely no source (no src, no <source>) does not hold settling 6ms
+   × settling readiness: native videos (native-video correction, plan rev. 2) > <source> children: pending → trying a candidate → every candidate failed: settling ends only then 6ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 92ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 72ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 647ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 597ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 488ms
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 509ms
+      Tests  3 failed | 119 passed (122)
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+ ❯ src/hooks/usePublicArrival.test.tsx:706:29
+ ❯ src/hooks/usePublicArrival.test.tsx:744:29
+

@@ -1,0 +1,8 @@
+## fresh backend, before any 13e script
+GET /api/pages/585 → 404
+GET /api/pages/586 → 404
+GET /api/pages/587 → 404
+collections/mine: 9 ['Data Structures & Algorithms', 'System Design', 'Linux', 'Git', 'Java', 'Cloud Computing', 'Docker', 'Kubernetes', 'AI & LLMs']
+## fresh backend: pages: 544 min id: 1 max id: 544
+## after t1-templates (17 PASS) and t2-editor (23 PASS): pages: 565 min id: 1 max id: 565
+GET /api/pages/586 → 404

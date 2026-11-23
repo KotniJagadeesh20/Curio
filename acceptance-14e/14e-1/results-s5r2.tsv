@@ -1,0 +1,7 @@
+time	stage	kind	script	exit	output
+2026-11-19T09:40:12Z	S5	backend	pid=69614 vite=69665	0	S5-backend-s5r2.log
+2026-11-19T09:40:26Z	S5	test	13e/t1-templates.mjs	0	S5-t1-templates-s5r2.txt
+2026-11-19T09:40:39Z	S5	test	13e/t2-editor.mjs	0	S5-t2-editor-s5r2.txt
+2026-11-19T09:40:55Z	S5	test	13e/amended/t3-media.mjs	1	S5-t3-media-s5r2.txt
+2026-11-19T09:41:32Z	S5	test	13e/amended/t4-regression.mjs	1	S5-t4-regression-s5r2.txt
+STOPPED: S5 13e/amended/t4-regression.mjs (exit 1)

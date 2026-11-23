@@ -1,0 +1,4 @@
+GEOM  [old] /discover closed: {"scrollW":360,"clientW":360,"headerH":82,"contentTop":0}
+GEOM  [old] / closed: {"scrollW":360,"clientW":360,"headerH":82,"contentTop":0}
+
+0/0 checks passed

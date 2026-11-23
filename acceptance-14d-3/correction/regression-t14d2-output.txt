@@ -1,0 +1,29 @@
+PASS  Native share: called once with "<page> · <collection>" and the canonical URL (uppercase visit → lowercase)  — [{"title":"Arrival · Lisbon in 3 days","url":"http://localhost:8080/@admin/lisbon/day-one/arrival"}]
+PASS  Native share: no toast, no popover
+PASS  Native share on the collection: collection title + canonical URL  — [{"title":"Lisbon in 3 days","url":"http://localhost:8080/@admin/lisbon"}]
+PASS  Native session clean (no console errors, failed requests or /api/media/*)
+PASS  Cancelled share sheet: no toast, no popover, no error
+PASS  Rapid double click (+1) while a share is pending → exactly one share; button marked busy  — calls=1 aria-busy=true
+PASS  Button no longer busy after the share completes
+PASS  Clicking again after it completed shares again (no stale state)
+PASS  No share sheet → canonical URL copied to the clipboard, "Link copied" toast, no popover  — http://localhost:8080/@admin/lisbon/day-one/arrival
+PASS  Clicking Share again copies again
+PASS  Clipboard session clean
+PASS  Clipboard refused → popover: canonical URL, read-only, focused and fully selected  — {"v":"http://localhost:8080/@admin/lisbon/day-one/arrival","ro":true,"focused":true,"sel":[0,51],"desc":"Your browser didn't allow copying automatically. The link is selected: press Ctrl+C (⌘C on Mac) to copy it."}
+PASS  Popover instructions explain manual copying  — Your browser didn't allow copying automatically. The link is selected: press Ctrl+C (⌘C on Mac) to copy it.
+PASS  No "Link copied" toast when copying failed
+PASS  Pressing Ctrl/⌘+C copies the selected URL (copy event carries the full URL)  — http://localhost:8080/@admin/lisbon/day-one/arrival
+PASS  Copy retry fails → popover stays, URL re-focused and fully selected, instructions emphasised  — {"focused":true,"sel":[0,51],"desc":"Copy wasn't allowed. Press Ctrl+C (⌘C on Mac) now."}
+PASS  Copy retry really retried the clipboard
+PASS  Escape closes the popover and returns focus to Share
+PASS  Reopening starts with the first instructions again
+PASS  Copy retry succeeds → URL on the clipboard, "Link copied" toast, popover closed
+PASS  Share clicked again while the popover is open → still exactly one popover
+PASS  Blocked-clipboard session clean (no console errors, failed requests or /api/media/*)
+PASS  Collection: manual-copy popover shows the canonical collection URL
+PASS  Mobile: Share visible within the viewport, no horizontal overflow  — {"x":248.640625,"y":232,"width":95.359375,"height":40}
+PASS  Mobile: tapping Share uses the native share sheet
+PASS  Mobile: manual-copy popover fits on screen  — {"x":40,"y":276,"width":320,"height":220}
+PASS  No Share on the not-available screen
+
+27/27 checks passed

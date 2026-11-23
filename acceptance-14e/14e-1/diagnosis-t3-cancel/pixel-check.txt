@@ -1,0 +1,2 @@
+FIXTURE  collection 10 "Editor accept 53213" · page 545 "Page One" (created by t2-editor in this run)
+PASS  Cancel keeps the previous image (pixel check)  — 39,81,219 / 39,81,219 / after server would have finished: 39,81,219

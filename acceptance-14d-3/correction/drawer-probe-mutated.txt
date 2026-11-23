@@ -1,0 +1,29 @@
+# Drawer probe WITH sensitivity #9 applied (prevention removed). Each line: focusin events after the link click.
+cold, API delay 0 ms:
+["--click--","1544 A Two conn=true","1572 H1 Two conn=true"]
+/public/pages/admin/long-read/part/two /public/collections/admin/long-read
+cold, API delay 0 ms:
+["--click--","1330 A Two conn=true","1364 H1 Two conn=true"]
+/public/pages/admin/long-read/part/two /public/collections/admin/long-read
+cold, API delay 0 ms:
+["--click--","1381 A Two conn=true","1403 H1 Two conn=true"]
+/public/pages/admin/long-read/part/two /public/collections/admin/long-read
+cold, API delay 600 ms:
+["--click--","1435 A Two conn=true","2118 H1 Two conn=true"]
+/public/pages/admin/long-read/part/two /public/collections/admin/long-read
+cold, API delay 600 ms:
+["--click--","1363 A Two conn=true","2003 H1 Two conn=true"]
+/public/pages/admin/long-read/part/two /public/collections/admin/long-read
+cold, API delay 600 ms:
+["--click--","1607 A Two conn=true","2249 H1 Two conn=true"]
+/public/pages/admin/long-read/part/two /public/collections/admin/long-read
+warm (page Two visited first):
+["--click--","3395 A Two conn=true","3427 H1 Two conn=true"]
+/public/pages/admin/long-read/part/two /public/collections/admin/long-read
+warm (page Two visited first):
+["--click--","3308 A Two conn=true","3334 H1 Two conn=true"]
+/public/pages/admin/long-read/part/two /public/collections/admin/long-read
+warm (page Two visited first):
+["--click--","3388 A Two conn=true","3409 H1 Two conn=true"]
+/public/pages/admin/long-read/part/two /public/collections/admin/long-read
+Restored and byte-identical: True

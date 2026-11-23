@@ -1,0 +1,53 @@
+Mutation 7: One shared ResizeObserver for both jobs (pre-rev-4.3: corrects while settling, samples once armed; no hand-off)
+File: src/hooks/usePublicArrival.ts
+Edits:
+  - 'const restoration = new ResizeObserver(correct);'
+  + 'const restoration = new ResizeObserver(() => (armed ? takeSample() : correct()));'
+  - '      restoration.disconnect();\n      document.removeEventListener("load", onLoad, true);'
+  + '      document.removeEventListener("load", onLoad, true);'
+  - 'if (armNow && arrival?.gen === g) arm();'
+  + 'if (armNow && arrival?.gen === g) { armed = true; tracking = restoration; }'
+
+Restored and byte-identical to the fixed file: True
+
+== Failing unit/integration tests (7):
+  × S2/T2/T3/T4: POP restoration > T3/T4: while settling nothing is sampled; when settling ends the tracking observer takes over in the same step
+  × S2/T2/T3/T4: POP restoration > settling stops at the 5 s cap even if the layout keeps moving
+  × S2/T2/T3/T4: POP restoration > user input (PageDown) cancels settling immediately and arms tracking
+  × S2/T2/T3/T4: POP restoration > user input (a scroll we didn't cause) cancels settling immediately and arms tracking
+  × S2/T2/T3/T4: POP restoration > user input (pointerdown) cancels settling immediately and arms tracking
+  × S2/T2/T3/T4: POP restoration > user input (touchstart) cancels settling immediately and arms tracking
+  × S2/T2/T3/T4: POP restoration > user input (wheel) cancels settling immediately and arms tracking
+
+== Raw vitest output
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 15ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 82ms
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 81ms
+ ❯ src/hooks/usePublicArrival.test.tsx (41 tests | 7 failed) 343ms
+   × S2/T2/T3/T4: POP restoration > T3/T4: while settling nothing is sampled; when settling ends the tracking observer takes over in the same step 10ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > user input (wheel) cancels settling immediately and arms tracking 5ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > user input (touchstart) cancels settling immediately and arms tracking 3ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > user input (pointerdown) cancels settling immediately and arms tracking 3ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > user input (PageDown) cancels settling immediately and arms tracking 3ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > user input (a scroll we didn't cause) cancels settling immediately and arms tracking 3ms
+     → expected false to be true // Object.is equality
+   × S2/T2/T3/T4: POP restoration > settling stops at the 5 s cap even if the layout keeps moving 3ms
+     → expected false to be true // Object.is equality
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 119ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 292ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 483ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 454ms
+
+ Test Files  1 failed | 6 passed (7)
+      Tests  7 failed | 72 passed (79)
+   Start at  17:21:15
+   Duration  1.98s (transform 571ms, setup 1.70s, collect 1.51s, tests 1.42s, environment 4.54s, prepare 739ms)
+

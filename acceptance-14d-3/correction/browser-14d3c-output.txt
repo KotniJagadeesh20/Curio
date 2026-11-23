@@ -1,0 +1,36 @@
+### run 1
+PASS  C1 every iframe kind has its final box before its document loads (videos 16:9, HTML blocks their height)  — www.youtube.com,player.vimeo.com,html,html before=[[641,360],[641,360],[641,300],[641,360]] iframe load events before the embeds were released: 2 (the 2 HTML frames at most)
+PASS  C1 a 3000 px document arriving changes no iframe box  — after=[[641,360],[641,360],[641,300],[641,360]]
+PASS  C2 settling ends while the iframes above the anchor are still loading (not held to the 5 s cap); anchor restored  — saved 139.75 restored 139.75; inline overflow-anchor during=none after=auto; embeds pending=true
+PASS  C2 the embeds loading afterwards don't move the anchor  — before 139.75 after 139.75
+PASS  C3 overflow-anchor: "none" while settling, the previous inline value ("auto") after completion  — during=none after=auto
+PASS  C3 overflow-anchor: the previous inline value after a user cancellation (wheel)  — during=none after wheel=auto
+PASS  C1–C3 no page errors
+PASS  C4 drawer link to another page: every focusin recorded; "Contents" never among them; heading focused  — focusins=["A:Two","H1:Two"] active=H1:Two
+PASS  C4 control: the current page's own link → the recorder sees focus return to "Contents"  — focusins=["A:Two","BUTTON:Contents"]
+
+9/9 checks passed
+### run 2
+PASS  C1 every iframe kind has its final box before its document loads (videos 16:9, HTML blocks their height)  — www.youtube.com,player.vimeo.com,html,html before=[[641,360],[641,360],[641,300],[641,360]] iframe load events before the embeds were released: 2 (the 2 HTML frames at most)
+PASS  C1 a 3000 px document arriving changes no iframe box  — after=[[641,360],[641,360],[641,300],[641,360]]
+PASS  C2 settling ends while the iframes above the anchor are still loading (not held to the 5 s cap); anchor restored  — saved 139.75 restored 139.75; inline overflow-anchor during=none after=auto; embeds pending=true
+PASS  C2 the embeds loading afterwards don't move the anchor  — before 139.75 after 139.75
+PASS  C3 overflow-anchor: "none" while settling, the previous inline value ("auto") after completion  — during=none after=auto
+PASS  C3 overflow-anchor: the previous inline value after a user cancellation (wheel)  — during=none after wheel=auto
+PASS  C1–C3 no page errors
+PASS  C4 drawer link to another page: every focusin recorded; "Contents" never among them; heading focused  — focusins=["A:Two","H1:Two"] active=H1:Two
+PASS  C4 control: the current page's own link → the recorder sees focus return to "Contents"  — focusins=["A:Two","BUTTON:Contents"]
+
+9/9 checks passed
+### run 3
+PASS  C1 every iframe kind has its final box before its document loads (videos 16:9, HTML blocks their height)  — www.youtube.com,player.vimeo.com,html,html before=[[641,360],[641,360],[641,300],[641,360]] iframe load events before the embeds were released: 2 (the 2 HTML frames at most)
+PASS  C1 a 3000 px document arriving changes no iframe box  — after=[[641,360],[641,360],[641,300],[641,360]]
+PASS  C2 settling ends while the iframes above the anchor are still loading (not held to the 5 s cap); anchor restored  — saved 139.75 restored 139.75; inline overflow-anchor during=none after=auto; embeds pending=true
+PASS  C2 the embeds loading afterwards don't move the anchor  — before 139.75 after 139.75
+PASS  C3 overflow-anchor: "none" while settling, the previous inline value ("auto") after completion  — during=none after=auto
+PASS  C3 overflow-anchor: the previous inline value after a user cancellation (wheel)  — during=none after wheel=auto
+PASS  C1–C3 no page errors
+PASS  C4 drawer link to another page: every focusin recorded; "Contents" never among them; heading focused  — focusins=["A:Two","H1:Two"] active=H1:Two
+PASS  C4 control: the current page's own link → the recorder sees focus return to "Contents"  — focusins=["A:Two","BUTTON:Contents"]
+
+9/9 checks passed

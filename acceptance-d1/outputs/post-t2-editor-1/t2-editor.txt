@@ -1,0 +1,26 @@
+PASS  Bold (Cmd+B) wraps selection  — Hello **world** and more
+PASS  Selection kept on the formatted text after bold  — "**world**"
+PASS  Italic toolbar button keeps textarea selection and wraps  — Hello **world** _and_ more
+PASS  Combined bold+italic  — Hello **world** _and_ **_more_**
+PASS  Link with no selection inserts [link text](https://) with the address selected  — "https://"
+PASS  Typing replaces placeholder (caret correct)  — Hello **world** _and_ **_more_** [link text](https://example.com/a_(b))
+PASS  Empty bold selects placeholder  — bold text
+PASS  Multiline + special-char selection bolded with escaping  — "\n**Specials: \\* \\_ \\[ \\] < > & \" ' ` ~ é 中文 😀**\n**line two**"
+PASS  No rich-text validation problem shown
+PASS  Add row/column  — before cells=4, now 3x4
+PASS  New table defaults to header on
+PASS  Header toggle marks row 1 as header
+PASS  Remove row/column  — 3x3
+PASS  Heading moved above text and table  — heading,text,table
+PASS  Autosave reaches "Saved"  — Saved after 2023ms
+PASS  Block order persists after refresh  — heading,text,table
+PASS  Rich text (formatting + specials) persists after refresh (canonical form)
+PASS  Stored doc keeps bold/italic runs and exact href  — [{"text":"Hello "},{"text":"world","bold":true},{"text":" "},{"text":"and","italic":true},{"text":" "},{"text":"more","bold":true,"italic":true},{"text":" "},{"
+PASS  Table cells persist (exact values, including empty cells)  — [["H1","H2","H3"],["r2c1","r2c2","r2c3"],["","",""]]
+PASS  Table header + caption persist
+PASS  Status "Saved" after reload (no spurious dirty)  — Saved
+PASS  Narrow screen: table scrolls inside its container  — {"sw":440,"cw":302,"doc":360,"vw":360}
+PASS  Narrow screen: page itself has no horizontal overflow  — {"sw":440,"cw":302,"doc":360,"vw":360}
+PAGEURL http://localhost:8080/create/pages/555 COLL http://localhost:8080/create/collections/14
+ERRORS []
+FAILED []

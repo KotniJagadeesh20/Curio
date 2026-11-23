@@ -1,0 +1,16 @@
+FIXTURE  collection 16 "Editor accept 29968" · page 565 "Page One" (created by t2-editor in this run)
+PASS  Upload shows authenticated preview
+PASS  Replace swaps the preview  — blob:http://localhost:8080/c86 -> blob:http://localhost:8080/dae
+PASS  Button reads "Replace image" once an image exists
+PASS  Link field locked during upload
+FAIL  Cancel keeps the previous image  — blob:http://localhost:8080/858
+PASS  Link field unlocked after cancel
+PASS  Failed upload offers "Try again" and retry succeeds  — Something went wrong on our side. Please try again.
+PASS  Authenticated preview renders after refresh  — blob:http://localhost:8080/0df
+PASS  Unauthenticated draft media is not served  — assetId=7857e6a9-ea38-4b11-a733-132957e9c10b anon status=401
+PASS  Remove clears preview
+PASS  Cover upload shows preview
+PASS  Replaced cover persists and renders after refresh
+PASS  Typing a cover link removes the uploaded cover
+ERRORS ["Failed to load resource: the server responded with a status of 503 (Service Unavailable)"]
+FAILED ["FAILED POST http://localhost:8080/api/media net::ERR_ABORTED","503 POST http://localhost:8080/api/media"]

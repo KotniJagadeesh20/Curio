@@ -1,0 +1,17 @@
+PASS  [contract] Discover list ?q=java: every consumed field present with the right type/nullability (nested)  — /public/collections?q=java&page=0&size=12
+PASS  [contract] Discover list ?q=travel: every consumed field present with the right type/nullability (nested)  — /public/collections?q=travel&page=0&size=12
+PASS  [contract] Categories: every consumed field present with the right type/nullability (nested)  — /public/categories
+PASS  [contract] Collection detail Java Learning: every consumed field present with the right type/nullability (nested)  — /public/collections/anna_java/java-learning
+PASS  [contract] Collection detail Travel Experiences: every consumed field present with the right type/nullability (nested)  — /public/collections/ben_travel/travel-experiences
+PASS  [contract] Collection detail Java Notes (unlisted): every consumed field present with the right type/nullability (nested)  — /public/collections/anna_java/java-notes
+PASS  [contract] Page view A hello-java: every consumed field present with the right type/nullability (nested)  — /public/pages/anna_java/java-learning/core-java/hello-java
+PASS  [contract] Page view A the-jvm: every consumed field present with the right type/nullability (nested)  — /public/pages/anna_java/java-learning/core-java/the-jvm
+PASS  [contract] Page view A collections: every consumed field present with the right type/nullability (nested)  — /public/pages/anna_java/java-learning/core-java/collections
+PASS  [contract] Page view B arrival: every consumed field present with the right type/nullability (nested)  — /public/pages/ben_travel/travel-experiences/lisbon/arrival
+PASS  [contract] Page view B tram-28: every consumed field present with the right type/nullability (nested)  — /public/pages/ben_travel/travel-experiences/lisbon/tram-28
+PASS  [contract] Page view B ribeira: every consumed field present with the right type/nullability (nested)  — /public/pages/ben_travel/travel-experiences/porto/ribeira
+PASS  [contract] block types covered by the seeded pages  — callout,code,heading,image,svg,table,text,video
+PASS  [contract] Discover ?q=java lists "Java Learning" (and not the draft/unlisted collections)  — java-learning,java
+INFO  unknown extra fields (not consumed; informational): $[].icon, $[].position
+
+14/14 checks passed

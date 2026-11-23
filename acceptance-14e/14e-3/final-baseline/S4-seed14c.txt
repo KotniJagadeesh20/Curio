@@ -1,0 +1,1 @@
+{"token":"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzk1NDI5NzIwLCJleHAiOjE3OTU1MTYxMjB9.X8GJfvFS2qbx_zj_aAfyeIcv3zupEF26JjvRY9yfUXc","readerToken":null,"lisbon":10,"arrivalPage":545,"cellarsPage":555,"sundayPage":558,"tramImg":"ec0b8c17-bd4b-4e66-b0a9-ecb5a83f456d","tileImg":"758abefa-7c3f-4e17-82ca-63d1c57d11fd"}

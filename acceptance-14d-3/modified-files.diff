@@ -1,0 +1,328 @@
+--- a/src/components/public/CollectionOutline.tsx
++++ b/src/components/public/CollectionOutline.tsx
+@@ -11,13 +11,15 @@
+   current?: { moduleSlug: string; pageSlug: string };
+   /** Prefix for the module heading ids. The 14c page shows the outline twice (sidebar and drawer), so ids must differ. */
+   idPrefix?: string;
++  /** Mark each page entry as a scroll-restoration anchor (Step 14d-3). Only the collection page's main outline sets it. */
++  anchors?: boolean;
+ }
+ 
+ /**
+  * A collection's published outline: each module with its pages in reading order, every page a module-qualified link.
+  * Fully expanded (no collapsing). Slug-based only; no ids reach the DOM.
+  */
+-export function CollectionOutline({ username, collectionSlug, modules, current, idPrefix = "module" }: Props) {
++export function CollectionOutline({ username, collectionSlug, modules, current, idPrefix = "module", anchors = false }: Props) {
+   return (
+     <nav aria-label="Collection contents" className="space-y-6" data-testid="collection-outline">
+       {orderedModules(modules).map((m) => (
+@@ -27,7 +29,7 @@
+             {m.pages.map((p) => {
+               const isCurrent = current?.moduleSlug === m.slug && current.pageSlug === p.slug;
+               return (
+-                <li key={p.slug}>
++                <li key={p.slug} data-scroll-anchor={anchors ? `page-${m.slug}/${p.slug}` : undefined}>
+                   <Link to={paths.page(username, collectionSlug, m.slug, p.slug)} aria-current={isCurrent ? "page" : undefined}
+                     className={`block rounded-md px-2 py-1.5 hover:bg-muted ${isCurrent ? "bg-muted font-medium text-primary" : ""}`}>
+                     <span className="block break-words">{p.title}</span>
+--- a/src/components/public/NotAvailable.tsx
++++ b/src/components/public/NotAvailable.tsx
+@@ -1,3 +1,4 @@
++import { forwardRef } from "react";
+ import { Link } from "react-router-dom";
+ import { Button } from "@/components/ui/button";
+ import { paths } from "@/lib/paths";
+@@ -6,15 +7,16 @@
+  * The one screen for every public 404. The API answers draft, hidden, deleted, suspended and nonexistent content with
+  * the same 404, and this screen says the same thing for all of them so the UI does not reveal which case it was.
+  */
+-export function NotAvailable({ what = "page" }: { what?: "collection" | "page" }) {
++export const NotAvailable = forwardRef<HTMLHeadingElement, { what?: "collection" | "page" }>(function NotAvailable({ what = "page" }, headingRef) {
+   return (
+     <div className="flex flex-col items-center gap-3 py-24 text-center" role="alert" data-testid="not-available">
+-      <h1 className="text-2xl font-semibold">This {what} isn't available</h1>
++      {/* focusable (not tabbable) so a public view can move focus here on arrival (Step 14d-3); no ring for that programmatic focus */}
++      <h1 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold focus:outline-none">This {what} isn't available</h1>
+       <p className="max-w-md text-muted-foreground">It may have been moved or unpublished, or the link may be mistyped.</p>
+       <Button asChild variant="outline"><Link to={paths.discover()}>Browse Discover</Link></Button>
+     </div>
+   );
+-}
++});
+ 
+ /** Shown when a published page has nothing that can be displayed (empty, or every block was unreadable). Approved wording (Q1). */
+ export function NoContent() {
+--- a/src/components/public/PublicBlocks.tsx
++++ b/src/components/public/PublicBlocks.tsx
+@@ -35,7 +35,8 @@
+     <div className="space-y-8" data-testid="public-blocks">
+       {blocks.map((b) => (
+         <BlockBoundary key={b.id} onFail={onFail}>
+-          <BlockRenderer blocks={[b]} mode="public" />
++          {/* a scroll-restoration anchor per block (Step 14d-3); the id is stable across visits of the same content */}
++          <div data-scroll-anchor={`block-${b.id}`}><BlockRenderer blocks={[b]} mode="public" /></div>
+         </BlockBoundary>
+       ))}
+     </div>
+--- a/src/pages/public/CollectionView.tsx
++++ b/src/pages/public/CollectionView.tsx
+@@ -1,4 +1,4 @@
+-import type { ReactNode } from "react";
++import { useRef, type ReactNode } from "react";
+ import { Link } from "react-router-dom";
+ import { ArrowLeft, BookOpen } from "lucide-react";
+ import { badgeVariants } from "@/components/ui/badge";
+@@ -10,6 +10,7 @@
+ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+ import { useConfirmedPublicData } from "@/hooks/useConfirmedPublicData";
+ import { useNoIndex } from "@/hooks/useNoIndex";
++import { usePublicArrival, type ArrivalState } from "@/hooks/usePublicArrival";
+ import { usePublicCollection } from "@/hooks/useContent";
+ import { ApiError } from "@/lib/api";
+ import { publicMediaSrc } from "@/lib/mediaUrl";
+@@ -34,8 +35,23 @@
+   useDocumentTitle(notFound ? "Not available" : detail ? detail.collection.title : null);
+   useNoIndex(detail?.unlisted === true);
+ 
+-  if (notFound) return <Shell><NotAvailable what="collection" /></Shell>;
+-  if (q.isError) return <Shell><ErrorState error={q.error} onRetry={() => q.refetch()} /></Shell>;
++  // Arrival, scroll restoration and focus (Step 14d-3); a failed request being retried counts as pending.
++  const contentRef = useRef<HTMLElement>(null);
++  const headingRef = useRef<HTMLHeadingElement>(null);
++  const errorRef = useRef<HTMLDivElement>(null);
++  const arrivalState: ArrivalState = notFound ? "not-found" : q.isError ? (q.isFetching ? "pending" : "error") : detail ? "content" : "pending";
++  const arrival = usePublicArrival({ arrivalKey: `collection:${username}/${slug}`, state: arrivalState, contentRef, headingRef, errorRef });
++
++  if (notFound) return <Shell><NotAvailable what="collection" ref={headingRef} /></Shell>;
++  if (q.isError) {
++    return (
++      <Shell>
++        <div ref={errorRef} tabIndex={-1} role="region" aria-label="Couldn't load this collection" className="focus:outline-none">
++          <ErrorState error={q.error} onRetry={() => { arrival.retry(); q.refetch(); }} />
++        </div>
++      </Shell>
++    );
++  }
+   if (!detail) return <Shell><LoadingState label="Loading collection..." /></Shell>;
+ 
+   const c = detail.collection;
+@@ -45,8 +61,8 @@
+ 
+   return (
+     <Shell>
+-      <article className="space-y-8">
+-        <header className="space-y-4">
++      <article ref={contentRef} className="space-y-8">
++        <header className="space-y-4" data-scroll-anchor="header">
+           {cover && (
+             <div className="aspect-[16/9] max-h-80 w-full overflow-hidden rounded-lg bg-muted">
+               <img src={cover} alt="" className="h-full w-full object-cover" data-testid="collection-cover" />
+@@ -57,7 +73,7 @@
+               {c.category.name}
+             </Link>
+           )}
+-          <h1 className="text-3xl font-bold break-words">{c.title}</h1>
++          <h1 ref={headingRef} tabIndex={-1} className="text-3xl font-bold break-words focus:outline-none">{c.title}</h1>
+           {c.description && <p className="text-lg text-muted-foreground whitespace-pre-line break-words">{c.description}</p>}
+           <div className="text-sm text-muted-foreground">
+             <p>By <span className="font-medium text-foreground">{by}</span></p>
+@@ -73,7 +89,7 @@
+           </div>
+         </header>
+ 
+-        {start ? <CollectionOutline username={username} collectionSlug={c.slug} modules={detail.modules} /> : <NoContent />}
++        {start ? <CollectionOutline username={username} collectionSlug={c.slug} modules={detail.modules} anchors /> : <NoContent />}
+       </article>
+     </Shell>
+   );
+--- a/src/pages/public/Discover.tsx
++++ b/src/pages/public/Discover.tsx
+@@ -1,4 +1,4 @@
+-import { useEffect, useState } from "react";
++import { useEffect, useRef, useState } from "react";
+ import { useSearchParams } from "react-router-dom";
+ import { ChevronLeft, ChevronRight, Search } from "lucide-react";
+ import { Button } from "@/components/ui/button";
+@@ -6,6 +6,7 @@
+ import { CollectionCard } from "@/components/public/CollectionCard";
+ import { ErrorState, LoadingState } from "@/components/QueryState";
+ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
++import { usePublicArrival, type ArrivalState } from "@/hooks/usePublicArrival";
+ import { useCategories, usePublicCollections } from "@/hooks/useContent";
+ 
+ export const DISCOVER_PAGE_SIZE = 12;
+@@ -58,10 +59,18 @@
+   const filtered = !!q || !!category;
+   const clear = () => { setText(""); update({ q: null, category: null }); };
+ 
++  // Arrival, scroll restoration and focus (Step 14d-3). The key is constant: search, filters and paging change only the
++  // query string, which is never an arrival (no scroll, no focus).
++  const contentRef = useRef<HTMLDivElement>(null);
++  const headingRef = useRef<HTMLHeadingElement>(null);
++  const errorRef = useRef<HTMLDivElement>(null);
++  const arrivalState: ArrivalState = data ? "content" : list.isError ? (list.isFetching ? "pending" : "error") : "pending";
++  const arrival = usePublicArrival({ arrivalKey: "discover", state: arrivalState, contentRef, headingRef, errorRef });
++
+   return (
+     <section className="container mx-auto max-w-6xl px-4 pb-16 pt-28">
+       <header className="mb-6 space-y-2">
+-        <h1 className="text-3xl font-bold">Discover</h1>
++        <h1 ref={headingRef} tabIndex={-1} className="text-3xl font-bold focus:outline-none">Discover</h1>
+         <p className="text-muted-foreground">Guides, tutorials, recipes, travel notes and stories published by creators.</p>
+       </header>
+ 
+@@ -83,10 +92,14 @@
+       )}
+ 
+       {list.isLoading && <LoadingState label="Loading collections..." />}
+-      {list.isError && !data && <ErrorState error={list.error} onRetry={() => list.refetch()} />}
++      {list.isError && !data && (
++        <div ref={errorRef} tabIndex={-1} role="region" aria-label="Couldn't load Discover" className="focus:outline-none">
++          <ErrorState error={list.error} onRetry={() => { arrival.retry(); list.refetch(); }} />
++        </div>
++      )}
+ 
+       {data && (
+-        <div aria-busy={list.isFetching} className={list.isPlaceholderData ? "opacity-60 transition-opacity" : undefined}>
++        <div ref={contentRef} aria-busy={list.isFetching} className={list.isPlaceholderData ? "opacity-60 transition-opacity" : undefined}>
+           <p className="mb-3 text-sm text-muted-foreground" aria-live="polite">
+             {data.totalItems === 0 ? "" : `${data.totalItems} ${data.totalItems === 1 ? "collection" : "collections"}`}
+           </p>
+@@ -109,12 +122,12 @@
+             </div>
+           ) : (
+             <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+-              {data.items.map((c) => <li key={`${c.creator.username}/${c.slug}`}><CollectionCard c={c} /></li>)}
++              {data.items.map((c) => <li key={`${c.creator.username}/${c.slug}`} data-scroll-anchor={`card-${c.creator.username}/${c.slug}`}><CollectionCard c={c} /></li>)}
+             </ul>
+           )}
+ 
+           {totalPages > 1 && (
+-            <nav aria-label="Pagination" className="mt-8 flex items-center justify-center gap-3">
++            <nav aria-label="Pagination" data-scroll-anchor="pager" className="mt-8 flex items-center justify-center gap-3">
+               <Button variant="outline" size="sm" disabled={page <= 1} onClick={() => update({ page: page - 1 > 1 ? String(page - 1) : null })}>
+                 <ChevronLeft className="mr-1 h-4 w-4" />Previous
+               </Button>
+--- a/src/pages/public/PageView.tsx
++++ b/src/pages/public/PageView.tsx
+@@ -1,4 +1,4 @@
+-import { useEffect, useState, type MouseEvent, type ReactNode } from "react";
++import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
+ import { useQueryClient } from "@tanstack/react-query";
+ import { Link } from "react-router-dom";
+ import { ChevronRight, ListTree } from "lucide-react";
+@@ -13,6 +13,7 @@
+ import { useConfirmedPublicData } from "@/hooks/useConfirmedPublicData";
+ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
+ import { useNoIndex } from "@/hooks/useNoIndex";
++import { usePublicArrival, type ArrivalState } from "@/hooks/usePublicArrival";
+ import { usePublicCollection, usePublicPage } from "@/hooks/useContent";
+ import { ApiError } from "@/lib/api";
+ import { paths } from "@/lib/paths";
+@@ -58,16 +59,33 @@
+   if (unlisted !== lastUnlisted) setLastUnlisted(unlisted);
+   useNoIndex(unlisted);
+ 
+-  if (notFound) return <Shell><NotAvailable what="page" /></Shell>;
++  // Arrival, scroll restoration and focus (Step 14d-3). The state is this visit's: a failed request that is being
++  // retried counts as pending, so only its final outcome triggers anything.
++  const contentRef = useRef<HTMLElement>(null);
++  const headingRef = useRef<HTMLHeadingElement>(null);
++  const errorRef = useRef<HTMLDivElement>(null);
++  const arrivalState: ArrivalState = notFound ? "not-found"
++    : failed ? (pq.isFetching || cq.isFetching ? "pending" : "error")
++    : ready ? "content" : "pending";
++  const arrival = usePublicArrival({ arrivalKey: `page:${visit}`, state: arrivalState, contentRef, headingRef, errorRef });
++
++  if (notFound) return <Shell><NotAvailable what="page" ref={headingRef} /></Shell>;
+   if (failed) {
+     const error = pq.isError ? pq.error : cq.error;
+-    return <Shell><ErrorState error={error} onRetry={() => { if (pq.isError) pq.refetch(); if (cq.isError) cq.refetch(); }} /></Shell>;
++    return (
++      <Shell>
++        <div ref={errorRef} tabIndex={-1} role="region" aria-label="Couldn't load this page" className="focus:outline-none">
++          <ErrorState error={error} onRetry={() => { arrival.retry(); if (pq.isError) pq.refetch(); if (cq.isError) cq.refetch(); }} />
++        </div>
++      </Shell>
++    );
+   }
+   if (!ready) return <Shell><LoadingState label="Loading page..." /></Shell>;
+ 
+   const { collection, module, page: p } = ready.page;
+   const modules = ready.outline.modules;
+   const current = { moduleSlug: module.slug, pageSlug: p.slug };
++  const pagePath = paths.page(username, collection.slug, module.slug, p.slug);
+   const outlineNav = (idPrefix: string) =>
+     <CollectionOutline username={username} collectionSlug={collection.slug} modules={modules} current={current} idPrefix={idPrefix} />;
+ 
+@@ -78,7 +96,7 @@
+           <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">{outlineNav("sidebar-module")}</div>
+         </aside>
+ 
+-        <article className="min-w-0 space-y-8">
++        <article ref={contentRef} className="min-w-0 space-y-8">
+           <nav aria-label="Breadcrumb">
+             <ol className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
+               <li><Link to={paths.discover()} className="hover:text-foreground">Discover</Link></li>
+@@ -89,12 +107,12 @@
+             </ol>
+           </nav>
+ 
+-          <ContentsDrawer visit={visit}>{outlineNav("drawer-module")}</ContentsDrawer>
++          <ContentsDrawer visit={visit} currentPath={pagePath}>{outlineNav("drawer-module")}</ContentsDrawer>
+ 
+-          <header className="space-y-3">
++          <header className="space-y-3" data-scroll-anchor="title">
+             <div className="flex flex-wrap items-start justify-between gap-3">
+-              <h1 className="min-w-0 text-3xl font-bold break-words">{p.title}</h1>
+-              <ShareButton what="page" title={`${p.title} · ${collection.title}`} path={paths.page(username, collection.slug, module.slug, p.slug)} />
++              <h1 ref={headingRef} tabIndex={-1} className="min-w-0 text-3xl font-bold break-words focus:outline-none">{p.title}</h1>
++              <ShareButton what="page" title={`${p.title} · ${collection.title}`} path={pagePath} />
+             </div>
+             {p.summary && <p className="text-lg text-muted-foreground whitespace-pre-line break-words">{p.summary}</p>}
+           </header>
+@@ -103,25 +121,38 @@
+             <PublicBlocks key={visit} page={p} />
+           </div>
+ 
+-          <PageNav username={username} collectionSlug={collection.slug} modules={modules} moduleSlug={module.slug} pageSlug={p.slug} />
++          <div data-scroll-anchor="page-nav">
++            <PageNav username={username} collectionSlug={collection.slug} modules={modules} moduleSlug={module.slug} pageSlug={p.slug} />
++          </div>
+         </article>
+       </div>
+     </Shell>
+   );
+ }
+ 
+-/** Below `lg`: the same outline in a drawer. It closes when a page link is followed (or the page changes). */
+-function ContentsDrawer({ visit, children }: { visit: string; children: ReactNode }) {
++/**
++ * Below `lg`: the same outline in a drawer. It closes when a page link is followed (or the page changes). When the link
++ * opens ANOTHER page, focus is left to the arrival (the new page's heading) instead of Radix returning it to "Contents";
++ * Escape, the close button or the current page's own link keep the default (focus back on "Contents").
++ */
++function ContentsDrawer({ visit, currentPath, children }: { visit: string; currentPath: string; children: ReactNode }) {
+   const [open, setOpen] = useState(false);
++  const closedByNavigation = useRef(false);
+   useEffect(() => setOpen(false), [visit]);
+-  const closeOnLink = (e: MouseEvent) => { if ((e.target as HTMLElement).closest("a")) setOpen(false); };
++  const closeOnLink = (e: MouseEvent) => {
++    const link = (e.target as HTMLElement).closest("a");
++    if (!link) return;
++    closedByNavigation.current = link.getAttribute("href") !== currentPath;
++    setOpen(false);
++  };
+   return (
+     <div className="lg:hidden">
+       <Sheet open={open} onOpenChange={setOpen}>
+         <SheetTrigger asChild>
+           <Button variant="outline" size="sm" className="gap-2"><ListTree className="h-4 w-4" />Contents</Button>
+         </SheetTrigger>
+-        <SheetContent side="left" className="w-[85vw] max-w-sm overflow-y-auto">
++        <SheetContent side="left" className="w-[85vw] max-w-sm overflow-y-auto"
++          onCloseAutoFocus={(e) => { if (closedByNavigation.current) { e.preventDefault(); closedByNavigation.current = false; } }}>
+           <SheetHeader><SheetTitle>Contents</SheetTitle></SheetHeader>
+           <div className="mt-4" onClick={closeOnLink}>{children}</div>
+         </SheetContent>

@@ -1,0 +1,22 @@
+FAIL  [T1 keyboard #1] Tab through code editor, Enter on Previous: reaches "The JVM" with no uncaught error or unhandled rejection  — Canceled
+      timeline: 1271ms in-app navigation A2 → A3 → 2639ms A3 ready, editor mounted → 2667ms focus inside editor: true → 2678ms focus on "Previous: The JVM": true → 2694ms Enter pressed (navigation → editor unmount) → 2707ms PAGEERROR Canceled → 2720ms The JVM shown: true → 4222ms settled
+FAIL  [T1 keyboard #2] Tab through code editor, Enter on Previous: reaches "The JVM" with no uncaught error or unhandled rejection  — Canceled
+      timeline: 1171ms in-app navigation A2 → A3 → 2400ms A3 ready, editor mounted → 2417ms focus inside editor: true → 2430ms focus on "Previous: The JVM": true → 2444ms Enter pressed (navigation → editor unmount) → 2446ms PAGEERROR Canceled → 2472ms The JVM shown: true → 3973ms settled
+FAIL  [T1 keyboard #3] Tab through code editor, Enter on Previous: reaches "The JVM" with no uncaught error or unhandled rejection  — Canceled
+      timeline: 1165ms in-app navigation A2 → A3 → 2394ms A3 ready, editor mounted → 2402ms focus inside editor: true → 2411ms focus on "Previous: The JVM": true → 2420ms Enter pressed (navigation → editor unmount) → 2427ms PAGEERROR Canceled → 2444ms The JVM shown: true → 3947ms settled
+FAIL  [T1 keyboard #4] Tab through code editor, Enter on Previous: reaches "The JVM" with no uncaught error or unhandled rejection  — Canceled
+      timeline: 1119ms in-app navigation A2 → A3 → 5808ms A3 ready, editor mounted → 5819ms focus inside editor: true → 5829ms focus on "Previous: The JVM": true → 5843ms PAGEERROR Canceled → 5843ms Enter pressed (navigation → editor unmount) → 5926ms The JVM shown: true → 7428ms settled
+FAIL  [T3 direct-load #1] Tab through code editor, Enter on Previous: reaches "The JVM" with no uncaught error or unhandled rejection  — Canceled
+      timeline: 1444ms A3 ready, editor mounted → 1506ms focus inside editor: true → 1513ms focus on "Previous: The JVM": true → 1524ms Enter pressed (navigation → editor unmount) → 1539ms PAGEERROR Canceled → 1705ms The JVM shown: true → 3207ms settled
+FAIL  [T3 direct-load #2] Tab through code editor, Enter on Previous: reaches "The JVM" with no uncaught error or unhandled rejection  — Canceled
+      timeline: 1460ms A3 ready, editor mounted → 1537ms focus inside editor: true → 1544ms focus on "Previous: The JVM": true → 1554ms Enter pressed (navigation → editor unmount) → 1560ms PAGEERROR Canceled → 1586ms The JVM shown: true → 3088ms settled
+PASS  [T4 dwell control #1] same as T1 but 400 ms pause in the editor and on Previous: reaches "The JVM" with no uncaught error or unhandled rejection
+      timeline: 1161ms in-app navigation A2 → A3 → 2382ms A3 ready, editor mounted → 2396ms focus inside editor: true → 2810ms focus on "Previous: The JVM": true → 3238ms Enter pressed (navigation → editor unmount) → 3364ms The JVM shown: true → 4865ms settled
+PASS  [T4 dwell control #2] same as T1 but 400 ms pause in the editor and on Previous: reaches "The JVM" with no uncaught error or unhandled rejection
+      timeline: 1111ms in-app navigation A2 → A3 → 2424ms A3 ready, editor mounted → 2448ms focus inside editor: true → 2873ms focus on "Previous: The JVM": true → 3294ms Enter pressed (navigation → editor unmount) → 3327ms The JVM shown: true → 4829ms settled
+PASS  [T2 mouse control #1] click in editor, click Previous: reaches "The JVM" with no uncaught error or unhandled rejection
+      timeline: 1226ms in-app navigation A2 → A3 → 2538ms A3 ready, editor mounted → 2588ms mouse click in editor → 3056ms clicked Previous → 3087ms The JVM shown: true → 4588ms settled
+PASS  [T2 mouse control #2] click in editor, click Previous: reaches "The JVM" with no uncaught error or unhandled rejection
+      timeline: 1180ms in-app navigation A2 → A3 → 2425ms A3 ready, editor mounted → 2456ms mouse click in editor → 2956ms clicked Previous → 2982ms The JVM shown: true → 4483ms settled
+
+4/10 checks passed
