@@ -1,0 +1,3 @@
+PASS S0 GET /api/public/creators/c15_sus -> 200
+SUMMARY part=S phase=setup pass=1 fail=0
+exit=0

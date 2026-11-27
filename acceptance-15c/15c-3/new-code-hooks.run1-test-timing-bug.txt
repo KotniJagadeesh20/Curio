@@ -1,0 +1,37 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ❯ src/hooks/useCreatorMutations.test.tsx (41 tests | 1 failed) 110ms
+   × useUpdateProfile > 16c: a failed update (400) invalidates nothing and leaves the cached profile alone 5ms
+     → expected null to match object { status: 400, …(1) }
+ ✓ src/hooks/useContent.test.tsx (12 tests) 601ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > 16c: a failed update (400) invalidates nothing and leaves the cached profile alone
+AssertionError: expected null to match object { status: 400, …(1) }
+
+- Expected: 
+Object {
+  "message": "displayName must be 1-120 characters",
+  "status": 400,
+}
+
++ Received: 
+null
+
+ ❯ src/hooks/useCreatorMutations.test.tsx:253:34
+    251|     const { result } = renderHook(() => useUpdateProfile(), { wrapper …
+    252|     await act(async () => { await result.current.mutateAsync(body as n…
+    253|     expect(result.current.error).toMatchObject({ status: 400, message:…
+       |                                  ^
+    254|     expect(staleProfileKeys()).toEqual([]);
+    255|     expect(qc.getQueryData(ME)).toBe(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 52 passed (53)
+   Start at  12:45:19
+   Duration  1.62s (transform 135ms, setup 357ms, collect 145ms, tests 710ms, environment 827ms, prepare 88ms)
+

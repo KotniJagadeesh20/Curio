@@ -1,0 +1,15 @@
+## before start
+total 0
+drwxr-xr-x@ 2 newuser  wheel  64 27 Nov 13:38 .
+drwxr-xr-x@ 3 newuser  wheel  96 27 Nov 13:38 ..
+no Shell process
+## before delete
+total 936
+drwxr-xr-x@ 3 newuser  wheel      96 27 Nov 13:38 .
+drwxr-xr-x@ 3 newuser  wheel      96 27 Nov 13:38 ..
+-rw-r--r--@ 1 newuser  wheel  450560 27 Nov 13:38 c15.mv.db
+## after delete
+total 0
+drwxr-xr-x@  2 newuser  wheel   64 27 Nov 13:38 .
+drwx------@ 15 newuser  wheel  480 27 Nov 13:38 ..
+8081 free

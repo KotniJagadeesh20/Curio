@@ -1,0 +1,193 @@
+--- /private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/0614dce6-d0e3-4177-8df8-8c14d5f10185/scratchpad/15c-3-orig/useContent.ts	2026-11-24 12:45:05
++++ src/hooks/useContent.ts	2026-11-24 12:45:18
+@@ -7,6 +7,7 @@
+   CollectionSummary,
+   CreatorPage,
+   Lesson,
++  MeResponse,
+   Paged,
+   Problem,
+   ProblemSummary,
+@@ -125,3 +126,13 @@
+     staleTime: 5 * 60_000,
+     retry: retryUnlessClientError,
+   });
++
++// ---- own profile (authenticated; Step 15c) ----
++/** Key of the signed-in user's `MeResponse` ({ user, profile }); `useUpdateProfile` updates its `profile` in place. */
++export const MY_PROFILE_KEY = ["me", "profile"] as const;
++export const useMyProfile = () =>
++  useQuery({
++    queryKey: MY_PROFILE_KEY,
++    queryFn: () => api.get<MeResponse>(apiPaths.me()),
++    retry: retryUnlessClientError,
++  });
+--- /private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/0614dce6-d0e3-4177-8df8-8c14d5f10185/scratchpad/15c-3-orig/useCreatorMutations.ts	2026-11-24 12:45:05
++++ src/hooks/useCreatorMutations.ts	2026-11-24 12:45:18
+@@ -2,7 +2,10 @@
+ import type { QueryClient } from "@tanstack/react-query";
+ import { api } from "@/lib/api";
+ import { apiPaths } from "@/lib/paths";
+-import type { CollectionInput, CollectionSummary, CreatorModule, CreatorPage, ModuleInput, PageInput } from "@/lib/types";
++import { MY_PROFILE_KEY } from "@/hooks/useContent";
++import type {
++  CollectionInput, CollectionSummary, CreatorModule, CreatorPage, MeResponse, ModuleInput, PageInput, Profile, UpdateProfileRequest,
++} from "@/lib/types";
+ 
+ /**
+  * Creator write hooks (Step 8). They only call the owner-checked creator API: the server decides ownership, status
+@@ -180,3 +183,29 @@
+     onSuccess: () => refreshCollection(qc, collectionId, { publicToo: true }),
+   });
+ };
++
++// ---- own profile (Step 15c) ----
++/**
++ * Public query prefixes that carry profile data: the creator profile itself, and every collection DTO, which embeds the
++ * creator's displayName (`CreatorRef`). Listed explicitly instead of the bare ["public"] prefix, so a future unrelated
++ * public key is not refetched by accident. Categories and the workspace ("mine") carry no profile data.
++ */
++const PROFILE_PUBLIC_KEYS = [
++  ["public", "creator"],
++  ["public", "collections"],
++  ["public", "creator-collections"],
++  ["public", "collection"],
++  ["public", "page"],
++] as const;
++
++export const useUpdateProfile = () => {
++  const qc = useQueryClient();
++  return useMutation({
++    mutationFn: (body: UpdateProfileRequest) => api.put<Profile>(apiPaths.myProfile(), body),
++    onSuccess: (profile) => {
++      // The PUT returns only the Profile: keep the cached MeResponse (and its user) and replace just its profile.
++      qc.setQueryData<MeResponse>(MY_PROFILE_KEY, (cur) => (cur ? { ...cur, profile } : cur));
++      return Promise.all(PROFILE_PUBLIC_KEYS.map((queryKey) => qc.invalidateQueries({ queryKey })));
++    },
++  });
++};
+--- /private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/0614dce6-d0e3-4177-8df8-8c14d5f10185/scratchpad/15c-3-orig/useContent.test.tsx	2026-11-24 12:45:05
++++ src/hooks/useContent.test.tsx	2026-11-24 12:45:05
+@@ -3,7 +3,7 @@
+ import type { ReactNode } from "react";
+ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+ import { tokenStore } from "@/lib/api";
+-import { useMyCollection, useMyCollections, useMyPage, usePublicCollection, usePublicCollections, usePublicPage } from "./useContent";
++import { useMyCollection, useMyCollections, useMyPage, useMyProfile, usePublicCollection, usePublicCollections, usePublicPage } from "./useContent";
+ 
+ const json = (status: number, body: unknown) =>
+   Promise.resolve(new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } }));
+@@ -91,3 +91,33 @@
+     expect(fetchMock).toHaveBeenCalledTimes(1);
+   });
+ });
++
++// Step 15c-3 (plan test 16): the signed-in user's own profile
++describe("useMyProfile", () => {
++  it("GETs /api/users/me with the bearer token and returns { user, profile }", async () => {
++    tokenStore.set("tok123");
++    const me = { user: { id: 7, username: "bob" }, profile: { displayName: "Bob", visibility: "PUBLIC" } };
++    fetchMock.mockImplementation(() => json(200, me));
++    const { result } = renderHook(() => useMyProfile(), { wrapper });
++    await waitFor(() => expect(result.current.isSuccess).toBe(true));
++    expect(urls()).toEqual(["/api/users/me"]);
++    expect(headersOf().Authorization).toBe("Bearer tok123");
++    expect(result.current.data).toEqual(me);
++  });
++
++  it("a 4xx is final: no retries", async () => {
++    tokenStore.set("tok123");
++    fetchMock.mockImplementation(() => json(404, { error: "nope" }));
++    const { result } = renderHook(() => useMyProfile(), { wrapper });
++    await waitFor(() => expect(result.current.isError).toBe(true));
++    expect(fetchMock).toHaveBeenCalledTimes(1);
++  });
++
++  it("a server error is retried (twice) before it is reported", async () => {
++    tokenStore.set("tok123");
++    fetchMock.mockImplementation(() => json(500, { error: "boom" }));
++    const { result } = renderHook(() => useMyProfile(), { wrapper });
++    await waitFor(() => expect(result.current.isError).toBe(true));
++    expect(fetchMock).toHaveBeenCalledTimes(3);
++  });
++});
+--- /private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/0614dce6-d0e3-4177-8df8-8c14d5f10185/scratchpad/15c-3-orig/useCreatorMutations.test.tsx	2026-11-24 12:45:05
++++ src/hooks/useCreatorMutations.test.tsx	2026-11-24 12:45:29
+@@ -7,7 +7,7 @@
+ import {
+   useCreateCollection, useCreateModule, useCreatePage, useDeleteCollection, useDeleteModule, useDeletePage,
+   usePublishCollection, usePublishPage, useReorderModule, useReorderPage, useRestoreCollection,
+-  useUnpublishCollection, useUpdateCollection, useUpdateModule, useUpdatePage,
++  useUnpublishCollection, useUpdateCollection, useUpdateModule, useUpdatePage, useUpdateProfile,
+ } from "./useCreatorMutations";
+ 
+ const json = (status: number, body: unknown) =>
+@@ -190,3 +190,68 @@
+     expect(result.current.data?.[0].slug).toBe("programming");
+   });
+ });
++
++// ---- Step 15c-3: own profile (plan tests 16, 16a, 16c) ----
++describe("useUpdateProfile", () => {
++  const body = { displayName: "Bob K", bio: "", avatarUrl: null, bannerUrl: null, socialLinks: {}, visibility: "PRIVATE" };
++  const saved = { displayName: "Bob K", bio: "", avatarUrl: null, bannerUrl: null, socialLinks: {}, visibility: "PRIVATE" };
++  const user = { id: 7, name: "Bob", email: "b@example.com", username: "bob", role: "USER", createdAt: "2026-11-20T10:00:00Z" };
++  const ME = ["me", "profile"];
++  const PROFILE_KEYS = {
++    creator: ["public", "creator", "bob"],
++    collections: ["public", "collections", { page: 0 }],
++    creatorCollections: ["public", "creator-collections", "bob"],
++    collection: ["public", "collection", "bob", "java"],
++    page: ["public", "page", "bob", "java", "core", "intro"],
++    categories: ["categories"],
++    mine: ["mine", "collections", { deleted: false }],
++  };
++  const seedProfileKeys = () => Object.values(PROFILE_KEYS).forEach((k) => qc.setQueryData(k, { seeded: true }));
++  const staleProfileKeys = () =>
++    Object.entries(PROFILE_KEYS).filter(([, k]) => qc.getQueryState(k)?.isInvalidated).map(([n]) => n).sort();
++
++  it("PUTs exactly the given body to /api/users/me/profile with the bearer token", async () => {
++    fetchMock.mockImplementation(() => json(200, saved));
++    await run(() => useUpdateProfile(), body);
++    expect(call()).toMatchObject({ url: "/api/users/me/profile", method: "PUT", body });
++    expect(call().headers.Authorization).toBe("Bearer tok");
++  });
++
++  it("16a: updates only MeResponse.profile in the cache and keeps user intact (the PUT returns only a Profile)", async () => {
++    const before = { user, profile: { ...saved, displayName: "Bob", visibility: "PUBLIC" } };
++    qc.setQueryData(ME, before);
++    fetchMock.mockImplementation(() => json(200, saved));
++    await run(() => useUpdateProfile(), body);
++    const after = qc.getQueryData<{ user: unknown; profile: unknown }>(ME)!;
++    expect(Object.keys(after).sort()).toEqual(["profile", "user"]);
++    expect(after.user).toBe(before.user);            // same object, untouched
++    expect(after.user).toEqual(user);
++    expect(after.profile).toEqual(saved);
++    expect(after).not.toHaveProperty("displayName");  // never replaced by the bare Profile
++  });
++
++  it("16a: with nothing cached, it does not create a partial entry", async () => {
++    fetchMock.mockImplementation(() => json(200, saved));
++    await run(() => useUpdateProfile(), body);
++    expect(qc.getQueryData(ME)).toBeUndefined();
++  });
++
++  it("16c: invalidates the five public prefixes (displayName is embedded in collection DTOs), not categories or mine", async () => {
++    seedProfileKeys();
++    fetchMock.mockImplementation(() => json(200, saved));
++    await run(() => useUpdateProfile(), body);
++    expect(staleProfileKeys()).toEqual(["collection", "collections", "creator", "creatorCollections", "page"]);
++  });
++
++  it("16c: a failed update (400) invalidates nothing and leaves the cached profile alone", async () => {
++    seedProfileKeys();
++    const before = { user, profile: saved };
++    qc.setQueryData(ME, before);
++    fetchMock.mockImplementation(() => json(400, { error: "displayName must be 1-120 characters" }));
++    const { result } = renderHook(() => useUpdateProfile(), { wrapper });
++    await act(async () => { await result.current.mutateAsync(body as never).catch(() => undefined); });
++    await waitFor(() => expect(result.current.error).toMatchObject({ status: 400, message: "displayName must be 1-120 characters" }));
++    expect(staleProfileKeys()).toEqual([]);
++    expect(qc.getQueryData(ME)).toBe(before);
++  });
++});

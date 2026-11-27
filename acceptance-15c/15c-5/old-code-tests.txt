@@ -1,0 +1,56 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+stderr | src/components/Navbar.test.tsx > Navbar > shows Discover to everyone, and no Write link to a visitor
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ❯ src/components/Navbar.test.tsx (9 tests | 2 failed) 225ms
+   × Navbar > desktop account menu has Profile -> /profile and Profile settings -> /settings/profile 38ms
+     → expect(received).toHaveAttribute()
+
+received value must be an HTMLElement or an SVGElement.
+
+   × Navbar > mobile menu has Profile -> /profile and Profile settings -> /settings/profile 10ms
+     → expect(received).toHaveAttribute()
+
+received value must be an HTMLElement or an SVGElement.
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/components/Navbar.test.tsx > Navbar > desktop account menu has Profile -> /profile and Profile settings -> /settings/profile
+Error: expect(received).toHaveAttribute()
+
+received value must be an HTMLElement or an SVGElement.
+
+ ❯ src/components/Navbar.test.tsx:96:77
+     94|     const items = Array.from(menu.querySelectorAll("a"));
+     95|     expect(items.find((a) => a.textContent?.trim() === "Profile")).toH…
+     96|     expect(items.find((a) => a.textContent?.trim() === "Profile settin…
+       |                                                                             ^
+     97|   });
+     98| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/components/Navbar.test.tsx > Navbar > mobile menu has Profile -> /profile and Profile settings -> /settings/profile
+Error: expect(received).toHaveAttribute()
+
+received value must be an HTMLElement or an SVGElement.
+
+ ❯ src/components/Navbar.test.tsx:106:77
+    104|     const items = Array.from(panel.querySelectorAll("a"));
+    105|     expect(items.find((a) => a.textContent?.trim() === "Profile")).toH…
+    106|     expect(items.find((a) => a.textContent?.trim() === "Profile settin…
+       |                                                                             ^
+    107|   });
+    108| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 7 passed (9)
+   Start at  14:11:28
+   Duration  1.58s (transform 121ms, setup 163ms, collect 252ms, tests 225ms, environment 368ms, prepare 49ms)
+

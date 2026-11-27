@@ -37,6 +37,9 @@ vi.mock("@/pages/admin/AdminUsers", () => stub("admin-users"));
 vi.mock("@/pages/creator/Workspace", () => ({ default: () => <div data-testid="workspace-screen" /> }));
 vi.mock("@/pages/creator/CollectionEditor", () => ({ default: ({ id }: { id: number }) => <div data-testid="collection-editor-screen">{id}</div> }));
 vi.mock("@/pages/creator/PageEditor", () => ({ default: ({ id }: { id: number }) => <div data-testid="page-editor-screen">{id}</div> }));
+// Step 15c-4 (disclosed): the real settings page needs a QueryClient, which this routing test doesn't provide; stubbed like
+// the other pages, keeping the heading the existing assertion looks for.
+vi.mock("@/pages/settings/ProfileSettings", () => ({ default: () => <h1>Profile settings</h1> }));
 vi.mock("@/components/Navbar", () => ({ Navbar: () => <nav /> }));
 vi.mock("@/components/Footer", () => ({ Footer: () => <footer /> }));
 vi.mock("@/components/admin/AdminLayout", () => ({ AdminLayout: () => <div>admin-layout<Outlet /></div> }));

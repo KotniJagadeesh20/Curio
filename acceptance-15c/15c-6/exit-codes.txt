@@ -1,0 +1,5 @@
+vitest exit 0
+tsc app exit 0
+tsc node exit 0
+eslint exit 0
+build exit 0

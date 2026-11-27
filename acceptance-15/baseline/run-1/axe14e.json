@@ -1,0 +1,347 @@
+{
+  "axeVersion": "4.10.2",
+  "scans": [
+    {
+      "view": "Discover",
+      "path": "/discover",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": []
+    },
+    {
+      "view": "Collection (Java Learning)",
+      "path": "/@anna_java/java-learning",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": []
+    },
+    {
+      "view": "Collection (Travel Experiences)",
+      "path": "/@ben_travel/travel-experiences",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": []
+    },
+    {
+      "view": "Page A1 (text: bold/italic/link/list, heading)",
+      "path": "/@anna_java/java-learning/core-java/hello-java",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            "aside"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page A2 (svg)",
+      "path": "/@anna_java/java-learning/core-java/the-jvm",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            "aside"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page A3 (code, table)",
+      "path": "/@anna_java/java-learning/core-java/collections",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            "aside"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B1 (image, callouts)",
+      "path": "/@ben_travel/travel-experiences/lisbon/arrival",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            ".lg\\:block",
+            ".border-accent",
+            ".border-emerald-500",
+            ".border-amber-500"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B2 (video, image)",
+      "path": "/@ben_travel/travel-experiences/lisbon/tram-28",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            "aside"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B3 (text)",
+      "path": "/@ben_travel/travel-experiences/porto/ribeira",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            "aside"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Not available (A-draft)",
+      "path": "/@anna_java/java-learning/core-java/generics-draft",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Error state (page API 503)",
+      "path": "/@anna_java/java-learning/core-java/hello-java",
+      "viewport": "1280px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "nodes": [
+            "html"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Discover",
+      "path": "/discover",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": []
+    },
+    {
+      "view": "Collection (Java Learning)",
+      "path": "/@anna_java/java-learning",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": []
+    },
+    {
+      "view": "Collection (Travel Experiences)",
+      "path": "/@ben_travel/travel-experiences",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": []
+    },
+    {
+      "view": "Page A1 (text: bold/italic/link/list, heading)",
+      "path": "/@anna_java/java-learning/core-java/hello-java",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": []
+    },
+    {
+      "view": "Page A2 (svg)",
+      "path": "/@anna_java/java-learning/core-java/the-jvm",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page A3 (code, table)",
+      "path": "/@anna_java/java-learning/core-java/collections",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B1 (image, callouts)",
+      "path": "/@ben_travel/travel-experiences/lisbon/arrival",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        },
+        {
+          "id": "landmark-complementary-is-top-level",
+          "impact": "moderate",
+          "help": "Aside should not be contained in another landmark",
+          "nodes": [
+            ".border-accent",
+            ".border-emerald-500",
+            ".border-amber-500"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B2 (video, image)",
+      "path": "/@ben_travel/travel-experiences/lisbon/tram-28",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Page B3 (text)",
+      "path": "/@ben_travel/travel-experiences/porto/ribeira",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Not available (A-draft)",
+      "path": "/@anna_java/java-learning/core-java/generics-draft",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            "div:nth-child(2) > h3"
+          ]
+        }
+      ]
+    },
+    {
+      "view": "Error state (page API 503)",
+      "path": "/@anna_java/java-learning/core-java/hello-java",
+      "viewport": "360px",
+      "rendered": true,
+      "violations": [
+        {
+          "id": "page-has-heading-one",
+          "impact": "moderate",
+          "help": "Page should contain a level-one heading",
+          "nodes": [
+            "html"
+          ]
+        }
+      ]
+    }
+  ]
+}

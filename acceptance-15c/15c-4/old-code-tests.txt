@@ -1,0 +1,88 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ❯ src/pages/settings/ProfileSettings.test.tsx (0 test)
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > renders /discover (the real Discover page since Step 14a)
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice/java is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice/java
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice/java/core/intro is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice/java/core/intro
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@ is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@ab is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@ab
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@1abc is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@1abc
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@al-ice is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@al-ice
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /someword is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /someword
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@alice/java/core is a 404 (no such shape)
+404 Error: User attempted to access non-existent route: /@alice/java/core
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@alice/java/core/intro/extra is a 404 (no such shape)
+404 Error: User attempted to access non-existent route: /@alice/java/core/intro/extra
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/abc is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/abc
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/0 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/0
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/-3 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/-3
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/pages/1.5 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/pages/1.5
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/pages/9999999999999999999999 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/pages/9999999999999999999999
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create is not swallowed by the :handle route, and is a 404 for deeper unknown paths
+404 Error: User attempted to access non-existent route: /create/unknown/thing
+
+stderr | src/AppRoutes.test.tsx > under the app's data router (router.tsx) > a logged-in user reaches the page editor route, an invalid id is NotFound, and the admin redirect still lands on /create
+404 Error: User attempted to access non-existent route: /create/pages/abc
+
+ ✓ src/AppRoutes.test.tsx (45 tests) 123ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/settings/ProfileSettings.test.tsx [ src/pages/settings/ProfileSettings.test.tsx ]
+Error: Failed to resolve import "./ProfileSettings" from "src/pages/settings/ProfileSettings.test.tsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /Users/newuser/Downloads/Curio-main/src/pages/settings/ProfileSettings.test.tsx:14:38
+  12 |  const __vi_import_4__ = await import('@/lib/api')
+  13 |  const __vi_import_5__ = await import('@/test/fakeApi')
+  14 |  const __vi_import_6__ = await import('./ProfileSettings')
+     |                                       ^
+  15 |  
+  16 |  
+ ❯ TransformPluginContext._formatError node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16
+ ❯ normalizeUrl node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23
+ ❯ node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7
+ ❯ PluginContainer.transform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  45 passed (45)
+   Start at  13:06:13
+   Duration  1.27s (transform 155ms, setup 409ms, collect 142ms, tests 123ms, environment 1.01s, prepare 138ms)
+

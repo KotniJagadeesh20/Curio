@@ -7,6 +7,7 @@ import type {
   CollectionSummary,
   CreatorPage,
   Lesson,
+  MeResponse,
   Paged,
   Problem,
   ProblemSummary,
@@ -123,5 +124,15 @@ export const useCategories = () =>
     queryKey: ["categories"],
     queryFn: () => api.get<Category[]>(apiPaths.categories()),
     staleTime: 5 * 60_000,
+    retry: retryUnlessClientError,
+  });
+
+// ---- own profile (authenticated; Step 15c) ----
+/** Key of the signed-in user's `MeResponse` ({ user, profile }); `useUpdateProfile` updates its `profile` in place. */
+export const MY_PROFILE_KEY = ["me", "profile"] as const;
+export const useMyProfile = () =>
+  useQuery({
+    queryKey: MY_PROFILE_KEY,
+    queryFn: () => api.get<MeResponse>(apiPaths.me()),
     retry: retryUnlessClientError,
   });

@@ -1,0 +1,37 @@
+{
+  "seq": 9,
+  "label": "priv-private-put",
+  "request": {
+    "method": "PUT",
+    "path": "/api/users/me/profile",
+    "authenticated": true,
+    "body": {
+      "displayName": "Priv Fifteen",
+      "bio": "",
+      "avatarUrl": null,
+      "bannerUrl": null,
+      "socialLinks": {},
+      "visibility": "PRIVATE"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      "connection": "keep-alive",
+      "content-security-policy": "default-src 'none'; frame-ancestors 'none'",
+      "content-type": "application/json",
+      "date": "Fri, 27 Nov 2026 08:08:13 GMT",
+      "expires": "0",
+      "keep-alive": "timeout=60",
+      "pragma": "no-cache",
+      "referrer-policy": "no-referrer",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-xss-protection": "0"
+    },
+    "body": "{\"displayName\":\"Priv Fifteen\",\"bio\":\"\",\"avatarUrl\":null,\"bannerUrl\":null,\"socialLinks\":{},\"visibility\":\"PRIVATE\"}"
+  }
+}

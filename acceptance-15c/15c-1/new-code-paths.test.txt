@@ -1,0 +1,10 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ✓ src/lib/paths.test.ts (17 tests) 5ms
+
+ Test Files  1 passed (1)
+      Tests  17 passed (17)
+   Start at  11:31:58
+   Duration  731ms (transform 76ms, setup 156ms, collect 18ms, tests 5ms, environment 330ms, prepare 39ms)
+

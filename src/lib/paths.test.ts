@@ -98,4 +98,9 @@ describe("api paths", () => {
     expect(apiPaths.collection(4)).toBe("/collections/4");
     expect(apiPaths.page(5)).toBe("/pages/5");
   });
+  // Step 15c-1: the signed-in user's own profile (UserController)
+  it("builds the own-profile API paths", () => {
+    expect(apiPaths.me()).toBe("/users/me");
+    expect(apiPaths.myProfile()).toBe("/users/me/profile");
+  });
 });

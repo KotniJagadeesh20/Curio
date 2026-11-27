@@ -23,9 +23,9 @@ import Discover from "./pages/public/Discover";
 import {
   CollectionEditorPage,
   PageEditorPage,
-  ProfileSettingsPage,
   WorkspacePage,
 } from "./pages/creator/Placeholders";
+import ProfileSettings from "./pages/settings/ProfileSettings";
 import { PublicCollectionPage, PublicCreatorProfilePage, PublicPageViewPage } from "./pages/public/routes";
 
 /**
@@ -77,7 +77,7 @@ export const AppRoutes = () => (
                 <Route path="/create" element={<WorkspacePage />} />
                 <Route path="/create/collections/:id" element={<CollectionEditorPage />} />
                 <Route path="/create/pages/:id" element={<PageEditorPage />} />
-                <Route path="/settings/profile" element={<ProfileSettingsPage />} />
+                <Route path="/settings/profile" element={<ProfileSettings />} />
               </Route>
 
               {/* Public creator pages: "/@username[/collection[/module/page]]" (keep after the static routes) */}

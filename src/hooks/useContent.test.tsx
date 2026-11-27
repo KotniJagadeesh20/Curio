@@ -3,7 +3,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import type { ReactNode } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { tokenStore } from "@/lib/api";
-import { useMyCollection, useMyCollections, useMyPage, usePublicCollection, usePublicCollections, usePublicPage } from "./useContent";
+import { useMyCollection, useMyCollections, useMyPage, useMyProfile, usePublicCollection, usePublicCollections, usePublicPage } from "./useContent";
 
 const json = (status: number, body: unknown) =>
   Promise.resolve(new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } }));
@@ -89,5 +89,35 @@ describe("creator workspace hooks", () => {
     const { result } = renderHook(() => useMyCollection(4), { wrapper });
     await waitFor(() => expect(result.current.isError).toBe(true));
     expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+});
+
+// Step 15c-3 (plan test 16): the signed-in user's own profile
+describe("useMyProfile", () => {
+  it("GETs /api/users/me with the bearer token and returns { user, profile }", async () => {
+    tokenStore.set("tok123");
+    const me = { user: { id: 7, username: "bob" }, profile: { displayName: "Bob", visibility: "PUBLIC" } };
+    fetchMock.mockImplementation(() => json(200, me));
+    const { result } = renderHook(() => useMyProfile(), { wrapper });
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(urls()).toEqual(["/api/users/me"]);
+    expect(headersOf().Authorization).toBe("Bearer tok123");
+    expect(result.current.data).toEqual(me);
+  });
+
+  it("a 4xx is final: no retries", async () => {
+    tokenStore.set("tok123");
+    fetchMock.mockImplementation(() => json(404, { error: "nope" }));
+    const { result } = renderHook(() => useMyProfile(), { wrapper });
+    await waitFor(() => expect(result.current.isError).toBe(true));
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("a server error is retried (twice) before it is reported", async () => {
+    tokenStore.set("tok123");
+    fetchMock.mockImplementation(() => json(500, { error: "boom" }));
+    const { result } = renderHook(() => useMyProfile(), { wrapper });
+    await waitFor(() => expect(result.current.isError).toBe(true));
+    expect(fetchMock).toHaveBeenCalledTimes(3);
   });
 });

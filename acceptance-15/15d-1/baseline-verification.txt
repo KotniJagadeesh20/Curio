@@ -1,0 +1,11 @@
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-1/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-2/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-3/axe14e.json
+exit=0
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-15/baseline/run-1/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-15/baseline/run-2/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-15/baseline/run-3/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-1/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-2/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-3/axe14e.json
+Provenance limitation (plan §4): the identity of these files with those in `Curio-main-step14e-3-r2.zip` (453d7ec2…b7) cannot be proven. That ZIP is unrecoverable, and the hash 44923ea0…3964 was never recorded in an accepted report. This is the verified in-repository baseline, not "the pinned Step 14 baseline".

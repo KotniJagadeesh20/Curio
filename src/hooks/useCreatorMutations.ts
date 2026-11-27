@@ -2,7 +2,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { QueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { apiPaths } from "@/lib/paths";
-import type { CollectionInput, CollectionSummary, CreatorModule, CreatorPage, ModuleInput, PageInput } from "@/lib/types";
+import { MY_PROFILE_KEY } from "@/hooks/useContent";
+import type {
+  CollectionInput, CollectionSummary, CreatorModule, CreatorPage, MeResponse, ModuleInput, PageInput, Profile, UpdateProfileRequest,
+} from "@/lib/types";
 
 /**
  * Creator write hooks (Step 8). They only call the owner-checked creator API: the server decides ownership, status
@@ -178,5 +181,31 @@ export const useReorderPage = (collectionId: number) => {
     mutationFn: ({ id, position }: { id: number; position: number }) =>
       api.patch<CreatorPage>(apiPaths.pageReorder(id), { position }),
     onSuccess: () => refreshCollection(qc, collectionId, { publicToo: true }),
+  });
+};
+
+// ---- own profile (Step 15c) ----
+/**
+ * Public query prefixes that carry profile data: the creator profile itself, and every collection DTO, which embeds the
+ * creator's displayName (`CreatorRef`). Listed explicitly instead of the bare ["public"] prefix, so a future unrelated
+ * public key is not refetched by accident. Categories and the workspace ("mine") carry no profile data.
+ */
+const PROFILE_PUBLIC_KEYS = [
+  ["public", "creator"],
+  ["public", "collections"],
+  ["public", "creator-collections"],
+  ["public", "collection"],
+  ["public", "page"],
+] as const;
+
+export const useUpdateProfile = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (body: UpdateProfileRequest) => api.put<Profile>(apiPaths.myProfile(), body),
+    onSuccess: (profile) => {
+      // The PUT returns only the Profile: keep the cached MeResponse (and its user) and replace just its profile.
+      qc.setQueryData<MeResponse>(MY_PROFILE_KEY, (cur) => (cur ? { ...cur, profile } : cur));
+      return Promise.all(PROFILE_PUBLIC_KEYS.map((queryKey) => qc.invalidateQueries({ queryKey })));
+    },
   });
 };

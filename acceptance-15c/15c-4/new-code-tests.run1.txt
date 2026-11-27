@@ -1,0 +1,1035 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > renders /discover (the real Discover page since Step 14a)
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice/java is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice/java
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice/java/core/intro is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice/java/core/intro
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@ is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@ab is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@ab
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@1abc is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@1abc
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@al-ice is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@al-ice
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /someword is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /someword
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@alice/java/core is a 404 (no such shape)
+404 Error: User attempted to access non-existent route: /@alice/java/core
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@alice/java/core/intro/extra is a 404 (no such shape)
+404 Error: User attempted to access non-existent route: /@alice/java/core/intro/extra
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/abc is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/abc
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/0 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/0
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/-3 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/-3
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/pages/1.5 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/pages/1.5
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/pages/9999999999999999999999 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/pages/9999999999999999999999
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create is not swallowed by the :handle route, and is a 404 for deeper unknown paths
+404 Error: User attempted to access non-existent route: /create/unknown/thing
+
+stderr | src/AppRoutes.test.tsx > under the app's data router (router.tsx) > a logged-in user reaches the page editor route, an invalid id is NotFound, and the admin redirect still lands on /create
+404 Error: User attempted to access non-existent route: /create/pages/abc
+
+ ✓ src/AppRoutes.test.tsx (45 tests) 127ms
+stderr | src/pages/settings/ProfileSettings.test.tsx > loading > 1: shows the heading and a loading state, then every saved value
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ❯ src/pages/settings/ProfileSettings.test.tsx (23 tests | 2 failed) 1791ms
+   × loading > 11: a load failure shows the error with a retry that refetches 1026ms
+     → Unable to find an element with the text: Server unavailable. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto px-4 pt-28 pb-16 max-w-2xl"[39m
+    [36m>[39m
+      [36m<h1[39m
+        [33mclass[39m=[32m"text-3xl font-bold mb-6"[39m
+      [36m>[39m
+        [0mProfile settings[0m
+      [36m</h1>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex items-center justify-center gap-2 py-24 text-muted-foreground"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33mclass[39m=[32m"lucide lucide-loader-circle h-5 w-5 animate-spin"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"24"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"24"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M21 12a9 9 0 1 1-6.219-8.56"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [36m<span>[39m
+          [0mLoading...[0m
+        [36m</span>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto px-4 pt-28 pb-16 max-w-2xl"[39m
+    [36m>[39m
+      [36m<h1[39m
+        [33mclass[39m=[32m"text-3xl font-bold mb-6"[39m
+      [36m>[39m
+        [0mProfile settings[0m
+      [36m</h1>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex items-center justify-center gap-2 py-24 text-muted-foreground"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33mclass[39m=[32m"lucide lucide-loader-circle h-5 w-5 animate-spin"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"24"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"24"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M21 12a9 9 0 1 1-6.219-8.56"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [36m<span>[39m
+          [0mLoading...[0m
+        [36m</span>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+   × saving state > 10: Save shows Saving… and is disabled while pending; a double submit sends one PUT 52ms
+     → Unable to find an accessible element with the role "button" and name `/save/i`
+
+Here are the accessible roles:
+
+  heading:
+
+  Name "Profile settings":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-3xl font-bold mb-6"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-sm font-medium"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"font-mono"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-sm text-muted-foreground"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+    [33mid[39m=[32m"p-bio-count"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+    [33mid[39m=[32m"p-links-hint"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+    [33mid[39m=[32m"p-vis-hint"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "View public profile":
+  [36m<a[39m
+    [33mclass[39m=[32m"text-sm font-medium text-primary hover:underline"[39m
+    [33mhref[39m=[32m"/@bob"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<fieldset[39m
+    [33mclass[39m=[32m"space-y-6"[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Social links":
+  [36m<fieldset[39m
+    [33maria-describedby[39m=[32m"p-links-hint"[39m
+    [33mclass[39m=[32m"space-y-3"[39m
+  [36m/>[39m
+
+  Name "Link 1":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Link 1"[39m
+    [33mclass[39m=[32m"flex flex-wrap items-start gap-2"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "Link 2":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Link 2"[39m
+    [33mclass[39m=[32m"flex flex-wrap items-start gap-2"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "Profile visibility":
+  [36m<fieldset[39m
+    [33maria-describedby[39m=[32m"p-vis-hint"[39m
+    [33mclass[39m=[32m"space-y-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Display name":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mid[39m=[32m"p-name"[39m
+    [33mvalue[39m=[32m"Bob"[39m
+  [36m/>[39m
+
+  Name "Bio":
+  [36m<textarea[39m
+    [33maria-describedby[39m=[32m"p-bio-count"[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33mclass[39m=[32m"flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"[39m
+    [33mid[39m=[32m"p-bio"[39m
+    [33mrows[39m=[32m"4"[39m
+  [36m/>[39m
+
+  Name "Avatar URL":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mid[39m=[32m"p-avatar"[39m
+    [33mplaceholder[39m=[32m"https://..."[39m
+    [33mvalue[39m=[32m"https://img.example.com/a.png"[39m
+  [36m/>[39m
+
+  Name "Banner URL":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mid[39m=[32m"p-banner"[39m
+    [33mplaceholder[39m=[32m"https://..."[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Link 1 name":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Link 1 name"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mplaceholder[39m=[32m"name"[39m
+    [33mvalue[39m=[32m"github"[39m
+  [36m/>[39m
+
+  Name "Link 1 URL":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Link 1 URL"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mplaceholder[39m=[32m"https://..."[39m
+    [33mvalue[39m=[32m"https://github.com/bob"[39m
+  [36m/>[39m
+
+  Name "Link 2 name":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Link 2 name"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mplaceholder[39m=[32m"name"[39m
+    [33mvalue[39m=[32m"site"[39m
+  [36m/>[39m
+
+  Name "Link 2 URL":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Link 2 URL"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mplaceholder[39m=[32m"https://..."[39m
+    [33mvalue[39m=[32m"https://bob.dev"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Remove link 1":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Remove link 1"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-10 w-10"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Remove link 2":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Remove link 2"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-10 w-10"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Add link":
+  [36m<button[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Saving…":
+  [36m<button[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"submit"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  radiogroup:
+
+  Name "":
+  [36m<div[39m
+    [33maria-required[39m=[32m"false"[39m
+    [33mclass[39m=[32m"grid gap-2"[39m
+    [33mdata-disabled[39m=[32m""[39m
+    [33mdir[39m=[32m"ltr"[39m
+    [33mrole[39m=[32m"radiogroup"[39m
+    [33mstyle[39m=[32m"outline: none;"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  radio:
+
+  Name "Public":
+  [36m<button[39m
+    [33maria-checked[39m=[32m"true"[39m
+    [33mclass[39m=[32m"aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"[39m
+    [33mdata-disabled[39m=[32m""[39m
+    [33mdata-radix-collection-item[39m=[32m""[39m
+    [33mdata-state[39m=[32m"checked"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mid[39m=[32m"p-vis-public"[39m
+    [33mrole[39m=[32m"radio"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+    [33mvalue[39m=[32m"PUBLIC"[39m
+  [36m/>[39m
+
+  Name "Private":
+  [36m<button[39m
+    [33maria-checked[39m=[32m"false"[39m
+    [33mclass[39m=[32m"aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"[39m
+    [33mdata-disabled[39m=[32m""[39m
+    [33mdata-radix-collection-item[39m=[32m""[39m
+    [33mdata-state[39m=[32m"unchecked"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mid[39m=[32m"p-vis-private"[39m
+    [33mrole[39m=[32m"radio"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+    [33mvalue[39m=[32m"PRIVATE"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto px-4 pt-28 pb-16 max-w-2xl"[39m
+    [36m>[39m
+      [36m<h1[39m
+        [33mclass[39m=[32m"text-3xl font-bold mb-6"[39m
+      [36m>[39m
+        [0mProfile settings[0m
+      [36m</h1>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"space-y-6"[39m
+        [33mdata-profile-form[39m=[32m"true"[39m
+        [33mnovalidate[39m=[32m""[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-1"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-sm font-medium"[39m
+          [36m>[39m
+            [0mUsername[0m
+          [36m</p>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"font-mono"[39m
+          [36m>[39m
+            [0m@[0m
+            [0mbob[0m
+          [36m</p>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-sm text-muted-foreground"[39m
+          [36m>[39m
+            [0mUsernames can't be changed[0m
+          [36m</p>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"text-sm font-medium text-primary hover:underline"[39m
+            [33mhref[39m=[32m"/@bob"[39m
+          [36m>[39m
+            [0mView public profile[0m
+          [36m</a>[39m
+        [36m</div>[39m
+        [36m<fieldset[39m
+          [33mclass[39m=[32m"space-y-6"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"p-name"[39m
+            [36m>[39m
+              [0mDisplay name[0m
+            [36m</label>[39m
+            [36m<input[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+              [33mid[39m=[32m"p-name"[39m
+              [33mvalue[39m=[32m"Bob"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"p-bio"[39m
+            [36m>[39m
+              [0mBio[0m
+            [36m</label>[39m
+            [36m<textarea[39m
+              [33maria-describedby[39m=[32m"p-bio-count"[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"[39m
+              [33mid[39m=[32m"p-bio"[39m
+              [33mrows[39m=[32m"4"[39m
+            [36m>[39m
+              [0mWrites about Java.[0m
+            [36m</textarea>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+              [33mid[39m=[32m"p-bio-count"[39m
+            [36m>[39m
+              [0m18[0m
+              [0m / [0m
+              [0m500[0m
+            [36m</p>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"p-avatar"[39m
+            [36m>[39m
+              [0mAvatar URL[0m
+            [36m</label>[39m
+            [36m<input[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+              [33mid[39m=[32m"p-avatar"[39m
+              [33mplaceholder[39m=[32m"https://..."[39m
+              [33mvalue[39m=[32m"https://img.example.com/a.png"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"p-banner"[39m
+            [36m>[39m
+              [0mBanner URL[0m
+            [36m</label>[39m
+            [36m<input[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+              [33mid[39m=[32m"p-banner"[39m
+              [33mplaceholder[39m=[32m"https://..."[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<fieldset[39m
+            [33maria-describedby[39m=[32m"p-links-hint"[39m
+            [33mclass[39m=[32m"space-y-3"[39m
+          [36m>[39m
+            [36m<legend[39m
+              [33mclass[39m=[32m"text-sm font-medium"[39m
+            [36m>[39m
+              [0mSocial links[0m
+            [36m</legend>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+              [33mid[39m=[32m"p-links-hint"[39m
+            [36m>[39m
+              [0mUp to [0m
+              [0m10[0m
+              [0m links. Names use lowercase letters, digits or _ (e.g. github); addresses start with https://.[0m
+            [36m</p>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"Link 1"[39m
+              [33mclass[39m=[32m"flex flex...
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/settings/ProfileSettings.test.tsx > loading > 11: a load failure shows the error with a retry that refetches
+TestingLibraryElementError: Unable to find an element with the text: Server unavailable. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto px-4 pt-28 pb-16 max-w-2xl"[39m
+    [36m>[39m
+      [36m<h1[39m
+        [33mclass[39m=[32m"text-3xl font-bold mb-6"[39m
+      [36m>[39m
+        [0mProfile settings[0m
+      [36m</h1>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex items-center justify-center gap-2 py-24 text-muted-foreground"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33mclass[39m=[32m"lucide lucide-loader-circle h-5 w-5 animate-spin"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"24"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"24"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M21 12a9 9 0 1 1-6.219-8.56"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [36m<span>[39m
+          [0mLoading...[0m
+        [36m</span>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto px-4 pt-28 pb-16 max-w-2xl"[39m
+    [36m>[39m
+      [36m<h1[39m
+        [33mclass[39m=[32m"text-3xl font-bold mb-6"[39m
+      [36m>[39m
+        [0mProfile settings[0m
+      [36m</h1>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex items-center justify-center gap-2 py-24 text-muted-foreground"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33mclass[39m=[32m"lucide lucide-loader-circle h-5 w-5 animate-spin"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"24"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"24"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M21 12a9 9 0 1 1-6.219-8.56"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+        [36m<span>[39m
+          [0mLoading...[0m
+        [36m</span>[39m
+      [36m</div>[39m
+    [36m</section>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ findByText node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/pages/settings/ProfileSettings.test.tsx:80:25
+     78|     let fail = true;
+     79|     renderPage({ "GET /users/me": () => (fail ? err(500, "Server unava…
+     80|     expect(await screen.findByText("Server unavailable")).toBeInTheDoc…
+       |                         ^
+     81|     expect(screen.getByRole("heading", { name: "Profile settings" })).…
+     82|     fail = false;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/pages/settings/ProfileSettings.test.tsx > saving state > 10: Save shows Saving… and is disabled while pending; a double submit sends one PUT
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name `/save/i`
+
+Here are the accessible roles:
+
+  heading:
+
+  Name "Profile settings":
+  [36m<h1[39m
+    [33mclass[39m=[32m"text-3xl font-bold mb-6"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-sm font-medium"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"font-mono"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-sm text-muted-foreground"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+    [33mid[39m=[32m"p-bio-count"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+    [33mid[39m=[32m"p-links-hint"[39m
+  [36m/>[39m
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+    [33mid[39m=[32m"p-vis-hint"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "View public profile":
+  [36m<a[39m
+    [33mclass[39m=[32m"text-sm font-medium text-primary hover:underline"[39m
+    [33mhref[39m=[32m"/@bob"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  group:
+
+  Name "":
+  [36m<fieldset[39m
+    [33mclass[39m=[32m"space-y-6"[39m
+    [33mdisabled[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Social links":
+  [36m<fieldset[39m
+    [33maria-describedby[39m=[32m"p-links-hint"[39m
+    [33mclass[39m=[32m"space-y-3"[39m
+  [36m/>[39m
+
+  Name "Link 1":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Link 1"[39m
+    [33mclass[39m=[32m"flex flex-wrap items-start gap-2"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "Link 2":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Link 2"[39m
+    [33mclass[39m=[32m"flex flex-wrap items-start gap-2"[39m
+    [33mrole[39m=[32m"group"[39m
+  [36m/>[39m
+
+  Name "Profile visibility":
+  [36m<fieldset[39m
+    [33maria-describedby[39m=[32m"p-vis-hint"[39m
+    [33mclass[39m=[32m"space-y-2"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Display name":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mid[39m=[32m"p-name"[39m
+    [33mvalue[39m=[32m"Bob"[39m
+  [36m/>[39m
+
+  Name "Bio":
+  [36m<textarea[39m
+    [33maria-describedby[39m=[32m"p-bio-count"[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33mclass[39m=[32m"flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"[39m
+    [33mid[39m=[32m"p-bio"[39m
+    [33mrows[39m=[32m"4"[39m
+  [36m/>[39m
+
+  Name "Avatar URL":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mid[39m=[32m"p-avatar"[39m
+    [33mplaceholder[39m=[32m"https://..."[39m
+    [33mvalue[39m=[32m"https://img.example.com/a.png"[39m
+  [36m/>[39m
+
+  Name "Banner URL":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mid[39m=[32m"p-banner"[39m
+    [33mplaceholder[39m=[32m"https://..."[39m
+    [33mvalue[39m=[32m""[39m
+  [36m/>[39m
+
+  Name "Link 1 name":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Link 1 name"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mplaceholder[39m=[32m"name"[39m
+    [33mvalue[39m=[32m"github"[39m
+  [36m/>[39m
+
+  Name "Link 1 URL":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Link 1 URL"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mplaceholder[39m=[32m"https://..."[39m
+    [33mvalue[39m=[32m"https://github.com/bob"[39m
+  [36m/>[39m
+
+  Name "Link 2 name":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Link 2 name"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mplaceholder[39m=[32m"name"[39m
+    [33mvalue[39m=[32m"site"[39m
+  [36m/>[39m
+
+  Name "Link 2 URL":
+  [36m<input[39m
+    [33maria-invalid[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Link 2 URL"[39m
+    [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+    [33mplaceholder[39m=[32m"https://..."[39m
+    [33mvalue[39m=[32m"https://bob.dev"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Remove link 1":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Remove link 1"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-10 w-10"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Remove link 2":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Remove link 2"[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-10 w-10"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Add link":
+  [36m<button[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Saving…":
+  [36m<button[39m
+    [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"submit"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  radiogroup:
+
+  Name "":
+  [36m<div[39m
+    [33maria-required[39m=[32m"false"[39m
+    [33mclass[39m=[32m"grid gap-2"[39m
+    [33mdata-disabled[39m=[32m""[39m
+    [33mdir[39m=[32m"ltr"[39m
+    [33mrole[39m=[32m"radiogroup"[39m
+    [33mstyle[39m=[32m"outline: none;"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  radio:
+
+  Name "Public":
+  [36m<button[39m
+    [33maria-checked[39m=[32m"true"[39m
+    [33mclass[39m=[32m"aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"[39m
+    [33mdata-disabled[39m=[32m""[39m
+    [33mdata-radix-collection-item[39m=[32m""[39m
+    [33mdata-state[39m=[32m"checked"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mid[39m=[32m"p-vis-public"[39m
+    [33mrole[39m=[32m"radio"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+    [33mvalue[39m=[32m"PUBLIC"[39m
+  [36m/>[39m
+
+  Name "Private":
+  [36m<button[39m
+    [33maria-checked[39m=[32m"false"[39m
+    [33mclass[39m=[32m"aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"[39m
+    [33mdata-disabled[39m=[32m""[39m
+    [33mdata-radix-collection-item[39m=[32m""[39m
+    [33mdata-state[39m=[32m"unchecked"[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mid[39m=[32m"p-vis-private"[39m
+    [33mrole[39m=[32m"radio"[39m
+    [33mtabindex[39m=[32m"-1"[39m
+    [33mtype[39m=[32m"button"[39m
+    [33mvalue[39m=[32m"PRIVATE"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"container mx-auto px-4 pt-28 pb-16 max-w-2xl"[39m
+    [36m>[39m
+      [36m<h1[39m
+        [33mclass[39m=[32m"text-3xl font-bold mb-6"[39m
+      [36m>[39m
+        [0mProfile settings[0m
+      [36m</h1>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"space-y-6"[39m
+        [33mdata-profile-form[39m=[32m"true"[39m
+        [33mnovalidate[39m=[32m""[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-1"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-sm font-medium"[39m
+          [36m>[39m
+            [0mUsername[0m
+          [36m</p>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"font-mono"[39m
+          [36m>[39m
+            [0m@[0m
+            [0mbob[0m
+          [36m</p>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-sm text-muted-foreground"[39m
+          [36m>[39m
+            [0mUsernames can't be changed[0m
+          [36m</p>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"text-sm font-medium text-primary hover:underline"[39m
+            [33mhref[39m=[32m"/@bob"[39m
+          [36m>[39m
+            [0mView public profile[0m
+          [36m</a>[39m
+        [36m</div>[39m
+        [36m<fieldset[39m
+          [33mclass[39m=[32m"space-y-6"[39m
+          [33mdisabled[39m=[32m""[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"p-name"[39m
+            [36m>[39m
+              [0mDisplay name[0m
+            [36m</label>[39m
+            [36m<input[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+              [33mid[39m=[32m"p-name"[39m
+              [33mvalue[39m=[32m"Bob"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"p-bio"[39m
+            [36m>[39m
+              [0mBio[0m
+            [36m</label>[39m
+            [36m<textarea[39m
+              [33maria-describedby[39m=[32m"p-bio-count"[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"[39m
+              [33mid[39m=[32m"p-bio"[39m
+              [33mrows[39m=[32m"4"[39m
+            [36m>[39m
+              [0mWrites about Java.[0m
+            [36m</textarea>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+              [33mid[39m=[32m"p-bio-count"[39m
+            [36m>[39m
+              [0m18[0m
+              [0m / [0m
+              [0m500[0m
+            [36m</p>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"p-avatar"[39m
+            [36m>[39m
+              [0mAvatar URL[0m
+            [36m</label>[39m
+            [36m<input[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+              [33mid[39m=[32m"p-avatar"[39m
+              [33mplaceholder[39m=[32m"https://..."[39m
+              [33mvalue[39m=[32m"https://img.example.com/a.png"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"p-banner"[39m
+            [36m>[39m
+              [0mBanner URL[0m
+            [36m</label>[39m
+            [36m<input[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+              [33mid[39m=[32m"p-banner"[39m
+              [33mplaceholder[39m=[32m"https://..."[39m
+              [33mvalue[39m=[32m""[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<fieldset[39m
+            [33maria-describedby[39m=[32m"p-links-hint"[39m
+            [33mclass[39m=[32m"space-y-3"[39m
+          [36m>[39m
+            [36m<legend[39m
+              [33mclass[39m=[32m"text-sm font-medium"[39m
+            [36m>[39m
+              [0mSocial links[0m
+            [36m</legend>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+              [33mid[39m=[32m"p-links-hint"[39m
+            [36m>[39m
+              [0mUp to [0m
+              [0m10[0m
+              [0m links. Names use lowercase letters, digits or _ (e.g. github); addresses start with https://.[0m
+            [36m</p>[39m
+            [36m<div[39m
+              [33maria-label[39m=[32m"Link 1"[39m
+              [33mclass[39m=[32m"flex flex...
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ getByRole node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ save src/pages/settings/ProfileSettings.test.tsx:42:43
+     40| const field = (name: string) => screen.getByLabelText(name) as HTMLInp…
+     41| const type = (el: HTMLElement, value: string) => fireEvent.change(el, …
+     42| const save = () => fireEvent.click(screen.getByRole("button", { name: …
+       |                                           ^
+     43| const puts = () => api.sent("PUT", "/users/me/profile");
+     44| const lastPut = () => puts()[puts().length - 1].body as Record<string,…
+ ❯ src/pages/settings/ProfileSettings.test.tsx:296:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 66 passed (68)
+   Start at  13:07:03
+   Duration  2.95s (transform 273ms, setup 414ms, collect 370ms, tests 1.92s, environment 896ms, prepare 121ms)
+

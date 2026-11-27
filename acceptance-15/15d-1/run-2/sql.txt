@@ -1,0 +1,39 @@
+=== schema  2026-11-27T08:08:44Z
+$ java -cp /Users/newuser/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar org.h2.tools.Shell -url jdbc:h2:file:/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/c05168c2-3d7e-427f-b999-fa081d8237a4/scratchpad/h2-15d/run-2/c15\;AUTO_SERVER=TRUE -user sa -password "" -sql SELECT\ column_name\,\ data_type\ FROM\ information_schema.columns\ WHERE\ table_name=\'users\'\ AND\ column_name\ IN\ \(\'username\'\,\'status\'\)\ ORDER\ BY\ column_name
+column_name | data_type
+status      | character varying
+username    | character varying
+(2 rows, 3 ms)
+exit=0
+
+CHECK schema: PASS
+=== precheck  2026-11-27T08:08:45Z
+$ java -cp /Users/newuser/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar org.h2.tools.Shell -url jdbc:h2:file:/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/c05168c2-3d7e-427f-b999-fa081d8237a4/scratchpad/h2-15d/run-2/c15\;AUTO_SERVER=TRUE -user sa -password "" -sql SELECT\ id\,\ username\,\ status\ FROM\ users\ WHERE\ username=\'c15_sus\'
+id | username | status
+2  | c15_sus  | ACTIVE
+(1 row, 2 ms)
+exit=0
+
+CHECK precheck: PASS
+=== update  2026-11-27T08:08:45Z
+$ java -cp /Users/newuser/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar org.h2.tools.Shell -url jdbc:h2:file:/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/c05168c2-3d7e-427f-b999-fa081d8237a4/scratchpad/h2-15d/run-2/c15\;AUTO_SERVER=TRUE -user sa -password "" -sql UPDATE\ users\ SET\ status=\'SUSPENDED\'\ WHERE\ username=\'c15_sus\'
+(Update count: 1, 0 ms)
+exit=0
+
+CHECK update: PASS
+=== postcheck  2026-11-27T08:08:45Z
+$ java -cp /Users/newuser/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar org.h2.tools.Shell -url jdbc:h2:file:/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/c05168c2-3d7e-427f-b999-fa081d8237a4/scratchpad/h2-15d/run-2/c15\;AUTO_SERVER=TRUE -user sa -password "" -sql SELECT\ id\,\ username\,\ status\ FROM\ users\ WHERE\ username=\'c15_sus\'
+id | username | status
+2  | c15_sus  | SUSPENDED
+(1 row, 3 ms)
+exit=0
+
+CHECK postcheck: PASS
+=== suspended-count  2026-11-27T08:08:45Z
+$ java -cp /Users/newuser/.m2/repository/com/h2database/h2/2.2.224/h2-2.2.224.jar org.h2.tools.Shell -url jdbc:h2:file:/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/c05168c2-3d7e-427f-b999-fa081d8237a4/scratchpad/h2-15d/run-2/c15\;AUTO_SERVER=TRUE -user sa -password "" -sql SELECT\ COUNT\(\*\)\ AS\ n\ FROM\ users\ WHERE\ status=\'SUSPENDED\'
+n
+1
+(1 row, 3 ms)
+exit=0
+
+CHECK suspended-count: PASS

@@ -1,0 +1,33 @@
+## 1b manifest re-check (MDIR=/Users/newuser/Downloads/Curio-main)
+acceptance-14a/scripts/seed14a.mjs: OK
+acceptance-14a/scripts/t14a.mjs: OK
+acceptance-14b/scripts/seed14b.mjs: OK
+acceptance-14b/scripts/t14b.mjs: OK
+acceptance-14b/scripts/t14b-stale.mjs: OK
+acceptance-14d-3/scripts/seed14c.mjs: OK
+acceptance-14d-3/scripts/seed14d3.mjs: OK
+acceptance-14d-3/scripts/seed14d3c.mjs: OK
+acceptance-14d-3/scripts/t14c.mjs: OK
+acceptance-14d-3/scripts/t14d1.mjs: OK
+acceptance-14d-3/scripts/t14d2.mjs: OK
+acceptance-14d-3/scripts/t14d3.mjs: OK
+acceptance-14d-3/scripts/t14d3c.mjs: OK
+acceptance-13e/scripts/common.mjs: OK
+acceptance-13e/scripts/mkpng.mjs: OK
+acceptance-13e/scripts/t1-templates.mjs: OK
+acceptance-13e/scripts/t2-editor.mjs: OK
+acceptance-13e/scripts/t3-media.mjs: OK
+acceptance-13e/scripts/t4-regression.mjs: OK
+exit=0
+CHECK manifest unchanged: PASS (19/19)
+## axe14e re-hash
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-1/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-2/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-3/axe14e.json
+CHECK axe14e unchanged: PASS (3/3)
+## installed script re-hash
+713c6b02dac0a3452409e727486ea83a8309f67582f48982634aad3590c3dbaa  acceptance-15/scripts/contract15.mjs
+CHECK contract15.mjs unchanged: PASS (713c6b02dac0a3452409e727486ea83a8309f67582f48982634aad3590c3dbaa)
+## diff -rq vs 15c package (exit 1)
+Only in /Users/newuser/Downloads/Curio-main: acceptance-15
+CHECK checkout diff: PASS (only extra entry: acceptance-15)

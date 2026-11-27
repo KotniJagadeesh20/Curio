@@ -1,0 +1,613 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+stderr | src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > PUTs exactly the given body to /api/users/me/profile with the bearer token
+Error: Uncaught [TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function
+    at /Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:215:21
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+Error: Uncaught [TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function
+    at /Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:215:21
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+The above error occurred in the <TestComponent> component:
+
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:337:5)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:23:20)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > 16a: updates only MeResponse.profile in the cache and keeps user intact (the PUT returns only a Profile)
+Error: Uncaught [TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function
+    at /Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:224:21
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+Error: Uncaught [TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function
+    at /Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:224:21
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+The above error occurred in the <TestComponent> component:
+
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:337:5)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:23:20)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > 16a: with nothing cached, it does not create a partial entry
+Error: Uncaught [TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function
+    at /Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:235:21
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+Error: Uncaught [TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function
+    at /Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:235:21
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+The above error occurred in the <TestComponent> component:
+
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:337:5)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:23:20)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > 16c: invalidates the five public prefixes (displayName is embedded in collection DTOs), not categories or mine
+Error: Uncaught [TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function
+    at /Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:242:21
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+Error: Uncaught [TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function
+    at /Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:242:21
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+The above error occurred in the <TestComponent> component:
+
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:337:5)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:23:20)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > 16c: a failed update (400) invalidates nothing and leaves the cached profile alone
+Error: Uncaught [TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function
+    at __vite_ssr_import_2__.renderHook.wrapper.wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:251:41)
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+Error: Uncaught [TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_6__.useUpdateProfile is not a function
+    at __vite_ssr_import_2__.renderHook.wrapper.wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:251:41)
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+The above error occurred in the <TestComponent> component:
+
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:337:5)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useCreatorMutations.test.tsx:23:20)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+ ❯ src/hooks/useCreatorMutations.test.tsx (41 tests | 5 failed) 117ms
+   × useUpdateProfile > PUTs exactly the given body to /api/users/me/profile with the bearer token 11ms
+     → useUpdateProfile is not a function
+   × useUpdateProfile > 16a: updates only MeResponse.profile in the cache and keeps user intact (the PUT returns only a Profile) 1ms
+     → useUpdateProfile is not a function
+   × useUpdateProfile > 16a: with nothing cached, it does not create a partial entry 1ms
+     → useUpdateProfile is not a function
+   × useUpdateProfile > 16c: invalidates the five public prefixes (displayName is embedded in collection DTOs), not categories or mine 1ms
+     → useUpdateProfile is not a function
+   × useUpdateProfile > 16c: a failed update (400) invalidates nothing and leaves the cached profile alone 2ms
+     → useUpdateProfile is not a function
+stderr | src/hooks/useContent.test.tsx > useMyProfile > GETs /api/users/me with the bearer token and returns { user, profile }
+Error: Uncaught [TypeError: __vite_ssr_import_5__.useMyProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_5__.useMyProfile is not a function
+    at __vite_ssr_import_2__.renderHook.wrapper.wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useContent.test.tsx:101:41)
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+Error: Uncaught [TypeError: __vite_ssr_import_5__.useMyProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_5__.useMyProfile is not a function
+    at __vite_ssr_import_2__.renderHook.wrapper.wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useContent.test.tsx:101:41)
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+The above error occurred in the <TestComponent> component:
+
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:337:5)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useContent.test.tsx:20:20)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/hooks/useContent.test.tsx > useMyProfile > a 4xx is final: no retries
+Error: Uncaught [TypeError: __vite_ssr_import_5__.useMyProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_5__.useMyProfile is not a function
+    at __vite_ssr_import_2__.renderHook.wrapper.wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useContent.test.tsx:111:41)
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+Error: Uncaught [TypeError: __vite_ssr_import_5__.useMyProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_5__.useMyProfile is not a function
+    at __vite_ssr_import_2__.renderHook.wrapper.wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useContent.test.tsx:111:41)
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+The above error occurred in the <TestComponent> component:
+
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:337:5)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useContent.test.tsx:20:20)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+stderr | src/hooks/useContent.test.tsx > useMyProfile > a server error is retried (twice) before it is reported
+Error: Uncaught [TypeError: __vite_ssr_import_5__.useMyProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_5__.useMyProfile is not a function
+    at __vite_ssr_import_2__.renderHook.wrapper.wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useContent.test.tsx:119:41)
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+Error: Uncaught [TypeError: __vite_ssr_import_5__.useMyProfile is not a function]
+    at reportException (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:353:9)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+    at HTMLUnknownElementImpl.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:104:17)
+    at HTMLUnknownElement.dispatchEvent (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:241:34)
+    at Object.invokeGuardedCallbackDev (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4213:16)
+    at invokeGuardedCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4277:31)
+    at beginWork$1 (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:27490:7)
+    at performUnitOfWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:26599:12) TypeError: __vite_ssr_import_5__.useMyProfile is not a function
+    at __vite_ssr_import_2__.renderHook.wrapper.wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useContent.test.tsx:119:41)
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:339:27)
+    at renderWithHooks (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:15486:18)
+    at mountIndeterminateComponent (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:20103:13)
+    at beginWork (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:21626:16)
+    at HTMLUnknownElement.callCallback (/Users/newuser/Downloads/Curio-main/node_modules/react-dom/cjs/react-dom.development.js:4164:14)
+    at HTMLUnknownElement.callTheUserObjectsOperation (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/generated/EventListener.js:26:30)
+    at innerInvokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:350:25)
+    at invokeEventListeners (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:286:3)
+    at HTMLUnknownElementImpl._dispatch (/Users/newuser/Downloads/Curio-main/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:233:9)
+The above error occurred in the <TestComponent> component:
+
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:337:5)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+    at wrapper (/Users/newuser/Downloads/Curio-main/src/hooks/useContent.test.tsx:20:20)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+ ❯ src/hooks/useContent.test.tsx (12 tests | 3 failed) 474ms
+   × useMyProfile > GETs /api/users/me with the bearer token and returns { user, profile } 26ms
+     → useMyProfile is not a function
+   × useMyProfile > a 4xx is final: no retries 3ms
+     → useMyProfile is not a function
+   × useMyProfile > a server error is retried (twice) before it is reported 3ms
+     → useMyProfile is not a function
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 8 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/hooks/useContent.test.tsx > useMyProfile > GETs /api/users/me with the bearer token and returns { user, profile }
+TypeError: useMyProfile is not a function
+ ❯ renderHook.wrapper.wrapper src/hooks/useContent.test.tsx:101:41
+     99|     const me = { user: { id: 7, username: "bob" }, profile: { displayN…
+    100|     fetchMock.mockImplementation(() => json(200, me));
+    101|     const { result } = renderHook(() => useMyProfile(), { wrapper });
+       |                                         ^
+    102|     await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    103|     expect(urls()).toEqual(["/api/users/me"]);
+ ❯ TestComponent node_modules/@testing-library/react/dist/pure.js:339:27
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:5
+ ❯ renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:7
+ ❯ recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯
+
+ FAIL  src/hooks/useContent.test.tsx > useMyProfile > a 4xx is final: no retries
+TypeError: useMyProfile is not a function
+ ❯ renderHook.wrapper.wrapper src/hooks/useContent.test.tsx:111:41
+    109|     tokenStore.set("tok123");
+    110|     fetchMock.mockImplementation(() => json(404, { error: "nope" }));
+    111|     const { result } = renderHook(() => useMyProfile(), { wrapper });
+       |                                         ^
+    112|     await waitFor(() => expect(result.current.isError).toBe(true));
+    113|     expect(fetchMock).toHaveBeenCalledTimes(1);
+ ❯ TestComponent node_modules/@testing-library/react/dist/pure.js:339:27
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:5
+ ❯ renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:7
+ ❯ recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/8]⎯
+
+ FAIL  src/hooks/useContent.test.tsx > useMyProfile > a server error is retried (twice) before it is reported
+TypeError: useMyProfile is not a function
+ ❯ renderHook.wrapper.wrapper src/hooks/useContent.test.tsx:119:41
+    117|     tokenStore.set("tok123");
+    118|     fetchMock.mockImplementation(() => json(500, { error: "boom" }));
+    119|     const { result } = renderHook(() => useMyProfile(), { wrapper });
+       |                                         ^
+    120|     await waitFor(() => expect(result.current.isError).toBe(true));
+    121|     expect(fetchMock).toHaveBeenCalledTimes(3);
+ ❯ TestComponent node_modules/@testing-library/react/dist/pure.js:339:27
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:5
+ ❯ renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:7
+ ❯ recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/8]⎯
+
+ FAIL  src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > PUTs exactly the given body to /api/users/me/profile with the bearer token
+TypeError: useUpdateProfile is not a function
+ ❯ src/hooks/useCreatorMutations.test.tsx:215:21
+    213|   it("PUTs exactly the given body to /api/users/me/profile with the be…
+    214|     fetchMock.mockImplementation(() => json(200, saved));
+    215|     await run(() => useUpdateProfile(), body);
+       |                     ^
+    216|     expect(call()).toMatchObject({ url: "/api/users/me/profile", metho…
+    217|     expect(call().headers.Authorization).toBe("Bearer tok");
+ ❯ TestComponent node_modules/@testing-library/react/dist/pure.js:339:27
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:5
+ ❯ renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:7
+ ❯ recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/8]⎯
+
+ FAIL  src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > 16a: updates only MeResponse.profile in the cache and keeps user intact (the PUT returns only a Profile)
+TypeError: useUpdateProfile is not a function
+ ❯ src/hooks/useCreatorMutations.test.tsx:224:21
+    222|     qc.setQueryData(ME, before);
+    223|     fetchMock.mockImplementation(() => json(200, saved));
+    224|     await run(() => useUpdateProfile(), body);
+       |                     ^
+    225|     const after = qc.getQueryData<{ user: unknown; profile: unknown }>…
+    226|     expect(Object.keys(after).sort()).toEqual(["profile", "user"]);
+ ❯ TestComponent node_modules/@testing-library/react/dist/pure.js:339:27
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:5
+ ❯ renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:7
+ ❯ recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/8]⎯
+
+ FAIL  src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > 16a: with nothing cached, it does not create a partial entry
+TypeError: useUpdateProfile is not a function
+ ❯ src/hooks/useCreatorMutations.test.tsx:235:21
+    233|   it("16a: with nothing cached, it does not create a partial entry", a…
+    234|     fetchMock.mockImplementation(() => json(200, saved));
+    235|     await run(() => useUpdateProfile(), body);
+       |                     ^
+    236|     expect(qc.getQueryData(ME)).toBeUndefined();
+    237|   });
+ ❯ TestComponent node_modules/@testing-library/react/dist/pure.js:339:27
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:5
+ ❯ renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:7
+ ❯ recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/8]⎯
+
+ FAIL  src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > 16c: invalidates the five public prefixes (displayName is embedded in collection DTOs), not categories or mine
+TypeError: useUpdateProfile is not a function
+ ❯ src/hooks/useCreatorMutations.test.tsx:242:21
+    240|     seedProfileKeys();
+    241|     fetchMock.mockImplementation(() => json(200, saved));
+    242|     await run(() => useUpdateProfile(), body);
+       |                     ^
+    243|     expect(staleProfileKeys()).toEqual(["collection", "collections", "…
+    244|   });
+ ❯ TestComponent node_modules/@testing-library/react/dist/pure.js:339:27
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:5
+ ❯ renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:7
+ ❯ recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/8]⎯
+
+ FAIL  src/hooks/useCreatorMutations.test.tsx > useUpdateProfile > 16c: a failed update (400) invalidates nothing and leaves the cached profile alone
+TypeError: useUpdateProfile is not a function
+ ❯ renderHook.wrapper.wrapper src/hooks/useCreatorMutations.test.tsx:251:41
+    249|     qc.setQueryData(ME, before);
+    250|     fetchMock.mockImplementation(() => json(400, { error: "displayName…
+    251|     const { result } = renderHook(() => useUpdateProfile(), { wrapper …
+       |                                         ^
+    252|     await act(async () => { await result.current.mutateAsync(body as n…
+    253|     expect(result.current.error).toMatchObject({ status: 400, message:…
+ ❯ TestComponent node_modules/@testing-library/react/dist/pure.js:339:27
+ ❯ renderWithHooks node_modules/react-dom/cjs/react-dom.development.js:15486:18
+ ❯ mountIndeterminateComponent node_modules/react-dom/cjs/react-dom.development.js:20103:13
+ ❯ beginWork node_modules/react-dom/cjs/react-dom.development.js:21626:16
+ ❯ beginWork$1 node_modules/react-dom/cjs/react-dom.development.js:27465:14
+ ❯ performUnitOfWork node_modules/react-dom/cjs/react-dom.development.js:26599:12
+ ❯ workLoopSync node_modules/react-dom/cjs/react-dom.development.js:26505:5
+ ❯ renderRootSync node_modules/react-dom/cjs/react-dom.development.js:26473:7
+ ❯ recoverFromConcurrentError node_modules/react-dom/cjs/react-dom.development.js:25889:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/8]⎯
+
+ Test Files  2 failed (2)
+      Tests  8 failed | 45 passed (53)
+   Start at  12:45:06
+   Duration  1.60s (transform 135ms, setup 394ms, collect 139ms, tests 590ms, environment 943ms, prepare 363ms)
+

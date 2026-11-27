@@ -7,7 +7,7 @@ import { useCategories } from "./useContent";
 import {
   useCreateCollection, useCreateModule, useCreatePage, useDeleteCollection, useDeleteModule, useDeletePage,
   usePublishCollection, usePublishPage, useReorderModule, useReorderPage, useRestoreCollection,
-  useUnpublishCollection, useUpdateCollection, useUpdateModule, useUpdatePage,
+  useUnpublishCollection, useUpdateCollection, useUpdateModule, useUpdatePage, useUpdateProfile,
 } from "./useCreatorMutations";
 
 const json = (status: number, body: unknown) =>
@@ -188,5 +188,70 @@ describe("useCategories", () => {
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(call().url).toBe("/api/public/categories");
     expect(result.current.data?.[0].slug).toBe("programming");
+  });
+});
+
+// ---- Step 15c-3: own profile (plan tests 16, 16a, 16c) ----
+describe("useUpdateProfile", () => {
+  const body = { displayName: "Bob K", bio: "", avatarUrl: null, bannerUrl: null, socialLinks: {}, visibility: "PRIVATE" };
+  const saved = { displayName: "Bob K", bio: "", avatarUrl: null, bannerUrl: null, socialLinks: {}, visibility: "PRIVATE" };
+  const user = { id: 7, name: "Bob", email: "b@example.com", username: "bob", role: "USER", createdAt: "2026-11-20T10:00:00Z" };
+  const ME = ["me", "profile"];
+  const PROFILE_KEYS = {
+    creator: ["public", "creator", "bob"],
+    collections: ["public", "collections", { page: 0 }],
+    creatorCollections: ["public", "creator-collections", "bob"],
+    collection: ["public", "collection", "bob", "java"],
+    page: ["public", "page", "bob", "java", "core", "intro"],
+    categories: ["categories"],
+    mine: ["mine", "collections", { deleted: false }],
+  };
+  const seedProfileKeys = () => Object.values(PROFILE_KEYS).forEach((k) => qc.setQueryData(k, { seeded: true }));
+  const staleProfileKeys = () =>
+    Object.entries(PROFILE_KEYS).filter(([, k]) => qc.getQueryState(k)?.isInvalidated).map(([n]) => n).sort();
+
+  it("PUTs exactly the given body to /api/users/me/profile with the bearer token", async () => {
+    fetchMock.mockImplementation(() => json(200, saved));
+    await run(() => useUpdateProfile(), body);
+    expect(call()).toMatchObject({ url: "/api/users/me/profile", method: "PUT", body });
+    expect(call().headers.Authorization).toBe("Bearer tok");
+  });
+
+  it("16a: updates only MeResponse.profile in the cache and keeps user intact (the PUT returns only a Profile)", async () => {
+    const before = { user, profile: { ...saved, displayName: "Bob", visibility: "PUBLIC" } };
+    qc.setQueryData(ME, before);
+    fetchMock.mockImplementation(() => json(200, saved));
+    await run(() => useUpdateProfile(), body);
+    const after = qc.getQueryData<{ user: unknown; profile: unknown }>(ME)!;
+    expect(Object.keys(after).sort()).toEqual(["profile", "user"]);
+    expect(after.user).toBe(before.user);            // same object, untouched
+    expect(after.user).toEqual(user);
+    expect(after.profile).toEqual(saved);
+    expect(after).not.toHaveProperty("displayName");  // never replaced by the bare Profile
+  });
+
+  it("16a: with nothing cached, it does not create a partial entry", async () => {
+    fetchMock.mockImplementation(() => json(200, saved));
+    await run(() => useUpdateProfile(), body);
+    expect(qc.getQueryData(ME)).toBeUndefined();
+  });
+
+  it("16c: invalidates the five public prefixes (displayName is embedded in collection DTOs), not categories or mine", async () => {
+    seedProfileKeys();
+    fetchMock.mockImplementation(() => json(200, saved));
+    await run(() => useUpdateProfile(), body);
+    expect(staleProfileKeys()).toEqual(["collection", "collections", "creator", "creatorCollections", "page"]);
+  });
+
+  it("16c: a failed update (400) invalidates nothing and leaves the cached profile alone", async () => {
+    seedProfileKeys();
+    const before = { user, profile: saved };
+    qc.setQueryData(ME, before);
+    fetchMock.mockImplementation(() => json(400, { error: "displayName must be 1-120 characters" }));
+    const { result } = renderHook(() => useUpdateProfile(), { wrapper });
+    await act(async () => { await result.current.mutateAsync(body as never).catch(() => undefined); });
+    await waitFor(() => expect(result.current.error).toMatchObject({ status: 400, message: "displayName must be 1-120 characters" }));
+    expect(staleProfileKeys()).toEqual([]);
+    expect(qc.getQueryData(ME)).toBe(before);
   });
 });

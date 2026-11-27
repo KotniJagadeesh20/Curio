@@ -1,0 +1,35 @@
+{
+  "seq": 8,
+  "label": "signup-c15_priv",
+  "request": {
+    "method": "POST",
+    "path": "/api/auth/signup",
+    "authenticated": false,
+    "body": {
+      "name": "Priv Fifteen",
+      "email": "c15_priv@contract15.test",
+      "password": "Contract15-Pass!",
+      "username": "c15_priv"
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      "connection": "keep-alive",
+      "content-security-policy": "default-src 'none'; frame-ancestors 'none'",
+      "content-type": "application/json",
+      "date": "Fri, 27 Nov 2026 08:09:06 GMT",
+      "expires": "0",
+      "keep-alive": "timeout=60",
+      "pragma": "no-cache",
+      "referrer-policy": "no-referrer",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-xss-protection": "0"
+    },
+    "body": "{\"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3OTU3NjY5NDYsImV4cCI6MTc5NTg1MzM0Nn0.5jlnLTiw-vEpgh9sqwU7hjtwebl2h5593wn9-28KXhc\",\"user\":{\"id\":3,\"name\":\"Priv Fifteen\",\"email\":\"c15_priv@contract15.test\",\"role\":\"USER\",\"createdAt\":\"2026-11-27T08:09:06.045162Z\",\"username\":\"c15_priv\"}}"
+  }
+}

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code2, Menu, X, Sun, Moon, User, Settings, LogOut, LayoutDashboard, PenSquare } from "lucide-react";
+import { Code2, Menu, X, Sun, Moon, User, UserCog, Settings, LogOut, LayoutDashboard, PenSquare } from "lucide-react";
+import { paths } from "@/lib/paths";
 import { useTheme } from "./ThemeProvider";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "./ui/button";
@@ -160,6 +161,12 @@ export function Navbar() {
                         Profile
                       </Link>
                     </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to={paths.profileSettings()} className="cursor-pointer">
+                        <UserCog className="h-4 w-4 mr-2" />
+                        Profile settings
+                      </Link>
+                    </DropdownMenuItem>
                     {isAdmin && (
                       <DropdownMenuItem asChild>
                         <Link to="/admin" className="cursor-pointer">
@@ -242,6 +249,9 @@ export function Navbar() {
                     )}
                     <Link to="/profile" onClick={() => setIsOpen(false)}>
                       <Button variant="ghost" className="w-full justify-start">Profile</Button>
+                    </Link>
+                    <Link to={paths.profileSettings()} onClick={() => setIsOpen(false)}>
+                      <Button variant="ghost" className="w-full justify-start">Profile settings</Button>
                     </Link>
                     <Button variant="ghost" className="w-full justify-start text-destructive" onClick={handleLogout}>
                       Log out

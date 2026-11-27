@@ -250,6 +250,37 @@ export interface PublicCreator {
   joinedAt: string;
 }
 
+// ---- own profile (authenticated; Step 15c, mirrors backend UserDtos) ----
+/** `ProfileDto`: the signed-in user's own profile. displayName, bio, socialLinks and visibility are never null. */
+export interface Profile {
+  displayName: string;
+  bio: string;
+  avatarUrl: string | null;
+  bannerUrl: string | null;
+  /** label → https URL */
+  socialLinks: Record<string, string>;
+  visibility: "PUBLIC" | "PRIVATE";
+}
+
+/** `GET /api/users/me` */
+export interface MeResponse {
+  user: User;
+  profile: Profile;
+}
+
+/**
+ * Body of `PUT /api/users/me/profile` (returns `Profile`). Exactly these six keys: the server rejects any other field
+ * (username, email, role, ...) with a 400. Full replace; an empty URL is sent as null.
+ */
+export interface UpdateProfileRequest {
+  displayName: string;
+  bio: string;
+  avatarUrl: string | null;
+  bannerUrl: string | null;
+  socialLinks: Record<string, string>;
+  visibility: "PUBLIC" | "PRIVATE";
+}
+
 export interface PublicCategoryRef {
   slug: string;
   name: string;

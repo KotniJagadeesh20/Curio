@@ -1,0 +1,539 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ✓ src/lib/blocks.test.ts (42 tests) 23ms
+stderr | src/pages/creator/CollectionEditor.test.tsx > loading and access > shows loading, then the collection with its modules and pages
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/creator/PageEditor.autosave.test.tsx > autosave of a draft > saves 1.5 s after typing: one request with the full ordered blocks, expectedVersion and the autosave flag; then it is Saved
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+
+stderr | src/pages/creator/PageEditor.test.tsx > loading and access > shows loading, then the page: title, summary, blocks in stored order, status, and the unsaved-work warning
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+
+stderr | src/pages/creator/Workspace.test.tsx > My Collections list > shows a loading state, then each collection with its status, counts and visibility notes
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/public/PageView.test.tsx > PageView: the reading view > renders breadcrumbs, title, summary and content
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/hooks/usePublicArrival.test.tsx > R1/R3/S3: arrival and focus > PUSH: nothing while pending; on content: one scroll to 0 and the heading focused; then armed with a tracking observer
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/hooks/usePublicArrival.test.tsx (72 tests) 845ms
+stderr | src/pages/public/PageView.test.tsx > PageView: the reading view > mobile: a 'Contents' drawer shows the same outline (current page marked) and closes when a page is followed
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+stderr | src/pages/public/PageView.test.tsx > PageView: the reading view > a draft page never appears in the sidebar, the drawer or previous/next
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+stderr | src/pages/settings/ProfileSettings.test.tsx > loading > 1: shows the heading and a loading state, then every saved value
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/public/CollectionView.test.tsx > CollectionView > renders the header: full cover, category link, title, description, byline link and counts
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/creator/Workspace.test.tsx > create collection > offers the categories from the server
+Select is changing from uncontrolled to controlled. Components should not switch from controlled to uncontrolled (or vice versa). Decide between using a controlled or uncontrolled value for the lifetime of the component.
+
+ ✓ src/pages/public/CollectionView.test.tsx (16 tests) 1048ms
+   ✓ CollectionView > renders the header: full cover, category link, title, description, byline link and counts 320ms
+ ✓ src/pages/public/PageView.test.tsx (46 tests) 3263ms
+   ✓ PageView: the reading view > mobile: a 'Contents' drawer shows the same outline (current page marked) and closes when a page is followed 400ms
+ ✓ src/pages/settings/ProfileSettings.test.tsx (23 tests) 2317ms
+   ✓ read-only account fields > 2: shows @username as text with the hint, and no input for username, email or role 313ms
+stderr | src/pages/creator/Workspace.test.tsx > template picker keyboard accessibility > ArrowRight and ArrowDown select the next template
+Warning: An update to ForwardRef inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-roving-focus/dist/index.mjs:32:5
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-collection/dist/index.mjs:27:15
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at CollectionProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-collection/dist/index.mjs:17:13)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-roving-focus/dist/index.mjs:26:68
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-radio-group/dist/index.mjs:169:7
+    at /Users/newuser/Downloads/Curio-main/src/components/ui/radio-group.tsx:11:70
+    at TemplatePicker (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:444:31)
+    at div
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs:24:7
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-focus-scope/dist/index.mjs:15:5
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:206:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:132:58
+    at Presence (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-presence/dist/index.mjs:19:11)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:123:64
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-portal/dist/index.mjs:11:22
+    at Presence (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-presence/dist/index.mjs:19:11)
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at DialogPortal (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:85:11)
+    at /Users/newuser/Downloads/Curio-main/src/components/ui/dialog.tsx:25:73
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at Dialog (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:25:5)
+    at CreateDialog (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:373:25)
+    at section
+    at Workspace (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:46:65)
+    at RenderedRoute (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:539:7)
+    at Routes (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1273:7)
+    at Router (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+
+stderr | src/pages/creator/Workspace.test.tsx > template picker keyboard accessibility > ArrowLeft and ArrowUp select the previous template
+Warning: An update to ForwardRef inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-roving-focus/dist/index.mjs:32:5
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-collection/dist/index.mjs:27:15
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at CollectionProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-collection/dist/index.mjs:17:13)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-roving-focus/dist/index.mjs:26:68
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-radio-group/dist/index.mjs:169:7
+    at /Users/newuser/Downloads/Curio-main/src/components/ui/radio-group.tsx:11:70
+    at TemplatePicker (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:444:31)
+    at div
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs:24:7
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-focus-scope/dist/index.mjs:15:5
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:206:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:132:58
+    at Presence (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-presence/dist/index.mjs:19:11)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:123:64
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-portal/dist/index.mjs:11:22
+    at Presence (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-presence/dist/index.mjs:19:11)
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at DialogPortal (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:85:11)
+    at /Users/newuser/Downloads/Curio-main/src/components/ui/dialog.tsx:25:73
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at Dialog (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:25:5)
+    at CreateDialog (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:373:25)
+    at section
+    at Workspace (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:46:65)
+    at RenderedRoute (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:539:7)
+    at Routes (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1273:7)
+    at Router (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+
+stderr | src/pages/creator/Workspace.test.tsx > template picker keyboard accessibility > Space selects the focused template
+Warning: An update to ForwardRef inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-roving-focus/dist/index.mjs:32:5
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-collection/dist/index.mjs:27:15
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at CollectionProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-collection/dist/index.mjs:17:13)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-roving-focus/dist/index.mjs:26:68
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-radio-group/dist/index.mjs:169:7
+    at /Users/newuser/Downloads/Curio-main/src/components/ui/radio-group.tsx:11:70
+    at TemplatePicker (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:444:31)
+    at div
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs:24:7
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-focus-scope/dist/index.mjs:15:5
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:206:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:132:58
+    at Presence (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-presence/dist/index.mjs:19:11)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:123:64
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-portal/dist/index.mjs:11:22
+    at Presence (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-presence/dist/index.mjs:19:11)
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at DialogPortal (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:85:11)
+    at /Users/newuser/Downloads/Curio-main/src/components/ui/dialog.tsx:25:73
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at Dialog (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:25:5)
+    at CreateDialog (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:373:25)
+    at section
+    at Workspace (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:46:65)
+    at RenderedRoute (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:539:7)
+    at Routes (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1273:7)
+    at Router (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+
+stderr | src/pages/creator/Workspace.test.tsx > template picker keyboard accessibility > single tab stop: once the group has focus, only the selected radio is tabbable, and it follows the selection
+Warning: An update to ForwardRef inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-roving-focus/dist/index.mjs:32:5
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-collection/dist/index.mjs:27:15
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at CollectionProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-collection/dist/index.mjs:17:13)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-roving-focus/dist/index.mjs:26:68
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-radio-group/dist/index.mjs:169:7
+    at /Users/newuser/Downloads/Curio-main/src/components/ui/radio-group.tsx:11:70
+    at TemplatePicker (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:444:31)
+    at div
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dismissable-layer/dist/index.mjs:24:7
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-focus-scope/dist/index.mjs:15:5
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:206:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:132:58
+    at Presence (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-presence/dist/index.mjs:19:11)
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:123:64
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:33:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-slot/dist/index.mjs:9:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-primitive/dist/index.mjs:28:13
+    at file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-portal/dist/index.mjs:11:22
+    at Presence (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-presence/dist/index.mjs:19:11)
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at DialogPortal (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:85:11)
+    at /Users/newuser/Downloads/Curio-main/src/components/ui/dialog.tsx:25:73
+    at Provider (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-context/dist/index.mjs:27:15)
+    at Dialog (file:///Users/newuser/Downloads/Curio-main/node_modules/@radix-ui/react-dialog/dist/index.mjs:25:5)
+    at CreateDialog (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:373:25)
+    at section
+    at Workspace (/Users/newuser/Downloads/Curio-main/src/pages/creator/Workspace.tsx:46:65)
+    at RenderedRoute (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:539:7)
+    at Routes (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1273:7)
+    at Router (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1207:17)
+    at MemoryRouter (/Users/newuser/Downloads/Curio-main/node_modules/react-router/dist/umd/react-router.development.js:1101:7)
+    at QueryClientProvider (file:///Users/newuser/Downloads/Curio-main/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js:20:3)
+
+ ✓ src/pages/creator/CollectionEditor.test.tsx (29 tests) 4355ms
+   ✓ publishing a collection > publishes, and the screen reflects the new status from the refreshed data 318ms
+   ✓ details > uploads a cover through the same uploader: only the asset id is sent, and removing it later sends null 341ms
+   ✓ details > an existing uploaded cover is previewed and removing it sends coverAssetId: null 391ms
+   ✓ details > validates before sending, and shows a server conflict inline 316ms
+   ✓ modules > adds a module (title required) and shows it after the refresh 330ms
+ ✓ src/pages/creator/Workspace.test.tsx (25 tests) 4302ms
+   ✓ create collection > a blank title is refused on the page with no request 355ms
+   ✓ create collection > shows a pending state and ignores a second click while saving 310ms
+   ✓ create collection > offers the categories from the server 320ms
+ ✓ src/pages/creator/PageEditor.autosave.test.tsx (32 tests) 4316ms
+   ✓ autosave of a draft > saves 1.5 s after typing: one request with the full ordered blocks, expectedVersion and the autosave flag; then it is Saved 371ms
+   ✓ autosave of a draft > uses the version from each response: three saves in a row carry 3, 4, 5 358ms
+   ✓ autosave of a draft > many rapid edits become one request with the final text 301ms
+   ✓ autosave of a draft > long continuous typing is saved by the 15 s max-wait 301ms
+stderr | src/hooks/useAutosave.test.tsx > single flight and the latest snapshot > a flush while a retry is scheduled cancels the timer: the retry never fires on top of the flush's request
+Warning: An update to TestComponent inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:337:5)
+Warning: An update to TestComponent inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at TestComponent (/Users/newuser/Downloads/Curio-main/node_modules/@testing-library/react/dist/pure.js:337:5)
+
+ ✓ src/hooks/useAutosave.test.tsx (23 tests) 124ms
+ ✓ src/hooks/useCreatorMutations.test.tsx (41 tests) 311ms
+ ✓ src/hooks/useConfirmedPublicData.test.tsx (19 tests) 85ms
+ ✓ src/lib/publicBlocks.test.ts (87 tests) 41ms
+stderr | src/pages/public/Discover.test.tsx > Discover > lists collections as cards with cover thumb, title, description, category, creator and counts; sets the title
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > renders /discover (the real Discover page since Step 14a)
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice/java is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice/java
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /alice/java/core/intro is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /alice/java/core/intro
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@ is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@ab is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@ab
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@1abc is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@1abc
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@al-ice is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /@al-ice
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /someword is a 404 (the first segment is not a valid @handle)
+404 Error: User attempted to access non-existent route: /someword
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@alice/java/core is a 404 (no such shape)
+404 Error: User attempted to access non-existent route: /@alice/java/core
+
+stderr | src/AppRoutes.test.tsx > public creator routes (anonymous) > /@alice/java/core/intro/extra is a 404 (no such shape)
+404 Error: User attempted to access non-existent route: /@alice/java/core/intro/extra
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/abc is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/abc
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/0 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/0
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/collections/-3 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/collections/-3
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/pages/1.5 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/pages/1.5
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create/pages/9999999999999999999999 is a 404 for a logged-in user (bad id)
+404 Error: User attempted to access non-existent route: /create/pages/9999999999999999999999
+
+stderr | src/AppRoutes.test.tsx > workspace guards > /create is not swallowed by the :handle route, and is a 404 for deeper unknown paths
+404 Error: User attempted to access non-existent route: /create/unknown/thing
+
+stderr | src/AppRoutes.test.tsx > under the app's data router (router.tsx) > a logged-in user reaches the page editor route, an invalid id is NotFound, and the admin redirect still lands on /create
+404 Error: User attempted to access non-existent route: /create/pages/abc
+
+ ✓ src/AppRoutes.test.tsx (45 tests) 347ms
+ ✓ src/pages/public/Discover.test.tsx (13 tests) 726ms
+ ✓ src/lib/richText.test.ts (61 tests) 1151ms
+   ✓ exact round trip: fuzzed docs > 5,000 random valid docs: parseSource(docToSource(doc)) equals the doc, and the projection is identical 667ms
+ ✓ src/components/editor/BlockRenderer.test.tsx (76 tests) 291ms
+stderr | src/pages/creator/PageEditor.guard.test.tsx > clean page > navigation is not intercepted and nothing is sent
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+
+ ✓ src/lib/templates.test.ts (11 tests) 39ms
+ ✓ src/components/media/MediaUploader.test.tsx (30 tests) 724ms
+ ✓ src/components/editor/BlockEditor.media.test.tsx (15 tests) 921ms
+stderr | src/pages/public/CreatorProfile.test.tsx > CreatorProfile > renders the header: banner, avatar, name, @username, bio, social links and join date
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/creator/PageEditor.guard.test.tsx (15 tests) 2480ms
+   ✓ a draft with unsaved changes > browser back and forward are guarded too 350ms
+ ✓ src/pages/public/CreatorProfile.test.tsx (14 tests) 905ms
+stderr | src/pages/public/PageView.navigation.test.tsx > PageView arrival focus > a PUSH focuses the page heading once the page and outline are confirmed; Next focuses the next page's heading
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/creator/CollectionForm.cover.test.tsx (15 tests) 905ms
+ ✓ src/lib/profile-validation.test.ts (49 tests) 20ms
+stderr | src/pages/public/PageView.navigation.test.tsx > Contents drawer hand-off (rev. 1 §5.3, O3) > following a link to another page: focus goes to the new page's heading, not back to 'Contents'
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+stderr | src/pages/public/PageView.navigation.test.tsx > Contents drawer hand-off (rev. 1 §5.3, O3) > Escape closes it and focus returns to 'Contents'
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+stderr | src/pages/public/PageView.navigation.test.tsx > Contents drawer hand-off (rev. 1 §5.3, O3) > the current page's own link: no arrival, focus returns to 'Contents'
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+ ✓ src/pages/creator/PageEditor.test.tsx (45 tests) 10421ms
+   ✓ loading and access > shows loading, then the page: title, summary, blocks in stored order, status, and the unsaved-work warning 444ms
+   ✓ saving > keeps every existing id, gives new blocks new ids, and saves the order shown 474ms
+   ✓ saving > every block type can be added from the menu, in order, and is saved with its flat shape 1582ms
+   ✓ validation and errors > stops adding at 500 blocks and explains why 2510ms
+   ✓ publishing > publishing an empty page warns that readers get no meaningful body, and publishes only on confirm 354ms
+   ✓ legacy pages keep their content until explicitly converted > Convert shows the blocks (unsaved), Save sends them once, and the legacy panel goes away 430ms
+   ✓ legacy pages keep their content until explicitly converted > converted content survives a reload exactly 437ms
+ ✓ src/pages/public/PageView.navigation.test.tsx (8 tests) 784ms
+stderr | src/pages/public/PublicShare.test.tsx > Share on the page viewer > shares '<page> · <collection>' and the canonical page URL
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/editor/RichTextEditor.test.tsx (28 tests) 6628ms
+   ✓ toolbar formatting escapes the selected text (Step 13c review fix) > random selections formatted through the toolbar always give a doc whose text is its exact projection 5010ms
+ ✓ src/lib/blocks.table.test.ts (30 tests) 17ms
+ ✓ src/lib/scrollStore.test.ts (14 tests) 73ms
+ ✓ src/pages/public/PublicShare.test.tsx (8 tests) 482ms
+ ✓ src/components/editor/BlockRenderer.public.test.tsx (27 tests) 234ms
+stderr | src/pages/public/CreatorProfile.pagination.test.tsx > CreatorProfile pagination > shows Load more only while there are more pages, with 'Showing N of M', and removes it after the last page
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/public/PublicBlocks.test.tsx (12 tests) 268ms
+stderr | src/pages/creator/CollectionEditor.publicLinks.test.tsx > collection-level 'View public page' link > published and publicly visible → links to the real collection viewer URL
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/public/CreatorProfile.pagination.test.tsx (8 tests) 756ms
+stderr | src/pages/creator/PageEditor.media.test.tsx > uploads and autosave > an upload in progress is never saved: autosave sends the image block as it was, then the finished upload is saved
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+
+ ✓ src/components/public/ShareButton.test.tsx (12 tests) 428ms
+ ✓ src/hooks/useContent.test.tsx (12 tests) 632ms
+ ✓ src/lib/media.test.ts (13 tests) 10ms
+ ✓ src/pages/creator/CollectionEditor.publicLinks.test.tsx (8 tests) 900ms
+ ✓ src/pages/creator/PageEditor.media.test.tsx (9 tests) 1171ms
+   ✓ uploads and autosave > an upload in progress is never saved: autosave sends the image block as it was, then the finished upload is saved 381ms
+stderr | src/context/AuthContext.publicData.test.tsx > logout keeps public data (Step 14a, requirement D) > an in-flight public Discover query survives the logout caused by an expired token's 401, then displays its results
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/context/AuthContext.publicData.test.tsx (3 tests) 168ms
+stderr | src/components/Navbar.test.tsx > Navbar > shows Discover to everyone, and no Write link to a visitor
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/lib/paths.test.ts (17 tests) 16ms
+ ✓ src/components/Navbar.test.tsx (9 tests) 521ms
+stderr | src/pages/admin/AdminPages.test.tsx > admin dashboard after the legacy track endpoints were removed > shows problems, users and the admin's OWN collections, and never calls /admin/tracks
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/admin/AdminPages.test.tsx > admin problem management still works > the New Problem form offers those collections as tracks and creates the problem
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+ ✓ src/lib/creator-validation.test.ts (27 tests) 10ms
+ ✓ src/pages/admin/AdminPages.test.tsx (4 tests) 422ms
+ ✓ src/lib/share.test.ts (9 tests) 5ms
+ ✓ src/components/editor/TableEditor.test.tsx (10 tests) 764ms
+   ✓ table block in the editor > is offered in the insert menu and inserts a 2x2 table with a header 317ms
+stderr | src/pages/public/Discover.arrival.test.tsx > Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/public/ContentsDrawer.focus.test.tsx > ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > a link to another page: 'Contents' never receives focus, not even briefly
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+stderr | src/pages/public/ContentsDrawer.focus.test.tsx > ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > control: Escape returns focus to 'Contents' (Radix's close auto-focus is active in this harness)
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+stderr | src/pages/public/ContentsDrawer.focus.test.tsx > ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > control: the current page's own link keeps the default (focus back on 'Contents')
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+stderr | src/pages/public/ContentsDrawer.focus.test.tsx > ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > the flag is per close: after a navigation close, a later Escape still returns focus to 'Contents'
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+stderr | src/pages/public/ContentsDrawer.focus.test.tsx > ContentsDrawer focus hand-off (deterministic; drawer kept mounted) > the flag is per close: after a navigation close, a later Escape still returns focus to 'Contents'
+Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+
+ ✓ src/pages/public/ContentsDrawer.focus.test.tsx (4 tests) 545ms
+ ✓ src/pages/public/Discover.arrival.test.tsx (3 tests) 594ms
+   ✓ Discover arrival (R1, Q-d4, O7) > entering Discover focuses its heading once; typing, a category, paging and Back never move focus to it again 519ms
+stderr | src/pages/public/routes.test.tsx > PublicCreatorProfilePage (Step 15b) > passes the lower-cased username
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/lib/scrollAnchor.test.ts (7 tests) 25ms
+stderr | src/pages/creator/PageEditor.invalidBlocks.test.tsx > server-side block problems (400 INVALID_BLOCKS) > are shown on the block they belong to, with the server's message; problems for blocks that aren't on the page are ignored
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+
+stderr | src/pages/public/CollectionView.arrival.test.tsx > CollectionView arrival > a PUSH focuses the collection heading once confirmed
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/public/routes.test.tsx (17 tests) 767ms
+   ✓ the move > Placeholders.tsx no longer exports the public adapters 702ms
+ ✓ src/pages/public/CollectionView.arrival.test.tsx (4 tests) 232ms
+ ✓ src/lib/publicNav.test.ts (7 tests) 10ms
+ ✓ src/hooks/useNoIndex.test.tsx (5 tests) 119ms
+ ✓ src/pages/creator/PageEditor.invalidBlocks.test.tsx (4 tests) 966ms
+   ✓ server-side block problems (400 INVALID_BLOCKS) > are shown on the block they belong to, with the server's message; problems for blocks that aren't on the page are ignored 338ms
+ ✓ src/components/public/PublicBlocks.frameSize.test.tsx (8 tests) 186ms
+ ✓ src/lib/mediaUrl.test.ts (7 tests) 7ms
+stderr | src/components/public/PageNav.test.tsx > PageNav > links previous and next in reading order, module-qualified
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/public/PageNav.test.tsx (5 tests) 214ms
+ ✓ src/lib/urlRules.test.ts (83 tests) 30ms
+ ✓ src/lib/api.public.test.ts (6 tests) 8ms
+stderr | src/components/public/CollectionOutline.test.tsx > CollectionOutline > lists modules and pages in reading order, fully expanded
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/public/CollectionOutline.test.tsx (5 tests) 279ms
+ ✓ src/test/noLegacyAdminRoutes.test.ts (3 tests) 37ms
+ ✓ src/hooks/useOwnerMediaUrl.test.tsx (3 tests) 239ms
+ ✓ src/components/CodeEditor.test.tsx (3 tests) 148ms
+ ✓ src/hooks/useDocumentTitle.test.tsx (2 tests) 15ms
+stderr | src/components/public/NotAvailable.focus.test.tsx > NotAvailable heading > forwards a ref to the <h1>, which is focusable but not tabbable
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/public/NotAvailable.focus.test.tsx (2 tests) 121ms
+stderr | src/components/public/NotAvailable.test.tsx > neutral public states > NotAvailable says the same thing for every hidden reason and links to Discover
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/public/NotAvailable.test.tsx (2 tests) 105ms
+stderr | src/components/Footer.test.tsx > Footer social links > GitHub link is named and keeps href/target/rel
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/Footer.test.tsx (3 tests) 174ms
+ ✓ src/components/editor/BlockEditor.test.tsx (15 tests) 20197ms
+   ✓ slash menu > filters as you type, and Enter turns the empty block into the chosen type (same place, count unchanged, other ids kept) 302ms
+   ✓ slash menu > respects the 500-block limit: replacing never adds a block, and Add block stays disabled 18961ms
+
+ Test Files  66 passed (66)
+      Tests  1310 passed (1310)
+   Start at  14:23:29
+   Duration  29.66s (transform 2.96s, setup 11.96s, collect 15.44s, tests 79.26s, environment 31.86s, prepare 5.66s)
+

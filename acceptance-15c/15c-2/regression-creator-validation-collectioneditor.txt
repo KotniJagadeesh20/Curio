@@ -1,0 +1,20 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ✓ src/lib/creator-validation.test.ts (27 tests) 6ms
+stderr | src/pages/creator/CollectionEditor.publicLinks.test.tsx > collection-level 'View public page' link > published and publicly visible → links to the real collection viewer URL
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/creator/CollectionEditor.test.tsx > loading and access > shows loading, then the collection with its modules and pages
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/creator/CollectionEditor.publicLinks.test.tsx (8 tests) 420ms
+ ✓ src/pages/creator/CollectionEditor.test.tsx (29 tests) 1585ms
+
+ Test Files  3 passed (3)
+      Tests  64 passed (64)
+   Start at  12:03:20
+   Duration  3.14s (transform 245ms, setup 432ms, collect 836ms, tests 2.01s, environment 1.58s, prepare 251ms)
+

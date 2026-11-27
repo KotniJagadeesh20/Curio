@@ -1,0 +1,40 @@
+# Step 15d-1 attempt 2: merged nullability (runs 1-3). Mismatches are reported, never fixed.
+# per-run files (kept):
+b821f9014be726fb51eb26dddae364f7d6bc5c61964daadd6c59adac58cb977b  /Users/newuser/Downloads/Curio-main/acceptance-15/15d-1/run-1/normal/nullability.txt
+b821f9014be726fb51eb26dddae364f7d6bc5c61964daadd6c59adac58cb977b  /Users/newuser/Downloads/Curio-main/acceptance-15/15d-1/run-2/normal/nullability.txt
+b821f9014be726fb51eb26dddae364f7d6bc5c61964daadd6c59adac58cb977b  /Users/newuser/Downloads/Curio-main/acceptance-15/15d-1/run-3/normal/nullability.txt
+# all three per-run files are byte-identical; the rows below hold for runs 1, 2 and 3
+# mismatches across runs: 0
+# field | observed types | types.ts declaration | contexts | result
+Profile.displayName | string | string | new user; round-trip; cleared | match
+Profile.bio | string | string | new user; round-trip; cleared | match
+Profile.avatarUrl | null,string | string | null | new user; round-trip; cleared | match
+Profile.bannerUrl | null,string | string | null | new user; round-trip; cleared | match
+Profile.socialLinks | object | Record<string, string> | new user; round-trip; cleared | match
+Profile.visibility | string | "PUBLIC" | "PRIVATE" | new user; round-trip; cleared | match
+PublicCreator.username | string | string | N5 before; N5 after | match
+PublicCreator.displayName | string | string | N5 before; N5 after | match
+PublicCreator.bio | string | string | N5 before; N5 after | match
+PublicCreator.avatarUrl | null,string | string | null | N5 before; N5 after | match
+PublicCreator.bannerUrl | null,string | string | null | N5 before; N5 after | match
+PublicCreator.socialLinks | object | Record<string, string> | N5 before; N5 after | match
+PublicCreator.joinedAt | string | string | N5 before; N5 after | match
+PublicCollectionSummary.slug | string | string | N7 | match
+PublicCollectionSummary.title | string | string | N7 | match
+PublicCollectionSummary.description | string | string | N7 | match
+PublicCollectionSummary.coverUrl | null | string | null | N7 | match
+PublicCollectionSummary.coverThumbUrl | null | string | null | N7 | match
+PublicCollectionSummary.category | object | PublicCategoryRef | null | N7 | match
+PublicCollectionSummary.creator | object | PublicCreatorRef | N7 | match
+PublicCollectionSummary.moduleCount | number | number | N7 | match
+PublicCollectionSummary.pageCount | number | number | N7 | match
+PublicCategoryRef.slug | string | string | N7 | match
+PublicCategoryRef.name | string | string | N7 | match
+PublicCreatorRef.username | string | string | N7 | match
+PublicCreatorRef.displayName | string | string | N7 | match
+Paged.items | array | T[] | N7 | match
+Paged.page | number | number | N7 | match
+Paged.size | number | number | N7 | match
+Paged.totalItems | number | number | N7 | match
+Paged.totalPages | number | number | N7 | match
+N7.2c note: types.ts declares category as "PublicCategoryRef | null"; for the seeded collection (created with a category) null does not pass.

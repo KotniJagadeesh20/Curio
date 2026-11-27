@@ -25,7 +25,7 @@ const slug = (value: string | undefined, errors: FieldErrors<{ slug: string }>) 
 };
 
 /** Same rule as the server's UrlPolicy: absolute https URL with a host and no embedded credentials. */
-function isHttpsUrl(v: string) {
+export function isHttpsUrl(v: string) {
   try {
     const u = new URL(v);
     return u.protocol === "https:" && u.hostname !== "" && u.username === "" && u.password === "";

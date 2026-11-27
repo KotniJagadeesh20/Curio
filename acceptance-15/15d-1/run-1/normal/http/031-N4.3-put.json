@@ -1,0 +1,40 @@
+{
+  "seq": 31,
+  "label": "N4.3-put",
+  "request": {
+    "method": "PUT",
+    "path": "/api/users/me/profile",
+    "authenticated": true,
+    "body": {
+      "displayName": "Bob C15",
+      "bio": "Bob writes contract tests.",
+      "avatarUrl": "https://img.example.com/c15/bob-avatar.png",
+      "bannerUrl": "https://img.example.com/c15/bob-banner.png",
+      "socialLinks": {
+        "site": "https://bob.example.com",
+        "code": "https://code.example.com/bob"
+      },
+      "visibility": "PUBLIC",
+      "email": "c15_other@contract15.test"
+    }
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      "connection": "close",
+      "content-security-policy": "default-src 'none'; frame-ancestors 'none'",
+      "content-type": "application/json",
+      "date": "Fri, 27 Nov 2026 08:08:03 GMT",
+      "expires": "0",
+      "pragma": "no-cache",
+      "referrer-policy": "no-referrer",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-xss-protection": "0"
+    },
+    "body": "{\"error\":\"Field 'email' cannot be set here\"}"
+  }
+}

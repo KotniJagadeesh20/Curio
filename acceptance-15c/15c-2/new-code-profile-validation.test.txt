@@ -1,0 +1,10 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ✓ src/lib/profile-validation.test.ts (49 tests) 8ms
+
+ Test Files  1 passed (1)
+      Tests  49 passed (49)
+   Start at  12:03:13
+   Duration  874ms (transform 109ms, setup 185ms, collect 30ms, tests 8ms, environment 360ms, prepare 60ms)
+

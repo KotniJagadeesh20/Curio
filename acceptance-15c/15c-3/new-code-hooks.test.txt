@@ -1,0 +1,11 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ✓ src/hooks/useCreatorMutations.test.tsx (41 tests) 162ms
+ ✓ src/hooks/useContent.test.tsx (12 tests) 608ms
+
+ Test Files  2 passed (2)
+      Tests  53 passed (53)
+   Start at  12:45:30
+   Duration  1.56s (transform 125ms, setup 337ms, collect 141ms, tests 770ms, environment 778ms, prepare 82ms)
+

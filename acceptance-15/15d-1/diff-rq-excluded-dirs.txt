@@ -1,0 +1,8 @@
+/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/c05168c2-3d7e-427f-b999-fa081d8237a4/scratchpad/pkg15c/Curio-main/legacy-mock-data/data
+/Users/newuser/Downloads/Curio-main/backend/target
+/Users/newuser/Downloads/Curio-main/backend/data
+/Users/newuser/Downloads/Curio-main/legacy-mock-data/data
+1d(c) extra excluded folders to diff: 1
+=== separate diff: legacy-mock-data/data
+Q4RESULT rel=legacy-mock-data/data exit=0
+1d(c) Q4: 1 extra folder(s) diffed, all identical

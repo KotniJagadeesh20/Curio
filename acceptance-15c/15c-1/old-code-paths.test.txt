@@ -1,0 +1,26 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ❯ src/lib/paths.test.ts (17 tests | 1 failed) 7ms
+   × api paths > builds the own-profile API paths 2ms
+     → apiPaths.me is not a function
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/paths.test.ts > api paths > builds the own-profile API paths
+TypeError: apiPaths.me is not a function
+ ❯ src/lib/paths.test.ts:103:21
+    101|   // Step 15c-1: the signed-in user's own profile (UserController)
+    102|   it("builds the own-profile API paths", () => {
+    103|     expect(apiPaths.me()).toBe("/users/me");
+       |                     ^
+    104|     expect(apiPaths.myProfile()).toBe("/users/me/profile");
+    105|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  11:31:46
+   Duration  1.14s (transform 91ms, setup 188ms, collect 21ms, tests 7ms, environment 440ms, prepare 49ms)
+

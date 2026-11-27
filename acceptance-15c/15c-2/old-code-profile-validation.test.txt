@@ -1,0 +1,31 @@
+
+ RUN  v2.1.9 /Users/newuser/Downloads/Curio-main
+
+ ❯ src/lib/profile-validation.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/lib/profile-validation.test.ts [ src/lib/profile-validation.test.ts ]
+Error: Failed to resolve import "./profile-validation" from "src/lib/profile-validation.test.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /Users/newuser/Downloads/Curio-main/src/lib/profile-validation.test.ts:9:7
+  1  |  import { describe, expect, it } from "vitest";
+  2  |  import { hasProfileErrors, PROFILE_LIMITS, serverErrorField, toUpdateRequest, validateProfile } from "./profile-validation";
+     |                                                                                                        ^
+  3  |  /** Step 15c-2: client checks that mirror ProfileService.update / UrlPolicy (UX only; the server stays authoritative). */ const form = (over = {})=>({
+  4  |          displayName: "Bob",
+ ❯ TransformPluginContext._formatError node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49258:41
+ ❯ TransformPluginContext.error node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49253:16
+ ❯ normalizeUrl node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64291:23
+ ❯ node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64423:39
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:64350:7
+ ❯ PluginContainer.transform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:49099:18
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/dep-C6uTJdX2.js:51977:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  12:02:51
+   Duration  838ms (transform 84ms, setup 185ms, collect 0ms, tests 0ms, environment 399ms, prepare 47ms)
+

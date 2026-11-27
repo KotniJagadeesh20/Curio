@@ -1,0 +1,102 @@
+$ node --version
+v23.10.0
+exit=0
+
+$ mvn -version
+Apache Maven 3.9.15 (98b2cdbfdb5f1ac8781f537ea9acccaed7922349)
+Maven home: /opt/homebrew/Cellar/maven/3.9.15/libexec
+Java version: 17.0.14, vendor: Azul Systems, Inc., runtime: /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+Default locale: en_IN, platform encoding: UTF-8
+OS name: "mac os x", version: "26.5.1", arch: "aarch64", family: "mac"
+exit=0
+
+$ java -version
+openjdk version "17.0.14" 2025-01-21 LTS
+OpenJDK Runtime Environment Zulu17.56+15-CA (build 17.0.14+7-LTS)
+OpenJDK 64-Bit Server VM Zulu17.56+15-CA (build 17.0.14+7-LTS, mixed mode, sharing)
+exit=0
+
+$ npm --version
+10.9.2
+exit=0
+
+$ /Applications/Google Chrome.app/Contents/MacOS/Google Chrome --version
+Google Chrome 158.0.8127.38 
+exit=0
+
+$ node -p require('/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/c05168c2-3d7e-427f-b999-fa081d8237a4/scratchpad/node_modules/playwright-core/package.json').version
+node:internal/modules/cjs/loader:1408
+  throw err;
+  ^
+
+Error: Cannot find module '/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/c05168c2-3d7e-427f-b999-fa081d8237a4/scratchpad/node_modules/playwright-core/package.json'
+Require stack:
+- /Users/newuser/Downloads/Curio-main/[eval]
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1405:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1061:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1066:22)
+    at Function._load (node:internal/modules/cjs/loader:1215:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1491:12)
+    at require (node:internal/modules/helpers:135:16)
+    at [eval]:1:1
+    at runScriptInThisContext (node:internal/vm:209:10) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ '/Users/newuser/Downloads/Curio-main/[eval]' ]
+}
+
+Node.js v23.10.0
+exit=1
+
+NOTE: playwright-core unavailable (recorded only; expected 1.48.2)
+CHECK acceptance-15 absent: PASS
+CHECK assertion log absent: PASS
+CHECK Part A complete and scratch fresh: PASS
+1a' script source: 713c6b02dac0a3452409e727486ea83a8309f67582f48982634aad3590c3dbaa  /Users/newuser/Downloads/Curio-step15d-1-contract15-rev13.mjs
+1b manifest first line:
+81df735b2069876da57c969500684abc87503154b4361a7df244907b2b86ae09  acceptance-14a/scripts/seed14a.mjs
+1b manifest dir: /Users/newuser/Downloads/Curio-main
+acceptance-14a/scripts/seed14a.mjs: OK
+acceptance-14a/scripts/t14a.mjs: OK
+acceptance-14b/scripts/seed14b.mjs: OK
+acceptance-14b/scripts/t14b.mjs: OK
+acceptance-14b/scripts/t14b-stale.mjs: OK
+acceptance-14d-3/scripts/seed14c.mjs: OK
+acceptance-14d-3/scripts/seed14d3.mjs: OK
+acceptance-14d-3/scripts/seed14d3c.mjs: OK
+acceptance-14d-3/scripts/t14c.mjs: OK
+acceptance-14d-3/scripts/t14d1.mjs: OK
+acceptance-14d-3/scripts/t14d2.mjs: OK
+acceptance-14d-3/scripts/t14d3.mjs: OK
+acceptance-14d-3/scripts/t14d3c.mjs: OK
+acceptance-13e/scripts/common.mjs: OK
+acceptance-13e/scripts/mkpng.mjs: OK
+acceptance-13e/scripts/t1-templates.mjs: OK
+acceptance-13e/scripts/t2-editor.mjs: OK
+acceptance-13e/scripts/t3-media.mjs: OK
+acceptance-13e/scripts/t4-regression.mjs: OK
+exit=0
+CHECK 1b manifest: PASS (19/19 OK)
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-1/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-2/axe14e.json
+44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964  acceptance-a11y/outputs/run-3/axe14e.json
+exit=0
+CHECK 1c baseline: PASS (3/3 = 44923ea0bdecac4cbdaabfc34a6e4dfd309f58ebae0d0bd17c9a3f58da3a3964)
+1d(a) 2a7b2b4383cc64d40749c4b37bd99b984fbaff54c925e0bb0a21e999e5faeabf  /Users/newuser/Downloads/Curio-main-step15c.zip exit=0
+1d(b) unzip -tq:
+No errors detected in compressed data of /Users/newuser/Downloads/Curio-main-step15c.zip.
+exit=0
+1d(b) entries=1795 (expected 1795)
+1d(c) unzip exit=0
+total 0
+drwxr-xr-x@  3 newuser  wheel    96 27 Nov 13:37 .
+drwx------@ 11 newuser  wheel   352 27 Nov 13:37 ..
+drwxrwxr-x@ 38 newuser  wheel  1216 24 Nov 14:24 Curio-main
+1d(c) diff exit=0
+CHECK 1d: PASS
+3 installed script: 713c6b02dac0a3452409e727486ea83a8309f67582f48982634aad3590c3dbaa  acceptance-15/scripts/contract15.mjs
+3 root probe (cwd=/private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/c05168c2-3d7e-427f-b999-fa081d8237a4/scratchpad):
+usage error: working directory /private/tmp/claude-503/-Users-newuser-Downloads-Curio-main/c05168c2-3d7e-427f-b999-fa081d8237a4/scratchpad is not the Curio repository root (missing src/lib/types.ts)
+exit=2
+CHECK 3 script installed (713c6b02dac0a3452409e727486ea83a8309f67582f48982634aad3590c3dbaa) and root probe exit 2: PASS

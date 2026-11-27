@@ -1,0 +1,9 @@
+PASS S0 GET /api/public/creators/c15_sus -> 200
+SUMMARY part=S phase=setup pass=1 fail=0
+exit=0
+PASS S1 GET /api/public/creators/c15_sus -> 404
+PASS S2 priv=404/true unknown=404/true n6=true contentType="application/json"
+PASS S3 status=200 items=[] totalItems=0
+PASS S4 public responses checked=6 leaking=none
+SUMMARY part=S phase=assert pass=4 fail=0
+exit=0

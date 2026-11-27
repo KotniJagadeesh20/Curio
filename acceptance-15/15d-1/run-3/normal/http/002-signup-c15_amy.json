@@ -1,0 +1,35 @@
+{
+  "seq": 2,
+  "label": "signup-c15_amy",
+  "request": {
+    "method": "POST",
+    "path": "/api/auth/signup",
+    "authenticated": false,
+    "body": {
+      "name": "Amy Fifteen",
+      "email": "c15_amy@contract15.test",
+      "password": "Contract15-Pass!",
+      "username": "c15_amy"
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      "connection": "keep-alive",
+      "content-security-policy": "default-src 'none'; frame-ancestors 'none'",
+      "content-type": "application/json",
+      "date": "Fri, 27 Nov 2026 08:08:55 GMT",
+      "expires": "0",
+      "keep-alive": "timeout=60",
+      "pragma": "no-cache",
+      "referrer-policy": "no-referrer",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-xss-protection": "0"
+    },
+    "body": "{\"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3OTU3NjY5MzUsImV4cCI6MTc5NTg1MzMzNX0.FlOJkhSbb6jeKQj4B4mg0NQbwJcu23uNt5sfUguiTD8\",\"user\":{\"id\":3,\"name\":\"Amy Fifteen\",\"email\":\"c15_amy@contract15.test\",\"role\":\"USER\",\"createdAt\":\"2026-11-27T08:08:55.682270Z\",\"username\":\"c15_amy\"}}"
+  }
+}

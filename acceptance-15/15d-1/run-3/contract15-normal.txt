@@ -1,0 +1,40 @@
+PASS N1.1 status=200 keys=user,profile
+PASS N1.2 username="c15_bob" id:number name:string email:string role:string createdAt:string
+PASS N1.3 profile={"displayName":"Bob Fifteen","bio":"","avatarUrl":null,"bannerUrl":null,"socialLinks":{},"visibility":"PUBLIC"}
+PASS N2.1 status=200
+PASS N2.2 response={"displayName":"Bob C15","bio":"Bob writes contract tests.","avatarUrl":"https://img.example.com/c15/bob-avatar.png","bannerUrl":"https://img.example.com/c15/bob-banner.png","socialLinks":{"site":"https://bob.example.com","code":"https://code.example.com/bob"},"visibility":"PRIVATE"}
+PASS N2.3 profile={"displayName":"Bob C15","bio":"Bob writes contract tests.","avatarUrl":"https://img.example.com/c15/bob-avatar.png","bannerUrl":"https://img.example.com/c15/bob-banner.png","socialLinks":{"site":"https://bob.example.com","code":"https://code.example.com/bob"},"visibility":"PRIVATE"} userUnchanged=true
+PASS N2.4 put=200 avatarUrl=null bannerUrl=null socialLinks={}
+PASS N3.1 status=200 response="PRIVATE" get="PRIVATE"
+PASS N3.2 status=200 response="PUBLIC" get="PUBLIC"
+PASS N5.1 before=200 after=200 keysBefore=username,displayName,bio,avatarUrl,bannerUrl,socialLinks,joinedAt keysAfter=username,displayName,bio,avatarUrl,bannerUrl,socialLinks,joinedAt
+PASS N5.1a before="c15_bob" after="c15_bob"
+PASS N5.1b before="Bob Fifteen" after="Bob C15"
+PASS N5.1c before="" (empty case) after="Bob writes contract tests."
+PASS N5.1d before=null after="https://img.example.com/c15/bob-avatar.png"
+PASS N5.1e before=null after="https://img.example.com/c15/bob-banner.png"
+PASS N5.1f before={} after={"site":"https://bob.example.com","code":"https://code.example.com/bob"}
+PASS N5.1g expectedType=string before="2026-11-27T08:08:55.537941Z" after="2026-11-27T08:08:55.537941Z"
+PASS N5.2 before=true after=true
+INFO N5.3 GET /api/public/creators/C15_BOB -> 200 username="c15_bob" (recorded only)
+PASS N4.1 status=400 error="Usernames cannot be changed" userUnchanged=true profileUnchanged=true
+PASS N4.2 status=400 error="Field 'role' cannot be set here" userUnchanged=true profileUnchanged=true
+PASS N4.3 status=400 error="Field 'email' cannot be set here" userUnchanged=true profileUnchanged=true
+PASS N4.4 status=400 error="Field 'status' cannot be set here" userUnchanged=true profileUnchanged=true publicUnchanged=true (200->200)
+PASS N6.1 status=404
+PASS N6.2 status=404
+PASS N6.3 bodyIdentical=true contentType="application/json" vs "application/json" body={"error":"Creator not found"}
+PASS N7.1 status=200 keys=items,page,size,totalItems,totalPages
+PASS N7.2 items=1 seeded=true keys=slug,title,description,coverUrl,coverThumbUrl,category,creator,moduleCount,pageCount
+PASS N7.2a slug=string title=string description=string
+PASS N7.2b coverUrl=null coverThumbUrl=null
+PASS N7.2c category={"slug":"programming","name":"Programming"} expected={"slug":"programming","name":"Programming"}
+PASS N7.2d creator={"username":"c15_bob","displayName":"Bob C15"}
+PASS N7.2e moduleCount=1 pageCount=1
+PASS N7.2f page=0 size=20 totalItems=1 totalPages=1 items=array
+PASS N7.3 no seeded email in the collections response
+PASS N8 public responses checked=9 leaking=none
+PASS N1.4 mismatches=none (see nullability.txt)
+INFO ORDER setup > N1 > N5-before > N2 > N3.1 > reset-PUBLIC > N3.2 > N5-after > N4 > N6 > N7
+SUMMARY part=N phase=- pass=36 fail=0
+exit=0

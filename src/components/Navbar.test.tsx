@@ -83,4 +83,35 @@ describe("Navbar", () => {
     await waitFor(() => expect(container.querySelector("#mobile-nav-panel")).toHaveAttribute("hidden"));
     expect(container.querySelector("#mobile-nav-panel")).toBe(panel);
   });
+  // Step 15c-5: Profile settings next to the unchanged Profile item, in both account menus.
+  const ann = () => { auth.state = { user: { name: "Ann", email: "a@x.io", role: "USER" }, isAdmin: false, logout: () => {} }; };
+
+  it("desktop account menu has Profile -> /profile and Profile settings -> /settings/profile", async () => {
+    ann();
+    open();
+    fireEvent.keyDown(screen.getByRole("button", { name: "Account menu" }), { key: "Enter" });
+    const menu = await screen.findByRole("menu");
+    const items = Array.from(menu.querySelectorAll("a"));
+    expect(items.find((a) => a.textContent?.trim() === "Profile")).toHaveAttribute("href", "/profile");
+    expect(items.find((a) => a.textContent?.trim() === "Profile settings")).toHaveAttribute("href", "/settings/profile");
+  });
+
+  it("mobile menu has Profile -> /profile and Profile settings -> /settings/profile", () => {
+    ann();
+    const { container } = open();
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    const panel = container.querySelector("#mobile-nav-panel")!;
+    const items = Array.from(panel.querySelectorAll("a"));
+    expect(items.find((a) => a.textContent?.trim() === "Profile")).toHaveAttribute("href", "/profile");
+    expect(items.find((a) => a.textContent?.trim() === "Profile settings")).toHaveAttribute("href", "/settings/profile");
+  });
+
+  it("a visitor sees neither Profile nor Profile settings, on desktop or in the mobile menu", () => {
+    const { container } = open();
+    expect(screen.queryByRole("button", { name: "Account menu" })).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
+    expect(container.querySelector('a[href="/profile"]')).toBeNull();
+    expect(container.querySelector('a[href="/settings/profile"]')).toBeNull();
+    expect(screen.queryByText("Profile settings")).not.toBeInTheDocument();
+  });
 });

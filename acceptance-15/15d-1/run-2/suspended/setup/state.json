@@ -1,0 +1,11 @@
+{
+  "usernames": {
+    "suspended": "c15_sus",
+    "private": "c15_priv"
+  },
+  "emails": [
+    "c15_sus@contract15.test",
+    "c15_priv@contract15.test"
+  ],
+  "collectionSlug": "c15-sus-collection"
+}

@@ -1,0 +1,17 @@
+src/AppRoutes.test.tsx
+src/AppRoutes.tsx
+src/components/Navbar.test.tsx
+src/components/Navbar.tsx
+src/hooks/useContent.test.tsx
+src/hooks/useContent.ts
+src/hooks/useCreatorMutations.test.tsx
+src/hooks/useCreatorMutations.ts
+src/lib/creator-validation.ts
+src/lib/paths.test.ts
+src/lib/paths.ts
+src/lib/profile-validation.test.ts
+src/lib/profile-validation.ts
+src/lib/types.ts
+src/pages/creator/Placeholders.tsx
+src/pages/settings/ProfileSettings.test.tsx
+src/pages/settings/ProfileSettings.tsx

@@ -1,0 +1,30 @@
+{
+  "seq": 3,
+  "label": "categories-c15_bob",
+  "request": {
+    "method": "GET",
+    "path": "/api/public/categories",
+    "authenticated": false,
+    "body": null
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "cache-control": "no-cache, no-store, max-age=0, must-revalidate",
+      "connection": "keep-alive",
+      "content-security-policy": "default-src 'none'; frame-ancestors 'none'",
+      "content-type": "application/json",
+      "date": "Fri, 27 Nov 2026 08:08:55 GMT",
+      "expires": "0",
+      "keep-alive": "timeout=60",
+      "pragma": "no-cache",
+      "referrer-policy": "no-referrer",
+      "transfer-encoding": "chunked",
+      "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-xss-protection": "0"
+    },
+    "body": "[{\"id\":1,\"slug\":\"programming\",\"name\":\"Programming\",\"icon\":\"code\",\"position\":1},{\"id\":2,\"slug\":\"travel\",\"name\":\"Travel\",\"icon\":\"plane\",\"position\":2},{\"id\":3,\"slug\":\"food\",\"name\":\"Food & Recipes\",\"icon\":\"utensils\",\"position\":3},{\"id\":4,\"slug\":\"personal-experience\",\"name\":\"Personal Experience\",\"icon\":\"notebook-pen\",\"position\":4},{\"id\":5,\"slug\":\"creative\",\"name\":\"Creative\",\"icon\":\"palette\",\"position\":5},{\"id\":6,\"slug\":\"other\",\"name\":\"Other\",\"icon\":\"folder\",\"position\":6}]"
+  }
+}

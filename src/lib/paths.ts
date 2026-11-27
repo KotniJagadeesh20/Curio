@@ -74,4 +74,7 @@ export const apiPaths = {
   page: (id: number) => `/pages/${id}`,
   pageAction: (id: number, action: "publish" | "unpublish") => `/pages/${id}/${action}`,
   pageReorder: (id: number) => `/pages/${id}/reorder`,
+  // Step 15c: the signed-in user's own account and profile (UserController; authenticated)
+  me: () => "/users/me",
+  myProfile: () => "/users/me/profile",
 };
